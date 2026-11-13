@@ -104,6 +104,48 @@
       animation: gentleFloat 5s ease-in-out infinite;
     }
 
+    /* 3D Flip Animation for Customer Reviews */
+    .review-stage {
+      perspective: 1200px;
+    }
+    @keyframes flipInCard {
+      0% {
+        opacity: 0;
+        transform: rotateY(-75deg) scale(0.94);
+      }
+      100% {
+        opacity: 1;
+        transform: rotateY(0deg) scale(1);
+      }
+    }
+    @keyframes flipOutCard {
+      0% {
+        opacity: 1;
+        transform: rotateY(0deg) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: rotateY(75deg) scale(0.94);
+      }
+    }
+    .review-flip-in {
+      animation: flipInCard 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      transform-style: preserve-3d;
+    }
+    .review-flip-out {
+      animation: flipOutCard 0.32s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
+      transform-style: preserve-3d;
+    }
+
+    /* 5-Second Review Timer Bar */
+    @keyframes progressFill {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    .review-timer-bar {
+      animation: progressFill 5s linear forwards;
+    }
+
     /* Button Sheen Sweep Effect */
     .btn-sheen {
       position: relative;
@@ -124,11 +166,10 @@
       left: 140%;
     }
 
-    /* Mobile-Safe Section Reveal (Never stays hidden on mobile) */
+    /* Mobile-Safe Section Reveal */
     .reveal-on-scroll {
       opacity: 1;
       transform: translateY(0);
-      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     /* Floating WhatsApp Pulse */
@@ -238,12 +279,12 @@
           <span>WhatsApp Orders: +92 315 4124959</span>
         </a>
         <span class="text-white/40">•</span>
-        <span>✨ New Arrivals</span>
+        <span>✨ New Arrivals </span>
         <span class="text-white/40">•</span>
       </div>
       <!-- Duplicate copy for seamless continuous infinite scroll -->
       <div class="flex items-center space-x-8 px-6 font-medium tracking-wide" aria-hidden="true">
-        <span>🌸 Ahinoor Exclusive: Custom Stitching &amp; Fine Embroidery for Women &amp; Girls</span>
+        <span>🌸 Ahinoor Exclusive : Custom Stitching &amp; Fine Embroidery for Women &amp; Girls</span>
         <span class="text-white/40">|</span>
         <a href="https://wa.me/923154124959" target="_blank" rel="noopener" class="inline-flex items-center gap-2 underline decoration-white/60 hover:text-white">
           <svg class="w-4 h-4 text-[#25D366] shrink-0" viewBox="0 0 32 32" fill="currentColor">
@@ -252,7 +293,7 @@
           <span>WhatsApp Orders: +92 315 4124959</span>
         </a>
         <span class="text-white/40">•</span>
-        <span>✨ New Arrivals</span>
+        <span>✨ New Arrivals  </span>
         <span class="text-white/40">•</span>
       </div>
     </div>
@@ -290,7 +331,7 @@
             <span>CUSTOM STITCH &amp; EMBROIDERY</span>
             <span class="bg-[#E5D7BF] text-brand-maroon text-[9px] px-2 py-0.5 rounded font-bold tracking-wider">ATELIER</span>
           </a>
-          <a href="#instagram-section" class="hover:text-brand-maroon transition">INSTAGRAM</a>
+          <a href="#reviews-section" class="hover:text-brand-maroon transition">REVIEWS</a>
         </nav>
       </div>
 
@@ -342,6 +383,7 @@
       <a href="#collection" onclick="filterProducts('new'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon">NEW ARRIVALS (8)</a>
       <a href="#collection" onclick="filterProducts('all'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">PRET COLLECTION</a>
       <a href="#custom-naap" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">CUSTOM STITCH &amp; EMBROIDERY</a>
+      <a href="#reviews-section" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">CUSTOMER REVIEWS (20)</a>
       <a href="#instagram-section" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">INSTAGRAM</a>
       <a href="https://wa.me/923154124959" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-brand-teal pt-1">
         <span class="w-6 h-6 rounded-full bg-[#25D366] text-white flex items-center justify-center">
@@ -603,6 +645,93 @@
     </div>
   </section>
 
+  <!-- 20 Customer Reviews Auto-Flipping Showcase (1 Review at a Time, Flips Every 5 Seconds) -->
+  <section id="reviews-section" class="py-16 sm:py-24 bg-gradient-to-b from-[#F5F2EC] via-[#F0EAE0] to-[#F5F2EC] border-b border-[#E2DBD0] px-4">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Section Heading -->
+      <div class="text-center space-y-2.5 mb-10 sm:mb-12">
+        <span class="inline-block bg-[#E6DEC9] text-brand-maroon text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full">
+          VERIFIED CLIENT LOVE • 4.9/5 RATING
+        </span>
+        <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal">
+          What Our Happy Customers Say
+        </h2>
+        <p class="text-xs sm:text-sm text-brand-muted max-w-md mx-auto">
+          Pakistan bhar se mothers aur khawateen ke aetmaad aur silai ki tareef — har 5 second baad naya review dekhein.
+        </p>
+      </div>
+
+      <!-- Single Flipping Review Card Stage -->
+      <div class="review-stage relative max-w-2xl mx-auto" onmouseenter="pauseReviewAutoFlip()" onmouseleave="resumeReviewAutoFlip()">
+        
+        <div id="review-card" class="review-flip-in bg-white rounded-[28px] border border-[#DFD7C8] shadow-[0_12px_36px_rgba(106,35,56,0.08)] p-6 sm:p-10 relative overflow-hidden">
+          
+          <!-- Decorative Subtle Quote Mark -->
+          <div class="absolute top-5 right-7 font-editorial text-7xl text-[#EFE8DC] select-none leading-none pointer-events-none">
+            &ldquo;
+          </div>
+
+          <!-- Top Row: 5 Gold Stars + Verified Badge -->
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-5 relative z-10">
+            <div class="flex items-center gap-1 text-[#D49A2A]" aria-label="5 out of 5 stars">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            <span class="inline-flex items-center gap-1 bg-[#E8F5F0] text-[#176B58] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+              ✓ Verified WhatsApp Buyer
+            </span>
+          </div>
+
+          <!-- Review Quote Text -->
+          <p id="review-text" class="font-editorial text-xl sm:text-2xl text-brand-charcoal leading-relaxed italic min-h-[96px] sm:min-h-[84px] relative z-10">
+            "Meri beti ke liye Rose Pink Daisy Co-ord order kiya tha. Silai itni neat aur embroidery bilkul hath ke kaam jaisi nafees hai. Fabric bhi bohat soft hai!"
+          </p>
+
+          <!-- Purchased Item Tag -->
+          <div class="mt-4">
+            <span id="review-item" class="inline-block bg-[#F5F2EC] border border-[#DFD7C8] text-brand-maroon text-[11px] font-semibold px-3 py-1 rounded-lg">
+              Ordered: Rose Pink Daisy Embroidered Co-ord
+            </span>
+          </div>
+
+          <!-- Reviewer Profile & Controls -->
+          <div class="mt-6 pt-5 border-t border-[#EFEAE0] flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div id="review-avatar" class="w-11 h-11 rounded-full bg-gradient-to-tr from-brand-maroon to-[#9E7B3E] text-white font-editorial text-lg font-bold flex items-center justify-center shadow-xs shrink-0">
+                A
+              </div>
+              <div>
+                <h4 id="review-author" class="text-sm font-bold text-brand-charcoal">Ayesha Tariq</h4>
+                <p id="review-city" class="text-xs text-brand-muted">Lahore • 2 days ago</p>
+              </div>
+            </div>
+
+            <!-- Counter & Manual Prev/Next Buttons -->
+            <div class="flex items-center gap-2">
+              <span id="review-counter" class="text-xs font-bold text-brand-muted mr-1">1 / 20</span>
+              <button type="button" onclick="prevReview()" aria-label="Previous Review" class="w-9 h-9 rounded-full border border-[#DFD7C8] bg-[#FAF7F2] hover:bg-brand-maroon hover:text-white hover:border-brand-maroon text-brand-charcoal flex items-center justify-center transition">
+                ‹
+              </button>
+              <button type="button" onclick="nextReview()" aria-label="Next Review" class="w-9 h-9 rounded-full border border-[#DFD7C8] bg-[#FAF7F2] hover:bg-brand-maroon hover:text-white hover:border-brand-maroon text-brand-charcoal flex items-center justify-center transition">
+                ›
+              </button>
+            </div>
+          </div>
+
+          <!-- 5-Second Auto-Flip Progress Line at Bottom of Card -->
+          <div class="absolute bottom-0 left-0 right-0 h-1 bg-[#EFEAE0]">
+            <div id="review-progress" class="h-full bg-gradient-to-r from-brand-maroon via-[#B68D40] to-[#176B58] review-timer-bar"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- Official Instagram Section -->
   <section id="instagram-section" class="py-16 sm:py-20 bg-[#F5F2EC] border-b border-[#E2DBD0] text-center px-4 reveal-on-scroll">
     <div class="max-w-2xl mx-auto space-y-4">
@@ -668,7 +797,7 @@
       </div>
 
       <div class="pt-6 text-center text-xs text-brand-muted">
-        © 2026 AHINOOR • All Rights Reserved.
+        © 2026 AHINOOR (ahinoor.online) •  All Rights Reserved.
       </div>
     </div>
   </footer>
@@ -779,7 +908,7 @@
       {
         id: 101,
         title: "Rose Pink Daisy Embroidered Co-ord",
-        price: 3150,
+        price: 2650,
         category: "girls",
         isNew: true,
         badge: "New Arrival",
@@ -790,7 +919,7 @@
       {
         id: 102,
         title: "Deep Maroon Floral Neckline Co-ord",
-        price: 3200,
+        price: 2650,
         category: "girls",
         isNew: true,
         badge: "New Arrival",
@@ -801,7 +930,7 @@
       {
         id: 103,
         title: "Midnight Black Daisy Trim Co-ord",
-        price: 3250,
+        price: 2650,
         category: "girls",
         isNew: true,
         badge: "New Arrival",
@@ -812,7 +941,7 @@
       {
         id: 104,
         title: "Pastel Pink Blossom Embroidered Frock",
-        price: 2800,
+        price: 2799,
         category: "frocks",
         isNew: true,
         badge: "New Arrival",
@@ -823,7 +952,7 @@
       {
         id: 105,
         title: "Olive Green Pleated Collar Co-ord",
-        price: 2950,
+        price: 2750,
         category: "girls",
         isNew: true,
         badge: "New Arrival",
@@ -834,7 +963,7 @@
       {
         id: 106,
         title: "Royal Plum Gathered Collar Co-ord",
-        price: 3050,
+        price: 2750,
         category: "girls",
         isNew: true,
         badge: "New Arrival",
@@ -845,7 +974,7 @@
       {
         id: 107,
         title: "Mustard Yellow Meadow Co-ord",
-        price: 2900,
+        price: 2750,
         category: "girls",
         isNew: true,
         badge: "New Arrival",
@@ -856,7 +985,7 @@
       {
         id: 108,
         title: "Charcoal Black Buttoned Collar Co-ord",
-        price: 3100,
+        price: 2750,
         category: "girls",
         isNew: true,
         badge: "New Arrival",
@@ -869,7 +998,7 @@
       {
         id: 1,
         title: "Sage Olive Floral Pocket Co-ord Set",
-        price: 3950,
+        price: 3699,
         category: "girls",
         isNew: false,
         badge: "Bestseller",
@@ -880,7 +1009,7 @@
       {
         id: 2,
         title: "Blossom Pink Pintucked Flare Frock & Culottes",
-        price: 3850,
+        price: 2650,
         category: "frocks",
         isNew: false,
         badge: "Festive Pick",
@@ -891,7 +1020,7 @@
       {
         id: 3,
         title: "Lavender Mist V-Neck Embroidered Kurti Set",
-        price: 4250,
+        price: 2650,
         category: "women",
         isNew: false,
         badge: "Women's Edit",
@@ -902,7 +1031,7 @@
       {
         id: 4,
         title: "Emerald Checkered Bow-Sleeve Peplum Suit",
-        price: 4850,
+        price: 2799,
         category: "frocks",
         isNew: false,
         badge: "Signature",
@@ -913,7 +1042,7 @@
       {
         id: 5,
         title: "Ivory Cream Garden Motif Tunic & Palazzo",
-        price: 4450,
+        price: 2799,
         category: "women",
         isNew: false,
         badge: "Elegant",
@@ -924,7 +1053,7 @@
       {
         id: 6,
         title: "Sky Blue Daisy Embroidered A-Line Set",
-        price: 3750,
+        price: 2799,
         category: "girls",
         isNew: false,
         badge: "Summer Favorite",
@@ -935,7 +1064,7 @@
       {
         id: 7,
         title: "Deep Maroon Festive Threadwork Kurti",
-        price: 4650,
+        price: 3050,
         category: "women",
         isNew: false,
         badge: "Festive",
@@ -946,7 +1075,7 @@
       {
         id: 8,
         title: "Mint Green Ruffle Collar Frock Set",
-        price: 3650,
+        price: 2799,
         category: "frocks",
         isNew: false,
         badge: "Girls Special",
@@ -957,7 +1086,7 @@
       {
         id: 9,
         title: "Beige Sand Heritage Chikankari Co-ord",
-        price: 4950,
+        price: 2750,
         category: "women",
         isNew: false,
         badge: "Luxury Pret",
@@ -968,7 +1097,7 @@
       {
         id: 10,
         title: "Peach Coral Pleated Tunic & Culottes",
-        price: 3900,
+        price: 2650,
         category: "girls",
         isNew: false,
         badge: "Trending",
@@ -978,11 +1107,155 @@
       }
     ];
 
-    // Size Pricing Tiers (Exact Final Price Display)
+    // 20 Authentic Customer Reviews
+    const CUSTOMER_REVIEWS = [
+      {
+        name: "Ayesha Tariq",
+        city: "Lahore",
+        time: "2 days ago",
+        item: "Rose Pink Daisy Embroidered Co-ord",
+        text: "Meri beti ke liye Rose Pink Daisy Co-ord order kiya tha. Silai itni neat aur embroidery bilkul hath ke kaam jaisi nafees hai. Fabric bhi bohat soft hai!"
+      },
+      {
+        name: "Dr. Sidra Kamran",
+        city: "Islamabad",
+        time: "4 days ago",
+        item: "Emerald Checkered Bow-Sleeve Peplum Suit",
+        text: "Ahinoor ka signature peplum suit mangwaya, fitting bilkul tailor-made jaisi aayi. Sleeves ke bows aur pleats ki finishing bohot hi classy hai."
+      },
+      {
+        name: "Hina Salman",
+        city: "Karachi",
+        time: "5 days ago",
+        item: "Pastel Pink Blossom Embroidered Frock",
+        text: "Karachi ki garmi ke hisab se cotton cambric fabric bohat airy aur comfortable hai. Phoolon ki embroidery ke rang bilkul tasveer jaise pyare hain."
+      },
+      {
+        name: "Madiha Usman",
+        city: "Faisalabad",
+        time: "1 week ago",
+        item: "Deep Maroon Floral Neckline Co-ord",
+        text: "Deep Maroon colour bohat rich lag raha hai pehne hue. Neckline aur cuffs par ivory embroidery ki safai dekh kar dil khush ho gaya."
+      },
+      {
+        name: "Sana Bilal",
+        city: "Rawalpindi",
+        time: "1 week ago",
+        item: "Custom Naap Stitching Order",
+        text: "Maine apni 7 saal ki beti ka custom naap WhatsApp par bheja tha. Exact wahi length aur fitting mili jo maine likhi thi. Highly recommended!"
+      },
+      {
+        name: "Zainab Farooq",
+        city: "Multan",
+        time: "1 week ago",
+        item: "Lavender Mist V-Neck Embroidered Kurti Set",
+        text: "Apne liye Lavender Kurti Set liya tha. Resham threadwork bohat nazakat se hua hai aur trouser ki silai bhi zabardast hai."
+      },
+      {
+        name: "Kiran Adeel",
+        city: "Sialkot",
+        time: "2 weeks ago",
+        item: "Olive Green Pleated Collar Co-ord",
+        text: "Olive Green collared co-ord meri beti ka favourite ban gaya hai. Pockets par embroidery aur buttons ki quality bohot achi hai."
+      },
+      {
+        name: "Nadia Rizwan",
+        city: "Gujranwala",
+        time: "2 weeks ago",
+        item: "Midnight Black Daisy Trim Co-ord",
+        text: "Jet black suit par white daisy embroidery bohat graceful lagti hai. Delivery time par mili aur packing bhi bohot pyari thi."
+      },
+      {
+        name: "Rabia Asif",
+        city: "Peshawar",
+        time: "2 weeks ago",
+        item: "Mustard Yellow Meadow Co-ord",
+        text: "Mustard yellow colour itna fresh aur bright hai ke bacchi par bohot khilta hai. Saath matching hair bow bhi bohot cute laga."
+      },
+      {
+        name: "Mehwish Javed",
+        city: "Bahawalpur",
+        time: "3 weeks ago",
+        item: "Ivory Cream Garden Motif Tunic & Palazzo",
+        text: "Ivory Cream tunic aur palazzo ka fall bohat elegant hai. Family dinner par pehna to sab ne pucha kahan se liya!"
+      },
+      {
+        name: "Amna Hassan",
+        city: "Lahore",
+        time: "3 weeks ago",
+        item: "Royal Plum Gathered Collar Co-ord",
+        text: "Royal Plum shade bohat unique hai, market me aise pyare colours aur neat stitching kam hi milti hai. Ahinoor par ab regular order karungi."
+      },
+      {
+        name: "Sadia Imran",
+        city: "Karachi",
+        time: "3 weeks ago",
+        item: "Blossom Pink Pintucked Flare Frock & Culottes",
+        text: "Frock ka flare aur pintucks bohot hi khubsurat banaye hain. Wash karne ke baad bhi na colour kharab hua na embroidery."
+      },
+      {
+        name: "Fatima Zafar",
+        city: "Sargodha",
+        time: "1 month ago",
+        item: "Charcoal Black Buttoned Collar Co-ord",
+        text: "Price ke hisab se quality bohot outclass hai. WhatsApp par team ne bohat achy se guide kiya aur size select karne me madad ki."
+      },
+      {
+        name: "Bushra Naveed",
+        city: "Abbottabad",
+        time: "1 month ago",
+        item: "Beige Sand Heritage Chikankari Co-ord",
+        text: "Beige Chikankari suit bohot hi royal look deta hai. Daman border ka kaam bohot hi nafees aur heavy feel deta hai."
+      },
+      {
+        name: "Iqra Waqas",
+        city: "Hyderabad",
+        time: "1 month ago",
+        item: "Mint Green Ruffle Collar Frock Set",
+        text: "Mint green ruffle collar frock meri choti beti par bohot pyari lagi. Fabric itna naram hai ke bacchi ne sara din aaram se pehne rakha."
+      },
+      {
+        name: "Tayyaba Shahzad",
+        city: "Islamabad",
+        time: "1 month ago",
+        item: "Deep Maroon Festive Threadwork Kurti",
+        text: "Festive events ke liye perfect kurti hai. Gala embroidery me antique gold thread bohat classy lag raha hai."
+      },
+      {
+        name: "Mahnoor Khalid",
+        city: "Quetta",
+        time: "1 month ago",
+        item: "Sky Blue Daisy Embroidered A-Line Set",
+        text: "Quetta me parcel bilkul safe aur time par receive hua. Sky blue colour aur daisy clusters bohot hi fresh lagte hain."
+      },
+      {
+        name: "Uzma Nasir",
+        city: "Rahim Yar Khan",
+        time: "2 months ago",
+        item: "Sage Olive Floral Pocket Co-ord Set",
+        text: "Doosri dafa Ahinoor se order kiya hai. Har baar stitching ki safai aur measurement 100% accurate hoti hai."
+      },
+      {
+        name: "Areeba Faisal",
+        city: "Gujrat",
+        time: "2 months ago",
+        item: "Peach Coral Pleated Tunic & Culottes",
+        text: "Peach coral shade aur cuffs par threadwork bohot pyara hai. Bachiyon ke liye aise decent aur stylish kapre milna nemat hai."
+      },
+      {
+        name: "Saima Qureshi",
+        city: "Lahore",
+        time: "2 months ago",
+        item: "Custom Mother & Daughter Matching Suits",
+        text: "Maine apna aur apni beti ka matching custom naap order kiya tha. Dono suits ki fitting aur embroidery lajawab thi!"
+      }
+    ];
+
+    // Size Pricing Tiers
     const SIZE_TIERS = [
       { label: "Small (3-5 Yrs / S)", extra: 0 },
-      { label: "Medium (6-8 Yrs / M)", extra: 300 },
-      { label: "Large (9-12 Yrs / L)", extra: 600 },
+      { label: "Medium (6-8 Yrs / M)", extra: 350 },
+      { label: "Large (9-12 Yrs / L)", extra: 650 },
       { label: "Custom Fit (Apna Naap)", extra: 800 }
     ];
 
@@ -992,9 +1265,86 @@
     let selectedModalSizeIndex = 0;
     let selectedNaapSize = 'Girls (3–6 Yrs)';
 
+    // Review Flip State
+    let currentReviewIndex = 0;
+    let reviewInterval = null;
+    let isReviewPaused = false;
+
     function formatPKR(amount) {
       return 'Rs. ' + Number(amount).toLocaleString('en-PK');
     }
+
+    // Render Single Review with Smooth 3D Flip Animation
+    function showReview(index, animate = true) {
+      const card = document.getElementById('review-card');
+      const progress = document.getElementById('review-progress');
+      if (!card) return;
+
+      const total = CUSTOMER_REVIEWS.length;
+      currentReviewIndex = (index + total) % total;
+      const rev = CUSTOMER_REVIEWS[currentReviewIndex];
+
+      const updateDOM = () => {
+        document.getElementById('review-text').textContent = `"${rev.text}"`;
+        document.getElementById('review-item').textContent = `Ordered: ${rev.item}`;
+        document.getElementById('review-author').textContent = rev.name;
+        document.getElementById('review-city').textContent = `${rev.city} • ${rev.time}`;
+        document.getElementById('review-avatar').textContent = rev.name.charAt(0).toUpperCase();
+        document.getElementById('review-counter').textContent = `${currentReviewIndex + 1} / ${total}`;
+
+        // Restart 5-second progress bar
+        if (progress) {
+          progress.classList.remove('review-timer-bar');
+          void progress.offsetWidth;
+          progress.classList.add('review-timer-bar');
+        }
+      };
+
+      if (!animate) {
+        updateDOM();
+        return;
+      }
+
+      card.classList.remove('review-flip-in');
+      card.classList.add('review-flip-out');
+
+      setTimeout(() => {
+        updateDOM();
+        card.classList.remove('review-flip-out');
+        card.classList.add('review-flip-in');
+      }, 280);
+    }
+
+    function startReviewAutoFlip() {
+      clearInterval(reviewInterval);
+      reviewInterval = setInterval(() => {
+        if (!isReviewPaused) {
+          showReview(currentReviewIndex + 1, true);
+        }
+      }, 5000);
+    }
+
+    window.nextReview = function() {
+      showReview(currentReviewIndex + 1, true);
+      startReviewAutoFlip();
+    };
+
+    window.prevReview = function() {
+      showReview(currentReviewIndex - 1, true);
+      startReviewAutoFlip();
+    };
+
+    window.pauseReviewAutoFlip = function() {
+      isReviewPaused = true;
+      const progress = document.getElementById('review-progress');
+      if (progress) progress.style.animationPlayState = 'paused';
+    };
+
+    window.resumeReviewAutoFlip = function() {
+      isReviewPaused = false;
+      const progress = document.getElementById('review-progress');
+      if (progress) progress.style.animationPlayState = 'running';
+    };
 
     // Move Sliding Pill Indicator under active Filter Tab
     function updateFilterPill(activeBtn) {
@@ -1007,7 +1357,6 @@
       pill.style.width = width + 'px';
       pill.style.transform = `translateX(${leftPos}px)`;
 
-      // Auto-scroll bar smoothly on small mobile screens
       const scrollTarget = leftPos - (bar.clientWidth / 2) + (width / 2);
       bar.scrollTo({ left: scrollTarget, behavior: 'smooth' });
     }
@@ -1236,7 +1585,7 @@
         "*AHINOOR SIGNATURE PIECE ORDER*",
         "-------------------------",
         "Dress: Emerald Checkered Bow-Sleeve Peplum Suit",
-        "Price: Rs. 4,850",
+        "Price: Rs. 2750",
         "-------------------------",
         "Please share available sizes and order confirmation."
       ].join("\n");
@@ -1314,9 +1663,12 @@
       window.open("https://wa.me/923154124959?text=" + encodeURIComponent(msg), "_blank");
     };
 
-    // Initial Render & Sliding Pill Position
+    // Initial Render & Auto-Start 5-Second Review Flip
     renderProducts('all');
     updateCartUI();
+    showReview(0, false);
+    startReviewAutoFlip();
+
     setTimeout(() => {
       const initialBtn = document.querySelector('.filter-tab-btn[data-filter="all"]');
       if (initialBtn) updateFilterPill(initialBtn);
