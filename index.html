@@ -1,1682 +1,595 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AHINOOR | Exclusive Stitched & Embroidered Women & Girls Wear</title>
-  <link rel="icon" type="image/jpeg" href="1000827919.jpg" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              maroon: '#6A2338',
-              maroonDark: '#2E1119',
-              cream: '#F5F2EC',
-              sand: '#EBE6DC',
-              gold: '#9E7B3E',
-              charcoal: '#242021',
-              muted: '#6B6365',
-              teal: '#176B58'
-            }
-          },
-          fontFamily: {
-            serif: ['"Playfair Display"', 'Georgia', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    body {
-      background-color: #F5F2EC;
-      color: #242021;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      overflow-x: hidden;
-    }
-    .font-editorial {
-      font-family: 'Playfair Display', Georgia, serif;
-    }
+3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
 
-    /* Card Hover & Image Zoom */
-    .card-img-zoom {
-      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .product-card:hover .card-img-zoom {
-      transform: scale(1.06);
-    }
+WHATSAPP: 0315 4124959
 
-    /* Smooth Staggered Card Reveal Animation */
-    @keyframes cardReveal {
-      0% {
-        opacity: 0;
-        transform: translateY(16px) scale(0.98);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-    .animate-card {
-      animation: cardReveal 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
 
-    /* Hero Entrance Animations */
-    @keyframes fadeSlideUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .hero-animate-1 {
-      animation: fadeSlideUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
-    }
-    .hero-animate-2 {
-      animation: fadeSlideUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
-    }
-    .hero-animate-3 {
-      animation: fadeSlideUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.26s both;
-    }
-    .hero-animate-4 {
-      animation: fadeSlideUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
-    }
 
-    /* Gentle Floating Showcase Card */
-    @keyframes gentleFloat {
-      0%, 100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-6px);
-      }
-    }
-    .float-card {
-      animation: gentleFloat 5s ease-in-out infinite;
-    }
-
-    /* 3D Flip Animation for Customer Reviews */
-    .review-stage {
-      perspective: 1200px;
-    }
-    @keyframes flipInCard {
-      0% {
-        opacity: 0;
-        transform: rotateY(-75deg) scale(0.94);
-      }
-      100% {
-        opacity: 1;
-        transform: rotateY(0deg) scale(1);
-      }
-    }
-    @keyframes flipOutCard {
-      0% {
-        opacity: 1;
-        transform: rotateY(0deg) scale(1);
-      }
-      100% {
-        opacity: 0;
-        transform: rotateY(75deg) scale(0.94);
-      }
-    }
-    .review-flip-in {
-      animation: flipInCard 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      transform-style: preserve-3d;
-    }
-    .review-flip-out {
-      animation: flipOutCard 0.32s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
-      transform-style: preserve-3d;
-    }
-
-    /* 5-Second Review Timer Bar */
-    @keyframes progressFill {
-      0% { width: 0%; }
-      100% { width: 100%; }
-    }
-    .review-timer-bar {
-      animation: progressFill 3s linear forwards;
-    }
-
-    /* Button Sheen Sweep Effect */
-    .btn-sheen {
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-sheen::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
-      transform: skewX(-20deg);
-      transition: left 0.65s ease;
-    }
-    .btn-sheen:hover::after {
-      left: 140%;
-    }
-
-    /* Mobile-Safe Section Reveal */
-    .reveal-on-scroll {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Floating WhatsApp Pulse */
-    @keyframes pulseRing {
-      0% {
-        transform: scale(0.95);
-        opacity: 0.75;
-      }
-      70% {
-        transform: scale(1.32);
-        opacity: 0;
-      }
-      100% {
-        transform: scale(1.32);
-        opacity: 0;
-      }
-    }
-    .wa-pulse-ring {
-      animation: pulseRing 2.2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-    }
-
-    /* Animated Filter Bar & Sliding Pill */
-    .filter-bar-container {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      background-color: #EBE6DC;
-      border: 1px solid #DFD7C8;
-      border-radius: 9999px;
-      padding: 4px;
-      max-width: 100%;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .filter-bar-container::-webkit-scrollbar {
-      display: none;
-    }
-    .filter-pill-indicator {
-      position: absolute;
-      top: 4px;
-      bottom: 4px;
-      left: 0;
-      background-color: #6A2338;
-      border-radius: 9999px;
-      box-shadow: 0 4px 12px rgba(106, 35, 56, 0.22);
-      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), width 0.38s cubic-bezier(0.22, 1, 0.36, 1);
-      z-index: 0;
-    }
-    .filter-tab-btn {
-      position: relative;
-      z-index: 1;
-      white-space: nowrap;
-      transition: color 0.3s ease, transform 0.2s ease;
-    }
-    .filter-tab-btn:active {
-      transform: scale(0.96);
-    }
-
-    /* Smooth Right-to-Left Running Top Ticker */
-    .ticker-wrap {
-      overflow: hidden;
-      white-space: nowrap;
-      width: 100%;
-    }
-    .ticker-move {
-      display: inline-flex;
-      align-items: center;
-      white-space: nowrap;
-      animation: marquee-rtl 26s linear infinite;
-    }
-    .ticker-wrap:hover .ticker-move {
-      animation-play-state: paused;
-    }
-    @keyframes marquee-rtl {
-      0% {
-        transform: translateX(0%);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #F5F2EC;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #C4B9A8;
-      border-radius: 3px;
-    }
-  </style>
-</head>
-<body class="antialiased selection:bg-brand-maroon selection:text-white">
-
-  <!-- Top Running Marquee Bar (Right to Left) -->
-  <div class="bg-[#2E1119] text-[#F5F2EC] text-xs py-2.5 border-b border-white/10 ticker-wrap">
-    <div class="ticker-move">
-      <div class="flex items-center space-x-8 px-6 font-medium tracking-wide">
-        <span>🌸 Ahinoor Exclusive: Custom Stitching &amp; Fine Embroidery for Women &amp; Girls</span>
-        <span class="text-white/40">|</span>
-        <a href="https://wa.me/923154124959" target="_blank" rel="noopener" class="inline-flex items-center gap-2 underline decoration-white/60 hover:text-white">
-          <svg class="w-4 h-4 text-[#25D366] shrink-0" viewBox="0 0 32 32" fill="currentColor">
-            <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
-          </svg>
-          <span>WhatsApp Orders: +92 315 4124959</span>
-        </a>
-        <span class="text-white/40">•</span>
-        <span>✨ New Arrivals </span>
-        <span class="text-white/40">•</span>
-      </div>
-      <!-- Duplicate copy for seamless continuous infinite scroll -->
-      <div class="flex items-center space-x-8 px-6 font-medium tracking-wide" aria-hidden="true">
-        <span>🌸 Ahinoor Exclusive : Custom Stitching &amp; Fine Embroidery for Women &amp; Girls</span>
-        <span class="text-white/40">|</span>
-        <a href="https://wa.me/923154124959" target="_blank" rel="noopener" class="inline-flex items-center gap-2 underline decoration-white/60 hover:text-white">
-          <svg class="w-4 h-4 text-[#25D366] shrink-0" viewBox="0 0 32 32" fill="currentColor">
-            <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
-          </svg>
-          <span>WhatsApp Orders: +92 315 4124959</span>
-        </a>
-        <span class="text-white/40">•</span>
-        <span>✨ New Arrivals  </span>
-        <span class="text-white/40">•</span>
+```
+      <!-- 3 Feature Columns (Stitched / Embroidery / Custom Fit) -->
+      <div class="hero-animate-4 grid grid-cols-3 gap-3 sm:gap-4 pt-6 sm:pt-8 mt-4 border-t border-[#DFD8CC]">
+        <div>
+          <p class="font-editorial text-lg sm:text-2xl font-bold text-brand-charcoal">Stitched</p>
+          <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-muted mt-0.5">READY TO WEAR</p>
+        </div>
+        <div>
+          <p class="font-editorial text-lg sm:text-2xl font-bold text-brand-charcoal">Embroidery</p>
+          <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-muted mt-0.5">HATH KA KAAM</p>
+        </div>
+        <div>
+          <p class="font-editorial text-lg sm:text-2xl font-bold text-brand-charcoal">Custom Fit</p>
+          <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-muted mt-0.5">ALL AGES &amp; SIZES</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Luxury Warm-Ivory & Blush-Gold Header -->
-  <header class="sticky top-0 z-40 bg-gradient-to-r from-[#FDFBF7] via-[#F7EFE6] to-[#EFE4D6] backdrop-blur-md border-b border-[#DFD2BE] shadow-[0_2px_16px_rgba(106,35,56,0.06)]">
-    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 sm:h-[84px] flex items-center justify-between gap-2">
-      
-      <!-- Mobile Menu Toggle + Enhanced Logo on Mobile -->
-      <div class="flex items-center gap-2 lg:hidden">
-        <button onclick="toggleMobileMenu()" class="p-1.5 text-brand-charcoal hover:text-brand-maroon" aria-label="Menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
-        <a href="#" class="shrink-0">
-          <div class="w-11 h-11 rounded-full p-0.5 bg-gradient-to-tr from-[#C7A15A] via-[#E5C98B] to-[#6A2338] shadow-sm">
-            <img src="1000827919.jpg" alt="Ahinoor Logo" class="w-full h-full rounded-full object-contain bg-white p-0.5" />
+    <!-- Right Signature Piece Showcase Card (Gentle Floating Animation) -->
+    <div class="lg:col-span-6 hero-animate-3">
+      <div class="float-card bg-[#EFECE4]/90 border border-[#DFD7C8] rounded-3xl p-4 sm:p-7 shadow-md max-w-lg mx-auto">
+        <div class="flex items-center justify-between mb-3 sm:mb-4">
+          <span class="text-[10px] sm:text-[11px] font-bold tracking-[0.16em] uppercase text-brand-charcoal">AHINOOR SIGNATURE PIECE</span>
+          <span class="bg-[#1F2421] text-white text-xs font-bold px-3.5 py-1 rounded-full">Rs. 2650</span>
+        </div>
+
+        <div onclick="openProductModal(4)" class="bg-white rounded-2xl p-2.5 sm:p-3 shadow-xs cursor-pointer overflow-hidden">
+          <div class="aspect-[4/4] rounded-xl overflow-hidden bg-[#F5F2EC]">
+            <img src="1000827957.jpg" alt="Ahinoor Signature Piece" class="w-full h-full object-contain hover:scale-105 transition duration-500" />
           </div>
-        </a>
-      </div>
+        </div>
 
-      <!-- Desktop Left: Enhanced Framed Logo BEFORE HOME + Navigation -->
-      <div class="hidden lg:flex items-center space-x-5">
-        <a href="#" class="shrink-0 group" title="Ahinoor Home">
-          <div class="w-[62px] h-[62px] rounded-full p-[2px] bg-gradient-to-tr from-[#B68D40] via-[#E5C687] to-[#6A2338] shadow-md group-hover:scale-105 group-hover:shadow-lg transition-all duration-300">
-            <img src="1000827919.jpg" alt="Ahinoor Kids & Women Clothing Logo" class="w-full h-full rounded-full object-contain bg-white p-0.5" />
-          </div>
-        </a>
-        <nav class="flex items-center space-x-5 text-[11px] font-bold tracking-[0.13em] uppercase text-brand-charcoal">
-          <a href="#" class="hover:text-brand-maroon transition">HOME</a>
-          <a href="#collection" onclick="filterProducts('all')" class="hover:text-brand-maroon transition">PRET COLLECTION</a>
-          <a href="#custom-naap" class="inline-flex items-center gap-1.5 hover:text-brand-maroon transition">
-            <span>CUSTOM STITCH &amp; EMBROIDERY</span>
-            <span class="bg-[#E5D7BF] text-brand-maroon text-[9px] px-2 py-0.5 rounded font-bold tracking-wider">ATELIER</span>
-          </a>
-          <a href="#reviews-section" class="hover:text-brand-maroon transition">REVIEWS</a>
-        </nav>
-      </div>
-
-      <!-- Center Brand Title -->
-      <a href="#" class="flex flex-col items-center text-center shrink-0">
-        <span class="font-editorial text-lg sm:text-[27px] font-bold tracking-[0.2em] sm:tracking-[0.22em] text-brand-maroon leading-none">AHINOOR</span>
-        <span class="text-[7px] sm:text-[9px] tracking-[0.22em] sm:tracking-[0.26em] uppercase text-brand-gold font-bold mt-1">STITCHED &amp; EMBROIDERED</span>
-      </a>
-
-      <!-- Right Icons + Direct Green Order Pill with Bold WhatsApp Logo -->
-      <div class="flex items-center space-x-2 sm:space-x-4">
-        <a href="https://instagram.com/ahinoor_clothing_" target="_blank" rel="noopener" class="p-2 rounded-full bg-white/80 hover:bg-white text-brand-maroon border border-[#DFD2BE] transition shadow-2xs hover:scale-105" title="@ahinoor_clothing_">
-          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-        </a>
-
-        <button onclick="openCartDrawer()" class="relative p-2 rounded-full bg-white/80 hover:bg-white text-brand-charcoal hover:text-brand-maroon border border-[#DFD2BE] transition shadow-2xs hover:scale-105" aria-label="Order Bag">
-          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M16 6V4a4 4 0 00-8 0v2H4v14a2 2 0 002 2h12a2 2 0 002-2V6h-4zm-6-2a2 2 0 114 0v2h-4V4z"/>
-          </svg>
-          <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-maroon text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">0</span>
-        </button>
-
-        <!-- High-Visibility WhatsApp Order Button -->
-        <a href="https://wa.me/923154124959" target="_blank" rel="noopener" class="btn-sheen hidden sm:inline-flex items-center gap-2.5 bg-[#125B4A] hover:bg-[#0D4639] text-white text-[11px] font-bold tracking-wider pl-2.5 pr-4 py-1.5 rounded-full transition shadow-md hover:scale-[1.03]">
-          <span class="w-7 h-7 rounded-full bg-[#25D366] flex items-center justify-center shadow-xs shrink-0">
-            <svg class="w-4 h-4 text-white" viewBox="0 0 32 32" fill="currentColor">
+        <div class="grid grid-cols-2 gap-2.5 sm:gap-3 mt-4 sm:mt-5">
+          <button onclick="openProductModal(4)" class="btn-sheen py-3 px-3 sm:px-4 bg-brand-maroon hover:bg-brand-maroonDark text-white text-[10px] sm:text-[11px] font-bold tracking-[0.1em] uppercase rounded-full transition">
+            VIEW SUIT DETAILS
+          </button>
+          <button onclick="orderSignatureDirect()" class="btn-sheen py-3 px-3 sm:px-4 bg-[#176B58] hover:bg-[#115243] text-white text-[10px] sm:text-[11px] font-bold tracking-[0.1em] uppercase rounded-full transition flex items-center justify-center gap-1.5">
+            <svg class="w-4 h-4 text-[#4ADE80] shrink-0" viewBox="0 0 32 32" fill="currentColor">
               <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
             </svg>
-          </span>
-          <span>ORDER: 0315 4124959</span>
-        </a>
+            <span>ORDER NOW</span>
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-[#F7EFE6] border-t border-[#DFD2BE] px-4 py-4 space-y-3">
-      <div class="flex items-center gap-3 pb-2.5 border-b border-[#DFD2BE]">
-        <div class="w-12 h-12 rounded-full p-0.5 bg-gradient-to-tr from-[#B68D40] to-[#6A2338]">
-          <img src="1000827919.jpg" alt="Ahinoor Logo" class="w-full h-full rounded-full object-contain bg-white p-0.5" />
-        </div>
-        <div>
-          <p class="font-editorial text-base font-bold text-brand-maroon">AHINOOR</p>
-          <p class="text-[10px] uppercase tracking-wider text-brand-gold font-bold">Kids &amp; Women Stitched Wear</p>
-        </div>
-      </div>
-      <a href="#" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">HOME</a>
-      <a href="#collection" onclick="filterProducts('new'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon">NEW ARRIVALS (8)</a>
-      <a href="#collection" onclick="filterProducts('all'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">PRET COLLECTION</a>
-      <a href="#custom-naap" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">CUSTOM STITCH &amp; EMBROIDERY</a>
-      <a href="#reviews-section" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">CUSTOMER REVIEWS (20)</a>
-      <a href="#instagram-section" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">INSTAGRAM</a>
-      <a href="https://wa.me/923154124959" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-brand-teal pt-1">
-        <span class="w-6 h-6 rounded-full bg-[#25D366] text-white flex items-center justify-center">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 32 32" fill="currentColor">
-            <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
-          </svg>
-        </span>
-        <span>WhatsApp: 0315 4124959</span>
-      </a>
-    </div>
-  </header>
+  </div>
+</div>
 
-  <!-- Animated Hero Section -->
-  <section class="relative overflow-hidden bg-gradient-to-br from-[#F5F2EC] via-[#EFECE4] to-[#E6DFD3] border-b border-[#E2DBD0]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-        
-        <!-- Left Content Column -->
-        <div class="lg:col-span-6 space-y-5 sm:space-y-6">
-          <div class="hero-animate-1 inline-block bg-[#E6E0D6] text-brand-maroon text-[11px] font-semibold tracking-wide px-4 py-1.5 rounded-full">
-            100% Women &amp; Girls Handcrafted Apparel
-          </div>
+```
 
-          <h1 class="hero-animate-2 font-editorial text-4xl sm:text-5xl lg:text-[56px] font-bold text-brand-charcoal leading-[1.08] tracking-tight">
-            Pure Stitching &amp; <br/>
-            <span class="italic text-brand-maroon font-semibold">Delicate Embroidery</span>
-          </h1>
+```
+  <!-- Single-Row Animated Sliding Pill Filter Bar -->
+  <div class="filter-bar-container" id="filter-bar">
+    <div id="filter-pill" class="filter-pill-indicator"></div>
+    <button type="button" id="tab-all" onclick="filterProducts('all', this)" data-filter="all" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-white">
+      All Suits (18)
+    </button>
+    <button type="button" id="tab-new" onclick="filterProducts('new', this)" data-filter="new" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal hover:text-brand-maroon">
+      New Arrivals (8)
+    </button>
+    <button type="button" onclick="filterProducts('girls', this)" data-filter="girls" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal hover:text-brand-maroon">
+      Girls Co-ords
+    </button>
+    <button type="button" onclick="filterProducts('women', this)" data-filter="women" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal hover:text-brand-maroon">
+      Women Kurtis &amp; Suits
+    </button>
+    <button type="button" onclick="filterProducts('frocks', this)" data-filter="frocks" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal hover:text-brand-maroon">
+      Frocks &amp; Peplums
+    </button>
+  </div>
+</div>
 
-          <p class="hero-animate-3 text-brand-muted text-sm sm:text-[15px] max-w-lg leading-relaxed">
-            Welcome to <strong class="text-brand-charcoal font-semibold">Ahinoor</strong>. Hum ladies aur choti bacchiyon ke liye high-grade fabric par behtareen silai aur khubsurat hath ki phoolo wali embroidery bana kar dety hain. Sirf female clothing ke liye dedicated brand!
-          </p>
+<!-- Product Grid -->
+<div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
+  <!-- Rendered dynamically by JS -->
+</div>
 
-          <div class="hero-animate-4 flex flex-wrap items-center gap-3 pt-1">
-            <a href="#collection" onclick="filterProducts('all')" class="btn-sheen px-6 sm:px-7 py-3.5 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold tracking-[0.14em] uppercase rounded-full transition shadow-sm hover:scale-[1.02]">
-              EXPLORE AVAILABLE DESIGNS
-            </a>
-            <a href="https://wa.me/923154124959" target="_blank" rel="noopener" class="px-5 sm:px-6 py-3.5 bg-white/80 hover:bg-white text-brand-teal border border-brand-teal/50 text-xs font-bold tracking-[0.12em] uppercase rounded-full transition inline-flex items-center gap-2 shadow-2xs hover:scale-[1.02]">
-              <svg class="w-4 h-4 text-[#25D366] shrink-0" viewBox="0 0 32 32" fill="currentColor">
-                <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
-              </svg>
-              <span>WHATSAPP: 0315 4124959</span>
-            </a>
-          </div>
+```
 
-          <!-- 3 Feature Columns (Stitched / Embroidery / Custom Fit) -->
-          <div class="hero-animate-4 grid grid-cols-3 gap-3 sm:gap-4 pt-6 sm:pt-8 mt-4 border-t border-[#DFD8CC]">
-            <div>
-              <p class="font-editorial text-lg sm:text-2xl font-bold text-brand-charcoal">Stitched</p>
-              <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-muted mt-0.5">READY TO WEAR</p>
-            </div>
-            <div>
-              <p class="font-editorial text-lg sm:text-2xl font-bold text-brand-charcoal">Embroidery</p>
-              <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-muted mt-0.5">HATH KA KAAM</p>
-            </div>
-            <div>
-              <p class="font-editorial text-lg sm:text-2xl font-bold text-brand-charcoal">Custom Fit</p>
-              <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-muted mt-0.5">ALL AGES &amp; SIZES</p>
-            </div>
-          </div>
-        </div>
+```
+  <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+    <!-- Rendered dynamically from Firebase + Default Articles -->
+  </div>
+</div>
 
-        <!-- Right Signature Piece Showcase Card (Gentle Floating Animation) -->
-        <div class="lg:col-span-6 hero-animate-3">
-          <div class="float-card bg-[#EFECE4]/90 border border-[#DFD7C8] rounded-3xl p-4 sm:p-7 shadow-md max-w-lg mx-auto">
-            <div class="flex items-center justify-between mb-3 sm:mb-4">
-              <span class="text-[10px] sm:text-[11px] font-bold tracking-[0.16em] uppercase text-brand-charcoal">AHINOOR SIGNATURE PIECE</span>
-              <span class="bg-[#1F2421] text-white text-xs font-bold px-3.5 py-1 rounded-full">Rs. 2650</span>
-            </div>
+```
 
-            <div onclick="openProductModal(4)" class="bg-white rounded-2xl p-2.5 sm:p-3 shadow-xs cursor-pointer overflow-hidden">
-              <div class="aspect-[4/4] rounded-xl overflow-hidden bg-[#F5F2EC]">
-                <img src="1000827957.jpg" alt="Ahinoor Signature Piece" class="w-full h-full object-contain hover:scale-105 transition duration-500" />
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-2.5 sm:gap-3 mt-4 sm:mt-5">
-              <button onclick="openProductModal(4)" class="btn-sheen py-3 px-3 sm:px-4 bg-brand-maroon hover:bg-brand-maroonDark text-white text-[10px] sm:text-[11px] font-bold tracking-[0.1em] uppercase rounded-full transition">
-                VIEW SUIT DETAILS
-              </button>
-              <button onclick="orderSignatureDirect()" class="btn-sheen py-3 px-3 sm:px-4 bg-[#176B58] hover:bg-[#115243] text-white text-[10px] sm:text-[11px] font-bold tracking-[0.1em] uppercase rounded-full transition flex items-center justify-center gap-1.5">
-                <svg class="w-4 h-4 text-[#4ADE80] shrink-0" viewBox="0 0 32 32" fill="currentColor">
-                  <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
-                </svg>
-                <span>ORDER NOW</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Catalog Section with Single-Line Animated Filter Pill -->
-  <section id="collection" class="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll">
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-8 sm:mb-10">
-      <div class="shrink-0">
-        <span class="text-xs font-bold tracking-[0.2em] uppercase text-brand-gold">Ahinoor Pret Collection</span>
-        <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal mt-1">Stitched &amp; Embroidered Collection</h2>
+```
+    <!-- Left Column: Bespoke Tailoring & Kaam + Numbered 1-2-3 List -->
+    <div class="lg:col-span-5 space-y-6">
+      <div class="inline-block bg-[#242021] text-white text-[10px] font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full">
+        BESPOKE TAILORING &amp; KAAM
       </div>
 
-      <!-- Single-Row Animated Sliding Pill Filter Bar -->
-      <div class="filter-bar-container" id="filter-bar">
-        <div id="filter-pill" class="filter-pill-indicator"></div>
-        <button type="button" onclick="filterProducts('all', this)" data-filter="all" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-white">
-          All Suits (18)
-        </button>
-        <button type="button" onclick="filterProducts('new', this)" data-filter="new" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal hover:text-brand-maroon">
-          New Arrivals (8)
-        </button>
-        <button type="button" onclick="filterProducts('girls', this)" data-filter="girls" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal hover:text-brand-maroon">
-          Girls Co-ords
-        </button>
-        <button type="button" onclick="filterProducts('women', this)" data-filter="women" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal hover:text-brand-maroon">
-          Women Kurtis &amp; Suits
-        </button>
-        <button type="button" onclick="filterProducts('frocks', this)" data-filter="frocks" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal hover:text-brand-maroon">
-          Frocks &amp; Peplums
-        </button>
-      </div>
-    </div>
-
-    <!-- Product Grid -->
-    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
-      <!-- Rendered dynamically by JS -->
-    </div>
-  </section>
-
-  <!-- Bespoke Custom Stitching & Embroidery Order Section -->
-  <section id="custom-naap" class="py-14 sm:py-24 bg-[#EAE4D9] border-y border-[#DDD5C7] reveal-on-scroll">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        
-        <!-- Left Column: Bespoke Tailoring & Kaam + Numbered 1-2-3 List -->
-        <div class="lg:col-span-5 space-y-6">
-          <div class="inline-block bg-[#242021] text-white text-[10px] font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full">
-            BESPOKE TAILORING &amp; KAAM
-          </div>
-
-          <h2 class="font-editorial text-3xl sm:text-[44px] font-bold text-brand-charcoal leading-[1.12]">
-            Custom Stitching &amp; <br/>
-            Embroidery Order
-          </h2>
-
-          <p class="text-sm text-brand-muted leading-relaxed">
-            Agar aapko apna pasandeeda kapra kisi makhsoos naap (measurement) par silwana ho, ya neckline, sleeves aur daman par customized phoolo wali embroidery karwani ho, to ye form bharein. Direct hamare WhatsApp par detail pohnch jayegi!
-          </p>
-
-          <div class="space-y-4 pt-3">
-            <!-- Step 1 -->
-            <div class="flex items-start gap-3.5">
-              <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">1</span>
-              <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">SUIT YA FROCK CHOICE</h4>
-                <p class="text-xs text-brand-muted mt-0.5 leading-relaxed">Women 2-piece, little girls embroidered set, flared frock, ya custom design.</p>
-              </div>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="flex items-start gap-3.5">
-              <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">2</span>
-              <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">EMBROIDERY STYLE</h4>
-                <p class="text-xs text-brand-muted mt-0.5 leading-relaxed">Hath ki floral threadwork embroidery, pocket motifs, ringlets, ya sleeves ruffles.</p>
-              </div>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="flex items-start gap-3.5">
-              <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">3</span>
-              <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">DIRECT WHATSAPP CONFIRMATION</h4>
-                <p class="text-xs text-brand-muted mt-0.5 leading-relaxed">Submit click karte hi saari measurements hamare WhatsApp (+92 315 4124959)</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Rounded Form Card -->
-        <div class="lg:col-span-7">
-          <div class="bg-[#F9F6F0] rounded-[28px] shadow-md border border-[#DFD7C8] p-6 sm:p-9">
-            <div class="mb-6">
-              <h3 class="font-editorial text-2xl sm:text-[26px] font-bold text-brand-charcoal">
-                Custom Naap &amp; Embroidery Form
-              </h3>
-              <p class="text-xs text-brand-muted mt-1">
-                Apna naap aur requirement likhein. Ham direct WhatsApp par rabta karenge.
-              </p>
-            </div>
-
-            <form id="naap-form" onsubmit="submitCustomNaap(event)" class="space-y-4">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">CUSTOMER NAME *</label>
-                  <input type="text" id="naap-name" required placeholder="Aapka Naam" class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm focus:outline-none focus:border-brand-maroon transition" />
-                </div>
-                <div>
-                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">WHATSAPP NUMBER *</label>
-                  <input type="tel" id="naap-phone" required placeholder="03xx xxxxxxx" class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm focus:outline-none focus:border-brand-maroon transition" />
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">GARMENT CATEGORY</label>
-                  <select id="naap-category" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] text-sm bg-white focus:outline-none focus:border-brand-maroon transition">
-                    <option value="Women Stitched Kurti & Trouser">Women Stitched Kurti &amp; Trouser</option>
-                    <option value="Girls Embroidered Co-ord Set">Girls Embroidered Co-ord Set</option>
-                    <option value="Girls Flared Frock & Culottes">Girls Flared Frock &amp; Culottes</option>
-                    <option value="Custom Embroidered Peplum Suit">Custom Embroidered Peplum Suit</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">EMBROIDERY PREFERENCE</label>
-                  <select id="naap-embroidery" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] text-sm bg-white focus:outline-none focus:border-brand-maroon transition">
-                    <option value="Neckline & Pocket Floral Embroidery">Neckline &amp; Pocket Floral Embroidery</option>
-                    <option value="Heavy Daman & Sleeves Border">Heavy Daman &amp; Sleeves Border</option>
-                    <option value="Minimalist Scattered Booti Work">Minimalist Scattered Booti Work</option>
-                    <option value="Same As Selected Catalog Design">Same As Selected Catalog Design</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-2">AGE / SIZE CATEGORY</label>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="naap-size-group">
-                  <button type="button" onclick="selectNaapSize(this, 'Girls (3–6 Yrs)')" class="naap-size-btn active py-2.5 px-3 rounded-full text-xs font-semibold bg-brand-maroon text-white border border-brand-maroon shadow-xs transition whitespace-nowrap">
-                    Girls (3–6 Yrs)
-                  </button>
-                  <button type="button" onclick="selectNaapSize(this, 'Girls (7–12 Yrs)')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white text-brand-charcoal border border-[#DFD7C8] hover:border-brand-maroon transition whitespace-nowrap">
-                    Girls (7–12 Yrs)
-                  </button>
-                  <button type="button" onclick="selectNaapSize(this, 'Women (S/M/L)')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white text-brand-charcoal border border-[#DFD7C8] hover:border-brand-maroon transition whitespace-nowrap">
-                    Women (S/M/L)
-                  </button>
-                  <button type="button" onclick="selectNaapSize(this, 'Custom In Inches')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white text-brand-charcoal border border-[#DFD7C8] hover:border-brand-maroon transition whitespace-nowrap">
-                    Custom In Inches
-                  </button>
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">MEASUREMENTS &amp; NOTES (INCHES)</label>
-                <textarea id="naap-notes" rows="3" placeholder="Chest/Bust: 36 in, Shirt Length: 38 in, Sleeve: 19 in, Trouser Length: 37 in..." class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm focus:outline-none focus:border-brand-maroon transition"></textarea>
-              </div>
-
-              <button type="submit" class="btn-sheen w-full py-3.5 px-5 bg-[#176B58] hover:bg-[#115243] text-white font-bold text-xs tracking-wider uppercase rounded-full transition flex items-center justify-center gap-2.5 shadow-sm">
-                <svg class="w-5 h-5 text-[#4ADE80] shrink-0" viewBox="0 0 32 32" fill="currentColor">
-                  <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
-                </svg>
-                <span>SEND MEASUREMENTS TO +92 315 4124959</span>
-              </button>
-            </form>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- 20 Customer Reviews Auto-Flipping Showcase (1 Review at a Time, Flips Every 5 Seconds) -->
-  <section id="reviews-section" class="py-16 sm:py-24 bg-gradient-to-b from-[#F5F2EC] via-[#F0EAE0] to-[#F5F2EC] border-b border-[#E2DBD0] px-4">
-    <div class="max-w-4xl mx-auto">
-      
-      <!-- Section Heading -->
-      <div class="text-center space-y-2.5 mb-10 sm:mb-12">
-        <span class="inline-block bg-[#E6DEC9] text-brand-maroon text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full">
-          VERIFIED CLIENT LOVE • 4.9/5 RATING
-        </span>
-        <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal">
-          What Our Happy Customers Say
-        </h2>
-        <p class="text-xs sm:text-sm text-brand-muted max-w-md mx-auto">
-          Pakistan bhar se mothers aur khawateen ke aetmaad aur silai ki tareef — har 5 second baad naya review dekhein.
-        </p>
-      </div>
-
-      <!-- Single Flipping Review Card Stage -->
-      <div class="review-stage relative max-w-2xl mx-auto" onmouseenter="pauseReviewAutoFlip()" onmouseleave="resumeReviewAutoFlip()">
-        
-        <div id="review-card" class="review-flip-in bg-white rounded-[28px] border border-[#DFD7C8] shadow-[0_12px_36px_rgba(106,35,56,0.08)] p-6 sm:p-10 relative overflow-hidden">
-          
-          <!-- Decorative Subtle Quote Mark -->
-          <div class="absolute top-5 right-7 font-editorial text-7xl text-[#EFE8DC] select-none leading-none pointer-events-none">
-            &ldquo;
-          </div>
-
-          <!-- Top Row: 5 Gold Stars + Verified Badge -->
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-5 relative z-10">
-            <div class="flex items-center gap-1 text-[#D49A2A]" aria-label="5 out of 5 stars">
-              <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            </div>
-            <span class="inline-flex items-center gap-1 bg-[#E8F5F0] text-[#176B58] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
-              ✓ Verified WhatsApp Buyer
-            </span>
-          </div>
-
-          <!-- Review Quote Text -->
-          <p id="review-text" class="font-editorial text-xl sm:text-2xl text-brand-charcoal leading-relaxed italic min-h-[96px] sm:min-h-[84px] relative z-10">
-            "Meri beti ke liye Rose Pink Daisy Co-ord order kiya tha. Silai itni neat aur embroidery bilkul hath ke kaam jaisi nafees hai. Fabric bhi bohat soft hai!"
-          </p>
-
-          <!-- Purchased Item Tag -->
-          <div class="mt-4">
-            <span id="review-item" class="inline-block bg-[#F5F2EC] border border-[#DFD7C8] text-brand-maroon text-[11px] font-semibold px-3 py-1 rounded-lg">
-              Ordered: Rose Pink Daisy Embroidered Co-ord
-            </span>
-          </div>
-
-          <!-- Reviewer Profile & Controls -->
-          <div class="mt-6 pt-5 border-t border-[#EFEAE0] flex items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-              <div id="review-avatar" class="w-11 h-11 rounded-full bg-gradient-to-tr from-brand-maroon to-[#9E7B3E] text-white font-editorial text-lg font-bold flex items-center justify-center shadow-xs shrink-0">
-                A
-              </div>
-              <div>
-                <h4 id="review-author" class="text-sm font-bold text-brand-charcoal">Ayesha Tariq</h4>
-                <p id="review-city" class="text-xs text-brand-muted">Lahore • 2 days ago</p>
-              </div>
-            </div>
-
-            <!-- Counter & Manual Prev/Next Buttons -->
-            <div class="flex items-center gap-2">
-              <span id="review-counter" class="text-xs font-bold text-brand-muted mr-1">1 / 20</span>
-              <button type="button" onclick="prevReview()" aria-label="Previous Review" class="w-9 h-9 rounded-full border border-[#DFD7C8] bg-[#FAF7F2] hover:bg-brand-maroon hover:text-white hover:border-brand-maroon text-brand-charcoal flex items-center justify-center transition">
-                ‹
-              </button>
-              <button type="button" onclick="nextReview()" aria-label="Next Review" class="w-9 h-9 rounded-full border border-[#DFD7C8] bg-[#FAF7F2] hover:bg-brand-maroon hover:text-white hover:border-brand-maroon text-brand-charcoal flex items-center justify-center transition">
-                ›
-              </button>
-            </div>
-          </div>
-
-          <!-- 5-Second Auto-Flip Progress Line at Bottom of Card -->
-          <div class="absolute bottom-0 left-0 right-0 h-1 bg-[#EFEAE0]">
-            <div id="review-progress" class="h-full bg-gradient-to-r from-brand-maroon via-[#B68D40] to-[#176B58] review-timer-bar"></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Official Instagram Section -->
-  <section id="instagram-section" class="py-16 sm:py-20 bg-[#F5F2EC] border-b border-[#E2DBD0] text-center px-4 reveal-on-scroll">
-    <div class="max-w-2xl mx-auto space-y-4">
-      <div class="inline-flex items-center justify-center gap-1.5 text-[11px] font-bold tracking-[0.18em] uppercase text-brand-maroon">
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-        </svg>
-        <span>FOLLOW ON INSTAGRAM</span>
-      </div>
-
-      <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal">
-        @ahinoor_clothing_
+      <h2 class="font-editorial text-3xl sm:text-[44px] font-bold text-brand-charcoal leading-[1.12]">
+        Custom Stitching &amp; <br/>
+        Embroidery Order
       </h2>
 
-      <p class="text-sm text-brand-muted max-w-md mx-auto leading-relaxed">
-        Rozana ke naye designs, client videos aur stitching updates dekhne ke liye hamara official Instagram zaroor follow karein.
+      <p class="text-sm text-brand-muted leading-relaxed">
+        Agar aapko apna pasandeeda kapra kisi makhsoos naap (measurement) par silwana ho, ya neckline, sleeves aur daman par customized phoolo wali embroidery karwani ho, to ye form bharein. Direct hamare WhatsApp par detail pohnch jayegi!
       </p>
 
-      <div class="pt-3">
-        <a href="https://instagram.com/ahinoor_clothing_" target="_blank" rel="noopener" class="btn-sheen inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white text-xs font-bold tracking-[0.14em] uppercase bg-gradient-to-r from-[#D62976] via-[#962FBF] to-[#4F5BD5] hover:opacity-95 hover:scale-105 transition shadow-md">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-          <span>VISIT @AHINOOR_CLOTHING_</span>
-        </a>
+      <div class="space-y-4 pt-3">
+        <!-- Step 1 -->
+        <div class="flex items-start gap-3.5">
+          <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">1</span>
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">SUIT YA FROCK CHOICE</h4>
+            <p class="text-xs text-brand-muted mt-0.5 leading-relaxed">Women 2-piece, little girls embroidered set, flared frock, ya custom design.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex items-start gap-3.5">
+          <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">2</span>
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">EMBROIDERY STYLE</h4>
+            <p class="text-xs text-brand-muted mt-0.5 leading-relaxed">Hath ki floral threadwork embroidery, pocket motifs, ringlets, ya sleeves ruffles.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex items-start gap-3.5">
+          <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">3</span>
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">DIRECT WHATSAPP CONFIRMATION</h4>
+            <p class="text-xs text-brand-muted mt-0.5 leading-relaxed">Submit click karte hi saari measurements hamare WhatsApp (+92 315 4124959)</p>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- Light Editorial Footer -->
-  <footer class="bg-[#EDE8DF] text-brand-charcoal py-12 pb-24 sm:pb-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-[#DCD4C6]">
-        <div class="flex items-start gap-3.5">
-          <div class="w-14 h-14 rounded-full p-0.5 bg-gradient-to-tr from-[#B68D40] to-[#6A2338] shrink-0">
-            <img src="1000827919.jpg" alt="Ahinoor Logo" class="w-full h-full rounded-full object-contain bg-white p-0.5" />
+    <!-- Right Column: Rounded Form Card -->
+    <div class="lg:col-span-7">
+      <div class="bg-[#F9F6F0] rounded-[28px] shadow-md border border-[#DFD7C8] p-6 sm:p-9">
+        <div class="mb-6">
+          <h3 class="font-editorial text-2xl sm:text-[26px] font-bold text-brand-charcoal">
+            Custom Naap &amp; Embroidery Form
+          </h3>
+          <p class="text-xs text-brand-muted mt-1">
+            Apna naap aur requirement likhein. Ham direct WhatsApp par rabta karenge.
+          </p>
+        </div>
+
+        <form id="naap-form" onsubmit="submitCustomNaap(event)" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">CUSTOMER NAME *</label>
+              <input type="text" id="naap-name" required placeholder="Aapka Naam" class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm focus:outline-none focus:border-brand-maroon transition" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">WHATSAPP NUMBER *</label>
+              <input type="tel" id="naap-phone" required placeholder="03xx xxxxxxx" class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm focus:outline-none focus:border-brand-maroon transition" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">GARMENT CATEGORY</label>
+              <select id="naap-category" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] text-sm bg-white focus:outline-none focus:border-brand-maroon transition">
+                <option value="Women Stitched Kurti & Trouser">Women Stitched Kurti &amp; Trouser</option>
+                <option value="Girls Embroidered Co-ord Set">Girls Embroidered Co-ord Set</option>
+                <option value="Girls Flared Frock & Culottes">Girls Flared Frock &amp; Culottes</option>
+                <option value="Custom Embroidered Peplum Suit">Custom Embroidered Peplum Suit</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">EMBROIDERY PREFERENCE</label>
+              <select id="naap-embroidery" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] text-sm bg-white focus:outline-none focus:border-brand-maroon transition">
+                <option value="Neckline & Pocket Floral Embroidery">Neckline &amp; Pocket Floral Embroidery</option>
+                <option value="Heavy Daman & Sleeves Border">Heavy Daman &amp; Sleeves Border</option>
+                <option value="Minimalist Scattered Booti Work">Minimalist Scattered Booti Work</option>
+                <option value="Same As Selected Catalog Design">Same As Selected Catalog Design</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-2">AGE / SIZE CATEGORY</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="naap-size-group">
+              <button type="button" onclick="selectNaapSize(this, 'Girls (3–6 Yrs)')" class="naap-size-btn active py-2.5 px-3 rounded-full text-xs font-semibold bg-brand-maroon text-white border border-brand-maroon shadow-xs transition whitespace-nowrap">
+                Girls (3–6 Yrs)
+              </button>
+              <button type="button" onclick="selectNaapSize(this, 'Girls (7–12 Yrs)')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white text-brand-charcoal border border-[#DFD7C8] hover:border-brand-maroon transition whitespace-nowrap">
+                Girls (7–12 Yrs)
+              </button>
+              <button type="button" onclick="selectNaapSize(this, 'Women (S/M/L)')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white text-brand-charcoal border border-[#DFD7C8] hover:border-brand-maroon transition whitespace-nowrap">
+                Women (S/M/L)
+              </button>
+              <button type="button" onclick="selectNaapSize(this, 'Custom In Inches')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white text-brand-charcoal border border-[#DFD7C8] hover:border-brand-maroon transition whitespace-nowrap">
+                Custom In Inches
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">MEASUREMENTS &amp; NOTES (INCHES)</label>
+            <textarea id="naap-notes" rows="3" placeholder="Chest/Bust: 36 in, Shirt Length: 38 in, Sleeve: 19 in, Trouser Length: 37 in..." class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm focus:outline-none focus:border-brand-maroon transition"></textarea>
+          </div>
+
+          <button type="submit" class="btn-sheen w-full py-3.5 px-5 bg-[#176B58] hover:bg-[#115243] text-white font-bold text-xs tracking-wider uppercase rounded-full transition flex items-center justify-center gap-2.5 shadow-sm">
+            <svg class="w-5 h-5 text-[#4ADE80] shrink-0" viewBox="0 0 32 32" fill="currentColor">
+              <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
+            </svg>
+            <span>SEND MEASUREMENTS TO +92 315 4124959</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+```
+
+```
+  <!-- Section Heading -->
+  <div class="text-center space-y-2.5 mb-10 sm:mb-12">
+    <span class="inline-block bg-[#E6DEC9] text-brand-maroon text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full">
+      VERIFIED CLIENT LOVE • 4.9/5 RATING
+    </span>
+    <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal">
+      What Our Happy Customers Say
+    </h2>
+    <p class="text-xs sm:text-sm text-brand-muted max-w-md mx-auto">
+      Pakistan bhar se mothers aur khawateen ke aetmaad aur silai ki tareef — har 5 second baad naya review dekhein.
+    </p>
+  </div>
+
+  <!-- Single Flipping Review Card Stage -->
+  <div class="review-stage relative max-w-2xl mx-auto" onmouseenter="pauseReviewAutoFlip()" onmouseleave="resumeReviewAutoFlip()">
+    
+    <div id="review-card" class="review-flip-in bg-white rounded-[28px] border border-[#DFD7C8] shadow-[0_12px_36px_rgba(106,35,56,0.08)] p-6 sm:p-10 relative overflow-hidden">
+      
+      <!-- Decorative Subtle Quote Mark -->
+      <div class="absolute top-5 right-7 font-editorial text-7xl text-[#EFE8DC] select-none leading-none pointer-events-none">
+        &ldquo;
+      </div>
+
+      <!-- Top Row: 5 Gold Stars + Verified Badge -->
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-5 relative z-10">
+        <div class="flex items-center gap-1 text-[#D49A2A]" aria-label="5 out of 5 stars">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <span class="inline-flex items-center gap-1 bg-[#E8F5F0] text-[#176B58] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+          ✓ Verified WhatsApp Buyer
+        </span>
+      </div>
+
+      <!-- Review Quote Text -->
+      <p id="review-text" class="font-editorial text-xl sm:text-2xl text-brand-charcoal leading-relaxed italic min-h-[96px] sm:min-h-[84px] relative z-10">
+        "Meri beti ke liye Rose Pink Daisy Co-ord order kiya tha. Silai itni neat aur embroidery bilkul hath ke kaam jaisi nafees hai. Fabric bhi bohat soft hai!"
+      </p>
+
+      <!-- Purchased Item Tag -->
+      <div class="mt-4">
+        <span id="review-item" class="inline-block bg-[#F5F2EC] border border-[#DFD7C8] text-brand-maroon text-[11px] font-semibold px-3 py-1 rounded-lg">
+          Ordered: Rose Pink Daisy Embroidered Co-ord
+        </span>
+      </div>
+
+      <!-- Reviewer Profile & Controls -->
+      <div class="mt-6 pt-5 border-t border-[#EFEAE0] flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div id="review-avatar" class="w-11 h-11 rounded-full bg-gradient-to-tr from-brand-maroon to-[#9E7B3E] text-white font-editorial text-lg font-bold flex items-center justify-center shadow-xs shrink-0">
+            A
           </div>
           <div>
-            <span class="font-editorial text-2xl font-bold tracking-[0.2em] text-brand-maroon">AHINOOR</span>
-            <p class="text-xs text-brand-muted mt-2 leading-relaxed max-w-xs">
-              Exclusively stitched &amp; embroidered women and girls wear. Crafted with fine fabrics and artisanal threadwork.
-            </p>
+            <h4 id="review-author" class="text-sm font-bold text-brand-charcoal">Ayesha Tariq</h4>
+            <p id="review-city" class="text-xs text-brand-muted">Lahore • 2 days ago</p>
           </div>
         </div>
 
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-[0.16em] text-brand-charcoal mb-3">OFFICIAL CONTACT</h4>
-          <ul class="space-y-2 text-xs text-brand-muted">
-            <li>WhatsApp Orders: <a href="https://wa.me/923154124959" target="_blank" class="text-brand-maroon font-bold hover:underline">+92 315 4124959</a></li>
-            <li>Instagram: <a href="https://instagram.com/ahinoor_clothing_" target="_blank" class="text-brand-maroon font-bold hover:underline">@ahinoor_clothing_</a></li>
-            <li>Website: <span class="font-semibold text-brand-charcoal">ahinoor.online</span></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-[0.16em] text-brand-charcoal mb-3">HOW TO ORDER</h4>
-          <ul class="space-y-2 text-xs text-brand-muted">
-            <li>1. Select your favorite stitched suit &amp; size</li>
-            <li>2. Add to Order Bag or click Buy on WhatsApp</li>
-            <li>3. Confirm your address &amp; delivery on WhatsApp</li>
-          </ul>
+        <!-- Counter & Manual Prev/Next Buttons -->
+        <div class="flex items-center gap-2">
+          <span id="review-counter" class="text-xs font-bold text-brand-muted mr-1">1 / 20</span>
+          <button type="button" onclick="prevReview()" aria-label="Previous Review" class="w-9 h-9 rounded-full border border-[#DFD7C8] bg-[#FAF7F2] hover:bg-brand-maroon hover:text-white hover:border-brand-maroon text-brand-charcoal flex items-center justify-center transition">
+            ‹
+          </button>
+          <button type="button" onclick="nextReview()" aria-label="Next Review" class="w-9 h-9 rounded-full border border-[#DFD7C8] bg-[#FAF7F2] hover:bg-brand-maroon hover:text-white hover:border-brand-maroon text-brand-charcoal flex items-center justify-center transition">
+            ›
+          </button>
         </div>
       </div>
 
-      <div class="pt-6 text-center text-xs text-brand-muted">
-        © 2026 AHINOOR (ahinoor.online) •  All Rights Reserved.
+      <!-- 5-Second Auto-Flip Progress Line at Bottom of Card -->
+      <div class="absolute bottom-0 left-0 right-0 h-1 bg-[#EFEAE0]">
+        <div id="review-progress" class="h-full bg-gradient-to-r from-brand-maroon via-[#B68D40] to-[#176B58] review-timer-bar"></div>
       </div>
     </div>
-  </footer>
 
-  <!-- Floating Animated WhatsApp Button (Elevated above Netlify badge) -->
-  <a href="https://wa.me/923154124959" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="fixed bottom-[72px] right-5 z-40 group flex items-center gap-2.5 bg-[#25D366] hover:bg-[#1EBE5D] text-white p-3.5 sm:pl-3.5 sm:pr-4 sm:py-3 rounded-full shadow-xl transition-transform duration-300 hover:scale-105">
-    <span class="absolute inset-0 rounded-full bg-[#25D366] wa-pulse-ring -z-10"></span>
-    <svg class="w-6 h-6 text-white shrink-0" viewBox="0 0 32 32" fill="currentColor">
-      <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
+  </div>
+</div>
+
+```
+
+```svg
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg>
+```
+
+FOLLOW ON INSTAGRAM
+
+```
+  <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal">
+    @ahinoor_clothing_
+  </h2>
+
+  <p class="text-sm text-brand-muted max-w-md mx-auto leading-relaxed">
+    Rozana ke naye designs, client videos aur stitching updates dekhne ke liye hamara official Instagram zaroor follow karein.
+  </p>
+
+  <div class="pt-3">
+    <a href="[https://instagram.com/ahinoor_clothing](https://instagram.com/ahinoor_clothing)_" target="_blank" rel="noopener" class="btn-sheen inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white text-xs font-bold tracking-[0.14em] uppercase bg-gradient-to-r from-[#D62976] via-[#962FBF] to-[#4F5BD5] hover:opacity-95 hover:scale-105 transition shadow-md">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+      <span>VISIT @AHINOOR_CLOTHING_</span>
+    </a>
+  </div>
+</div>
+
+```
+
+```
+    <div>
+      <h4 class="text-xs font-bold uppercase tracking-[0.16em] text-brand-charcoal mb-3">OFFICIAL CONTACT</h4>
+      <ul class="space-y-2 text-xs text-brand-muted">
+        <li>WhatsApp Orders: <a href="[https://wa.me/923154124959](https://wa.me/923154124959)" target="_blank" class="text-brand-maroon font-bold hover:underline">+92 315 4124959</a></li>
+        <li>Instagram: <a href="[https://instagram.com/ahinoor_clothing](https://instagram.com/ahinoor_clothing)_" target="_blank" class="text-brand-maroon font-bold hover:underline">@ahinoor_clothing_</a></li>
+        <li>Website: <span class="font-semibold text-brand-charcoal">ahinoor.online</span></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-xs font-bold uppercase tracking-[0.16em] text-brand-charcoal mb-3">HOW TO ORDER</h4>
+      <ul class="space-y-2 text-xs text-brand-muted">
+        <li>1. Select your favorite stitched suit &amp; size</li>
+        <li>2. Add to Order Bag or click Buy on WhatsApp</li>
+        <li>3. Confirm your address &amp; delivery on WhatsApp</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-brand-muted">
+    <span>© 2026 AHINOOR (ahinoor.online) • All Rights Reserved.</span>
+    <button onclick="openAdminModal()" class="text-[11px] font-semibold text-brand-maroon/80 hover:text-brand-maroon underline">
+      Admin Login
+    </button>
+  </div>
+</div>
+
+```
+
+[
+
+```svg
+<svg class="w-6 h-6 text-white shrink-0" viewBox="0 0 32 32" fill="currentColor">
+      <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z" />
     </svg>
-    <span class="hidden sm:inline text-xs font-bold tracking-wide">Chat on WhatsApp</span>
-  </a>
+```
 
-  <!-- Quick View Product Modal -->
-  <div id="product-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-xs p-4 overflow-y-auto">
-    <div class="bg-[#F5F2EC] rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] relative my-auto animate-card">
-      <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/95 text-brand-charcoal hover:bg-brand-maroon hover:text-white flex items-center justify-center transition shadow-xs">
+Chat on WhatsApp
+
+```
+  <!-- Header -->
+  <div class="bg-brand-maroon text-white px-6 py-4 flex items-center justify-between">
+    <div>
+      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E5C687]">AHINOOR.ONLINE CONTROL</span>
+      <h3 class="font-editorial text-xl sm:text-2xl font-bold">Admin Dashboard</h3>
+    </div>
+    <div class="flex items-center gap-2">
+      <button id="admin-logout-btn" onclick="logoutAdmin()" class="hidden text-xs bg-white/15 hover:bg-white/25 px-3 py-1.5 rounded-full font-semibold transition">
+        Logout
+      </button>
+      <button onclick="closeAdminModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition">
         ✕
       </button>
-
-      <div class="grid grid-cols-1 md:grid-cols-12">
-        <!-- Product Image -->
-        <div class="md:col-span-6 bg-white flex items-center justify-center p-4 sm:p-6">
-          <div class="w-full aspect-[3/4] rounded-2xl overflow-hidden bg-[#F5F2EC]">
-            <img id="modal-img" src="" alt="Dress Preview" class="w-full h-full object-cover" />
-          </div>
-        </div>
-
-        <!-- Product Details -->
-        <div class="md:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-5">
-          <div class="space-y-3">
-            <span id="modal-category" class="text-[11px] font-bold uppercase tracking-widest text-brand-gold">CATEGORY</span>
-            <h3 id="modal-title" class="font-editorial text-2xl sm:text-3xl font-bold text-brand-charcoal leading-snug">Product Name</h3>
-            <p id="modal-price" class="text-2xl font-bold text-brand-maroon">Rs. 3,150</p>
-
-            <div class="pt-2 space-y-1.5 text-xs text-brand-muted border-t border-[#DFD7C8]">
-              <p><strong class="text-brand-charcoal">Fabric &amp; Style:</strong> <span id="modal-fabric"></span></p>
-              <p><strong class="text-brand-charcoal">Embroidery:</strong> <span id="modal-embroidery"></span></p>
-            </div>
-
-            <!-- Size Selector with Exact Calculated Price -->
-            <div class="pt-2">
-              <label class="block text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-2">Select Size:</label>
-              <div id="modal-sizes" class="grid grid-cols-2 gap-2.5">
-                <!-- Populated by JS -->
-              </div>
-            </div>
-          </div>
-
-          <div class="space-y-2.5 pt-2">
-            <button id="modal-add-btn" onclick="addModalProductToCart()" class="w-full py-3.5 px-4 bg-brand-charcoal hover:bg-brand-maroon text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2">
-              <span>🛍️ ADD TO ORDER BAG</span>
-            </button>
-            <button onclick="orderModalProductWhatsApp()" class="btn-sheen w-full py-3.5 px-4 bg-[#176B58] hover:bg-[#115243] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2">
-              <svg class="w-4 h-4 text-[#4ADE80] shrink-0" viewBox="0 0 32 32" fill="currentColor">
-                <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
-              </svg>
-              <span>BUY ON WHATSAPP (+92 315 4124959)</span>
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
-  <!-- Slide-over Order Bag Drawer -->
-  <div id="cart-drawer" class="fixed inset-0 z-50 hidden">
-    <div onclick="closeCartDrawer()" class="fixed inset-0 bg-black/50 backdrop-blur-xs"></div>
-    <div class="fixed inset-y-0 right-0 max-w-md w-full bg-[#F5F2EC] shadow-2xl flex flex-col justify-between z-10">
-      <div class="p-5 border-b border-[#DFD7C8] flex items-center justify-between bg-white">
+  <!-- Step 1: Password Lock Screen -->
+  <div id="admin-login-view" class="p-8 sm:p-12 max-w-md mx-auto text-center space-y-5">
+    <div class="w-14 h-14 rounded-full bg-brand-maroon/10 text-brand-maroon flex items-center justify-center mx-auto text-2xl">
+      🔒
+    </div>
+    <div>
+      <h4 class="font-editorial text-2xl font-bold text-brand-charcoal">Admin Password Required</h4>
+      <p class="text-xs text-brand-muted mt-1">Naye Articles aur Dresses publish karne ke liye password enter karein.</p>
+    </div>
+    <form onsubmit="verifyAdminPassword(event)" class="space-y-3">
+      <input type="password" id="admin-password-input" required placeholder="Enter Admin Password" class="w-full px-4 py-3 rounded-xl border border-[#DFD7C8] bg-white text-sm text-center focus:outline-none focus:border-brand-maroon" />
+      <p id="admin-login-error" class="hidden text-xs text-red-600 font-semibold">Galat password hai! Dobara try karein.</p>
+      <button type="submit" class="w-full py-3 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold uppercase tracking-wider rounded-xl transition">
+        UNLOCK ADMIN PANEL
+      </button>
+    </form>
+  </div>
+
+  <!-- Step 2: Unlocked Admin Workspace -->
+  <div id="admin-workspace-view" class="hidden p-6 sm:p-8 space-y-6 max-h-[82vh] overflow-y-auto">
+    
+    <!-- Tabs -->
+    <div class="flex gap-2 border-b border-[#DFD7C8] pb-3">
+      <button type="button" id="admin-tab-article" onclick="switchAdminTab('article')" class="px-4 py-2 rounded-full text-xs font-bold bg-brand-maroon text-white transition">
+        ✍️ Publish New Article
+      </button>
+      <button type="button" id="admin-tab-dress" onclick="switchAdminTab('dress')" class="px-4 py-2 rounded-full text-xs font-bold bg-white text-brand-charcoal border border-[#DFD7C8] transition">
+        👗 Add New Dress
+      </button>
+      <button type="button" id="admin-tab-manage" onclick="switchAdminTab('manage')" class="px-4 py-2 rounded-full text-xs font-bold bg-white text-brand-charcoal border border-[#DFD7C8] transition">
+        📋 Manage Published
+      </button>
+    </div>
+
+    <!-- Tab 1: Add New Article Form -->
+    <form id="admin-article-form" onsubmit="publishNewArticle(event)" class="space-y-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <h3 class="font-editorial text-2xl font-bold text-brand-charcoal">Your Order Bag</h3>
-          <p class="text-xs text-brand-muted">Direct WhatsApp Checkout</p>
+          <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Article Title *</label>
+          <input type="text" id="art-title" required placeholder="e.g., Summer Lawn Embroidery Trends 2026" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm" />
         </div>
-        <button onclick="closeCartDrawer()" class="w-8 h-8 rounded-full bg-[#EBE6DC] text-brand-charcoal hover:bg-brand-maroon hover:text-white flex items-center justify-center transition">
-          ✕
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Category</label>
+          <select id="art-category" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm">
+            <option value="Style Guide">Style Guide</option>
+            <option value="Embroidery Craft">Embroidery Craft</option>
+            <option value="Kids Fashion">Kids Fashion</option>
+            <option value="Fabric Care">Fabric Care</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Cover Photo (Select from Phone/PC Gallery)</label>
+        <input type="file" id="art-image-file" accept="image/*" class="w-full px-3.5 py-2 rounded-xl border border-[#DFD7C8] bg-white text-xs" />
+      </div>
+
+      <div>
+        <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Article Content *</label>
+        <textarea id="art-content" rows="5" required placeholder="Apna poora article yahan likhein..." class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm"></textarea>
+      </div>
+
+      <button type="submit" id="art-submit-btn" class="w-full py-3.5 bg-[#176B58] hover:bg-[#115243] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition">
+        🚀 PUBLISH ARTICLE LIVE ON WEBSITE
+      </button>
+    </form>
+
+    <!-- Tab 2: Add New Dress Form -->
+    <form id="admin-dress-form" onsubmit="publishNewDress(event)" class="hidden space-y-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Dress Name *</label>
+          <input type="text" id="dress-title" required placeholder="e.g., Peach Floral Embroidered Suit" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm" />
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Price (PKR) *</label>
+          <input type="number" id="dress-price" required placeholder="2750" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Category</label>
+          <select id="dress-category" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm">
+            <option value="girls">Girls Co-ords</option>
+            <option value="women">Women Kurtis &amp; Suits</option>
+            <option value="frocks">Frocks &amp; Peplums</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Badge Tag</label>
+          <input type="text" id="dress-badge" value="New Arrival" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Dress Photo (Select from Phone/PC Gallery) *</label>
+        <input type="file" id="dress-image-file" accept="image/*" required class="w-full px-3.5 py-2 rounded-xl border border-[#DFD7C8] bg-white text-xs" />
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Fabric Details</label>
+          <input type="text" id="dress-fabric" placeholder="Soft Cotton Lawn Two-Piece" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm" />
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Embroidery Details</label>
+          <input type="text" id="dress-embroidery" placeholder="Floral Neckline & Sleeves Work" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm" />
+        </div>
+      </div>
+
+      <button type="submit" id="dress-submit-btn" class="w-full py-3.5 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold uppercase tracking-wider rounded-xl transition">
+        ✨ ADD DRESS TO LIVE CATALOG
+      </button>
+    </form>
+
+    <!-- Tab 3: Manage & Delete Live Cloud Items -->
+    <div id="admin-manage-view" class="hidden space-y-5">
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-brand-maroon mb-2">Published Articles</h4>
+        <div id="admin-articles-list" class="space-y-2 text-xs"></div>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-brand-maroon mb-2">Added Custom Dresses</h4>
+        <div id="admin-dresses-list" class="space-y-2 text-xs"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+```
+
+```
+  <div class="grid grid-cols-1 md:grid-cols-12">
+    <!-- Product Image -->
+    <div class="md:col-span-6 bg-white flex items-center justify-center p-4 sm:p-6">
+      <div class="w-full aspect-[3/4] rounded-2xl overflow-hidden bg-[#F5F2EC]">
+        <img id="modal-img" src="" alt="Dress Preview" class="w-full h-full object-cover" />
+      </div>
+    </div>
+
+    <!-- Product Details -->
+    <div class="md:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-5">
+      <div class="space-y-3">
+        <span id="modal-category" class="text-[11px] font-bold uppercase tracking-widest text-brand-gold">CATEGORY</span>
+        <h3 id="modal-title" class="font-editorial text-2xl sm:text-3xl font-bold text-brand-charcoal leading-snug">Product Name</h3>
+        <p id="modal-price" class="text-2xl font-bold text-brand-maroon">Rs. 3,150</p>
+
+        <div class="pt-2 space-y-1.5 text-xs text-brand-muted border-t border-[#DFD7C8]">
+          <p><strong class="text-brand-charcoal">Fabric &amp; Style:</strong> <span id="modal-fabric"></span></p>
+          <p><strong class="text-brand-charcoal">Embroidery:</strong> <span id="modal-embroidery"></span></p>
+        </div>
+
+        <!-- Size Selector with Exact Calculated Price -->
+        <div class="pt-2">
+          <label class="block text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-2">Select Size:</label>
+          <div id="modal-sizes" class="grid grid-cols-2 gap-2.5">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-2.5 pt-2">
+        <button id="modal-add-btn" onclick="addModalProductToCart()" class="w-full py-3.5 px-4 bg-brand-charcoal hover:bg-brand-maroon text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2">
+          <span>🛍️ ADD TO ORDER BAG</span>
         </button>
-      </div>
-
-      <div id="cart-items" class="flex-1 overflow-y-auto p-5 space-y-4">
-        <!-- Cart items rendered by JS -->
-      </div>
-
-      <div class="p-5 border-t border-[#DFD7C8] bg-white space-y-3">
-        <div class="flex items-center justify-between text-sm font-bold">
-          <span>Estimated Total:</span>
-          <span id="cart-total" class="text-lg text-brand-maroon">Rs. 0</span>
-        </div>
-        <button onclick="checkoutCartWhatsApp()" class="btn-sheen w-full py-3.5 px-4 bg-[#176B58] hover:bg-[#115243] text-white text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
-          <svg class="w-5 h-5 text-[#4ADE80] shrink-0" viewBox="0 0 32 32" fill="currentColor">
+        <button onclick="orderModalProductWhatsApp()" class="btn-sheen w-full py-3.5 px-4 bg-[#176B58] hover:bg-[#115243] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2">
+          <svg class="w-4 h-4 text-[#4ADE80] shrink-0" viewBox="0 0 32 32" fill="currentColor">
             <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
           </svg>
-          <span>ORDER ALL ON WHATSAPP (0315 4124959)</span>
+          <span>BUY ON WHATSAPP (+92 315 4124959)</span>
         </button>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-brand-charcoal text-white text-xs font-semibold px-5 py-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300">
-    Added to order bag! 🛍️
+```
+
+```
+  <div id="cart-items" class="flex-1 overflow-y-auto p-5 space-y-4">
+    <!-- Cart items rendered by JS -->
   </div>
 
-  <script>
-    // Complete Product Catalog (8 New Arrivals + 10 Signature Suits)
-    const PRODUCTS = [
-      // --- NEW ARRIVALS (Rs. 2,800 - Rs. 3,250) ---
-      {
-        id: 101,
-        title: "Rose Pink Daisy Embroidered Co-ord",
-        price: 2650,
-        category: "girls",
-        isNew: true,
-        badge: "New Arrival",
-        image: "1000827972.jpg",
-        fabric: "Soft Breathable Cotton Lawn Two-Piece (Shirt & Wide-Leg Trouser)",
-        embroidery: "Delicate White & Olive Daisy Floral Embroidery on Neckline, Sleeves & Daman"
-      },
-      {
-        id: 102,
-        title: "Deep Maroon Floral Neckline Co-ord",
-        price: 2650,
-        category: "girls",
-        isNew: true,
-        badge: "New Arrival",
-        image: "1000827973.jpg",
-        fabric: "Rich Maroon Premium Linen-Cotton Stitched Two-Piece Set",
-        embroidery: "Ivory & Sage Botanical Motif Work on Round Neckline, Cuffs & Hem"
-      },
-      {
-        id: 103,
-        title: "Midnight Black Daisy Trim Co-ord",
-        price: 2650,
-        category: "girls",
-        isNew: true,
-        badge: "New Arrival",
-        image: "1000827974.jpg",
-        fabric: "Jet Black Soft Stitched Shirt & Flared Culottes",
-        embroidery: "Keyhole Neckline & Sleeve Border White Floral Thread Embroidery"
-      },
-      {
-        id: 104,
-        title: "Pastel Pink Blossom Embroidered Frock",
-        price: 2799,
-        category: "frocks",
-        isNew: true,
-        badge: "New Arrival",
-        image: "1000827975.jpg",
-        fabric: "Pure Pastel Pink Cotton Cambric Full-Sleeve Pleated Frock",
-        embroidery: "Hand-Finished Multi-Tone Marigold & Rose Floral Stems Across Bodice & Skirt"
-      },
-      {
-        id: 105,
-        title: "Olive Green Pleated Collar Co-ord",
-        price: 2750,
-        category: "girls",
-        isNew: true,
-        badge: "New Arrival",
-        image: "1000827976.jpg",
-        fabric: "Earthy Olive Cotton-Linen Button-Down Shirt & Wide Palazzo",
-        embroidery: "Yoke White Blossom Vine Embroidery with Gather Pleats & Side Pockets"
-      },
-      {
-        id: 106,
-        title: "Royal Plum Gathered Collar Co-ord",
-        price: 2750,
-        category: "girls",
-        isNew: true,
-        badge: "New Arrival",
-        image: "1000827977.jpg",
-        fabric: "Deep Aubergine Plum Soft Slub Cotton Co-ord Set",
-        embroidery: "Shoulder Floral Vine Embroidery with Pearl-White Front Buttons"
-      },
-      {
-        id: 107,
-        title: "Mustard Yellow Meadow Co-ord",
-        price: 2750,
-        category: "girls",
-        isNew: true,
-        badge: "New Arrival",
-        image: "1000827978.jpg",
-        fabric: "Warm Mustard Gold Breathable Cotton Shirt & Wide-Leg Trouser",
-        embroidery: "Delicate White Daisy Sprigs on Yoke with Matching Bow Detail"
-      },
-      {
-        id: 108,
-        title: "Charcoal Black Buttoned Collar Co-ord",
-        price: 2750,
-        category: "girls",
-        isNew: true,
-        badge: "New Arrival",
-        image: "1000827979.jpg",
-        fabric: "Classic Black Cotton-Linen Collared Tunic & Wide Trouser",
-        embroidery: "Crisp White & Sage Shoulder Floral Embroidery with Contrast Buttons"
-      },
+  <div class="p-5 border-t border-[#DFD7C8] bg-white space-y-3">
+    <div class="flex items-center justify-between text-sm font-bold">
+      <span>Estimated Total:</span>
+      <span id="cart-total" class="text-lg text-brand-maroon">Rs. 0</span>
+    </div>
+    <button onclick="checkoutCartWhatsApp()" class="btn-sheen w-full py-3.5 px-4 bg-[#176B58] hover:bg-[#115243] text-white text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
+      <svg class="w-5 h-5 text-[#4ADE80] shrink-0" viewBox="0 0 32 32" fill="currentColor">
+        <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
+      </svg>
+      <span>ORDER ALL ON WHATSAPP (0315 4124959)</span>
+    </button>
+  </div>
+</div>
 
-      // --- SIGNATURE COLLECTION ---
-      {
-        id: 1,
-        title: "Sage Olive Floral Pocket Co-ord Set",
-        price: 3699,
-        category: "girls",
-        isNew: false,
-        badge: "Bestseller",
-        image: "1000827954.jpg",
-        fabric: "Soft Breathable Cotton Linen Two-Piece Co-ord",
-        embroidery: "Botanical Wildflower Vine on Neckline & Front Pockets"
-      },
-      {
-        id: 2,
-        title: "Blossom Pink Pintucked Flare Frock & Culottes",
-        price: 2650,
-        category: "frocks",
-        isNew: false,
-        badge: "Festive Pick",
-        image: "1000827955.jpg",
-        fabric: "Pure Pastel Pink Lawn with Matching Trouser",
-        embroidery: "Multi-Color Floral Border on Daman & Neckline Motif"
-      },
-      {
-        id: 3,
-        title: "Lavender Mist V-Neck Embroidered Kurti Set",
-        price: 2650,
-        category: "women",
-        isNew: false,
-        badge: "Women's Edit",
-        image: "1000827956.jpg",
-        fabric: "Premium Lilac Cambric Kurti & Straight Trousers",
-        embroidery: "Intricate Resham Floral Neckline & Sleeve Border"
-      },
-      {
-        id: 4,
-        title: "Emerald Checkered Bow-Sleeve Peplum Suit",
-        price: 2799,
-        category: "frocks",
-        isNew: false,
-        badge: "Signature",
-        image: "1000827957.jpg",
-        fabric: "Woven Slub Linen Peplum with Ivory Flared Trouser",
-        embroidery: "Double-Tiered Tie Sleeves & Pleated Front Yoke"
-      },
-      {
-        id: 5,
-        title: "Ivory Cream Garden Motif Tunic & Palazzo",
-        price: 2799,
-        category: "women",
-        isNew: false,
-        badge: "Elegant",
-        image: "1000827958.jpg",
-        fabric: "Off-White Textured Cotton Tunic & Wide Palazzo",
-        embroidery: "Pastel Meadow Floral Embroidery on Bodice & Hem"
-      },
-      {
-        id: 6,
-        title: "Sky Blue Daisy Embroidered A-Line Set",
-        price: 2799,
-        category: "girls",
-        isNew: false,
-        badge: "Summer Favorite",
-        image: "1000827959.jpg",
-        fabric: "Soft Powder Blue Cotton Cambric Two-Piece",
-        embroidery: "White & Yellow Daisy Clusters on Sleeves & Daman"
-      },
-      {
-        id: 7,
-        title: "Deep Maroon Festive Threadwork Kurti",
-        price: 3050,
-        category: "women",
-        isNew: false,
-        badge: "Festive",
-        image: "1000827960.jpg",
-        fabric: "Rich Maroon Karandi-Cotton Straight Shirt & Trouser",
-        embroidery: "Antique Gold & Ivory Floral Gala Embroidery"
-      },
-      {
-        id: 8,
-        title: "Mint Green Ruffle Collar Frock Set",
-        price: 2799,
-        category: "frocks",
-        isNew: false,
-        badge: "Girls Special",
-        image: "1000827961.jpg",
-        fabric: "Pastel Mint Soft Lawn Tiered Frock & Pajama",
-        embroidery: "Delicate Rosebud Embroidery on Peter Pan Collar"
-      },
-      {
-        id: 9,
-        title: "Beige Sand Heritage Chikankari Co-ord",
-        price: 2750,
-        category: "women",
-        isNew: false,
-        badge: "Luxury Pret",
-        image: "1000827962.jpg",
-        fabric: "Warm Beige Cotton Net & Cambric Stitched Suit",
-        embroidery: "All-Over Schiffli & Threadwork Daman Border"
-      },
-      {
-        id: 10,
-        title: "Peach Coral Pleated Tunic & Culottes",
-        price: 2650,
-        category: "girls",
-        isNew: false,
-        badge: "Trending",
-        image: "1000827963.jpg",
-        fabric: "Soft Coral Peach Breathable Cotton Co-ord",
-        embroidery: "Floral Pocket & Cuff Threadwork Detailing"
-      }
-    ];
-
-    // 20 Authentic Customer Reviews
-    const CUSTOMER_REVIEWS = [
-      {
-        name: "Ayesha Tariq",
-        city: "Lahore",
-        time: "2 days ago",
-        item: "Rose Pink Daisy Embroidered Co-ord",
-        text: "Meri beti ke liye Rose Pink Daisy Co-ord order kiya tha. Silai itni neat aur embroidery bilkul hath ke kaam jaisi nafees hai. Fabric bhi bohat soft hai!"
-      },
-      {
-        name: "Dr. Sidra Kamran",
-        city: "Islamabad",
-        time: "4 days ago",
-        item: "Emerald Checkered Bow-Sleeve Peplum Suit",
-        text: "Ahinoor ka signature peplum suit mangwaya, fitting bilkul tailor-made jaisi aayi. Sleeves ke bows aur pleats ki finishing bohot hi classy hai."
-      },
-      {
-        name: "Hina Salman",
-        city: "Karachi",
-        time: "5 days ago",
-        item: "Pastel Pink Blossom Embroidered Frock",
-        text: "Karachi ki garmi ke hisab se cotton cambric fabric bohat airy aur comfortable hai. Phoolon ki embroidery ke rang bilkul tasveer jaise pyare hain."
-      },
-      {
-        name: "Madiha Usman",
-        city: "Faisalabad",
-        time: "1 week ago",
-        item: "Deep Maroon Floral Neckline Co-ord",
-        text: "Deep Maroon colour bohat rich lag raha hai pehne hue. Neckline aur cuffs par ivory embroidery ki safai dekh kar dil khush ho gaya."
-      },
-      {
-        name: "Sana Bilal",
-        city: "Rawalpindi",
-        time: "1 week ago",
-        item: "Custom Naap Stitching Order",
-        text: "Maine apni 7 saal ki beti ka custom naap WhatsApp par bheja tha. Exact wahi length aur fitting mili jo maine likhi thi. Highly recommended!"
-      },
-      {
-        name: "Zainab Farooq",
-        city: "Multan",
-        time: "1 week ago",
-        item: "Lavender Mist V-Neck Embroidered Kurti Set",
-        text: "Apne liye Lavender Kurti Set liya tha. Resham threadwork bohat nazakat se hua hai aur trouser ki silai bhi zabardast hai."
-      },
-      {
-        name: "Kiran Adeel",
-        city: "Sialkot",
-        time: "2 weeks ago",
-        item: "Olive Green Pleated Collar Co-ord",
-        text: "Olive Green collared co-ord meri beti ka favourite ban gaya hai. Pockets par embroidery aur buttons ki quality bohot achi hai."
-      },
-      {
-        name: "Nadia Rizwan",
-        city: "Gujranwala",
-        time: "2 weeks ago",
-        item: "Midnight Black Daisy Trim Co-ord",
-        text: "Jet black suit par white daisy embroidery bohat graceful lagti hai. Delivery time par mili aur packing bhi bohot pyari thi."
-      },
-      {
-        name: "Rabia Asif",
-        city: "Peshawar",
-        time: "2 weeks ago",
-        item: "Mustard Yellow Meadow Co-ord",
-        text: "Mustard yellow colour itna fresh aur bright hai ke bacchi par bohot khilta hai. Saath matching hair bow bhi bohot cute laga."
-      },
-      {
-        name: "Mehwish Javed",
-        city: "Bahawalpur",
-        time: "3 weeks ago",
-        item: "Ivory Cream Garden Motif Tunic & Palazzo",
-        text: "Ivory Cream tunic aur palazzo ka fall bohat elegant hai. Family dinner par pehna to sab ne pucha kahan se liya!"
-      },
-      {
-        name: "Amna Hassan",
-        city: "Lahore",
-        time: "3 weeks ago",
-        item: "Royal Plum Gathered Collar Co-ord",
-        text: "Royal Plum shade bohat unique hai, market me aise pyare colours aur neat stitching kam hi milti hai. Ahinoor par ab regular order karungi."
-      },
-      {
-        name: "Sadia Imran",
-        city: "Karachi",
-        time: "3 weeks ago",
-        item: "Blossom Pink Pintucked Flare Frock & Culottes",
-        text: "Frock ka flare aur pintucks bohot hi khubsurat banaye hain. Wash karne ke baad bhi na colour kharab hua na embroidery."
-      },
-      {
-        name: "Fatima Zafar",
-        city: "Sargodha",
-        time: "1 month ago",
-        item: "Charcoal Black Buttoned Collar Co-ord",
-        text: "Price ke hisab se quality bohot outclass hai. WhatsApp par team ne bohat achy se guide kiya aur size select karne me madad ki."
-      },
-      {
-        name: "Bushra Naveed",
-        city: "Abbottabad",
-        time: "1 month ago",
-        item: "Beige Sand Heritage Chikankari Co-ord",
-        text: "Beige Chikankari suit bohot hi royal look deta hai. Daman border ka kaam bohot hi nafees aur heavy feel deta hai."
-      },
-      {
-        name: "Iqra Waqas",
-        city: "Hyderabad",
-        time: "1 month ago",
-        item: "Mint Green Ruffle Collar Frock Set",
-        text: "Mint green ruffle collar frock meri choti beti par bohot pyari lagi. Fabric itna naram hai ke bacchi ne sara din aaram se pehne rakha."
-      },
-      {
-        name: "Tayyaba Shahzad",
-        city: "Islamabad",
-        time: "1 month ago",
-        item: "Deep Maroon Festive Threadwork Kurti",
-        text: "Festive events ke liye perfect kurti hai. Gala embroidery me antique gold thread bohat classy lag raha hai."
-      },
-      {
-        name: "Mahnoor Khalid",
-        city: "Quetta",
-        time: "1 month ago",
-        item: "Sky Blue Daisy Embroidered A-Line Set",
-        text: "Quetta me parcel bilkul safe aur time par receive hua. Sky blue colour aur daisy clusters bohot hi fresh lagte hain."
-      },
-      {
-        name: "Uzma Nasir",
-        city: "Rahim Yar Khan",
-        time: "2 months ago",
-        item: "Sage Olive Floral Pocket Co-ord Set",
-        text: "Doosri dafa Ahinoor se order kiya hai. Har baar stitching ki safai aur measurement 100% accurate hoti hai."
-      },
-      {
-        name: "Areeba Faisal",
-        city: "Gujrat",
-        time: "2 months ago",
-        item: "Peach Coral Pleated Tunic & Culottes",
-        text: "Peach coral shade aur cuffs par threadwork bohot pyara hai. Bachiyon ke liye aise decent aur stylish kapre milna nemat hai."
-      },
-      {
-        name: "Saima Qureshi",
-        city: "Lahore",
-        time: "2 months ago",
-        item: "Custom Mother & Daughter Matching Suits",
-        text: "Maine apna aur apni beti ka matching custom naap order kiya tha. Dono suits ki fitting aur embroidery lajawab thi!"
-      }
-    ];
-
-    // Size Pricing Tiers
-    const SIZE_TIERS = [
-      { label: "Small (3-5 Yrs / S)", extra: 0 },
-      { label: "Medium (6-8 Yrs / M)", extra: 350 },
-      { label: "Large (9-12 Yrs / L)", extra: 650 },
-    
-    ];
-
-    let cart = [];
-    let currentFilter = 'all';
-    let activeModalProduct = null;
-    let selectedModalSizeIndex = 0;
-    let selectedNaapSize = 'Girls (3–6 Yrs)';
-
-    // Review Flip State
-    let currentReviewIndex = 0;
-    let reviewInterval = null;
-    let isReviewPaused = false;
-
-    function formatPKR(amount) {
-      return 'Rs. ' + Number(amount).toLocaleString('en-PK');
-    }
-
-    // Render Single Review with Smooth 3D Flip Animation
-    function showReview(index, animate = true) {
-      const card = document.getElementById('review-card');
-      const progress = document.getElementById('review-progress');
-      if (!card) return;
-
-      const total = CUSTOMER_REVIEWS.length;
-      currentReviewIndex = (index + total) % total;
-      const rev = CUSTOMER_REVIEWS[currentReviewIndex];
-
-      const updateDOM = () => {
-        document.getElementById('review-text').textContent = `"${rev.text}"`;
-        document.getElementById('review-item').textContent = `Ordered: ${rev.item}`;
-        document.getElementById('review-author').textContent = rev.name;
-        document.getElementById('review-city').textContent = `${rev.city} • ${rev.time}`;
-        document.getElementById('review-avatar').textContent = rev.name.charAt(0).toUpperCase();
-        document.getElementById('review-counter').textContent = `${currentReviewIndex + 1} / ${total}`;
-
-        // Restart 5-second progress bar
-        if (progress) {
-          progress.classList.remove('review-timer-bar');
-          void progress.offsetWidth;
-          progress.classList.add('review-timer-bar');
-        }
-      };
-
-      if (!animate) {
-        updateDOM();
-        return;
-      }
-
-      card.classList.remove('review-flip-in');
-      card.classList.add('review-flip-out');
-
-      setTimeout(() => {
-        updateDOM();
-        card.classList.remove('review-flip-out');
-        card.classList.add('review-flip-in');
-      }, 280);
-    }
-
-    function startReviewAutoFlip() {
-      clearInterval(reviewInterval);
-      reviewInterval = setInterval(() => {
-        if (!isReviewPaused) {
-          showReview(currentReviewIndex + 1, true);
-        }
-      }, 5000);
-    }
-
-    window.nextReview = function() {
-      showReview(currentReviewIndex + 1, true);
-      startReviewAutoFlip();
-    };
-
-    window.prevReview = function() {
-      showReview(currentReviewIndex - 1, true);
-      startReviewAutoFlip();
-    };
-
-    window.pauseReviewAutoFlip = function() {
-      isReviewPaused = true;
-      const progress = document.getElementById('review-progress');
-      if (progress) progress.style.animationPlayState = 'paused';
-    };
-
-    window.resumeReviewAutoFlip = function() {
-      isReviewPaused = false;
-      const progress = document.getElementById('review-progress');
-      if (progress) progress.style.animationPlayState = 'running';
-    };
-
-    // Move Sliding Pill Indicator under active Filter Tab
-    function updateFilterPill(activeBtn) {
-      const pill = document.getElementById('filter-pill');
-      const bar = document.getElementById('filter-bar');
-      if (!pill || !bar || !activeBtn) return;
-
-      const leftPos = activeBtn.offsetLeft;
-      const width = activeBtn.offsetWidth;
-      pill.style.width = width + 'px';
-      pill.style.transform = `translateX(${leftPos}px)`;
-
-      const scrollTarget = leftPos - (bar.clientWidth / 2) + (width / 2);
-      bar.scrollTo({ left: scrollTarget, behavior: 'smooth' });
-    }
-
-    // Render Product Grid with Staggered Entrance Animation
-    function renderProducts(filter = 'all') {
-      currentFilter = filter;
-      const grid = document.getElementById('product-grid');
-      const filtered = PRODUCTS.filter(p => {
-        if (filter === 'all') return true;
-        if (filter === 'new') return p.isNew === true;
-        return p.category === filter;
-      });
-
-      grid.innerHTML = filtered.map((product, index) => `
-        <div style="animation-delay: ${Math.min(index * 40, 400)}ms" class="animate-card product-card group bg-white rounded-2xl border border-[#DFD7C8] hover:border-brand-gold/70 overflow-hidden shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div onclick="openProductModal(${product.id})" class="relative aspect-[3/4] overflow-hidden bg-[#EBE6DC] cursor-pointer">
-              <img src="${product.image}" alt="${product.title}" loading="lazy" class="w-full h-full object-cover card-img-zoom" />
-              ${product.badge ? `
-                <span class="absolute top-3 left-3 ${product.isNew ? 'bg-brand-maroon text-white' : 'bg-white/95 text-brand-charcoal'} text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs">
-                  ${product.badge}
-                </span>
-              ` : ''}
-              <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/55 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center">
-                <span class="bg-white text-brand-charcoal text-[11px] font-bold uppercase tracking-wider px-4 py-1.5 rounded-full shadow transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  Select Size &amp; Details
-                </span>
-              </div>
-            </div>
-
-            <div class="p-4 space-y-1.5">
-              <p class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">${product.isNew ? 'New Arrival • ' : ''}${product.category}</p>
-              <h3 onclick="openProductModal(${product.id})" class="font-editorial text-xl font-bold text-brand-charcoal leading-snug cursor-pointer hover:text-brand-maroon transition">
-                ${product.title}
-              </h3>
-              <p class="text-xs text-brand-muted line-clamp-1">${product.embroidery}</p>
-            </div>
-          </div>
-
-          <div class="px-4 pb-4 pt-2 flex items-center justify-between border-t border-[#EFECE4]">
-            <div>
-              <span class="text-base font-bold text-brand-maroon">${formatPKR(product.price)}</span>
-            </div>
-            <div class="flex items-center gap-1.5">
-              <button onclick="openProductModal(${product.id})" class="px-3 py-1.5 rounded-lg border border-[#DFD7C8] text-[11px] font-bold text-brand-charcoal hover:border-brand-maroon hover:text-brand-maroon transition">
-                Sizes
-              </button>
-              <button onclick="quickAddToCart(${product.id})" class="px-3 py-1.5 rounded-lg bg-brand-maroon text-white text-[11px] font-bold hover:bg-brand-maroonDark transition">
-                + Bag
-              </button>
-            </div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    window.filterProducts = function(category, clickedBtn = null) {
-      const targetBtn = clickedBtn || document.querySelector(`.filter-tab-btn[data-filter="${category}"]`);
-      document.querySelectorAll('.filter-tab-btn').forEach(btn => {
-        if (btn === targetBtn) {
-          btn.classList.remove('text-brand-charcoal', 'hover:text-brand-maroon');
-          btn.classList.add('text-white');
-        } else {
-          btn.classList.add('text-brand-charcoal', 'hover:text-brand-maroon');
-          btn.classList.remove('text-white');
-        }
-      });
-      if (targetBtn) updateFilterPill(targetBtn);
-      renderProducts(category);
-    };
-
-    // Modal Functions
-    window.openProductModal = function(id) {
-      const product = PRODUCTS.find(p => p.id === id);
-      if (!product) return;
-      activeModalProduct = product;
-      selectedModalSizeIndex = 0;
-
-      document.getElementById('modal-img').src = product.image;
-      document.getElementById('modal-category').textContent = (product.isNew ? 'NEW ARRIVAL • ' : '') + product.category.toUpperCase();
-      document.getElementById('modal-title').textContent = product.title;
-      document.getElementById('modal-fabric').textContent = product.fabric;
-      document.getElementById('modal-embroidery').textContent = product.embroidery;
-
-      renderModalSizes();
-      const modal = document.getElementById('product-modal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    };
-
-    window.closeProductModal = function() {
-      const modal = document.getElementById('product-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    };
-
-    function renderModalSizes() {
-      if (!activeModalProduct) return;
-      const container = document.getElementById('modal-sizes');
-      const activeTier = SIZE_TIERS[selectedModalSizeIndex];
-      const finalPrice = activeModalProduct.price + activeTier.extra;
-
-      document.getElementById('modal-price').textContent = formatPKR(finalPrice);
-
-      container.innerHTML = SIZE_TIERS.map((tier, idx) => {
-        const tierPrice = activeModalProduct.price + tier.extra;
-        const isSelected = idx === selectedModalSizeIndex;
-        return `
-          <button type="button" onclick="selectModalSize(${idx})" class="p-2.5 rounded-xl border text-left transition ${isSelected ? 'bg-brand-maroon text-white border-brand-maroon shadow-xs' : 'bg-white text-brand-charcoal border-gray-200 hover:border-brand-maroon'}">
-            <div class="text-xs font-bold leading-tight">${tier.label}</div>
-            <div class="text-xs font-semibold mt-1 ${isSelected ? 'text-[#E5C687]' : 'text-brand-maroon'}">${formatPKR(tierPrice)}</div>
-          </button>
-        `;
-      }).join('');
-    }
-
-    window.selectModalSize = function(index) {
-      selectedModalSizeIndex = index;
-      renderModalSizes();
-    };
-
-    // Cart Functions
-    window.quickAddToCart = function(id) {
-      const product = PRODUCTS.find(p => p.id === id);
-      if (!product) return;
-      const defaultTier = SIZE_TIERS[0];
-      addToCart(product, defaultTier.label, product.price + defaultTier.extra);
-    };
-
-    window.addModalProductToCart = function() {
-      if (!activeModalProduct) return;
-      const tier = SIZE_TIERS[selectedModalSizeIndex];
-      const finalPrice = activeModalProduct.price + tier.extra;
-      addToCart(activeModalProduct, tier.label, finalPrice);
-      closeProductModal();
-    };
-
-    window.addToCart = function(product, sizeLabel, unitPrice) {
-      const existing = cart.find(item => item.id === product.id && item.size === sizeLabel);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        cart.push({
-          id: product.id,
-          title: product.title,
-          image: product.image,
-          size: sizeLabel,
-          price: unitPrice,
-          qty: 1
-        });
-      }
-      updateCartUI();
-      showToast();
-      openCartDrawer();
-    };
-
-    window.changeItemQty = function(index, delta) {
-      if (!cart[index]) return;
-      cart[index].qty += delta;
-      if (cart[index].qty <= 0) {
-        cart.splice(index, 1);
-      }
-      updateCartUI();
-    };
-
-    function updateCartUI() {
-      const badge = document.getElementById('cart-badge');
-      const itemsContainer = document.getElementById('cart-items');
-      const totalEl = document.getElementById('cart-total');
-
-      const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
-      const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-
-      badge.textContent = totalCount;
-      totalEl.textContent = formatPKR(totalAmount);
-
-      if (cart.length === 0) {
-        itemsContainer.innerHTML = `
-          <div class="text-center py-16 space-y-3">
-            <p class="font-editorial text-2xl text-brand-charcoal">Aapka Order Bag Khali Hai</p>
-            <p class="text-xs text-brand-muted">Catalog se koi bhi stitched dress select karein.</p>
-          </div>
-        `;
-        return;
-      }
-
-      itemsContainer.innerHTML = cart.map((item, idx) => `
-        <div class="flex gap-3.5 bg-white p-3 rounded-2xl border border-[#DFD7C8] items-center">
-          <img src="${item.image}" alt="${item.title}" class="w-16 h-20 object-cover rounded-xl bg-[#EBE6DC]" />
-          <div class="flex-1 min-w-0">
-            <h4 class="font-editorial text-base font-bold text-brand-charcoal truncate">${item.title}</h4>
-            <p class="text-[11px] text-brand-muted">${item.size}</p>
-            <p class="text-xs font-bold text-brand-maroon mt-0.5">${formatPKR(item.price * item.qty)}</p>
-          </div>
-          <div class="flex items-center gap-1.5 bg-[#F5F2EC] rounded-lg px-2 py-1 border border-[#DFD7C8]">
-            <button onclick="changeItemQty(${idx}, -1)" class="w-5 h-5 text-xs font-bold text-brand-charcoal hover:text-brand-maroon">-</button>
-            <span class="text-xs font-bold w-4 text-center">${item.qty}</span>
-            <button onclick="changeItemQty(${idx}, 1)" class="w-5 h-5 text-xs font-bold text-brand-charcoal hover:text-brand-maroon">+</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    window.openCartDrawer = function() {
-      document.getElementById('cart-drawer').classList.remove('hidden');
-    };
-
-    window.closeCartDrawer = function() {
-      document.getElementById('cart-drawer').classList.add('hidden');
-    };
-
-    function showToast() {
-      const toast = document.getElementById('toast');
-      toast.classList.remove('opacity-0');
-      setTimeout(() => toast.classList.add('opacity-0'), 2200);
-    }
-
-    window.toggleMobileMenu = function() {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    };
-
-    // Direct WhatsApp Orders
-    window.orderSignatureDirect = function() {
-      const msg = [
-        "*AHINOOR SIGNATURE PIECE ORDER*",
-        "-------------------------",
-        "Dress: Emerald Checkered Bow-Sleeve Peplum Suit",
-        "Price: Rs. 2650",
-        "-------------------------",
-        "Please share available sizes and order confirmation."
-      ].join("\n");
-      window.open("https://wa.me/923154124959?text=" + encodeURIComponent(msg), "_blank");
-    };
-
-    window.orderModalProductWhatsApp = function() {
-      if (!activeModalProduct) return;
-      const tier = SIZE_TIERS[selectedModalSizeIndex];
-      const finalPrice = activeModalProduct.price + tier.extra;
-      const msg = [
-        "*AHINOOR NEW ORDER*",
-        "-------------------------",
-        "Dress: " + activeModalProduct.title,
-        "Size: " + tier.label,
-        "Price: " + formatPKR(finalPrice),
-        "-------------------------",
-        "Please confirm availability and delivery details."
-      ].join("\n");
-
-      window.open("https://wa.me/923154124959?text=" + encodeURIComponent(msg), "_blank");
-    };
-
-    window.checkoutCartWhatsApp = function() {
-      if (cart.length === 0) {
-        alert("Pehle order bag me koi dress add karein.");
-        return;
-      }
-      let lines = ["*AHINOOR ORDER BAG*", "-------------------------"];
-      let grandTotal = 0;
-      cart.forEach((item, i) => {
-        const sub = item.price * item.qty;
-        grandTotal += sub;
-        lines.push((i + 1) + ". " + item.title + " (" + item.size + ") x" + item.qty + " = " + formatPKR(sub));
-      });
-      lines.push("-------------------------");
-      lines.push("*Total Amount: " + formatPKR(grandTotal) + "*");
-      lines.push("Please confirm my order.");
-
-      window.open("https://wa.me/923154124959?text=" + encodeURIComponent(lines.join("\n")), "_blank");
-    };
-
-    // Custom Naap Form
-    window.selectNaapSize = function(btn, sizeText) {
-      selectedNaapSize = sizeText;
-      document.querySelectorAll('.naap-size-btn').forEach(b => {
-        b.classList.remove('bg-brand-maroon', 'text-white', 'border-brand-maroon', 'shadow-xs');
-        b.classList.add('bg-white', 'text-brand-charcoal', 'border-[#DFD7C8]');
-      });
-      btn.classList.remove('bg-white', 'text-brand-charcoal', 'border-[#DFD7C8]');
-      btn.classList.add('bg-brand-maroon', 'text-white', 'border-brand-maroon', 'shadow-xs');
-    };
-
-    window.submitCustomNaap = function(e) {
-      e.preventDefault();
-      const name = document.getElementById('naap-name').value.trim();
-      const phone = document.getElementById('naap-phone').value.trim();
-      const category = document.getElementById('naap-category').value;
-      const embroidery = document.getElementById('naap-embroidery').value;
-      const notes = document.getElementById('naap-notes').value.trim() || "Standard size chart";
-
-      const msg = [
-        "*AHINOOR CUSTOM NAAP ORDER*",
-        "-------------------------",
-        "Customer Name: " + name,
-        "WhatsApp: " + phone,
-        "Category: " + category,
-        "Embroidery: " + embroidery,
-        "Size Group: " + selectedNaapSize,
-        "Measurements / Notes: " + notes,
-        "-------------------------",
-        "Sent via ahinoor.online"
-      ].join("\n");
-
-      window.open("https://wa.me/923154124959?text=" + encodeURIComponent(msg), "_blank");
-    };
-
-    // Initial Render & Auto-Start 5-Second Review Flip
-    renderProducts('all');
-    updateCartUI();
-    showReview(0, false);
-    startReviewAutoFlip();
-
-    setTimeout(() => {
-      const initialBtn = document.querySelector('.filter-tab-btn[data-filter="all"]');
-      if (initialBtn) updateFilterPill(initialBtn);
-    }, 50);
-    window.addEventListener('resize', () => {
-      const activeBtn = document.querySelector(`.filter-tab-btn[data-filter="${currentFilter}"]`);
-      if (activeBtn) updateFilterPill(activeBtn);
-    });
-  </script>
-</body>
-</html>
+```
