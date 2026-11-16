@@ -1,39 +1,3 @@
-Bilkul samajh gaya dost! Aap chahte hain ke **`ahinoor.online`** par jo bhi customer (khawateen ya mothers) aaye, wo pehli hi nazar me impress ho jaye, trust kare, aur baar baar wapas aaye—bina aapke existing colors, prices, ya Firebase Admin Panel ko chhere!
-
-High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret brands) ki sab se behtareen cheezein maine aapki **`index.html`** me integrate kar di hain:
-
-### Kya Naye High-Attraction Upgrades Add Kiye Hain:
-
-1. **Circular Visual Category Shortcuts (Hero ke bilkul neeche)**:
-* Mobile aur Desktop par gol (circular) photo icons ke saath **`All Designs`**, **`New Arrivals`**, **`Girls Co-ords`**, **`Women Kurtis`**, aur **`Frocks & Peplums`** — user ek tap me apni pasand ki category dekh sakta hai.
-
-
-2. **Instant Live Search & Sort Bar**:
-* Collection section ke upar ek clean **Search Box** (`"Search by color, style e.g. Maroon, Daisy, Frock..."`) aur **Price Sort** (`Featured`, `Price: Low to High`, `Price: High to Low`) add kiya hai—is se user ko apna pasandeeda rang ya design 2 second me mil jata hai.
-
-
-3. **Interactive Wishlist (`❤️ Save`) + "Recently Viewed / Saved"**:
-* Har suit card ke top-right corner me ek pyara sa **Heart (`♡`)** button hai. Customer apne pasandeeda suits save kar sakta hai aur header ke heart icon se kabhi bhi dekh sakta hai—is se customer baar baar website par wapas aata hai.
-
-
-4. **Trust & Assurance Strip**:
-* **Cash on Delivery All Over Pakistan**, **100% Pure Breathable Fabrics**, **Custom Naap Tailoring**, aur **7-Day Easy Size Exchange** ke clean luxury badges.
-
-
-5. **Subtle Live Activity Notification (Bottom-Left)**:
-* Har thori der baad ek gentle, non-intrusive pill show hoti hai (jaise *"Ayesha from Lahore just viewed Rose Pink Daisy Co-ord"*), jo store ko zinda aur trustworthy banati hai.
-
-
-6. **100% Intact Admin Panel & Cloud Sync**:
-* Aapka **Password-Protected Admin Panel**, **Change Password**, **Publish Article**, aur **Add/Delete Dress** bilkul waise hi kaam kar rahe hain.
-
-
-
----
-
-### Complete Updated `index.html` Code:
-
-```html
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -367,14 +331,14 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
             <img src="1000827919.jpg" alt="Ahinoor Kids & Women Clothing Logo" class="w-full h-full rounded-full object-contain bg-white p-0.5" />
           </div>
         </a>
-        <nav class="flex items-center space-x-4 text-[11px] font-bold tracking-[0.12em] uppercase text-brand-charcoal">
+        <nav class="flex items-center space-x-5 text-[11px] font-bold tracking-[0.13em] uppercase text-brand-charcoal">
           <a href="#" class="hover:text-brand-maroon transition">HOME</a>
           <a href="#collection" onclick="filterProducts('all')" class="hover:text-brand-maroon transition">PRET COLLECTION</a>
-          <a href="#articles-section" class="hover:text-brand-maroon transition">ARTICLES</a>
           <a href="#custom-naap" class="inline-flex items-center gap-1.5 hover:text-brand-maroon transition">
-            <span>CUSTOM STITCH</span>
+            <span>CUSTOM STITCH &amp; EMBROIDERY</span>
             <span class="bg-[#E5D7BF] text-brand-maroon text-[9px] px-2 py-0.5 rounded font-bold tracking-wider">ATELIER</span>
           </a>
+          <a href="#reviews-section" class="hover:text-brand-maroon transition">REVIEWS</a>
         </nav>
       </div>
 
@@ -434,9 +398,9 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
       <a href="#" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">HOME</a>
       <a href="#collection" onclick="filterProducts('new'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon">NEW ARRIVALS</a>
       <a href="#collection" onclick="filterProducts('all'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">PRET COLLECTION</a>
-      <a href="#articles-section" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">FASHION ARTICLES</a>
       <a href="#custom-naap" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">CUSTOM STITCH &amp; EMBROIDERY</a>
       <a href="#reviews-section" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">CUSTOMER REVIEWS (20)</a>
+      <a href="#instagram-section" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">INSTAGRAM</a>
       <button onclick="toggleMobileMenu(); openAdminModal()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon">🔒 ADMIN PANEL</button>
     </div>
   </header>
@@ -522,7 +486,7 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
     </div>
   </section>
 
-  <!-- Visual Quick-Shop Category Circles (High Engagement Bar) -->
+  <!-- Visual Quick-Shop Category Circles -->
   <section class="py-7 sm:py-9 bg-[#FAF7F2] border-b border-[#E4DDD0]">
     <div class="max-w-5xl mx-auto px-4">
       <div class="flex items-center justify-start sm:justify-center gap-5 sm:gap-9 overflow-x-auto no-scrollbar py-1">
@@ -648,25 +612,6 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
           <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">Direct WhatsApp Care</h4>
           <p class="text-[11px] text-brand-muted">Instant order support at 0315 4124959</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Style & Fashion Journal / Articles Section (Managed from Admin Panel) -->
-  <section id="articles-section" class="py-14 sm:py-20 bg-[#F9F6F0] border-b border-[#E2DBD0] reveal-on-scroll">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-        <div>
-          <span class="text-xs font-bold tracking-[0.2em] uppercase text-brand-gold">Ahinoor Editorial &amp; Style Guide</span>
-          <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal mt-1">Fashion Articles &amp; Stitching Guides</h2>
-        </div>
-        <button onclick="openAdminModal()" class="self-start sm:self-auto px-4 py-2 rounded-full bg-brand-maroon/10 text-brand-maroon hover:bg-brand-maroon hover:text-white text-xs font-bold uppercase tracking-wider transition">
-          + Write / Manage Articles
-        </button>
-      </div>
-
-      <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-        <!-- Rendered dynamically from Firebase + Default Articles -->
       </div>
     </div>
   </section>
@@ -967,28 +912,7 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
     <span class="hidden sm:inline text-xs font-bold tracking-wide">Chat on WhatsApp</span>
   </a>
 
-  <!-- Article Full Reader Modal -->
-  <div id="article-reader-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/65 backdrop-blur-xs p-4 overflow-y-auto">
-    <div class="bg-[#F9F6F0] rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] relative my-auto animate-card">
-      <button onclick="closeArticleReader()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/95 text-brand-charcoal hover:bg-brand-maroon hover:text-white flex items-center justify-center transition shadow-xs">
-        ✕
-      </button>
-      <div class="w-full h-56 sm:h-72 bg-[#EBE6DC] overflow-hidden">
-        <img id="reader-img" src="" alt="Article Cover" class="w-full h-full object-cover" />
-      </div>
-      <div class="p-6 sm:p-9 space-y-4">
-        <div class="flex items-center gap-3 text-[11px] font-bold uppercase tracking-widest text-brand-gold">
-          <span id="reader-category">STYLE GUIDE</span>
-          <span>•</span>
-          <span id="reader-date">Nov 2026</span>
-        </div>
-        <h2 id="reader-title" class="font-editorial text-2xl sm:text-3xl font-bold text-brand-charcoal leading-snug"></h2>
-        <div id="reader-body" class="text-sm text-brand-charcoal/90 leading-relaxed whitespace-pre-line pt-2 border-t border-[#E4DDD0]"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Password-Protected Admin Panel Modal -->
+  <!-- Password-Protected Admin Panel Modal (Dresses + Password Management) -->
   <div id="admin-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
     <div class="bg-[#F5F2EC] rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] relative my-auto animate-card">
       
@@ -1015,7 +939,7 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
         </div>
         <div>
           <h4 class="font-editorial text-2xl font-bold text-brand-charcoal">Admin Password Required</h4>
-          <p class="text-xs text-brand-muted mt-1">Naye Articles, Dresses ya Password manage karne ke liye password enter karein.</p>
+          <p class="text-xs text-brand-muted mt-1">Naye Dresses add karne ya Password badalne ke liye password enter karein.</p>
         </div>
         <form onsubmit="verifyAdminPassword(event)" class="space-y-3">
           <input type="password" id="admin-password-input" required placeholder="Enter Admin Password" class="w-full px-4 py-3 rounded-xl border border-[#DFD7C8] bg-white text-sm text-center focus:outline-none focus:border-brand-maroon" />
@@ -1031,55 +955,19 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
         
         <!-- Tabs -->
         <div class="flex flex-wrap gap-2 border-b border-[#DFD7C8] pb-3">
-          <button type="button" id="admin-tab-article" onclick="switchAdminTab('article')" class="px-3.5 py-2 rounded-full text-xs font-bold bg-brand-maroon text-white transition">
-            ✍️ Publish Article
+          <button type="button" id="admin-tab-dress" onclick="switchAdminTab('dress')" class="px-4 py-2 rounded-full text-xs font-bold bg-brand-maroon text-white transition">
+            👗 Add New Dress
           </button>
-          <button type="button" id="admin-tab-dress" onclick="switchAdminTab('dress')" class="px-3.5 py-2 rounded-full text-xs font-bold bg-white text-brand-charcoal border border-[#DFD7C8] transition">
-            👗 Add Dress
+          <button type="button" id="admin-tab-manage" onclick="switchAdminTab('manage')" class="px-4 py-2 rounded-full text-xs font-bold bg-white text-brand-charcoal border border-[#DFD7C8] transition">
+            📋 Manage Dresses
           </button>
-          <button type="button" id="admin-tab-manage" onclick="switchAdminTab('manage')" class="px-3.5 py-2 rounded-full text-xs font-bold bg-white text-brand-charcoal border border-[#DFD7C8] transition">
-            📋 Manage Published
-          </button>
-          <button type="button" id="admin-tab-password" onclick="switchAdminTab('password')" class="px-3.5 py-2 rounded-full text-xs font-bold bg-white text-brand-charcoal border border-[#DFD7C8] transition">
+          <button type="button" id="admin-tab-password" onclick="switchAdminTab('password')" class="px-4 py-2 rounded-full text-xs font-bold bg-white text-brand-charcoal border border-[#DFD7C8] transition">
             🔑 Change Password
           </button>
         </div>
 
-        <!-- Tab 1: Add New Article Form -->
-        <form id="admin-article-form" onsubmit="publishNewArticle(event)" class="space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Article Title *</label>
-              <input type="text" id="art-title" required placeholder="e.g., Summer Lawn Embroidery Trends 2026" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm" />
-            </div>
-            <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Category</label>
-              <select id="art-category" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm">
-                <option value="Style Guide">Style Guide</option>
-                <option value="Embroidery Craft">Embroidery Craft</option>
-                <option value="Kids Fashion">Kids Fashion</option>
-                <option value="Fabric Care">Fabric Care</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Cover Photo (Select from Phone/PC Gallery)</label>
-            <input type="file" id="art-image-file" accept="image/*" class="w-full px-3.5 py-2 rounded-xl border border-[#DFD7C8] bg-white text-xs" />
-          </div>
-
-          <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Article Content *</label>
-            <textarea id="art-content" rows="5" required placeholder="Apna poora article yahan likhein..." class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm"></textarea>
-          </div>
-
-          <button type="submit" id="art-submit-btn" class="w-full py-3.5 bg-[#176B58] hover:bg-[#115243] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition">
-            🚀 PUBLISH ARTICLE LIVE ON WEBSITE
-          </button>
-        </form>
-
-        <!-- Tab 2: Add New Dress Form -->
-        <form id="admin-dress-form" onsubmit="publishNewDress(event)" class="hidden space-y-4">
+        <!-- Tab 1: Add New Dress Form -->
+        <form id="admin-dress-form" onsubmit="publishNewDress(event)" class="space-y-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Dress Name *</label>
@@ -1127,19 +1015,15 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
           </button>
         </form>
 
-        <!-- Tab 3: Manage & Delete Live Cloud Items -->
-        <div id="admin-manage-view" class="hidden space-y-5">
-          <div>
-            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-maroon mb-2">Published Articles</h4>
-            <div id="admin-articles-list" class="space-y-2 text-xs"></div>
-          </div>
+        <!-- Tab 2: Manage & Delete Live Cloud Dresses -->
+        <div id="admin-manage-view" class="hidden space-y-4">
           <div>
             <h4 class="text-xs font-bold uppercase tracking-wider text-brand-maroon mb-2">Added Custom Dresses</h4>
             <div id="admin-dresses-list" class="space-y-2 text-xs"></div>
           </div>
         </div>
 
-        <!-- Tab 4: Change Admin Password Form -->
+        <!-- Tab 3: Change Admin Password Form -->
         <form id="admin-password-form" onsubmit="updateAdminPassword(event)" class="hidden space-y-4 max-w-md mx-auto py-2">
           <div>
             <h4 class="font-editorial text-xl font-bold text-brand-charcoal">Change Admin Password</h4>
@@ -1471,34 +1355,6 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
 
     let PRODUCTS = [...BASE_PRODUCTS];
     let cloudDresses = [];
-    let cloudArticles = [];
-
-    const DEFAULT_ARTICLES = [
-      {
-        id: "def-1",
-        title: "Bacchiyon Ke Liye Soft Cotton & Lawn Co-ords Kyun Best Hain?",
-        category: "Kids Fashion",
-        date: "November 2026",
-        image: "1000827972.jpg",
-        content: "Choti bacchiyon ki skin sensitive hoti hai, is liye Ahinoor par hum 100% breathable cotton cambric aur soft lawn istemal karte hain. Hath ki halki phoolon wali embroidery dress ko festive look deti hai jabke silai aisi rakhi jati hai ke bacchi sara din aaram se khel sake."
-      },
-      {
-        id: "def-2",
-        title: "Apna Perfect Custom Naap Lene Ka Aasan Tareeqa",
-        category: "Style Guide",
-        date: "November 2026",
-        image: "1000827957.jpg",
-        content: "Custom stitching karwate waqt apni sab se behtareen fitting wali kameez ko seedha bichha kar Chest, Shirt Length, aur Sleeve Length inches me note karein. Ahinoor Atelier me har suit aapke diye gaye exact naap ke mutabiq tayyar kiya jata hai."
-      },
-      {
-        id: "def-3",
-        title: "Hath Ki Embroidery Wale Kapron Ki Hifazat Kaise Karein?",
-        category: "Embroidery Craft",
-        date: "November 2026",
-        image: "1000827960.jpg",
-        content: "Resham aur cotton threadwork embroidery ki chamak barqarar rakhne ke liye kapron ko hamesha thande pani se gentle hand-wash karein aur ulta karke chhaon me sukhayein. Istari karte waqt embroidery ke upar halka kapra rakh kar press karein."
-      }
-    ];
 
     const CUSTOMER_REVIEWS = [
       { name: "Ayesha Tariq", city: "Lahore", time: "2 days ago", item: "Rose Pink Daisy Embroidered Co-ord", text: "Meri beti ke liye Rose Pink Daisy Co-ord order kiya tha. Silai itni neat aur embroidery bilkul hath ke kaam jaisi nafees hai. Fabric bhi bohat soft hai!" },
@@ -1674,21 +1530,9 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
         console.warn("Dresses load info:", err);
       }
 
-      try {
-        const artSnap = await getDocs(query(collection(db, "articles"), orderBy("createdAt", "desc")));
-        cloudArticles = artSnap.docs.map(a => ({
-          id: a.id,
-          cloudId: a.id,
-          ...a.data()
-        }));
-      } catch (err) {
-        console.warn("Articles load info:", err);
-      }
-
       PRODUCTS = [...cloudDresses, ...BASE_PRODUCTS];
       updateFilterCounts();
       renderProducts(currentFilter);
-      renderArticles();
       renderAdminLists();
     }
 
@@ -1701,60 +1545,6 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
         newBtn.textContent = `New Arrivals (${newCount})`;
       }
     }
-
-    function renderArticles() {
-      const grid = document.getElementById('articles-grid');
-      if (!grid) return;
-      const allArticles = [...cloudArticles, ...DEFAULT_ARTICLES];
-
-      grid.innerHTML = allArticles.map((art) => `
-        <article class="bg-white rounded-2xl border border-[#DFD7C8] overflow-hidden shadow-xs hover:shadow-md transition flex flex-col justify-between">
-          <div>
-            <div class="aspect-[16/10] bg-[#EBE6DC] overflow-hidden">
-              <img src="${art.image || '1000827957.jpg'}" alt="${art.title}" class="w-full h-full object-cover hover:scale-105 transition duration-500" />
-            </div>
-            <div class="p-5 space-y-2">
-              <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-brand-gold">
-                <span>${art.category || 'Style Guide'}</span>
-                <span>•</span>
-                <span>${art.date || 'Recent'}</span>
-              </div>
-              <h3 class="font-editorial text-xl font-bold text-brand-charcoal leading-snug">
-                ${art.title}
-              </h3>
-              <p class="text-xs text-brand-muted line-clamp-3 leading-relaxed">
-                ${art.content}
-              </p>
-            </div>
-          </div>
-          <div class="px-5 pb-5 pt-2">
-            <button onclick="openArticleReader('${art.id}')" class="text-xs font-bold uppercase tracking-wider text-brand-maroon hover:underline">
-              Read Full Article →
-            </button>
-          </div>
-        </article>
-      `).join('');
-    }
-
-    window.openArticleReader = function(id) {
-      const allArticles = [...cloudArticles, ...DEFAULT_ARTICLES];
-      const art = allArticles.find(a => String(a.id) === String(id));
-      if (!art) return;
-      document.getElementById('reader-img').src = art.image || '1000827957.jpg';
-      document.getElementById('reader-category').textContent = art.category || 'Style Guide';
-      document.getElementById('reader-date').textContent = art.date || 'Recent';
-      document.getElementById('reader-title').textContent = art.title;
-      document.getElementById('reader-body').textContent = art.content;
-      const modal = document.getElementById('article-reader-modal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    };
-
-    window.closeArticleReader = function() {
-      const modal = document.getElementById('article-reader-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    };
 
     window.openAdminModal = function() {
       const modal = document.getElementById('admin-modal');
@@ -1812,7 +1602,7 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
     };
 
     window.switchAdminTab = function(tab) {
-      const tabs = ['article', 'dress', 'manage', 'password'];
+      const tabs = ['dress', 'manage', 'password'];
       tabs.forEach(t => {
         const btn = document.getElementById('admin-tab-' + t);
         if (t === tab) {
@@ -1824,7 +1614,6 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
         }
       });
 
-      document.getElementById('admin-article-form').classList.toggle('hidden', tab !== 'article');
       document.getElementById('admin-dress-form').classList.toggle('hidden', tab !== 'dress');
       document.getElementById('admin-manage-view').classList.toggle('hidden', tab !== 'manage');
       document.getElementById('admin-password-form').classList.toggle('hidden', tab !== 'password');
@@ -1880,47 +1669,6 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
       }
     };
 
-    window.publishNewArticle = async function(e) {
-      e.preventDefault();
-      const btn = document.getElementById('art-submit-btn');
-      btn.disabled = true;
-      btn.textContent = "Publishing Article...";
-
-      try {
-        const title = document.getElementById('art-title').value.trim();
-        const category = document.getElementById('art-category').value;
-        const content = document.getElementById('art-content').value.trim();
-        const fileInput = document.getElementById('art-image-file');
-
-        let imageData = "1000827957.jpg";
-        if (fileInput.files && fileInput.files[0]) {
-          imageData = await compressImageToDataURL(fileInput.files[0], 800);
-        }
-
-        const dateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-
-        await addDoc(collection(db, "articles"), {
-          title,
-          category,
-          content,
-          image: imageData,
-          date: dateStr,
-          createdAt: serverTimestamp()
-        });
-
-        document.getElementById('admin-article-form').reset();
-        await loadCloudData();
-        showToast("Article published live on website! ✨");
-        closeAdminModal();
-        document.getElementById('articles-section').scrollIntoView({ behavior: 'smooth' });
-      } catch (err) {
-        alert("Error publishing article: " + err.message);
-      } finally {
-        btn.disabled = false;
-        btn.textContent = "🚀 PUBLISH ARTICLE LIVE ON WEBSITE";
-      }
-    };
-
     window.publishNewDress = async function(e) {
       e.preventDefault();
       const btn = document.getElementById('dress-submit-btn');
@@ -1967,18 +1715,8 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
     };
 
     function renderAdminLists() {
-      const artList = document.getElementById('admin-articles-list');
       const dressList = document.getElementById('admin-dresses-list');
-      if (!artList || !dressList) return;
-
-      artList.innerHTML = cloudArticles.length === 0
-        ? `<p class="text-brand-muted">Abhi tak koi custom article add nahi hua.</p>`
-        : cloudArticles.map(a => `
-          <div class="flex items-center justify-between bg-white p-2.5 rounded-xl border border-[#DFD7C8]">
-            <span class="font-semibold text-brand-charcoal truncate pr-2">${a.title}</span>
-            <button onclick="deleteCloudItem('articles', '${a.cloudId}')" class="px-2.5 py-1 bg-red-600 text-white rounded-lg font-bold shrink-0">Delete</button>
-          </div>
-        `).join('');
+      if (!dressList) return;
 
       dressList.innerHTML = cloudDresses.length === 0
         ? `<p class="text-brand-muted">Abhi tak koi custom dress add nahi hui.</p>`
@@ -2426,7 +2164,6 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
     };
 
     renderProducts('all');
-    renderArticles();
     updateCartUI();
     updateWishlistUI();
     showReview(0, false);
@@ -2452,5 +2189,3 @@ High-converting Pakistani fashion stores (jaise Protees.pk aur top luxury pret b
   </script>
 </body>
 </html>
-
-```
