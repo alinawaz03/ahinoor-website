@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
@@ -39,6 +40,11 @@
       color: #242021;
       font-family: 'Plus Jakarta Sans', sans-serif;
       overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .dark body, body.dark-mode {
+      background-color: #181215 !important;
+      color: #F3EFEA !important;
     }
     .font-editorial {
       font-family: 'Playfair Display', Georgia, serif;
@@ -153,7 +159,6 @@
       left: 140%;
     }
 
-    /* Mobile-Safe Section Reveal */
     .reveal-on-scroll {
       opacity: 1;
       transform: translateY(0);
@@ -190,6 +195,10 @@
       max-width: 100%;
       overflow-x: auto;
       scrollbar-width: none;
+    }
+    .dark .filter-bar-container, body.dark-mode .filter-bar-container {
+      background-color: #2A2225 !important;
+      border-color: #3E3236 !important;
     }
     .filter-bar-container::-webkit-scrollbar {
       display: none;
@@ -252,6 +261,9 @@
     ::-webkit-scrollbar-track {
       background: #F5F2EC;
     }
+    .dark ::-webkit-scrollbar-track, body.dark-mode ::-webkit-scrollbar-track {
+      background: #181215;
+    }
     ::-webkit-scrollbar-thumb {
       background: #C4B9A8;
       border-radius: 3px;
@@ -276,7 +288,6 @@
         </a>
         <span class="text-white/40">•</span>
       </div>
-      <!-- Duplicate copy for seamless continuous infinite scroll -->
       <div class="flex items-center space-x-8 px-6 font-medium tracking-wide" aria-hidden="true">
         <span>✨ 100% FREE DELIVERY ALL OVER PAKISTAN</span>
         <span class="text-white/40">|</span>
@@ -294,12 +305,12 @@
   </div>
 
   <!-- Luxury Warm-Ivory & Blush-Gold Header -->
-  <header class="sticky top-0 z-40 bg-gradient-to-r from-[#FDFBF7] via-[#F7EFE6] to-[#EFE4D6] backdrop-blur-md border-b border-[#DFD2BE] shadow-[0_2px_16px_rgba(106,35,56,0.06)]">
+  <header class="sticky top-0 z-40 bg-gradient-to-r from-[#FDFBF7] via-[#F7EFE6] to-[#EFE4D6] dark:from-[#241A1E] dark:via-[#1F1418] dark:to-[#181013] backdrop-blur-md border-b border-[#DFD2BE] dark:border-[#3E2E33] shadow-[0_2px_16px_rgba(106,35,56,0.06)] transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 sm:h-[84px] flex items-center justify-between gap-2">
       
-      <!-- Mobile Menu Toggle + Enhanced Logo on Mobile -->
+      <!-- Mobile Menu Toggle + Logo -->
       <div class="flex items-center gap-2 lg:hidden">
-        <button onclick="toggleMobileMenu()" class="p-1.5 text-brand-charcoal hover:text-brand-maroon" aria-label="Menu">
+        <button type="button" onclick="toggleMobileMenu()" class="p-1.5 text-brand-charcoal dark:text-white hover:text-brand-maroon" aria-label="Menu">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
@@ -311,50 +322,55 @@
         </a>
       </div>
 
-      <!-- Desktop Left: Enhanced Larger Framed Logo BEFORE HOME + Navigation -->
+      <!-- Desktop Navigation -->
       <div class="hidden lg:flex items-center space-x-5">
         <a href="#" class="shrink-0 group" title="Ahinoor Home">
           <div class="w-[74px] h-[74px] rounded-full p-[2px] bg-gradient-to-tr from-[#B68D40] via-[#E5C687] to-[#6A2338] shadow-md group-hover:scale-105 group-hover:shadow-lg transition-all duration-300">
             <img src="1000827919.jpg" alt="Ahinoor Kids & Women Clothing Logo" class="w-full h-full rounded-full object-contain bg-white p-0.5" />
           </div>
         </a>
-        <nav class="flex items-center space-x-4 text-[11px] font-bold tracking-[0.12em] uppercase text-brand-charcoal">
-          <a href="#" class="hover:text-brand-maroon transition">HOME</a>
-          <a href="#collection" onclick="filterProducts('all')" class="hover:text-brand-maroon transition">PRET COLLECTION</a>
-          <button onclick="openSizeChartModal()" class="text-brand-maroon hover:underline font-bold transition">📏 SIZE CHART</button>
-          <a href="#custom-naap" class="inline-flex items-center gap-1.5 hover:text-brand-maroon transition">
+        <nav class="flex items-center space-x-4 text-[11px] font-bold tracking-[0.12em] uppercase text-brand-charcoal dark:text-[#EFECE4]">
+          <a href="#" class="hover:text-brand-maroon dark:hover:text-[#E5C687] transition">HOME</a>
+          <a href="#collection" onclick="filterProducts('all')" class="hover:text-brand-maroon dark:hover:text-[#E5C687] transition">PRET COLLECTION</a>
+          <button type="button" onclick="openSizeChartModal()" class="text-brand-maroon dark:text-[#E5C687] hover:underline font-bold transition">📏 SIZE CHART</button>
+          <a href="#custom-naap" class="inline-flex items-center gap-1.5 hover:text-brand-maroon dark:hover:text-[#E5C687] transition">
             <span>CUSTOM STITCH</span>
-            <span class="bg-[#E5D7BF] text-brand-maroon text-[9px] px-2 py-0.5 rounded font-bold tracking-wider">ATELIER</span>
+            <span class="bg-[#E5D7BF] dark:bg-[#3E2E33] text-brand-maroon dark:text-[#E5C687] text-[9px] px-2 py-0.5 rounded font-bold tracking-wider">ATELIER</span>
           </a>
         </nav>
       </div>
 
       <!-- Center Brand Title -->
       <a href="#" class="flex flex-col items-center text-center shrink-0">
-        <span class="font-editorial text-lg sm:text-[27px] font-bold tracking-[0.2em] sm:tracking-[0.22em] text-brand-maroon leading-none">AHINOOR</span>
+        <span class="font-editorial text-lg sm:text-[27px] font-bold tracking-[0.2em] sm:tracking-[0.22em] text-brand-maroon dark:text-[#F3EFEA] leading-none">AHINOOR</span>
         <span class="text-[7px] sm:text-[9px] tracking-[0.22em] sm:tracking-[0.26em] uppercase text-brand-gold font-bold mt-1">STITCHED &amp; EMBROIDERED</span>
       </a>
 
-      <!-- Right Icons: Wishlist + Size Chart + Admin + Bag + WhatsApp Order Pill -->
+      <!-- Right Icons: Theme Toggle + Wishlist + Admin + Bag + WhatsApp Order Pill -->
       <div class="flex items-center space-x-1.5 sm:space-x-2.5">
-        <button onclick="openSizeChartModal()" class="lg:hidden p-2 rounded-full bg-white/80 hover:bg-white text-brand-maroon border border-[#DFD2BE] transition shadow-2xs" title="Size Chart">
+        <!-- Dark/Light Theme Toggle Button -->
+        <button type="button" onclick="toggleTheme()" class="p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-white text-brand-maroon dark:text-[#E5C687] border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs hover:scale-105" title="Toggle Dark/Light Mode">
+          <span id="theme-icon" class="text-sm">🌙</span>
+        </button>
+
+        <button type="button" onclick="openSizeChartModal()" class="lg:hidden p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-white text-brand-maroon border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs" title="Size Chart">
           📏
         </button>
 
-        <button onclick="toggleWishlistFilter()" id="wishlist-header-btn" class="relative p-2 rounded-full bg-white/80 hover:bg-white text-brand-maroon border border-[#DFD2BE] transition shadow-2xs hover:scale-105" title="Saved Favorites">
+        <button type="button" onclick="toggleWishlistFilter()" id="wishlist-header-btn" class="relative p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-white text-brand-maroon border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs hover:scale-105" title="Saved Favorites">
           <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
           </svg>
           <span id="wishlist-badge" class="hidden absolute -top-1 -right-1 bg-[#D62976] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">0</span>
         </button>
 
-        <button onclick="openAdminModal()" class="p-2 rounded-full bg-white/80 hover:bg-brand-maroon text-brand-maroon hover:text-white border border-[#DFD2BE] transition shadow-2xs hover:scale-105" title="Admin Panel">
+        <button type="button" onclick="openAdminModal()" class="p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-brand-maroon text-brand-maroon hover:text-white border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs hover:scale-105" title="Admin Panel">
           <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
           </svg>
         </button>
 
-        <button onclick="openCartDrawer()" class="relative p-2 rounded-full bg-white/80 hover:bg-white text-brand-charcoal hover:text-brand-maroon border border-[#DFD2BE] transition shadow-2xs hover:scale-105" aria-label="Order Bag">
+        <button type="button" onclick="openCartDrawer()" class="relative p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-white text-brand-charcoal dark:text-[#EFECE4] hover:text-brand-maroon border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs hover:scale-105" aria-label="Order Bag">
           <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M16 6V4a4 4 0 00-8 0v2H4v14a2 2 0 002 2h12a2 2 0 002-2V6h-4zm-6-2a2 2 0 114 0v2h-4V4z"/>
           </svg>
@@ -373,97 +389,97 @@
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-[#F7EFE6] border-t border-[#DFD2BE] px-4 py-4 space-y-3">
-      <div class="flex items-center gap-3 pb-2.5 border-b border-[#DFD2BE]">
+    <div id="mobile-menu" class="hidden lg:hidden bg-[#F7EFE6] dark:bg-[#1F1418] border-t border-[#DFD2BE] dark:border-[#3E2E33] px-4 py-4 space-y-3">
+      <div class="flex items-center gap-3 pb-2.5 border-b border-[#DFD2BE] dark:border-[#3E2E33]">
         <div class="w-12 h-12 rounded-full p-0.5 bg-gradient-to-tr from-[#B68D40] to-[#6A2338]">
           <img src="1000827919.jpg" alt="Ahinoor Logo" class="w-full h-full rounded-full object-contain bg-white p-0.5" />
         </div>
         <div>
-          <p class="font-editorial text-base font-bold text-brand-maroon">AHINOOR</p>
+          <p class="font-editorial text-base font-bold text-brand-maroon dark:text-[#F3EFEA]">AHINOOR</p>
           <p class="text-[10px] uppercase tracking-wider text-brand-gold font-bold">Kids &amp; Women Stitched Wear</p>
         </div>
       </div>
-      <a href="#" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">HOME</a>
+      <a href="#" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">HOME</a>
       <a href="#collection" onclick="filterProducts('new'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon">NEW ARRIVALS</a>
-      <a href="#collection" onclick="filterProducts('all'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">PRET COLLECTION</a>
-      <button onclick="toggleMobileMenu(); openSizeChartModal()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon text-left w-full">📏 OFFICIAL SIZE CHART</button>
-      <a href="#custom-naap" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">CUSTOM STITCH &amp; EMBROIDERY</a>
-      <a href="#reviews-section" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">CUSTOMER REVIEWS (20)</a>
-      <a href="#instagram-section" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal">INSTAGRAM</a>
-      <button onclick="toggleMobileMenu(); openAdminModal()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon">🔒 ADMIN PANEL</button>
+      <a href="#collection" onclick="filterProducts('all'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">PRET COLLECTION</a>
+      <button type="button" onclick="toggleMobileMenu(); openSizeChartModal()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon text-left w-full">📏 OFFICIAL SIZE CHART</button>
+      <a href="#custom-naap" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">CUSTOM STITCH &amp; EMBROIDERY</a>
+      <a href="#reviews-section" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">CUSTOMER REVIEWS (20)</a>
+      <a href="#instagram-section" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">INSTAGRAM</a>
+      <button type="button" onclick="toggleMobileMenu(); openAdminModal()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon">🔒 ADMIN PANEL</button>
     </div>
   </header>
 
   <!-- Animated Hero Section with Auto-Flipping Showcase Card -->
-  <section class="relative overflow-hidden bg-gradient-to-br from-[#F5F2EC] via-[#EFECE4] to-[#E6DFD3] border-b border-[#E2DBD0]">
+  <section class="relative overflow-hidden bg-gradient-to-br from-[#F5F2EC] via-[#EFECE4] to-[#E6DFD3] dark:from-[#1E1519] dark:via-[#181014] dark:to-[#120B0E] border-b border-[#E2DBD0] dark:border-[#3E2E33] transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
         <!-- Left Content Column -->
         <div class="lg:col-span-6 space-y-5 sm:space-y-6">
-          <div class="hero-animate-1 inline-block bg-[#E6E0D6] text-brand-maroon text-[11px] font-semibold tracking-wide px-4 py-1.5 rounded-full">
+          <div class="hero-animate-1 inline-block bg-[#E6E0D6] dark:bg-[#322429] text-brand-maroon dark:text-[#E5C687] text-[11px] font-semibold tracking-wide px-4 py-1.5 rounded-full">
             100% Women &amp; Girls Handcrafted Apparel
           </div>
 
-          <h1 class="hero-animate-2 font-editorial text-4xl sm:text-5xl lg:text-[56px] font-bold text-brand-charcoal leading-[1.08] tracking-tight">
+          <h1 class="hero-animate-2 font-editorial text-4xl sm:text-5xl lg:text-[56px] font-bold text-brand-charcoal dark:text-[#F3EFEA] leading-[1.08] tracking-tight">
             Pure Stitching &amp; <br/>
-            <span class="italic text-brand-maroon font-semibold">Delicate Embroidery</span>
+            <span class="italic text-brand-maroon dark:text-[#E5C687] font-semibold">Delicate Embroidery</span>
           </h1>
 
-          <p class="hero-animate-3 text-brand-muted text-sm sm:text-[15px] max-w-lg leading-relaxed">
-            Welcome to <strong class="text-brand-charcoal font-semibold">Ahinoor</strong>. Hum ladies aur choti bacchiyon ke liye high-grade fabric par behtareen silai aur khubsurat hath ki phoolo wali embroidery bana kar dety hain. Sirf female clothing ke liye dedicated brand!
+          <p class="hero-animate-3 text-brand-muted dark:text-[#B5A8A3] text-sm sm:text-[15px] max-w-lg leading-relaxed">
+            Welcome to <strong class="text-brand-charcoal dark:text-white font-semibold">Ahinoor</strong>. Hum ladies aur choti bacchiyon ke liye high-grade fabric par behtareen silai aur khubsurat hath ki phoolo wali embroidery bana kar dety hain. Sirf female clothing ke liye dedicated brand!
           </p>
 
           <div class="hero-animate-4 flex flex-wrap items-center gap-3 pt-1">
             <a href="#collection" onclick="filterProducts('all')" class="btn-sheen px-6 sm:px-7 py-3.5 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold tracking-[0.14em] uppercase rounded-full transition shadow-sm hover:scale-[1.02]">
               EXPLORE AVAILABLE DESIGNS
             </a>
-            <button onclick="openSizeChartModal()" class="px-5 sm:px-6 py-3.5 bg-white/80 hover:bg-white text-brand-maroon border border-brand-maroon/50 text-xs font-bold tracking-[0.12em] uppercase rounded-full transition inline-flex items-center gap-2 shadow-2xs hover:scale-[1.02]">
+            <button type="button" onclick="openSizeChartModal()" class="px-5 sm:px-6 py-3.5 bg-white/80 dark:bg-[#2A2225] hover:bg-white text-brand-maroon dark:text-[#E5C687] border border-brand-maroon/50 dark:border-[#4E3B42] text-xs font-bold tracking-[0.12em] uppercase rounded-full transition inline-flex items-center gap-2 shadow-2xs hover:scale-[1.02]">
               📏 VIEW SIZE CHART
             </button>
           </div>
 
           <!-- 3 Feature Columns -->
-          <div class="hero-animate-4 grid grid-cols-3 gap-3 sm:gap-4 pt-6 sm:pt-8 mt-4 border-t border-[#DFD8CC]">
+          <div class="hero-animate-4 grid grid-cols-3 gap-3 sm:gap-4 pt-6 sm:pt-8 mt-4 border-t border-[#DFD8CC] dark:border-[#3E2E33]">
             <div>
-              <p class="font-editorial text-lg sm:text-2xl font-bold text-brand-charcoal">Stitched</p>
-              <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-muted mt-0.5">READY TO WEAR</p>
+              <p class="font-editorial text-lg sm:text-2xl font-bold text-brand-charcoal dark:text-[#F3EFEA]">Stitched</p>
+              <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-muted dark:text-[#B5A8A3] mt-0.5">READY TO WEAR</p>
             </div>
             <div>
-              <p class="font-editorial text-lg sm:text-2xl font-bold text-brand-charcoal">Embroidery</p>
-              <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-muted mt-0.5">HATH KA KAAM</p>
+              <p class="font-editorial text-lg sm:text-2xl font-bold text-brand-charcoal dark:text-[#F3EFEA]">Embroidery</p>
+              <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-muted dark:text-[#B5A8A3] mt-0.5">HATH KA KAAM</p>
             </div>
             <div>
-              <p class="font-editorial text-lg sm:text-2xl font-bold text-brand-charcoal">Custom Fit</p>
-              <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-muted mt-0.5">ALL AGES &amp; SIZES</p>
+              <p class="font-editorial text-lg sm:text-2xl font-bold text-brand-charcoal dark:text-[#F3EFEA]">Custom Fit</p>
+              <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-muted dark:text-[#B5A8A3] mt-0.5">ALL AGES &amp; SIZES</p>
             </div>
           </div>
         </div>
 
-        <!-- Right Auto-Flipping Showcase Card (Flips through all suits every 5 seconds) -->
+        <!-- Right Auto-Flipping Showcase Card -->
         <div class="lg:col-span-6 hero-animate-3 hero-showcase-stage" onmouseenter="pauseHeroAutoFlip()" onmouseleave="resumeHeroAutoFlip()">
-          <div id="hero-showcase-card" class="review-flip-in bg-[#EFECE4]/90 border border-[#DFD7C8] rounded-3xl p-4 sm:p-7 shadow-md max-w-lg mx-auto relative overflow-hidden">
+          <div id="hero-showcase-card" class="review-flip-in bg-[#EFECE4]/90 dark:bg-[#241A1E]/90 border border-[#DFD7C8] dark:border-[#3E2E33] rounded-3xl p-4 sm:p-7 shadow-md max-w-lg mx-auto relative overflow-hidden transition-colors duration-300">
             <div class="flex items-center justify-between mb-3 sm:mb-4">
-              <span id="hero-card-badge" class="text-[10px] sm:text-[11px] font-bold tracking-[0.16em] uppercase text-brand-charcoal">AHINOOR FEATURED DESIGN</span>
-              <span id="hero-card-price" class="bg-[#1F2421] text-white text-xs font-bold px-3.5 py-1 rounded-full">Rs. 2,650</span>
+              <span id="hero-card-badge" class="text-[10px] sm:text-[11px] font-bold tracking-[0.16em] uppercase text-brand-charcoal dark:text-[#E5C687]">AHINOOR FEATURED DESIGN</span>
+              <span id="hero-card-price" class="bg-[#1F2421] dark:bg-[#3E2E33] text-white text-xs font-bold px-3.5 py-1 rounded-full">Rs. 2,650</span>
             </div>
 
-            <div onclick="openHeroModalSuit()" class="bg-white rounded-2xl p-2.5 sm:p-3 shadow-xs cursor-pointer overflow-hidden">
-              <div class="aspect-[4/4] rounded-xl overflow-hidden bg-[#F5F2EC]">
-                <img id="hero-card-img" src="1000827957.jpg" alt="Ahinoor Dress" class="w-full h-full object-cover hover:scale-105 transition duration-500" />
+            <div onclick="openHeroModalSuit()" class="bg-white dark:bg-[#1A1215] rounded-2xl p-2.5 sm:p-3 shadow-xs cursor-pointer overflow-hidden transition-colors duration-300">
+              <div class="aspect-[4/4] rounded-xl overflow-hidden bg-[#F5F2EC] dark:bg-[#120B0E]">
+                <img id="hero-card-img" src="1000827957.jpg" alt="Ahinoor Dress" class="w-full h-full object-contain hover:scale-105 transition duration-500" />
               </div>
             </div>
 
             <div class="mt-3 text-center">
-              <h4 id="hero-card-title" class="font-editorial text-lg font-bold text-brand-charcoal truncate">Emerald Checkered Bow-Sleeve Peplum Suit</h4>
-              <p id="hero-card-emb" class="text-xs text-brand-muted truncate">Double-Tiered Tie Sleeves & Pleated Front Yoke</p>
+              <h4 id="hero-card-title" class="font-editorial text-lg font-bold text-brand-charcoal dark:text-[#F3EFEA] truncate">Emerald Checkered Bow-Sleeve Peplum Suit</h4>
+              <p id="hero-card-emb" class="text-xs text-brand-muted dark:text-[#B5A8A3] truncate">Double-Tiered Tie Sleeves & Pleated Front Yoke</p>
             </div>
 
             <div class="grid grid-cols-2 gap-2.5 sm:gap-3 mt-4">
-              <button onclick="openHeroModalSuit()" class="btn-sheen py-3 px-3 sm:px-4 bg-brand-maroon hover:bg-brand-maroonDark text-white text-[10px] sm:text-[11px] font-bold tracking-[0.1em] uppercase rounded-full transition">
+              <button type="button" onclick="openHeroModalSuit()" class="btn-sheen py-3 px-3 sm:px-4 bg-brand-maroon hover:bg-brand-maroonDark text-white text-[10px] sm:text-[11px] font-bold tracking-[0.1em] uppercase rounded-full transition">
                 VIEW SUIT DETAILS
               </button>
-              <button onclick="orderHeroSuitDirect()" class="btn-sheen py-3 px-3 sm:px-4 bg-[#176B58] hover:bg-[#115243] text-white text-[10px] sm:text-[11px] font-bold tracking-[0.1em] uppercase rounded-full transition flex items-center justify-center gap-1.5">
+              <button type="button" onclick="orderHeroSuitDirect()" class="btn-sheen py-3 px-3 sm:px-4 bg-[#176B58] hover:bg-[#115243] text-white text-[10px] sm:text-[11px] font-bold tracking-[0.1em] uppercase rounded-full transition flex items-center justify-center gap-1.5">
                 <svg class="w-4 h-4 text-[#4ADE80] shrink-0" viewBox="0 0 32 32" fill="currentColor">
                   <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
                 </svg>
@@ -472,8 +488,8 @@
             </div>
 
             <!-- Progress line for 5-second showcase flip -->
-            <div class="absolute bottom-0 left-0 right-0 h-1 bg-[#DFD7C8]">
-              <div id="hero-progress" class="h-full bg-brand-maroon review-timer-bar"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-1 bg-[#DFD7C8] dark:bg-[#3E2E33]">
+              <div id="hero-progress" class="h-full bg-brand-maroon dark:bg-[#E5C687] review-timer-bar"></div>
             </div>
           </div>
         </div>
@@ -483,14 +499,14 @@
   </section>
 
   <!-- Visual Quick-Shop Category Circles -->
-  <section class="py-7 sm:py-9 bg-[#FAF7F2] border-b border-[#E4DDD0]">
+  <section class="py-7 sm:py-9 bg-[#FAF7F2] dark:bg-[#1A1215] border-b border-[#E4DDD0] dark:border-[#3E2E33] transition-colors duration-300">
     <div class="max-w-5xl mx-auto px-4">
       <div class="flex items-center justify-start sm:justify-center gap-5 sm:gap-9 overflow-x-auto no-scrollbar py-1">
         <a href="#collection" onclick="filterProducts('all')" class="group flex flex-col items-center gap-2 shrink-0">
           <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-brand-maroon to-[#C7A15A] shadow-sm group-hover:scale-105 transition">
             <img src="1000827954.jpg" alt="All Suits" class="w-full h-full rounded-full object-cover bg-white" />
           </div>
-          <span class="text-[11px] font-bold text-brand-charcoal group-hover:text-brand-maroon transition">All Suits</span>
+          <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">All Suits</span>
         </a>
 
         <a href="#collection" onclick="filterProducts('new')" class="group flex flex-col items-center gap-2 shrink-0">
@@ -498,35 +514,35 @@
             <img src="1000827972.jpg" alt="New Arrivals" class="w-full h-full rounded-full object-cover bg-white" />
             <span class="absolute -top-1 -right-1 bg-brand-maroon text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">NEW</span>
           </div>
-          <span class="text-[11px] font-bold text-brand-charcoal group-hover:text-brand-maroon transition">New Arrivals</span>
+          <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">New Arrivals</span>
         </a>
 
         <a href="#collection" onclick="filterProducts('girls')" class="group flex flex-col items-center gap-2 shrink-0">
           <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-brand-gold to-brand-maroon shadow-sm group-hover:scale-105 transition">
             <img src="1000827976.jpg" alt="Girls Co-ords" class="w-full h-full rounded-full object-cover bg-white" />
           </div>
-          <span class="text-[11px] font-bold text-brand-charcoal group-hover:text-brand-maroon transition">Girls Co-ords</span>
+          <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">Girls Co-ords</span>
         </a>
 
         <a href="#collection" onclick="filterProducts('women')" class="group flex flex-col items-center gap-2 shrink-0">
           <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-brand-maroon to-brand-gold shadow-sm group-hover:scale-105 transition">
             <img src="1000827960.jpg" alt="Women Kurtis" class="w-full h-full rounded-full object-cover bg-white" />
           </div>
-          <span class="text-[11px] font-bold text-brand-charcoal group-hover:text-brand-maroon transition">Women Kurtis</span>
+          <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">Women Kurtis</span>
         </a>
 
         <a href="#collection" onclick="filterProducts('frocks')" class="group flex flex-col items-center gap-2 shrink-0">
           <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-[#176B58] to-brand-gold shadow-sm group-hover:scale-105 transition">
             <img src="1000827975.jpg" alt="Frocks & Peplums" class="w-full h-full rounded-full object-cover bg-white" />
           </div>
-          <span class="text-[11px] font-bold text-brand-charcoal group-hover:text-brand-maroon transition">Frocks &amp; Peplums</span>
+          <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">Frocks &amp; Peplums</span>
         </a>
 
-        <button onclick="openSizeChartModal()" class="group flex flex-col items-center gap-2 shrink-0 bg-transparent border-0 cursor-pointer">
+        <button type="button" onclick="openSizeChartModal()" class="group flex flex-col items-center gap-2 shrink-0 bg-transparent border-0 cursor-pointer">
           <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-[#9E7B3E] to-[#2E1119] shadow-sm group-hover:scale-105 transition flex items-center justify-center bg-white">
             <span class="text-xl">📏</span>
           </div>
-          <span class="text-[11px] font-bold text-brand-charcoal group-hover:text-brand-maroon transition">Size Chart</span>
+          <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">Size Chart</span>
         </button>
       </div>
     </div>
@@ -537,7 +553,7 @@
     <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-6">
       <div class="shrink-0">
         <span class="text-xs font-bold tracking-[0.2em] uppercase text-brand-gold">Ahinoor Pret Collection</span>
-        <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal mt-1">Stitched &amp; Embroidered Collection</h2>
+        <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal dark:text-[#F3EFEA] mt-1">Stitched &amp; Embroidered Collection</h2>
       </div>
 
       <!-- Single-Row Animated Sliding Pill Filter Bar -->
@@ -546,31 +562,31 @@
         <button type="button" id="tab-all" onclick="filterProducts('all', this)" data-filter="all" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-white">
           All Suits (18)
         </button>
-        <button type="button" id="tab-new" onclick="filterProducts('new', this)" data-filter="new" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal hover:text-brand-maroon">
+        <button type="button" id="tab-new" onclick="filterProducts('new', this)" data-filter="new" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal dark:text-[#EFECE4] hover:text-brand-maroon">
           New Arrivals (8)
         </button>
-        <button type="button" onclick="filterProducts('girls', this)" data-filter="girls" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal hover:text-brand-maroon">
+        <button type="button" onclick="filterProducts('girls', this)" data-filter="girls" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal dark:text-[#EFECE4] hover:text-brand-maroon">
           Girls Co-ords
         </button>
-        <button type="button" onclick="filterProducts('women', this)" data-filter="women" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal hover:text-brand-maroon">
+        <button type="button" onclick="filterProducts('women', this)" data-filter="women" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal dark:text-[#EFECE4] hover:text-brand-maroon">
           Women Kurtis &amp; Suits
         </button>
-        <button type="button" onclick="filterProducts('frocks', this)" data-filter="frocks" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal hover:text-brand-maroon">
+        <button type="button" onclick="filterProducts('frocks', this)" data-filter="frocks" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal dark:text-[#EFECE4] hover:text-brand-maroon">
           Frocks &amp; Peplums
         </button>
       </div>
     </div>
 
     <!-- Instant Search & Price Sort Toolbar -->
-    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-8 bg-white/80 p-3 rounded-2xl border border-[#DFD7C8]">
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-8 bg-white/80 dark:bg-[#241A1E] p-3 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] transition-colors duration-300">
       <div class="relative flex-1">
         <svg class="w-4 h-4 text-brand-muted absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
         </svg>
-        <input type="text" id="catalog-search" oninput="handleCatalogSearch()" placeholder="Search dress by color or style (e.g., Maroon, Pink, Daisy, Frock, Kurti)..." class="w-full pl-10 pr-4 py-2 rounded-xl bg-[#F5F2EC] border border-[#E2DBD0] text-xs sm:text-sm focus:outline-none focus:border-brand-maroon transition" />
+        <input type="text" id="catalog-search" oninput="handleCatalogSearch()" placeholder="Search dress by color or style (e.g., Maroon, Pink, Daisy, Frock, Kurti)..." class="w-full pl-10 pr-4 py-2 rounded-xl bg-[#F5F2EC] dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] border border-[#E2DBD0] dark:border-[#3E2E33] text-xs sm:text-sm focus:outline-none focus:border-brand-maroon transition" />
       </div>
       <div class="flex items-center gap-2 shrink-0">
-        <select id="catalog-sort" onchange="handleCatalogSort()" class="w-full sm:w-auto px-3.5 py-2 rounded-xl bg-[#F5F2EC] border border-[#E2DBD0] text-xs font-semibold text-brand-charcoal focus:outline-none focus:border-brand-maroon">
+        <select id="catalog-sort" onchange="handleCatalogSort()" class="w-full sm:w-auto px-3.5 py-2 rounded-xl bg-[#F5F2EC] dark:bg-[#1A1215] border border-[#E2DBD0] dark:border-[#3E2E33] text-xs font-semibold text-brand-charcoal dark:text-[#F3EFEA] focus:outline-none focus:border-brand-maroon">
           <option value="featured">Sort: Featured</option>
           <option value="low-high">Price: Low to High</option>
           <option value="high-low">Price: High to Low</option>
@@ -584,51 +600,50 @@
     </div>
   </section>
 
-  <!-- Brand Assurance & Trust Strip (Free Delivery Added) -->
-  <section class="py-10 bg-white border-y border-[#E2DBD0]">
+  <!-- Brand Assurance & Trust Strip -->
+  <section class="py-10 bg-white dark:bg-[#1A1215] border-y border-[#E2DBD0] dark:border-[#3E2E33] transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
         <div class="p-3 space-y-1.5">
           <div class="w-10 h-10 rounded-full bg-brand-maroon/10 text-brand-maroon flex items-center justify-center mx-auto text-lg">🚀</div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">Free Delivery</h4>
-          <p class="text-[11px] text-brand-muted">100% Free Shipping All Over Pakistan</p>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">Free Delivery</h4>
+          <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">100% Free Shipping All Over Pakistan</p>
         </div>
         <div class="p-3 space-y-1.5">
           <div class="w-10 h-10 rounded-full bg-brand-maroon/10 text-brand-maroon flex items-center justify-center mx-auto text-lg">🚚</div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">Cash on Delivery</h4>
-          <p class="text-[11px] text-brand-muted">Doorstep parcel delivery available</p>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">Cash on Delivery</h4>
+          <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">Doorstep parcel delivery available</p>
         </div>
         <div class="p-3 space-y-1.5">
           <div class="w-10 h-10 rounded-full bg-brand-maroon/10 text-brand-maroon flex items-center justify-center mx-auto text-lg">🪡</div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">Artisanal Embroidery</h4>
-          <p class="text-[11px] text-brand-muted">Fine floral threadwork &amp; neat stitching</p>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">Artisanal Embroidery</h4>
+          <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">Fine floral threadwork &amp; neat stitching</p>
         </div>
         <div class="p-3 space-y-1.5">
           <div class="w-10 h-10 rounded-full bg-brand-maroon/10 text-brand-maroon flex items-center justify-center mx-auto text-lg">📏</div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">Custom Naap Fit</h4>
-          <p class="text-[11px] text-brand-muted">Tailored to your exact measurements</p>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">Custom Naap Fit</h4>
+          <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">Tailored to your exact measurements</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Bespoke Custom Stitching & Embroidery Order Section -->
-  <section id="custom-naap" class="py-14 sm:py-24 bg-[#EAE4D9] border-b border-[#DDD5C7] reveal-on-scroll">
+  <section id="custom-naap" class="py-14 sm:py-24 bg-[#EAE4D9] dark:bg-[#181013] border-b border-[#DDD5C7] dark:border-[#3E2E33] transition-colors duration-300 reveal-on-scroll">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
         
-        <!-- Left Column: Bespoke Tailoring & Kaam + Numbered 1-2-3 List -->
         <div class="lg:col-span-5 space-y-6">
-          <div class="inline-block bg-[#242021] text-white text-[10px] font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full">
+          <div class="inline-block bg-[#242021] dark:bg-[#3E2E33] text-white text-[10px] font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full">
             BESPOKE TAILORING &amp; KAAM
           </div>
 
-          <h2 class="font-editorial text-3xl sm:text-[44px] font-bold text-brand-charcoal leading-[1.12]">
+          <h2 class="font-editorial text-3xl sm:text-[44px] font-bold text-brand-charcoal dark:text-[#F3EFEA] leading-[1.12]">
             Custom Stitching &amp; <br/>
             Embroidery Order
           </h2>
 
-          <p class="text-sm text-brand-muted leading-relaxed">
+          <p class="text-sm text-brand-muted dark:text-[#B5A8A3] leading-relaxed">
             Agar aapko apna pasandeeda kapra kisi makhsoos naap (measurement) par silwana ho, ya neckline, sleeves aur daman par customized phoolo wali embroidery karwani ho, to ye form bharein. Direct hamare WhatsApp par detail pohnch jayegi!
           </p>
 
@@ -636,42 +651,41 @@
             <div class="flex items-start gap-3.5">
               <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">1</span>
               <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">SUIT YA FROCK CHOICE</h4>
-                <p class="text-xs text-brand-muted mt-0.5 leading-relaxed">Women 2-piece, little girls embroidered set, flared frock, ya custom design.</p>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">SUIT YA FROCK CHOICE</h4>
+                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-0.5 leading-relaxed">Women 2-piece, little girls embroidered set, flared frock, ya custom design.</p>
               </div>
             </div>
 
             <div class="flex items-start gap-3.5">
               <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">2</span>
               <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">EMBROIDERY STYLE</h4>
-                <p class="text-xs text-brand-muted mt-0.5 leading-relaxed">Hath ki floral threadwork embroidery, pocket motifs, ringlets, ya sleeves ruffles.</p>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">EMBROIDERY STYLE</h4>
+                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-0.5 leading-relaxed">Hath ki floral threadwork embroidery, pocket motifs, ringlets, ya sleeves ruffles.</p>
               </div>
             </div>
 
             <div class="flex items-start gap-3.5">
               <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">3</span>
               <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">DIRECT WHATSAPP CONFIRMATION</h4>
-                <p class="text-xs text-brand-muted mt-0.5 leading-relaxed">Submit click karte hi saari measurements hamare WhatsApp (+92 315 4124959)</p>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">DIRECT WHATSAPP CONFIRMATION</h4>
+                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-0.5 leading-relaxed">Submit click karte hi saari measurements hamare WhatsApp (+92 315 4124959)</p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Right Column: Rounded Form Card -->
         <div class="lg:col-span-7">
-          <div class="bg-[#F9F6F0] rounded-[28px] shadow-md border border-[#DFD7C8] p-6 sm:p-9">
+          <div class="bg-[#F9F6F0] dark:bg-[#241A1E] rounded-[28px] shadow-md border border-[#DFD7C8] dark:border-[#3E2E33] p-6 sm:p-9 transition-colors duration-300">
             <div class="mb-6 flex items-center justify-between">
               <div>
-                <h3 class="font-editorial text-2xl sm:text-[26px] font-bold text-brand-charcoal">
+                <h3 class="font-editorial text-2xl sm:text-[26px] font-bold text-brand-charcoal dark:text-[#F3EFEA]">
                   Custom Naap &amp; Embroidery Form
                 </h3>
-                <p class="text-xs text-brand-muted mt-1">
+                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">
                   Apna naap aur requirement likhein. Ham direct WhatsApp par rabta karenge.
                 </p>
               </div>
-              <button onclick="openSizeChartModal()" class="px-3 py-1.5 rounded-xl bg-brand-maroon/10 text-brand-maroon text-xs font-bold hover:bg-brand-maroon hover:text-white transition shrink-0">
+              <button type="button" onclick="openSizeChartModal()" class="px-3 py-1.5 rounded-xl bg-brand-maroon/10 dark:bg-[#3E2E33] text-brand-maroon dark:text-[#E5C687] text-xs font-bold hover:bg-brand-maroon hover:text-white transition shrink-0">
                 📏 View Size Chart
               </button>
             </div>
@@ -679,19 +693,19 @@
             <form id="naap-form" onsubmit="submitCustomNaap(event)" class="space-y-4">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">CUSTOMER NAME *</label>
-                  <input type="text" id="naap-name" required placeholder="Aapka Naam" class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm focus:outline-none focus:border-brand-maroon transition" />
+                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">CUSTOMER NAME *</label>
+                  <input type="text" id="naap-name" required placeholder="Aapka Naam" class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm focus:outline-none focus:border-brand-maroon transition" />
                 </div>
                 <div>
-                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">WHATSAPP NUMBER *</label>
-                  <input type="tel" id="naap-phone" required placeholder="03xx xxxxxxx" class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm focus:outline-none focus:border-brand-maroon transition" />
+                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">WHATSAPP NUMBER *</label>
+                  <input type="tel" id="naap-phone" required placeholder="03xx xxxxxxx" class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm focus:outline-none focus:border-brand-maroon transition" />
                 </div>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">GARMENT CATEGORY</label>
-                  <select id="naap-category" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] text-sm bg-white focus:outline-none focus:border-brand-maroon transition">
+                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">GARMENT CATEGORY</label>
+                  <select id="naap-category" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] text-sm bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] focus:outline-none focus:border-brand-maroon transition">
                     <option value="Women Stitched Kurti & Trouser">Women Stitched Kurti &amp; Trouser</option>
                     <option value="Girls Embroidered Co-ord Set">Girls Embroidered Co-ord Set</option>
                     <option value="Girls Flared Frock & Culottes">Girls Flared Frock &amp; Culottes</option>
@@ -700,8 +714,8 @@
                 </div>
 
                 <div>
-                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">EMBROIDERY PREFERENCE</label>
-                  <select id="naap-embroidery" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] text-sm bg-white focus:outline-none focus:border-brand-maroon transition">
+                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">EMBROIDERY PREFERENCE</label>
+                  <select id="naap-embroidery" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] text-sm bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] focus:outline-none focus:border-brand-maroon transition">
                     <option value="Neckline & Pocket Floral Embroidery">Neckline &amp; Pocket Floral Embroidery</option>
                     <option value="Heavy Daman & Sleeves Border">Heavy Daman &amp; Sleeves Border</option>
                     <option value="Minimalist Scattered Booti Work">Minimalist Scattered Booti Work</option>
@@ -711,26 +725,26 @@
               </div>
 
               <div>
-                <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-2">AGE / SIZE CATEGORY</label>
+                <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-2">AGE / SIZE CATEGORY</label>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="naap-size-group">
                   <button type="button" onclick="selectNaapSize(this, 'Girls (3–6 Yrs)')" class="naap-size-btn active py-2.5 px-3 rounded-full text-xs font-semibold bg-brand-maroon text-white border border-brand-maroon shadow-xs transition whitespace-nowrap">
                     Girls (3–6 Yrs)
                   </button>
-                  <button type="button" onclick="selectNaapSize(this, 'Girls (7–12 Yrs)')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white text-brand-charcoal border border-[#DFD7C8] hover:border-brand-maroon transition whitespace-nowrap">
+                  <button type="button" onclick="selectNaapSize(this, 'Girls (7–12 Yrs)')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#EFECE4] border border-[#DFD7C8] dark:border-[#3E2E33] hover:border-brand-maroon transition whitespace-nowrap">
                     Girls (7–12 Yrs)
                   </button>
-                  <button type="button" onclick="selectNaapSize(this, 'Women (S/M/L)')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white text-brand-charcoal border border-[#DFD7C8] hover:border-brand-maroon transition whitespace-nowrap">
+                  <button type="button" onclick="selectNaapSize(this, 'Women (S/M/L)')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#EFECE4] border border-[#DFD7C8] dark:border-[#3E2E33] hover:border-brand-maroon transition whitespace-nowrap">
                     Women (S/M/L)
                   </button>
-                  <button type="button" onclick="selectNaapSize(this, 'Custom In Inches')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white text-brand-charcoal border border-[#DFD7C8] hover:border-brand-maroon transition whitespace-nowrap">
+                  <button type="button" onclick="selectNaapSize(this, 'Custom In Inches')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#EFECE4] border border-[#DFD7C8] dark:border-[#3E2E33] hover:border-brand-maroon transition whitespace-nowrap">
                     Custom In Inches
                   </button>
                 </div>
               </div>
 
               <div>
-                <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">MEASUREMENTS &amp; NOTES (INCHES)</label>
-                <textarea id="naap-notes" rows="3" placeholder="Chest/Bust: 36 in, Shirt Length: 38 in, Sleeve: 19 in, Trouser Length: 37 in..." class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm focus:outline-none focus:border-brand-maroon transition"></textarea>
+                <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">MEASUREMENTS &amp; NOTES (INCHES)</label>
+                <textarea id="naap-notes" rows="3" placeholder="Chest/Bust: 36 in, Shirt Length: 38 in, Sleeve: 19 in, Trouser Length: 37 in..." class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm focus:outline-none focus:border-brand-maroon transition"></textarea>
               </div>
 
               <button type="submit" class="btn-sheen w-full py-3.5 px-5 bg-[#176B58] hover:bg-[#115243] text-white font-bold text-xs tracking-wider uppercase rounded-full transition flex items-center justify-center gap-2.5 shadow-sm">
@@ -748,23 +762,23 @@
   </section>
 
   <!-- 20 Customer Reviews Auto-Flipping Showcase -->
-  <section id="reviews-section" class="py-16 sm:py-24 bg-gradient-to-b from-[#F5F2EC] via-[#F0EAE0] to-[#F5F2EC] border-b border-[#E2DBD0] px-4">
+  <section id="reviews-section" class="py-16 sm:py-24 bg-gradient-to-b from-[#F5F2EC] via-[#F0EAE0] to-[#F5F2EC] dark:from-[#181215] dark:via-[#140E11] dark:to-[#181215] border-b border-[#E2DBD0] dark:border-[#3E2E33] px-4 transition-colors duration-300">
     <div class="max-w-4xl mx-auto">
       <div class="text-center space-y-2.5 mb-10 sm:mb-12">
-        <span class="inline-block bg-[#E6DEC9] text-brand-maroon text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full">
+        <span class="inline-block bg-[#E6DEC9] dark:bg-[#322429] text-brand-maroon dark:text-[#E5C687] text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full">
           VERIFIED CLIENT LOVE • 4.9/5 RATING
         </span>
-        <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal">
+        <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal dark:text-[#F3EFEA]">
           What Our Happy Customers Say
         </h2>
-        <p class="text-xs sm:text-sm text-brand-muted max-w-md mx-auto">
+        <p class="text-xs sm:text-sm text-brand-muted dark:text-[#B5A8A3] max-w-md mx-auto">
           Pakistan bhar se mothers aur khawateen ke aetmaad aur silai ki tareef — har 5 second baad naya review dekhein.
         </p>
       </div>
 
       <div class="review-stage relative max-w-2xl mx-auto" onmouseenter="pauseReviewAutoFlip()" onmouseleave="resumeReviewAutoFlip()">
-        <div id="review-card" class="review-flip-in bg-white rounded-[28px] border border-[#DFD7C8] shadow-[0_12px_36px_rgba(106,35,56,0.08)] p-6 sm:p-10 relative overflow-hidden">
-          <div class="absolute top-5 right-7 font-editorial text-7xl text-[#EFE8DC] select-none leading-none pointer-events-none">
+        <div id="review-card" class="review-flip-in bg-white dark:bg-[#241A1E] rounded-[28px] border border-[#DFD7C8] dark:border-[#3E2E33] shadow-[0_12px_36px_rgba(106,35,56,0.08)] p-6 sm:p-10 relative overflow-hidden transition-colors duration-300">
+          <div class="absolute top-5 right-7 font-editorial text-7xl text-[#EFE8DC] dark:text-[#2A1F24] select-none leading-none pointer-events-none">
             &ldquo;
           </div>
 
@@ -776,44 +790,44 @@
               <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
               <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             </div>
-            <span class="inline-flex items-center gap-1 bg-[#E8F5F0] text-[#176B58] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+            <span class="inline-flex items-center gap-1 bg-[#E8F5F0] dark:bg-[#1E332B] text-[#176B58] dark:text-[#4ADE80] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
               ✓ Verified WhatsApp Buyer
             </span>
           </div>
 
-          <p id="review-text" class="font-editorial text-xl sm:text-2xl text-brand-charcoal leading-relaxed italic min-h-[96px] sm:min-h-[84px] relative z-10">
+          <p id="review-text" class="font-editorial text-xl sm:text-2xl text-brand-charcoal dark:text-[#F3EFEA] leading-relaxed italic min-h-[96px] sm:min-h-[84px] relative z-10">
             "Meri beti ke liye Rose Pink Daisy Co-ord order kiya tha. Silai itni neat aur embroidery bilkul hath ke kaam jaisi nafees hai. Fabric bhi bohat soft hai!"
           </p>
 
           <div class="mt-4">
-            <span id="review-item" class="inline-block bg-[#F5F2EC] border border-[#DFD7C8] text-brand-maroon text-[11px] font-semibold px-3 py-1 rounded-lg">
+            <span id="review-item" class="inline-block bg-[#F5F2EC] dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33] text-brand-maroon dark:text-[#E5C687] text-[11px] font-semibold px-3 py-1 rounded-lg">
               Ordered: Rose Pink Daisy Embroidered Co-ord
             </span>
           </div>
 
-          <div class="mt-6 pt-5 border-t border-[#EFEAE0] flex items-center justify-between gap-4">
+          <div class="mt-6 pt-5 border-t border-[#EFEAE0] dark:border-[#3E2E33] flex items-center justify-between gap-4">
             <div class="flex items-center gap-3">
               <div id="review-avatar" class="w-11 h-11 rounded-full bg-gradient-to-tr from-brand-maroon to-[#9E7B3E] text-white font-editorial text-lg font-bold flex items-center justify-center shadow-xs shrink-0">
                 A
               </div>
               <div>
-                <h4 id="review-author" class="text-sm font-bold text-brand-charcoal">Ayesha Tariq</h4>
-                <p id="review-city" class="text-xs text-brand-muted">Lahore • 2 days ago</p>
+                <h4 id="review-author" class="text-sm font-bold text-brand-charcoal dark:text-[#F3EFEA]">Ayesha Tariq</h4>
+                <p id="review-city" class="text-xs text-brand-muted dark:text-[#B5A8A3]">Lahore • 2 days ago</p>
               </div>
             </div>
 
             <div class="flex items-center gap-2">
-              <span id="review-counter" class="text-xs font-bold text-brand-muted mr-1">1 / 20</span>
-              <button type="button" onclick="prevReview()" aria-label="Previous Review" class="w-9 h-9 rounded-full border border-[#DFD7C8] bg-[#FAF7F2] hover:bg-brand-maroon hover:text-white hover:border-brand-maroon text-brand-charcoal flex items-center justify-center transition">
+              <span id="review-counter" class="text-xs font-bold text-brand-muted dark:text-[#B5A8A3] mr-1">1 / 20</span>
+              <button type="button" onclick="prevReview()" aria-label="Previous Review" class="w-9 h-9 rounded-full border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#FAF7F2] dark:bg-[#1A1215] hover:bg-brand-maroon hover:text-white hover:border-brand-maroon text-brand-charcoal dark:text-[#EFECE4] flex items-center justify-center transition">
                 ‹
               </button>
-              <button type="button" onclick="nextReview()" aria-label="Next Review" class="w-9 h-9 rounded-full border border-[#DFD7C8] bg-[#FAF7F2] hover:bg-brand-maroon hover:text-white hover:border-brand-maroon text-brand-charcoal flex items-center justify-center transition">
+              <button type="button" onclick="nextReview()" aria-label="Next Review" class="w-9 h-9 rounded-full border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#FAF7F2] dark:bg-[#1A1215] hover:bg-brand-maroon hover:text-white hover:border-brand-maroon text-brand-charcoal dark:text-[#EFECE4] flex items-center justify-center transition">
                 ›
               </button>
             </div>
           </div>
 
-          <div class="absolute bottom-0 left-0 right-0 h-1 bg-[#EFEAE0]">
+          <div class="absolute bottom-0 left-0 right-0 h-1 bg-[#EFEAE0] dark:bg-[#3E2E33]">
             <div id="review-progress" class="h-full bg-gradient-to-r from-brand-maroon via-[#B68D40] to-[#176B58] review-timer-bar"></div>
           </div>
         </div>
@@ -822,20 +836,20 @@
   </section>
 
   <!-- Official Instagram Section -->
-  <section id="instagram-section" class="py-16 sm:py-20 bg-[#F5F2EC] border-b border-[#E2DBD0] text-center px-4 reveal-on-scroll">
+  <section id="instagram-section" class="py-16 sm:py-20 bg-[#F5F2EC] dark:bg-[#181215] border-b border-[#E2DBD0] dark:border-[#3E2E33] text-center px-4 transition-colors duration-300 reveal-on-scroll">
     <div class="max-w-2xl mx-auto space-y-4">
-      <div class="inline-flex items-center justify-center gap-1.5 text-[11px] font-bold tracking-[0.18em] uppercase text-brand-maroon">
+      <div class="inline-flex items-center justify-center gap-1.5 text-[11px] font-bold tracking-[0.18em] uppercase text-brand-maroon dark:text-[#E5C687]">
         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
         </svg>
         <span>FOLLOW ON INSTAGRAM</span>
       </div>
 
-      <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal">
+      <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal dark:text-[#F3EFEA]">
         @ahinoor_clothing_
       </h2>
 
-      <p class="text-sm text-brand-muted max-w-md mx-auto leading-relaxed">
+      <p class="text-sm text-brand-muted dark:text-[#B5A8A3] max-w-md mx-auto leading-relaxed">
         Rozana ke naye designs, client videos aur stitching updates dekhne ke liye hamara official Instagram zaroor follow karein.
       </p>
 
@@ -851,33 +865,33 @@
   </section>
 
   <!-- Light Editorial Footer -->
-  <footer class="bg-[#EDE8DF] text-brand-charcoal py-12 pb-24 sm:pb-12">
+  <footer class="bg-[#EDE8DF] dark:bg-[#140E11] text-brand-charcoal dark:text-[#EFECE4] py-12 pb-24 sm:pb-12 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-[#DCD4C6]">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-[#DCD4C6] dark:border-[#3E2E33]">
         <div class="flex items-start gap-3.5">
           <div class="w-14 h-14 rounded-full p-0.5 bg-gradient-to-tr from-[#B68D40] to-[#6A2338] shrink-0">
             <img src="1000827919.jpg" alt="Ahinoor Logo" class="w-full h-full rounded-full object-contain bg-white p-0.5" />
           </div>
           <div>
-            <span class="font-editorial text-2xl font-bold tracking-[0.2em] text-brand-maroon">AHINOOR</span>
-            <p class="text-xs text-brand-muted mt-2 leading-relaxed max-w-xs">
+            <span class="font-editorial text-2xl font-bold tracking-[0.2em] text-brand-maroon dark:text-[#E5C687]">AHINOOR</span>
+            <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-2 leading-relaxed max-w-xs">
               Exclusively stitched &amp; embroidered women and girls wear. Crafted with fine fabrics and artisanal threadwork.
             </p>
           </div>
         </div>
 
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-[0.16em] text-brand-charcoal mb-3">OFFICIAL CONTACT</h4>
-          <ul class="space-y-2 text-xs text-brand-muted">
-            <li>WhatsApp Orders: <a href="https://wa.me/923154124959" target="_blank" class="text-brand-maroon font-bold hover:underline">+92 315 4124959</a></li>
-            <li>Instagram: <a href="https://instagram.com/ahinoor_clothing_" target="_blank" class="text-brand-maroon font-bold hover:underline">@ahinoor_clothing_</a></li>
-            <li>Website: <span class="font-semibold text-brand-charcoal">ahinoor.online</span></li>
+          <h4 class="text-xs font-bold uppercase tracking-[0.16em] text-brand-charcoal dark:text-[#F3EFEA] mb-3">OFFICIAL CONTACT</h4>
+          <ul class="space-y-2 text-xs text-brand-muted dark:text-[#B5A8A3]">
+            <li>WhatsApp Orders: <a href="https://wa.me/923154124959" target="_blank" class="text-brand-maroon dark:text-[#E5C687] font-bold hover:underline">+92 315 4124959</a></li>
+            <li>Instagram: <a href="https://instagram.com/ahinoor_clothing_" target="_blank" class="text-brand-maroon dark:text-[#E5C687] font-bold hover:underline">@ahinoor_clothing_</a></li>
+            <li>Website: <span class="font-semibold text-brand-charcoal dark:text-white">ahinoor.online</span></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-[0.16em] text-brand-charcoal mb-3">HOW TO ORDER</h4>
-          <ul class="space-y-2 text-xs text-brand-muted">
+          <h4 class="text-xs font-bold uppercase tracking-[0.16em] text-brand-charcoal dark:text-[#F3EFEA] mb-3">HOW TO ORDER</h4>
+          <ul class="space-y-2 text-xs text-brand-muted dark:text-[#B5A8A3]">
             <li>1. Select your favorite stitched suit &amp; size</li>
             <li>2. Add to Order Bag or click Buy on WhatsApp</li>
             <li>3. Confirm your address &amp; delivery on WhatsApp</li>
@@ -885,9 +899,9 @@
         </div>
       </div>
 
-      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-brand-muted">
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-brand-muted dark:text-[#B5A8A3]">
         <span>© 2026 AHINOOR(Ali Nawaz) • All Rights Reserved.</span>
-        <button onclick="openAdminModal()" class="text-xs font-bold text-brand-maroon hover:underline">
+        <button type="button" onclick="openAdminModal()" class="text-xs font-bold text-brand-maroon dark:text-[#E5C687] hover:underline">
           🔒 Admin Login
         </button>
       </div>
@@ -895,12 +909,12 @@
   </footer>
 
   <!-- Subtle Live Activity Pill -->
-  <div id="live-activity-pill" class="hidden md:flex fixed bottom-6 left-5 z-30 items-center gap-3 bg-white/95 backdrop-blur-md border border-[#DFD7C8] px-3.5 py-2.5 rounded-2xl shadow-lg max-w-xs transition-all duration-500 opacity-0 translate-y-4 pointer-events-none">
+  <div id="live-activity-pill" class="hidden md:flex fixed bottom-6 left-5 z-30 items-center gap-3 bg-white/95 dark:bg-[#241A1E]/95 backdrop-blur-md border border-[#DFD7C8] dark:border-[#3E2E33] px-3.5 py-2.5 rounded-2xl shadow-lg max-w-xs transition-all duration-500 opacity-0 translate-y-4 pointer-events-none">
     <img id="live-act-img" src="1000827972.jpg" alt="Suit" class="w-10 h-12 rounded-lg object-cover shrink-0 bg-[#EBE6DC]" />
     <div class="min-w-0">
-      <p id="live-act-user" class="text-[11px] font-bold text-brand-charcoal truncate">Ayesha from Lahore</p>
-      <p id="live-act-item" class="text-[10px] text-brand-maroon font-medium truncate">Just ordered Rose Pink Daisy Co-ord</p>
-      <p class="text-[9px] text-brand-muted">Verified Order • Just now</p>
+      <p id="live-act-user" class="text-[11px] font-bold text-brand-charcoal dark:text-[#F3EFEA] truncate">Ayesha from Lahore</p>
+      <p id="live-act-item" class="text-[10px] text-brand-maroon dark:text-[#E5C687] font-medium truncate">Just ordered Rose Pink Daisy Co-ord</p>
+      <p class="text-[9px] text-brand-muted dark:text-[#B5A8A3]">Verified Order • Just now</p>
     </div>
   </div>
 
@@ -915,7 +929,7 @@
 
   <!-- Password-Protected Admin Panel Modal -->
   <div id="admin-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
-    <div class="bg-[#F5F2EC] rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] relative my-auto animate-card">
+    <div class="bg-[#F5F2EC] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto animate-card transition-colors duration-300">
       
       <!-- Header -->
       <div class="bg-brand-maroon text-white px-6 py-4 flex items-center justify-between">
@@ -924,10 +938,10 @@
           <h3 class="font-editorial text-xl sm:text-2xl font-bold">Admin Dashboard</h3>
         </div>
         <div class="flex items-center gap-2">
-          <button id="admin-logout-btn" onclick="logoutAdmin()" class="hidden text-xs bg-white/15 hover:bg-white/25 px-3 py-1.5 rounded-full font-semibold transition">
+          <button type="button" id="admin-logout-btn" onclick="logoutAdmin()" class="hidden text-xs bg-white/15 hover:bg-white/25 px-3 py-1.5 rounded-full font-semibold transition">
             Logout
           </button>
-          <button onclick="closeAdminModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition">
+          <button type="button" onclick="closeAdminModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition">
             ✕
           </button>
         </div>
@@ -935,15 +949,15 @@
 
       <!-- Step 1: Password Lock Screen -->
       <div id="admin-login-view" class="p-8 sm:p-12 max-w-md mx-auto text-center space-y-5">
-        <div class="w-14 h-14 rounded-full bg-brand-maroon/10 text-brand-maroon flex items-center justify-center mx-auto text-2xl">
+        <div class="w-14 h-14 rounded-full bg-brand-maroon/10 dark:bg-[#322429] text-brand-maroon dark:text-[#E5C687] flex items-center justify-center mx-auto text-2xl">
           🔒
         </div>
         <div>
-          <h4 class="font-editorial text-2xl font-bold text-brand-charcoal">Admin Password Required</h4>
-          <p class="text-xs text-brand-muted mt-1">Naye Dresses add karne ya Password badalne ke liye password enter karein.</p>
+          <h4 class="font-editorial text-2xl font-bold text-brand-charcoal dark:text-[#F3EFEA]">Admin Password Required</h4>
+          <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">Naye Dresses add karne ya Password badalne ke liye password enter karein.</p>
         </div>
         <form onsubmit="verifyAdminPassword(event)" class="space-y-3">
-          <input type="password" id="admin-password-input" required placeholder="Enter Admin Password" class="w-full px-4 py-3 rounded-xl border border-[#DFD7C8] bg-white text-sm text-center focus:outline-none focus:border-brand-maroon" />
+          <input type="password" id="admin-password-input" required placeholder="Enter Admin Password" class="w-full px-4 py-3 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm text-center focus:outline-none focus:border-brand-maroon" />
           <p id="admin-login-error" class="hidden text-xs text-red-600 font-semibold">Galat password hai! Dobara try karein.</p>
           <button type="submit" class="w-full py-3 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold uppercase tracking-wider rounded-xl transition">
             UNLOCK ADMIN PANEL
@@ -953,61 +967,58 @@
 
       <!-- Step 2: Unlocked Admin Workspace -->
       <div id="admin-workspace-view" class="hidden p-6 sm:p-8 space-y-6 max-h-[82vh] overflow-y-auto">
-        
-        <!-- Tabs -->
-        <div class="flex flex-wrap gap-2 border-b border-[#DFD7C8] pb-3">
+        <div class="flex flex-wrap gap-2 border-b border-[#DFD7C8] dark:border-[#3E2E33] pb-3">
           <button type="button" id="admin-tab-dress" onclick="switchAdminTab('dress')" class="px-4 py-2 rounded-full text-xs font-bold bg-brand-maroon text-white transition">
             👗 Add New Dress
           </button>
-          <button type="button" id="admin-tab-manage" onclick="switchAdminTab('manage')" class="px-4 py-2 rounded-full text-xs font-bold bg-white text-brand-charcoal border border-[#DFD7C8] transition">
+          <button type="button" id="admin-tab-manage" onclick="switchAdminTab('manage')" class="px-4 py-2 rounded-full text-xs font-bold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] border border-[#DFD7C8] dark:border-[#3E2E33] transition">
             📋 Manage Dresses
           </button>
-          <button type="button" id="admin-tab-password" onclick="switchAdminTab('password')" class="px-4 py-2 rounded-full text-xs font-bold bg-white text-brand-charcoal border border-[#DFD7C8] transition">
+          <button type="button" id="admin-tab-password" onclick="switchAdminTab('password')" class="px-4 py-2 rounded-full text-xs font-bold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] border border-[#DFD7C8] dark:border-[#3E2E33] transition">
             🔑 Change Password
           </button>
         </div>
 
-        <!-- Tab 1: Add New Dress Form -->
         <form id="admin-dress-form" onsubmit="publishNewDress(event)" class="space-y-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Dress Name *</label>
-              <input type="text" id="dress-title" required placeholder="e.g., Peach Floral Embroidered Suit" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm" />
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1">Dress Name *</label>
+              <input type="text" id="dress-title" required placeholder="e.g., Peach Floral Embroidered Suit" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm" />
             </div>
             <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Price (PKR) *</label>
-              <input type="number" id="dress-price" required placeholder="2750" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm" />
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1">Price (PKR) *</label>
+              <input type="number" id="dress-price" required placeholder="2750" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm" />
             </div>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Category</label>
-              <select id="dress-category" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm">
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1">Category</label>
+              <select id="dress-category" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm">
                 <option value="girls">Girls Co-ords</option>
                 <option value="women">Women Kurtis &amp; Suits</option>
                 <option value="frocks">Frocks &amp; Peplums</option>
               </select>
             </div>
             <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Badge Tag</label>
-              <input type="text" id="dress-badge" value="New Arrival" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm" />
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1">Badge Tag</label>
+              <input type="text" id="dress-badge" value="New Arrival" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm" />
             </div>
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Dress Photo (Select from Phone/PC Gallery) *</label>
-            <input type="file" id="dress-image-file" accept="image/*" required class="w-full px-3.5 py-2 rounded-xl border border-[#DFD7C8] bg-white text-xs" />
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1">Dress Photo (Select from Phone/PC Gallery) *</label>
+            <input type="file" id="dress-image-file" accept="image/*" required class="w-full px-3.5 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-xs" />
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Fabric Details</label>
-              <input type="text" id="dress-fabric" placeholder="Soft Cotton Lawn Two-Piece" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm" />
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1">Fabric Details</label>
+              <input type="text" id="dress-fabric" placeholder="Soft Cotton Lawn Two-Piece" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm" />
             </div>
             <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Embroidery Details</label>
-              <input type="text" id="dress-embroidery" placeholder="Floral Neckline & Sleeves Work" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm" />
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1">Embroidery Details</label>
+              <input type="text" id="dress-embroidery" placeholder="Floral Neckline & Sleeves Work" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm" />
             </div>
           </div>
 
@@ -1016,31 +1027,29 @@
           </button>
         </form>
 
-        <!-- Tab 2: Manage Dresses -->
         <div id="admin-manage-view" class="hidden space-y-4">
           <div>
-            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-maroon mb-2">Added Custom Dresses</h4>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-maroon dark:text-[#E5C687] mb-2">Added Custom Dresses</h4>
             <div id="admin-dresses-list" class="space-y-2 text-xs"></div>
           </div>
         </div>
 
-        <!-- Tab 3: Change Admin Password Form -->
         <form id="admin-password-form" onsubmit="updateAdminPassword(event)" class="hidden space-y-4 max-w-md mx-auto py-2">
           <div>
-            <h4 class="font-editorial text-xl font-bold text-brand-charcoal">Change Admin Password</h4>
-            <p class="text-xs text-brand-muted mt-0.5">Naya password cloud me save hoga aur aapke sab devices par kaam karega.</p>
+            <h4 class="font-editorial text-xl font-bold text-brand-charcoal dark:text-[#F3EFEA]">Change Admin Password</h4>
+            <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-0.5">Naya password cloud me save hoga aur aapke sab devices par kaam karega.</p>
           </div>
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Current Password *</label>
-            <input type="password" id="pw-current" required placeholder="Abhi wala password" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm" />
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1">Current Password *</label>
+            <input type="password" id="pw-current" required placeholder="Abhi wala password" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm" />
           </div>
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">New Password (Min 4 characters) *</label>
-            <input type="password" id="pw-new" required minlength="4" placeholder="Naya password likhein" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm" />
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1">New Password (Min 4 characters) *</label>
+            <input type="password" id="pw-new" required minlength="4" placeholder="Naya password likhein" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm" />
           </div>
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Confirm New Password *</label>
-            <input type="password" id="pw-confirm" required minlength="4" placeholder="Naya password dobara likhein" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] bg-white text-sm" />
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1">Confirm New Password *</label>
+            <input type="password" id="pw-confirm" required minlength="4" placeholder="Naya password dobara likhein" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm" />
           </div>
           <p id="pw-status-msg" class="hidden text-xs font-semibold"></p>
           <button type="submit" id="pw-submit-btn" class="w-full py-3.5 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold uppercase tracking-wider rounded-xl transition">
@@ -1054,14 +1063,14 @@
 
   <!-- Quick View Product Modal -->
   <div id="product-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-xs p-4 overflow-y-auto">
-    <div class="bg-[#F5F2EC] rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] relative my-auto animate-card">
-      <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/95 text-brand-charcoal hover:bg-brand-maroon hover:text-white flex items-center justify-center transition shadow-xs">
+    <div class="bg-[#F5F2EC] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto animate-card transition-colors duration-300">
+      <button type="button" onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/95 dark:bg-[#3E2E33] text-brand-charcoal dark:text-white hover:bg-brand-maroon hover:text-white flex items-center justify-center transition shadow-xs">
         ✕
       </button>
 
       <div class="grid grid-cols-1 md:grid-cols-12">
-        <div class="md:col-span-6 bg-white flex items-center justify-center p-4 sm:p-6">
-          <div class="w-full aspect-[3/4] rounded-2xl overflow-hidden bg-[#F5F2EC]">
+        <div class="md:col-span-6 bg-white dark:bg-[#1A1215] flex items-center justify-center p-4 sm:p-6 transition-colors duration-300">
+          <div class="w-full aspect-[3/4] rounded-2xl overflow-hidden bg-[#F5F2EC] dark:bg-[#120B0E]">
             <img id="modal-img" src="" alt="Dress Preview" class="w-full h-full object-cover" />
           </div>
         </div>
@@ -1069,28 +1078,28 @@
         <div class="md:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-5">
           <div class="space-y-3">
             <span id="modal-category" class="text-[11px] font-bold uppercase tracking-widest text-brand-gold">CATEGORY</span>
-            <h3 id="modal-title" class="font-editorial text-2xl sm:text-3xl font-bold text-brand-charcoal leading-snug">Product Name</h3>
-            <p id="modal-price" class="text-2xl font-bold text-brand-maroon">Rs. 3,150</p>
+            <h3 id="modal-title" class="font-editorial text-2xl sm:text-3xl font-bold text-brand-charcoal dark:text-[#F3EFEA] leading-snug">Product Name</h3>
+            <p id="modal-price" class="text-2xl font-bold text-brand-maroon dark:text-[#E5C687]">Rs. 3,150</p>
 
-            <div class="pt-2 space-y-1.5 text-xs text-brand-muted border-t border-[#DFD7C8]">
-              <p><strong class="text-brand-charcoal">Fabric &amp; Style:</strong> <span id="modal-fabric"></span></p>
-              <p><strong class="text-brand-charcoal">Embroidery:</strong> <span id="modal-embroidery"></span></p>
+            <div class="pt-2 space-y-1.5 text-xs text-brand-muted dark:text-[#B5A8A3] border-t border-[#DFD7C8] dark:border-[#3E2E33]">
+              <p><strong class="text-brand-charcoal dark:text-white">Fabric &amp; Style:</strong> <span id="modal-fabric"></span></p>
+              <p><strong class="text-brand-charcoal dark:text-white">Embroidery:</strong> <span id="modal-embroidery"></span></p>
             </div>
 
             <div class="pt-2">
               <div class="flex items-center justify-between mb-1">
-                <label class="block text-xs font-bold uppercase tracking-wider text-brand-charcoal">Select Size:</label>
-                <button onclick="openSizeChartModal()" class="text-[11px] font-bold text-brand-maroon hover:underline">View Size Guide 📏</button>
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">Select Size:</label>
+                <button type="button" onclick="openSizeChartModal()" class="text-[11px] font-bold text-brand-maroon dark:text-[#E5C687] hover:underline">View Size Guide 📏</button>
               </div>
               <div id="modal-sizes" class="grid grid-cols-2 gap-2.5"></div>
             </div>
           </div>
 
           <div class="space-y-2.5 pt-2">
-            <button id="modal-add-btn" onclick="addModalProductToCart()" class="w-full py-3.5 px-4 bg-brand-charcoal hover:bg-brand-maroon text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2">
+            <button type="button" id="modal-add-btn" onclick="addModalProductToCart()" class="w-full py-3.5 px-4 bg-brand-charcoal dark:bg-[#3E2E33] hover:bg-brand-maroon text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2">
               <span>🛍️ ADD TO ORDER BAG</span>
             </button>
-            <button onclick="orderModalProductWhatsApp()" class="btn-sheen w-full py-3.5 px-4 bg-[#176B58] hover:bg-[#115243] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2">
+            <button type="button" onclick="orderModalProductWhatsApp()" class="btn-sheen w-full py-3.5 px-4 bg-[#176B58] hover:bg-[#115243] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2">
               <svg class="w-4 h-4 text-[#4ADE80] shrink-0" viewBox="0 0 32 32" fill="currentColor">
                 <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
               </svg>
@@ -1105,30 +1114,181 @@
   <!-- Slide-over Order Bag Drawer -->
   <div id="cart-drawer" class="fixed inset-0 z-50 hidden">
     <div onclick="closeCartDrawer()" class="fixed inset-0 bg-black/50 backdrop-blur-xs"></div>
-    <div class="fixed inset-y-0 right-0 max-w-md w-full bg-[#F5F2EC] shadow-2xl flex flex-col justify-between z-10">
-      <div class="p-5 border-b border-[#DFD7C8] flex items-center justify-between bg-white">
+    <div class="fixed inset-y-0 right-0 max-w-md w-full bg-[#F5F2EC] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] shadow-2xl flex flex-col justify-between z-10 transition-colors duration-300">
+      <div class="p-5 border-b border-[#DFD7C8] dark:border-[#3E2E33] flex items-center justify-between bg-white dark:bg-[#1A1215]">
         <div>
-          <h3 class="font-editorial text-2xl font-bold text-brand-charcoal">Your Order Bag</h3>
-          <p class="text-xs text-brand-muted">Direct WhatsApp Checkout</p>
+          <h3 class="font-editorial text-2xl font-bold text-brand-charcoal dark:text-[#F3EFEA]">Your Order Bag</h3>
+          <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Direct WhatsApp Checkout</p>
         </div>
-        <button onclick="closeCartDrawer()" class="w-8 h-8 rounded-full bg-[#EBE6DC] text-brand-charcoal hover:bg-brand-maroon hover:text-white flex items-center justify-center transition">
+        <button type="button" onclick="closeCartDrawer()" class="w-8 h-8 rounded-full bg-[#EBE6DC] dark:bg-[#3E2E33] text-brand-charcoal dark:text-white hover:bg-brand-maroon hover:text-white flex items-center justify-center transition">
           ✕
         </button>
       </div>
 
       <div id="cart-items" class="flex-1 overflow-y-auto p-5 space-y-4"></div>
 
-      <div class="p-5 border-t border-[#DFD7C8] bg-white space-y-3">
+      <div class="p-5 border-t border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] space-y-3 transition-colors duration-300">
         <div class="flex items-center justify-between text-sm font-bold">
           <span>Estimated Total:</span>
-          <span id="cart-total" class="text-lg text-brand-maroon">Rs. 0</span>
+          <span id="cart-total" class="text-lg text-brand-maroon dark:text-[#E5C687]">Rs. 0</span>
         </div>
-        <button onclick="checkoutCartWhatsApp()" class="btn-sheen w-full py-3.5 px-4 bg-[#176B58] hover:bg-[#115243] text-white text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
+        <button type="button" onclick="checkoutCartWhatsApp()" class="btn-sheen w-full py-3.5 px-4 bg-[#176B58] hover:bg-[#115243] text-white text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
           <svg class="w-5 h-5 text-[#4ADE80] shrink-0" viewBox="0 0 32 32" fill="currentColor">
             <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 29.02l6.81-1.786a12.74 12.74 0 0 0 6.094 1.554h.006c7.058 0 12.796-5.74 12.796-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.43h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.04 1.06 1.078-3.938-.252-.402a10.576 10.576 0 0 1-1.622-5.64c0-5.862 4.77-10.632 10.636-10.632 2.84 0 5.51 1.106 7.518 3.116a10.564 10.564 0 0 1 3.114 7.52c0 5.864-4.772 10.626-10.636 10.626zm5.834-7.962c-.32-.16-1.892-.934-2.186-1.04-.292-.106-.506-.16-.72.16-.212.32-.826 1.04-1.012 1.254-.186.212-.372.24-.692.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.492.14-.652.144-.144.32-.372.48-.56.16-.186.212-.32.32-.532.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.212 0-.56.08-.852.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.212 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.158-1.52.266-.748.266-1.388.186-1.52-.08-.134-.292-.214-.612-.374z"/>
           </svg>
           <span>ORDER ALL ON WHATSAPP (0315 4124959)</span>
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Official Size Chart Modal -->
+  <div id="size-chart-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
+    <div class="bg-[#F9F6F0] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto animate-card transition-colors duration-300">
+      <div class="bg-brand-maroon text-white px-6 py-4 flex items-center justify-between">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E5C687]">AHINOOR OFFICIAL</span>
+          <h3 class="font-editorial text-xl sm:text-2xl font-bold">Complete Size Chart (Inches)</h3>
+        </div>
+        <button type="button" onclick="closeSizeChartModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition">
+          ✕
+        </button>
+      </div>
+
+      <div class="p-6 sm:p-8 space-y-8 max-h-[80vh] overflow-y-auto text-xs sm:text-sm">
+        <div class="space-y-4">
+          <h4 class="font-editorial text-lg font-bold text-brand-maroon dark:text-[#E5C687] border-b border-[#DFD7C8] dark:border-[#3E2E33] pb-1">👶 Babies, Toddlers &amp; Kids Size Chart</h4>
+          
+          <div>
+            <p class="font-bold text-brand-charcoal dark:text-[#F3EFEA] mb-1.5 text-xs">Babies</p>
+            <div class="overflow-x-auto">
+              <table class="w-full text-center border-collapse bg-white dark:bg-[#1A1215] rounded-xl overflow-hidden border border-[#DFD7C8] dark:border-[#3E2E33]">
+                <thead>
+                  <tr class="bg-[#EBE6DC] dark:bg-[#322429] text-brand-charcoal dark:text-[#F3EFEA] text-[11px] font-bold">
+                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">Size (Inches)</th>
+                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">0 Months</th>
+                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">3-6 Months</th>
+                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">6-9 Months</th>
+                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">9-12 Months</th>
+                    <th class="p-2">12-18 Months</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-[#DFD7C8] dark:divide-[#3E2E33]">
+                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Length</td><td class="p-2 border-r">10</td><td class="p-2 border-r">13</td><td class="p-2 border-r">14.5</td><td class="p-2 border-r">15</td><td class="p-2">16</td></tr>
+                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shoulder</td><td class="p-2 border-r">7</td><td class="p-2 border-r">8</td><td class="p-2 border-r">8</td><td class="p-2 border-r">7.5</td><td class="p-2">8</td></tr>
+                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Chest</td><td class="p-2 border-r">10</td><td class="p-2 border-r">10</td><td class="p-2 border-r">10</td><td class="p-2 border-r">11</td><td class="p-2">12</td></tr>
+                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Sleeves</td><td class="p-2 border-r">7</td><td class="p-2 border-r">8</td><td class="p-2 border-r">8</td><td class="p-2 border-r">8.5</td><td class="p-2">9</td></tr>
+                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Trouser</td><td class="p-2 border-r">10</td><td class="p-2 border-r">13</td><td class="p-2 border-r">15</td><td class="p-2 border-r">15</td><td class="p-2">16</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div>
+            <p class="font-bold text-brand-charcoal dark:text-[#F3EFEA] mb-1.5 text-xs">Toddlers</p>
+            <div class="overflow-x-auto">
+              <table class="w-full text-center border-collapse bg-white dark:bg-[#1A1215] rounded-xl overflow-hidden border border-[#DFD7C8] dark:border-[#3E2E33]">
+                <thead>
+                  <tr class="bg-[#EBE6DC] dark:bg-[#322429] text-brand-charcoal dark:text-[#F3EFEA] text-[11px] font-bold">
+                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">Size (Inches)</th>
+                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">2 Years</th>
+                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">3 Years</th>
+                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">4 Years</th>
+                    <th class="p-2">5 Years</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-[#DFD7C8] dark:divide-[#3E2E33]">
+                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Length</td><td class="p-2 border-r">18</td><td class="p-2 border-r">20</td><td class="p-2 border-r">22</td><td class="p-2">26</td></tr>
+                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shoulder</td><td class="p-2 border-r">9</td><td class="p-2 border-r">10</td><td class="p-2 border-r">10</td><td class="p-2">11</td></tr>
+                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Chest</td><td class="p-2 border-r">12.5</td><td class="p-2 border-r">13</td><td class="p-2 border-r">14</td><td class="p-2">14</td></tr>
+                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Sleeves</td><td class="p-2 border-r">11-12</td><td class="p-2 border-r">12-13</td><td class="p-2 border-r">14</td><td class="p-2">14-16</td></tr>
+                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Trouser</td><td class="p-2 border-r">18</td><td class="p-2 border-r">20</td><td class="p-2 border-r">22</td><td class="p-2">26</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div>
+            <p class="font-bold text-brand-charcoal dark:text-[#F3EFEA] mb-1.5 text-xs">Kids</p>
+            <div class="overflow-x-auto">
+              <table class="w-full text-center border-collapse bg-white dark:bg-[#1A1215] rounded-xl overflow-hidden border border-[#DFD7C8] dark:border-[#3E2E33]">
+                <thead>
+                  <tr class="bg-[#EBE6DC] dark:bg-[#322429] text-brand-charcoal dark:text-[#F3EFEA] text-[11px] font-bold">
+                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">Size (Inches)</th>
+                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">6 Years</th>
+                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">7 Years</th>
+                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">8 Years</th>
+                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">9 Years</th>
+                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">10 Years</th>
+                    <th class="p-2">11-12 Years</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-[#DFD7C8] dark:divide-[#3E2E33]">
+                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Length</td><td class="p-2 border-r">26.5</td><td class="p-2 border-r">27.5</td><td class="p-2 border-r">28.5</td><td class="p-2 border-r">29.5</td><td class="p-2 border-r">30.5</td><td class="p-2">31.5</td></tr>
+                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shoulder</td><td class="p-2 border-r">11.5</td><td class="p-2 border-r">11.5</td><td class="p-2 border-r">11.5</td><td class="p-2 border-r">12.75</td><td class="p-2 border-r">13.25</td><td class="p-2">13.5</td></tr>
+                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Chest</td><td class="p-2 border-r">15</td><td class="p-2 border-r">15</td><td class="p-2 border-r">15</td><td class="p-2 border-r">16</td><td class="p-2 border-r">16.5</td><td class="p-2">17</td></tr>
+                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Sleeves</td><td class="p-2 border-r">16.5</td><td class="p-2 border-r">16.5</td><td class="p-2 border-r">16.5</td><td class="p-2 border-r">18</td><td class="p-2 border-r">19</td><td class="p-2">20</td></tr>
+                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Trouser</td><td class="p-2 border-r">27</td><td class="p-2 border-r">28</td><td class="p-2 border-r">29</td><td class="p-2 border-r">29.5</td><td class="p-2 border-r">30</td><td class="p-2">31.5</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-4 pt-4 border-t border-[#DFD7C8] dark:border-[#3E2E33]">
+          <h4 class="font-editorial text-lg font-bold text-brand-maroon dark:text-[#E5C687] border-b border-[#DFD7C8] dark:border-[#3E2E33] pb-1">👩 Women Kurta / Shirt Size Chart</h4>
+          <div class="overflow-x-auto">
+            <table class="w-full text-center border-collapse bg-white dark:bg-[#1A1215] rounded-xl overflow-hidden border border-[#DFD7C8] dark:border-[#3E2E33]">
+              <thead>
+                <tr class="bg-[#EBE6DC] dark:bg-[#322429] text-brand-charcoal dark:text-[#F3EFEA] text-[11px] font-bold">
+                  <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">Kurta / Shirt</th>
+                  <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">S</th>
+                  <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">M</th>
+                  <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">L</th>
+                  <th class="p-2">XL</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[#DFD7C8] dark:divide-[#3E2E33]">
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Chest (Armpit to Armpit)</td><td class="p-2 border-r">20</td><td class="p-2 border-r">21</td><td class="p-2 border-r">22</td><td class="p-2">23.5</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Length (Shoulder to Hem)</td><td class="p-2 border-r">34</td><td class="p-2 border-r">34</td><td class="p-2 border-r">35</td><td class="p-2">35</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shoulder (Seam to Seam)</td><td class="p-2 border-r">14.5</td><td class="p-2 border-r">15</td><td class="p-2 border-r">15.5</td><td class="p-2">16</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Hip (Around)</td><td class="p-2 border-r">21.5</td><td class="p-2 border-r">23.5</td><td class="p-2 border-r">25</td><td class="p-2">26</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Waist (Around)</td><td class="p-2 border-r">29</td><td class="p-2 border-r">31</td><td class="p-2 border-r">33</td><td class="p-2">35</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Trouser Length (Waist to Hem)</td><td class="p-2 border-r">39</td><td class="p-2 border-r">40</td><td class="p-2 border-r">41</td><td class="p-2">42</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="space-y-4 pt-4 border-t border-[#DFD7C8] dark:border-[#3E2E33]">
+          <h4 class="font-editorial text-lg font-bold text-brand-maroon dark:text-[#E5C687] border-b border-[#DFD7C8] dark:border-[#3E2E33] pb-1">🌸 Women's Tunic Size Chart</h4>
+          <div class="overflow-x-auto">
+            <table class="w-full text-center border-collapse bg-white dark:bg-[#1A1215] rounded-xl overflow-hidden border border-[#DFD7C8] dark:border-[#3E2E33]">
+              <thead>
+                <tr class="bg-[#EBE6DC] dark:bg-[#322429] text-brand-charcoal dark:text-[#F3EFEA] text-[11px] font-bold">
+                  <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">Measurement</th>
+                  <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">XS</th>
+                  <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">S</th>
+                  <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">M</th>
+                  <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">L</th>
+                  <th class="p-2">XL</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[#DFD7C8] dark:divide-[#3E2E33]">
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Chest</td><td class="p-2 border-r">19</td><td class="p-2 border-r">20</td><td class="p-2 border-r">21</td><td class="p-2 border-r">22</td><td class="p-2">23.5</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Waist</td><td class="p-2 border-r">18</td><td class="p-2 border-r">19</td><td class="p-2 border-r">20</td><td class="p-2 border-r">21</td><td class="p-2">22</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Hip</td><td class="p-2 border-r">20</td><td class="p-2 border-r">21</td><td class="p-2 border-r">22</td><td class="p-2 border-r">23</td><td class="p-2">24</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shoulder</td><td class="p-2 border-r">14</td><td class="p-2 border-r">14.5</td><td class="p-2 border-r">15</td><td class="p-2 border-r">15.5</td><td class="p-2">16</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Sleeve Length</td><td class="p-2 border-r">21</td><td class="p-2 border-r">22</td><td class="p-2 border-r">22</td><td class="p-2 border-r">23</td><td class="p-2">23</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shirt Length</td><td class="p-2 border-r">51</td><td class="p-2 border-r">52</td><td class="p-2 border-r">52</td><td class="p-2 border-r">53</td><td class="p-2">53</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Armhole</td><td class="p-2 border-r">8.5</td><td class="p-2 border-r">9</td><td class="p-2 border-r">9.5</td><td class="p-2 border-r">10</td><td class="p-2">10.5</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Trouser Length</td><td class="p-2 border-r">37</td><td class="p-2 border-r">38</td><td class="p-2 border-r">39</td><td class="p-2 border-r">40</td><td class="p-2">41</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3] text-center pt-2">Note: All measurements are in inches. Size may vary +/- 0.5 to 1 inch due to hand measurement.</p>
       </div>
     </div>
   </div>
@@ -1411,6 +1571,30 @@
     function formatPKR(amount) {
       return 'Rs. ' + Number(amount).toLocaleString('en-PK');
     }
+
+    // Theme Toggle System
+    function initTheme() {
+      const savedTheme = localStorage.getItem('ahinoor_theme');
+      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        document.body.classList.add('dark-mode');
+        const icon = document.getElementById('theme-icon');
+        if (icon) icon.textContent = '☀️';
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.body.classList.remove('dark-mode');
+        const icon = document.getElementById('theme-icon');
+        if (icon) icon.textContent = '🌙';
+      }
+    }
+
+    window.toggleTheme = function() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      document.body.classList.toggle('dark-mode', isDark);
+      localStorage.setItem('ahinoor_theme', isDark ? 'dark' : 'light');
+      const icon = document.getElementById('theme-icon');
+      if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+    };
 
     // Hero Showcase Auto-Flip Functions
     function showHeroShowcase(index, animate = true) {
@@ -1821,9 +2005,9 @@
       dressList.innerHTML = cloudDresses.length === 0
         ? `<p class="text-brand-muted">Abhi tak koi custom dress add nahi hui.</p>`
         : cloudDresses.map(d => `
-          <div class="flex items-center justify-between bg-white p-2.5 rounded-xl border border-[#DFD7C8]">
-            <span class="font-semibold text-brand-charcoal truncate pr-2">${d.title} (${formatPKR(d.price)})</span>
-            <button onclick="deleteCloudItem('dresses', '${d.cloudId}')" class="px-2.5 py-1 bg-red-600 text-white rounded-lg font-bold shrink-0">Delete</button>
+          <div class="flex items-center justify-between bg-white dark:bg-[#1A1215] p-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33]">
+            <span class="font-semibold text-brand-charcoal dark:text-[#F3EFEA] truncate pr-2">${d.title} (${formatPKR(d.price)})</span>
+            <button type="button" onclick="deleteCloudItem('dresses', '${d.cloudId}')" class="px-2.5 py-1 bg-red-600 text-white rounded-lg font-bold shrink-0">Delete</button>
           </div>
         `).join('');
     }
@@ -1945,10 +2129,10 @@
 
       if (filtered.length === 0) {
         grid.innerHTML = `
-          <div class="col-span-full text-center py-14 bg-white rounded-3xl border border-[#DFD7C8] space-y-3">
-            <p class="font-editorial text-2xl text-brand-charcoal">No matching suits found</p>
-            <p class="text-xs text-brand-muted">Doosra color search karein ya All Suits par wapas jayein.</p>
-            <button onclick="resetCatalogFilters()" class="px-5 py-2.5 bg-brand-maroon text-white text-xs font-bold uppercase tracking-wider rounded-full">
+          <div class="col-span-full text-center py-14 bg-white dark:bg-[#241A1E] rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33] space-y-3">
+            <p class="font-editorial text-2xl text-brand-charcoal dark:text-[#F3EFEA]">No matching suits found</p>
+            <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Doosra color search karein ya All Suits par wapas jayein.</p>
+            <button type="button" onclick="resetCatalogFilters()" class="px-5 py-2.5 bg-brand-maroon text-white text-xs font-bold uppercase tracking-wider rounded-full">
               Show All Suits
             </button>
           </div>
@@ -1959,16 +2143,16 @@
       grid.innerHTML = filtered.map((product, index) => {
         const isSaved = wishlist.includes(String(product.id));
         return `
-        <div style="animation-delay: ${Math.min(index * 40, 400)}ms" class="animate-card product-card group bg-white rounded-2xl border border-[#DFD7C8] hover:border-brand-gold/70 overflow-hidden shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+        <div style="animation-delay: ${Math.min(index * 40, 400)}ms" class="animate-card product-card group bg-white dark:bg-[#241A1E] rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] hover:border-brand-gold/70 overflow-hidden shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
           <div>
-            <div onclick="openProductModal('${product.id}')" class="relative aspect-[3/4] overflow-hidden bg-[#EBE6DC] cursor-pointer">
+            <div onclick="openProductModal('${product.id}')" class="relative aspect-[3/4] overflow-hidden bg-[#EBE6DC] dark:bg-[#1A1215] cursor-pointer">
               <img src="${product.image}" alt="${product.title}" loading="lazy" class="w-full h-full object-cover card-img-zoom" />
               ${product.badge ? `
-                <span class="absolute top-3 left-3 ${product.isNew ? 'bg-brand-maroon text-white' : 'bg-white/95 text-brand-charcoal'} text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs">
+                <span class="absolute top-3 left-3 ${product.isNew ? 'bg-brand-maroon text-white' : 'bg-white/95 dark:bg-[#3E2E33] text-brand-charcoal dark:text-white'} text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs">
                   ${product.badge}
                 </span>
               ` : ''}
-              <button type="button" onclick="toggleWishlistItem('${product.id}', event)" aria-label="Save to Favorites" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-xs transition hover:scale-110 ${isSaved ? 'text-[#D62976]' : 'text-brand-charcoal'}">
+              <button type="button" onclick="toggleWishlistItem('${product.id}', event)" aria-label="Save to Favorites" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 dark:bg-[#3E2E33]/90 hover:bg-white flex items-center justify-center shadow-xs transition hover:scale-110 ${isSaved ? 'text-[#D62976]' : 'text-brand-charcoal dark:text-white'}">
                 ${isSaved ? '❤️' : '🤍'}
               </button>
               <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/55 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center">
@@ -1980,22 +2164,22 @@
 
             <div class="p-4 space-y-1.5">
               <p class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">${product.isNew ? 'New Arrival • ' : ''}${product.category}</p>
-              <h3 onclick="openProductModal('${product.id}')" class="font-editorial text-xl font-bold text-brand-charcoal leading-snug cursor-pointer hover:text-brand-maroon transition">
+              <h3 onclick="openProductModal('${product.id}')" class="font-editorial text-xl font-bold text-brand-charcoal dark:text-[#F3EFEA] leading-snug cursor-pointer hover:text-brand-maroon transition">
                 ${product.title}
               </h3>
-              <p class="text-xs text-brand-muted line-clamp-1">${product.embroidery}</p>
+              <p class="text-xs text-brand-muted dark:text-[#B5A8A3] line-clamp-1">${product.embroidery}</p>
             </div>
           </div>
 
-          <div class="px-4 pb-4 pt-2 flex items-center justify-between border-t border-[#EFECE4]">
+          <div class="px-4 pb-4 pt-2 flex items-center justify-between border-t border-[#EFECE4] dark:border-[#3E2E33]">
             <div>
-              <span class="text-base font-bold text-brand-maroon">${formatPKR(product.price)}</span>
+              <span class="text-base font-bold text-brand-maroon dark:text-[#E5C687]">${formatPKR(product.price)}</span>
             </div>
             <div class="flex items-center gap-1.5">
-              <button onclick="openProductModal('${product.id}')" class="px-3 py-1.5 rounded-lg border border-[#DFD7C8] text-[11px] font-bold text-brand-charcoal hover:border-brand-maroon hover:text-brand-maroon transition">
+              <button type="button" onclick="openProductModal('${product.id}')" class="px-3 py-1.5 rounded-lg border border-[#DFD7C8] dark:border-[#3E2E33] text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] hover:border-brand-maroon hover:text-brand-maroon transition">
                 Sizes
               </button>
-              <button onclick="quickAddToCart('${product.id}')" class="px-3 py-1.5 rounded-lg bg-brand-maroon text-white text-[11px] font-bold hover:bg-brand-maroonDark transition">
+              <button type="button" onclick="quickAddToCart('${product.id}')" class="px-3 py-1.5 rounded-lg bg-brand-maroon text-white text-[11px] font-bold hover:bg-brand-maroonDark transition">
                 + Bag
               </button>
             </div>
@@ -2021,10 +2205,10 @@
       const targetBtn = clickedBtn || document.querySelector(`.filter-tab-btn[data-filter="${category}"]`);
       document.querySelectorAll('.filter-tab-btn').forEach(btn => {
         if (btn === targetBtn) {
-          btn.classList.remove('text-brand-charcoal', 'hover:text-brand-maroon');
+          btn.classList.remove('text-brand-charcoal', 'dark:text-[#EFECE4]', 'hover:text-brand-maroon');
           btn.classList.add('text-white');
         } else {
-          btn.classList.add('text-brand-charcoal', 'hover:text-brand-maroon');
+          btn.classList.add('text-brand-charcoal', 'dark:text-[#EFECE4]', 'hover:text-brand-maroon');
           btn.classList.remove('text-white');
         }
       });
@@ -2068,9 +2252,9 @@
         const tierPrice = activeModalProduct.price + tier.extra;
         const isSelected = idx === selectedModalSizeIndex;
         return `
-          <button type="button" onclick="selectModalSize(${idx})" class="p-2.5 rounded-xl border text-left transition ${isSelected ? 'bg-brand-maroon text-white border-brand-maroon shadow-xs' : 'bg-white text-brand-charcoal border-gray-200 hover:border-brand-maroon'}">
+          <button type="button" onclick="selectModalSize(${idx})" class="p-2.5 rounded-xl border text-left transition ${isSelected ? 'bg-brand-maroon text-white border-brand-maroon shadow-xs' : 'bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#EFECE4] border-gray-200 dark:border-[#3E2E33] hover:border-brand-maroon'}">
             <div class="text-xs font-bold leading-tight">${tier.label}</div>
-            <div class="text-xs font-semibold mt-1 ${isSelected ? 'text-[#E5C687]' : 'text-brand-maroon'}">${formatPKR(tierPrice)}</div>
+            <div class="text-xs font-semibold mt-1 ${isSelected ? 'text-[#E5C687]' : 'text-brand-maroon dark:text-[#E5C687]'}">${formatPKR(tierPrice)}</div>
           </button>
         `;
       }).join('');
@@ -2138,25 +2322,25 @@
       if (cart.length === 0) {
         itemsContainer.innerHTML = `
           <div class="text-center py-16 space-y-3">
-            <p class="font-editorial text-2xl text-brand-charcoal">Aapka Order Bag Khali Hai</p>
-            <p class="text-xs text-brand-muted">Catalog se koi bhi stitched dress select karein.</p>
+            <p class="font-editorial text-2xl text-brand-charcoal dark:text-[#F3EFEA]">Aapka Order Bag Khali Hai</p>
+            <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Catalog se koi bhi stitched dress select karein.</p>
           </div>
         `;
         return;
       }
 
       itemsContainer.innerHTML = cart.map((item, idx) => `
-        <div class="flex gap-3.5 bg-white p-3 rounded-2xl border border-[#DFD7C8] items-center">
+        <div class="flex gap-3.5 bg-white dark:bg-[#1A1215] p-3 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] items-center">
           <img src="${item.image}" alt="${item.title}" class="w-16 h-20 object-cover rounded-xl bg-[#EBE6DC]" />
           <div class="flex-1 min-w-0">
-            <h4 class="font-editorial text-base font-bold text-brand-charcoal truncate">${item.title}</h4>
-            <p class="text-[11px] text-brand-muted">${item.size}</p>
-            <p class="text-xs font-bold text-brand-maroon mt-0.5">${formatPKR(item.price * item.qty)}</p>
+            <h4 class="font-editorial text-base font-bold text-brand-charcoal dark:text-[#F3EFEA] truncate">${item.title}</h4>
+            <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">${item.size}</p>
+            <p class="text-xs font-bold text-brand-maroon dark:text-[#E5C687] mt-0.5">${formatPKR(item.price * item.qty)}</p>
           </div>
-          <div class="flex items-center gap-1.5 bg-[#F5F2EC] rounded-lg px-2 py-1 border border-[#DFD7C8]">
-            <button onclick="changeItemQty(${idx}, -1)" class="w-5 h-5 text-xs font-bold text-brand-charcoal hover:text-brand-maroon">-</button>
-            <span class="text-xs font-bold w-4 text-center">${item.qty}</span>
-            <button onclick="changeItemQty(${idx}, 1)" class="w-5 h-5 text-xs font-bold text-brand-charcoal hover:text-brand-maroon">+</button>
+          <div class="flex items-center gap-1.5 bg-[#F5F2EC] dark:bg-[#322429] rounded-lg px-2 py-1 border border-[#DFD7C8] dark:border-[#3E2E33]">
+            <button type="button" onclick="changeItemQty(${idx}, -1)" class="w-5 h-5 text-xs font-bold text-brand-charcoal dark:text-white hover:text-brand-maroon">-</button>
+            <span class="text-xs font-bold w-4 text-center dark:text-white">${item.qty}</span>
+            <button type="button" onclick="changeItemQty(${idx}, 1)" class="w-5 h-5 text-xs font-bold text-brand-charcoal dark:text-white hover:text-brand-maroon">+</button>
           </div>
         </div>
       `).join('');
@@ -2185,9 +2369,9 @@
       selectedNaapSize = sizeText;
       document.querySelectorAll('.naap-size-btn').forEach(b => {
         b.classList.remove('bg-brand-maroon', 'text-white', 'border-brand-maroon', 'shadow-xs');
-        b.classList.add('bg-white', 'text-brand-charcoal', 'border-[#DFD7C8]');
+        b.classList.add('bg-white', 'dark:bg-[#1A1215]', 'text-brand-charcoal', 'dark:text-[#EFECE4]', 'border-[#DFD7C8]', 'dark:border-[#3E2E33]');
       });
-      btn.classList.remove('bg-white', 'text-brand-charcoal', 'border-[#DFD7C8]');
+      btn.classList.remove('bg-white', 'dark:bg-[#1A1215]', 'text-brand-charcoal', 'dark:text-[#EFECE4]', 'border-[#DFD7C8]', 'dark:border-[#3E2E33]');
       btn.classList.add('bg-brand-maroon', 'text-white', 'border-brand-maroon', 'shadow-xs');
     };
 
@@ -2215,6 +2399,7 @@
       window.open("https://wa.me/923154124959?text=" + encodeURIComponent(msg), "_blank");
     };
 
+    initTheme();
     renderProducts('all');
     updateCartUI();
     updateWishlistUI();
