@@ -43,6 +43,7 @@
     body { background-color: #F5F2EC; color: #242021; font-family: 'Plus Jakarta Sans', sans-serif; }
     .dark body { background-color: #181215; color: #F3EFEA; }
     .font-editorial { font-family: 'Playfair Display', Georgia, serif; }
+    button, a, select, input { touch-action: manipulation; }
   </style>
 </head>
 <body class="min-h-screen antialiased">
@@ -74,7 +75,7 @@
       <div class="w-14 h-14 rounded-full bg-brand-maroon/10 dark:bg-[#322429] text-brand-maroon dark:text-[#E5C687] flex items-center justify-center mx-auto text-2xl">🔒</div>
       <div>
         <h2 class="font-editorial text-2xl font-bold">Admin Login</h2>
-        <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">Orders, Discounts, New Arrival tags aur Dresses manage karne ke liye password enter karein.</p>
+        <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">Orders, Sales, Discounts, New Arrival tags aur Dresses manage karne ke liye password enter karein.</p>
       </div>
       <form onsubmit="verifyAdminPassword(event)" class="space-y-3">
         <input type="password" id="admin-password-input" required placeholder="Enter Admin Password" class="w-full px-4 py-3 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm text-center focus:outline-none focus:border-brand-maroon" />
@@ -135,8 +136,36 @@
       </div>
     </section>
 
-    <!-- Tab 3: Discounts & "New Arrival" Tag Controls -->
+    <!-- Tab 3: Special Sales, Discounts & "New Arrival" Tag Controls -->
     <section id="admin-discounts-view" class="hidden space-y-6">
+      <!-- Custom Sale Event (11.11 Sale, New Year Sale, etc.) -->
+      <div class="bg-white dark:bg-[#241A1E] p-5 rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33] space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="font-editorial text-xl font-bold">Special Sale Event (11.11 / New Year / Custom Sale)</h2>
+            <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Koi bhi sale ka naam (e.g., 11.11 Sale, New Year Sale) aur discount set karein ya Clear Sale se khatam karein.</p>
+          </div>
+          <span id="sale-event-status" class="px-3 py-1 rounded-full text-[11px] font-bold bg-[#F5F2EC] dark:bg-[#1A1215] text-brand-maroon dark:text-[#E5C687]">No Active Sale</span>
+        </div>
+
+        <form onsubmit="applySaleEvent(event)" class="flex flex-wrap items-center gap-2.5 pt-1">
+          <input type="text" id="sale-event-name" list="sale-presets" required placeholder="Sale Name (e.g., 11.11 Sale, New Year Sale)" class="flex-1 min-w-[200px] px-3.5 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-xs" />
+          <datalist id="sale-presets">
+            <option value="11.11 Sale"></option>
+            <option value="New Year Sale"></option>
+            <option value="Winter Clearance Sale"></option>
+            <option value="Weekend Flash Sale"></option>
+          </datalist>
+          <select id="sale-disc-type" class="px-3 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-xs font-bold">
+            <option value="percent">% Off</option>
+            <option value="flat">Rs. Off</option>
+          </select>
+          <input type="number" id="sale-disc-val" min="0" placeholder="Discount (optional)" class="w-36 px-3.5 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-xs" />
+          <button type="submit" class="px-4 py-2 rounded-xl bg-brand-teal hover:bg-[#115243] text-white text-xs font-bold">Launch Sale</button>
+          <button type="button" onclick="clearSaleEvent()" class="px-4 py-2 rounded-xl bg-red-600/10 text-red-700 dark:text-red-300 border border-red-300 dark:border-red-800 hover:bg-red-600 hover:text-white text-xs font-bold transition">Clear Sale</button>
+        </form>
+      </div>
+
       <!-- Global Catalog Discount Box -->
       <div class="bg-white dark:bg-[#241A1E] p-5 rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33] space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-2">
@@ -165,7 +194,7 @@
       </div>
     </section>
 
-    <!-- Tab 4: Add New Dress -->
+    <!-- Tab 4: Add New Dress (With Optional Discount Right on Add) -->
     <section id="admin-dress-form-wrap" class="hidden bg-white dark:bg-[#241A1E] p-6 rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33]">
       <h2 class="font-editorial text-2xl font-bold mb-4">Add New Dress to Catalog</h2>
       <form id="admin-dress-form" onsubmit="publishNewDress(event)" class="space-y-4">
@@ -179,7 +208,8 @@
             <input type="number" id="dress-price" required placeholder="2750" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm" />
           </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Category</label>
             <select id="dress-category" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm">
@@ -188,13 +218,26 @@
               <option value="frocks">Frocks &amp; Peplums</option>
             </select>
           </div>
-          <div class="flex items-end pb-1">
-            <label class="inline-flex items-center gap-2 text-xs font-bold cursor-pointer">
-              <input type="checkbox" id="dress-is-new" checked class="rounded text-brand-maroon" />
-              <span>Mark as "New Arrival"</span>
-            </label>
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Discount Type (Optional)</label>
+            <select id="dress-disc-type" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm">
+              <option value="percent">% Off</option>
+              <option value="flat">Rs. Off</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Discount Value (Optional)</label>
+            <input type="number" id="dress-disc-val" min="0" placeholder="e.g., 10 or 250" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm" />
           </div>
         </div>
+
+        <div class="flex items-center">
+          <label class="inline-flex items-center gap-2 text-xs font-bold cursor-pointer">
+            <input type="checkbox" id="dress-is-new" checked class="rounded text-brand-maroon" />
+            <span>Mark as "New Arrival"</span>
+          </label>
+        </div>
+
         <div>
           <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Dress Photo *</label>
           <input type="file" id="dress-image-file" accept="image/*" required class="w-full px-3.5 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-xs" />
@@ -236,7 +279,7 @@
   </main>
 
   <!-- Toast -->
-  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-brand-charcoal text-white text-xs font-semibold px-5 py-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300"></div>
+  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-brand-charcoal text-white text-xs font-semibold px-5 py-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-200"></div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -282,12 +325,13 @@
     let cloudDresses = [];
     let suitOverrides = {};
     let globalDiscount = { type: 'percent', value: 0 };
+    let saleEvent = { name: '', type: 'percent', value: 0 };
 
     window.formatPKR = (amount) => 'Rs. ' + Math.max(0, Math.round(Number(amount))).toLocaleString('en-PK');
     window.showToast = (msg) => {
       const t = document.getElementById('toast');
       t.textContent = msg; t.classList.remove('opacity-0');
-      setTimeout(() => t.classList.add('opacity-0'), 2400);
+      setTimeout(() => t.classList.add('opacity-0'), 1800);
     };
     window.toggleAdminTheme = () => {
       const isDark = document.documentElement.classList.toggle('dark');
@@ -311,12 +355,15 @@
         suitOverrides = JSON.parse(localStorage.getItem('ahinoor_suit_overrides') || '{}');
         const gd = JSON.parse(localStorage.getItem('ahinoor_global_discount') || 'null');
         if (gd) globalDiscount = gd;
+        const se = JSON.parse(localStorage.getItem('ahinoor_sale_event') || 'null');
+        if (se) saleEvent = se;
       } catch (e) {}
     }
     function saveLocalCatalogConfig() {
       try {
         localStorage.setItem('ahinoor_suit_overrides', JSON.stringify(suitOverrides));
         localStorage.setItem('ahinoor_global_discount', JSON.stringify(globalDiscount));
+        localStorage.setItem('ahinoor_sale_event', JSON.stringify(saleEvent));
       } catch (e) {}
     }
 
@@ -334,20 +381,7 @@
       return `<span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-300 font-bold text-[10px] uppercase">Pending</span>`;
     }
 
-    async function loadNotifications() {
-      const localList = getLocalNotifs();
-      try {
-        const snap = await getDocs(query(collection(db, "admin_notifications"), orderBy("createdAt", "desc")));
-        const remoteNotifs = snap.docs.map(d => ({ id: d.id, isCloud: true, ...d.data() }));
-        const remoteKeys = new Set(remoteNotifs.map(n => `${n.type}-${n.orderCode}`));
-        const uniqueLocal = localList.filter(n => !remoteKeys.has(`${n.type}-${n.orderCode}`));
-        cloudNotifications = [...remoteNotifs, ...uniqueLocal];
-      } catch (e) {
-        cloudNotifications = localList;
-      }
-      renderNotifications();
-    }
-
+    // Fast Local-First Render + Background Cloud Sync
     function renderNotifications() {
       const listEl = document.getElementById('admin-notifications-list');
       const badgeEl = document.getElementById('notif-unread-badge');
@@ -386,51 +420,49 @@
       }).join('');
     }
 
-    window.openOrderFromNotification = async function(notifId, orderCode) {
-      const target = cloudNotifications.find(n => n.id === notifId);
-      const localList = getLocalNotifs().map(n => (n.id === notifId || n.orderCode === orderCode) ? { ...n, read: true } : n);
-      saveLocalNotifs(localList);
-      if (target && target.isCloud) {
-        try { await updateDoc(doc(db, "admin_notifications", notifId), { read: true }); } catch (e) {}
-      }
-      await loadNotifications();
-      switchAdminTab('orders');
-    };
-
-    window.markAllNotificationsRead = async function() {
-      const localList = getLocalNotifs().map(n => ({ ...n, read: true }));
-      saveLocalNotifs(localList);
-      for (const n of cloudNotifications) {
-        if (n.isCloud && !n.read) {
-          try { await updateDoc(doc(db, "admin_notifications", n.id), { read: true }); } catch (e) {}
-        }
-      }
-      await loadNotifications();
-      window.showToast("All notifications marked as read ✓");
-    };
-
-    window.deleteNotification = async function(notifId) {
-      const target = cloudNotifications.find(n => n.id === notifId);
-      saveLocalNotifs(getLocalNotifs().filter(n => n.id !== notifId));
-      if (target && target.isCloud) {
-        try { await deleteDoc(doc(db, "admin_notifications", notifId)); } catch (e) {}
-      }
-      await loadNotifications();
-    };
-
-    async function loadOrdersOnly() {
-      const localList = getLocalOrders();
+    async function syncNotificationsFromCloud() {
+      const localList = getLocalNotifs();
       try {
-        const snap = await getDocs(query(collection(db, "orders"), orderBy("createdAt", "desc")));
-        const remoteOrders = snap.docs.map(d => ({ id: d.id, isCloud: true, ...d.data() }));
-        const remoteCodes = new Set(remoteOrders.map(o => o.orderCode));
-        const uniqueLocal = localList.filter(o => !remoteCodes.has(o.orderCode));
-        cloudOrders = [...remoteOrders, ...uniqueLocal];
-      } catch (err) {
-        cloudOrders = localList;
+        const snap = await getDocs(query(collection(db, "admin_notifications"), orderBy("createdAt", "desc")));
+        const remoteNotifs = snap.docs.map(d => ({ id: d.id, isCloud: true, ...d.data() }));
+        const remoteKeys = new Set(remoteNotifs.map(n => `${n.type}-${n.orderCode}`));
+        cloudNotifications = [...remoteNotifs, ...localList.filter(n => !remoteKeys.has(`${n.type}-${n.orderCode}`))];
+      } catch (e) {
+        cloudNotifications = localList;
       }
-      renderAdminOrders();
+      renderNotifications();
     }
+
+    window.openOrderFromNotification = function(notifId, orderCode) {
+      const target = cloudNotifications.find(n => n.id === notifId);
+      cloudNotifications = cloudNotifications.map(n => (n.id === notifId || n.orderCode === orderCode) ? { ...n, read: true } : n);
+      saveLocalNotifs(cloudNotifications);
+      renderNotifications();
+      switchAdminTab('orders');
+      if (target && target.isCloud) {
+        updateDoc(doc(db, "admin_notifications", notifId), { read: true }).catch(() => {});
+      }
+    };
+
+    window.markAllNotificationsRead = function() {
+      cloudNotifications = cloudNotifications.map(n => ({ ...n, read: true }));
+      saveLocalNotifs(cloudNotifications);
+      renderNotifications();
+      window.showToast("All read ✓");
+      cloudNotifications.forEach(n => {
+        if (n.isCloud) updateDoc(doc(db, "admin_notifications", n.id), { read: true }).catch(() => {});
+      });
+    };
+
+    window.deleteNotification = function(notifId) {
+      const target = cloudNotifications.find(n => n.id === notifId);
+      cloudNotifications = cloudNotifications.filter(n => n.id !== notifId);
+      saveLocalNotifs(cloudNotifications);
+      renderNotifications();
+      if (target && target.isCloud) {
+        deleteDoc(doc(db, "admin_notifications", notifId)).catch(() => {});
+      }
+    };
 
     function renderAdminOrders() {
       const container = document.getElementById('admin-orders-list');
@@ -505,55 +537,56 @@
       }).join('');
     }
 
-    window.markOrderDispatched = async function(docId) {
+    async function syncOrdersFromCloud() {
+      const localList = getLocalOrders();
+      try {
+        const snap = await getDocs(query(collection(db, "orders"), orderBy("createdAt", "desc")));
+        const remoteOrders = snap.docs.map(d => ({ id: d.id, isCloud: true, ...d.data() }));
+        const remoteCodes = new Set(remoteOrders.map(o => o.orderCode));
+        cloudOrders = [...remoteOrders, ...localList.filter(o => !remoteCodes.has(o.orderCode))];
+      } catch (err) {
+        cloudOrders = localList;
+      }
+      renderAdminOrders();
+    }
+
+    function updateOrderLocalAndCloud(docId, patch) {
+      const target = cloudOrders.find(o => o.id === docId);
+      cloudOrders = cloudOrders.map(o => (o.id === docId || (target && o.orderCode === target.orderCode)) ? { ...o, ...patch } : o);
+      saveLocalOrders(getLocalOrders().map(o => (o.id === docId || (target && o.orderCode === target.orderCode)) ? { ...o, ...patch } : o));
+      renderAdminOrders();
+      if (target && target.isCloud) {
+        updateDoc(doc(db, "orders", docId), patch).catch(() => {});
+      }
+    }
+
+    window.markOrderDispatched = function(docId) {
       const trackInput = document.getElementById(`postex-input-${docId}`);
       const trackingId = trackInput ? trackInput.value.trim() : '';
-      if (!trackingId) return window.showToast("Pehle PostEx Tracking ID likhein!");
+      if (!trackingId) return window.showToast("PostEx ID likhein!");
+      updateOrderLocalAndCloud(docId, { status: 'Dispatched', postexTrackingId: trackingId });
+      window.showToast("Dispatched 🚚");
+    };
 
+    window.markOrderDelivered = function(docId) {
+      updateOrderLocalAndCloud(docId, { status: 'Delivered' });
+      window.showToast("Delivered ✓");
+    };
+
+    window.adminCancelOrder = function(docId) {
+      updateOrderLocalAndCloud(docId, { status: 'Cancelled' });
+      window.showToast("Cancelled ❌");
+    };
+
+    window.adminDeleteOrder = function(docId) {
       const target = cloudOrders.find(o => o.id === docId);
-      const localList = getLocalOrders().map(o => (o.id === docId || (target && o.orderCode === target.orderCode)) ? { ...o, status: 'Dispatched', postexTrackingId: trackingId } : o);
-      saveLocalOrders(localList);
-
+      cloudOrders = cloudOrders.filter(o => o.id !== docId);
+      saveLocalOrders(getLocalOrders().filter(o => o.id !== docId && (!target || o.orderCode !== target.orderCode)));
+      renderAdminOrders();
+      window.showToast("Deleted 🗑️");
       if (target && target.isCloud) {
-        try { await updateDoc(doc(db, "orders", docId), { status: 'Dispatched', postexTrackingId: trackingId }); } catch (e) {}
+        deleteDoc(doc(db, "orders", docId)).catch(() => {});
       }
-      await loadOrdersOnly();
-      window.showToast("Order marked Dispatched! 🚚");
-    };
-
-    window.markOrderDelivered = async function(docId) {
-      const target = cloudOrders.find(o => o.id === docId);
-      const localList = getLocalOrders().map(o => (o.id === docId || (target && o.orderCode === target.orderCode)) ? { ...o, status: 'Delivered' } : o);
-      saveLocalOrders(localList);
-
-      if (target && target.isCloud) {
-        try { await updateDoc(doc(db, "orders", docId), { status: 'Delivered' }); } catch (e) {}
-      }
-      await loadOrdersOnly();
-      window.showToast("Order marked Delivered! ✓");
-    };
-
-    window.adminCancelOrder = async function(docId) {
-      const target = cloudOrders.find(o => o.id === docId);
-      if (!target) return;
-      const localList = getLocalOrders().map(o => (o.id === docId || o.orderCode === target.orderCode) ? { ...o, status: 'Cancelled' } : o);
-      saveLocalOrders(localList);
-      if (target.isCloud) {
-        try { await updateDoc(doc(db, "orders", docId), { status: 'Cancelled' }); } catch (e) {}
-      }
-      await loadOrdersOnly();
-      window.showToast("Order marked Cancelled! ❌");
-    };
-
-    window.adminDeleteOrder = async function(docId) {
-      const target = cloudOrders.find(o => o.id === docId);
-      if (!target) return;
-      saveLocalOrders(getLocalOrders().filter(o => o.id !== docId && o.orderCode !== target.orderCode));
-      if (target.isCloud) {
-        try { await deleteDoc(doc(db, "orders", docId)); } catch (e) {}
-      }
-      await loadOrdersOnly();
-      window.showToast("Order deleted! 🗑️");
     };
 
     window.notifyCustomerDispatch = function(docId) {
@@ -596,7 +629,7 @@
       `).join('');
 
       const printWin = window.open('', '_blank', 'width=800,height=700');
-      if (!printWin) return window.showToast("Please allow pop-ups to print slip.");
+      if (!printWin) return window.showToast("Allow pop-ups to print.");
       printWin.document.write(`
         <!DOCTYPE html>
         <html>
@@ -618,90 +651,94 @@
       printWin.document.close();
     };
 
-    // Discounts & New Arrival Badge Controls
-    async function loadCatalogConfig() {
-      loadLocalCatalogConfig();
-      try {
-        const snap = await getDocs(query(collection(db, "dresses"), orderBy("createdAt", "desc")));
-        cloudDresses = snap.docs.map(d => ({ id: d.id, cloudId: d.id, ...d.data() }));
-      } catch (e) {}
-      try {
-        const discDoc = await getDoc(doc(db, "settings", "catalog_config"));
-        if (discDoc.exists()) {
-          const data = discDoc.data();
-          if (data.globalDiscount) globalDiscount = data.globalDiscount;
-          if (data.suitOverrides) suitOverrides = data.suitOverrides;
-          saveLocalCatalogConfig();
-        }
-      } catch (e) {}
-      renderSuitControls();
-    }
-
-    async function persistCatalogConfig() {
+    // Sale Event + Discounts + New Arrival Controls (Instant UI Update)
+    function persistCatalogConfigFast(toastMsg) {
       saveLocalCatalogConfig();
-      try {
-        await setDoc(doc(db, "settings", "catalog_config"), {
-          globalDiscount,
-          suitOverrides,
-          updatedAt: serverTimestamp()
-        });
-      } catch (e) {}
       renderSuitControls();
+      if (toastMsg) window.showToast(toastMsg);
+      setDoc(doc(db, "settings", "catalog_config"), {
+        globalDiscount,
+        suitOverrides,
+        saleEvent,
+        updatedAt: serverTimestamp()
+      }).catch(() => {});
     }
 
-    window.applyGlobalDiscount = async function(e) {
+    window.applySaleEvent = function(e) {
+      e.preventDefault();
+      saleEvent = {
+        name: document.getElementById('sale-event-name').value.trim(),
+        type: document.getElementById('sale-disc-type').value,
+        value: Math.max(0, Number(document.getElementById('sale-disc-val').value || 0))
+      };
+      persistCatalogConfigFast(`${saleEvent.name} active!`);
+    };
+
+    window.clearSaleEvent = function() {
+      saleEvent = { name: '', type: 'percent', value: 0 };
+      const inp = document.getElementById('sale-event-name');
+      if (inp) inp.value = '';
+      persistCatalogConfigFast("Sale cleared!");
+    };
+
+    window.applyGlobalDiscount = function(e) {
       e.preventDefault();
       globalDiscount = {
         type: document.getElementById('global-disc-type').value,
         value: Math.max(0, Number(document.getElementById('global-disc-val').value || 0))
       };
-      await persistCatalogConfig();
-      window.showToast("Global discount applied! 🏷️");
+      persistCatalogConfigFast("Global discount applied! 🏷️");
     };
 
-    window.removeGlobalDiscount = async function() {
+    window.removeGlobalDiscount = function() {
       globalDiscount = { type: 'percent', value: 0 };
       Object.keys(suitOverrides).forEach(k => {
         if (suitOverrides[k]) suitOverrides[k].discount = null;
       });
-      await persistCatalogConfig();
-      window.showToast("All discounts removed!");
+      persistCatalogConfigFast("All discounts removed!");
     };
 
-    window.toggleSuitNewArrival = async function(suitKey, defaultIsNew) {
+    window.toggleSuitNewArrival = function(suitKey, defaultIsNew) {
       const cur = suitOverrides[suitKey] || {};
       const currentNew = cur.isNew !== undefined ? cur.isNew : Boolean(defaultIsNew);
       suitOverrides[suitKey] = { ...cur, isNew: !currentNew };
-      await persistCatalogConfig();
-      window.showToast(!currentNew ? "New Arrival badge ON" : "New Arrival badge removed");
+      persistCatalogConfigFast(!currentNew ? "New Arrival ON" : "New Arrival removed");
     };
 
-    window.setSuitDiscount = async function(suitKey) {
+    window.setSuitDiscount = function(suitKey) {
       const typeEl = document.getElementById(`suit-disc-type-${suitKey}`);
       const valEl = document.getElementById(`suit-disc-val-${suitKey}`);
       const val = Number(valEl?.value || 0);
       const type = typeEl?.value || 'percent';
       const cur = suitOverrides[suitKey] || {};
       suitOverrides[suitKey] = { ...cur, discount: val > 0 ? { type, value: val } : null };
-      await persistCatalogConfig();
-      window.showToast("Suit discount updated!");
+      persistCatalogConfigFast("Suit discount saved!");
     };
 
-    window.clearSuitDiscount = async function(suitKey) {
+    window.clearSuitDiscount = function(suitKey) {
       const cur = suitOverrides[suitKey] || {};
       suitOverrides[suitKey] = { ...cur, discount: null };
-      await persistCatalogConfig();
-      window.showToast("Suit discount removed!");
+      persistCatalogConfigFast("Discount removed!");
     };
 
-    window.deleteCloudDress = async function(docId) {
-      try { await deleteDoc(doc(db, "dresses", docId)); } catch (e) {}
+    window.deleteCloudDress = function(docId) {
       cloudDresses = cloudDresses.filter(d => d.cloudId !== docId);
       renderSuitControls();
       window.showToast("Dress deleted!");
+      deleteDoc(doc(db, "dresses", docId)).catch(() => {});
     };
 
     function renderSuitControls() {
+      const saleEl = document.getElementById('sale-event-status');
+      if (saleEl) {
+        if (saleEvent && saleEvent.name) {
+          const discPart = saleEvent.value > 0 ? ` (${saleEvent.value}${saleEvent.type === 'percent' ? '% Off' : ' Rs. Off'})` : '';
+          saleEl.textContent = `Active: ${saleEvent.name}${discPart}`;
+        } else {
+          saleEl.textContent = 'No Active Sale';
+        }
+      }
+
       const statusEl = document.getElementById('global-discount-status');
       if (statusEl) {
         statusEl.textContent = globalDiscount && globalDiscount.value > 0
@@ -751,98 +788,144 @@
       }).join('');
     }
 
-    window.publishNewDress = async (e) => {
+    window.publishNewDress = function(e) {
       e.preventDefault();
       const file = document.getElementById('dress-image-file').files[0];
       if (!file) return;
+      const title = document.getElementById('dress-title').value.trim();
+      const price = Number(document.getElementById('dress-price').value);
+      const category = document.getElementById('dress-category').value;
       const isNewChecked = document.getElementById('dress-is-new').checked;
+      const discType = document.getElementById('dress-disc-type').value;
+      const discVal = Number(document.getElementById('dress-disc-val').value || 0);
+      const fabric = document.getElementById('dress-fabric').value || "Soft Cotton";
+      const embroidery = document.getElementById('dress-embroidery').value || "Floral Work";
+
       const reader = new FileReader();
       reader.onload = async (ev) => {
+        const tempId = 'temp-' + Date.now();
+        const dressPayload = {
+          title, price, category,
+          isNew: isNewChecked,
+          badge: isNewChecked ? "New Arrival" : "Stitched",
+          image: ev.target.result,
+          fabric, embroidery
+        };
+        cloudDresses.unshift({ id: tempId, cloudId: tempId, ...dressPayload });
+        if (discVal > 0) {
+          suitOverrides[tempId] = { isNew: isNewChecked, discount: { type: discType, value: discVal } };
+          saveLocalCatalogConfig();
+        }
+        renderSuitControls();
+        document.getElementById('admin-dress-form').reset();
+        window.showToast("Dress added! 👗");
+
         try {
-          await addDoc(collection(db, "dresses"), {
-            title: document.getElementById('dress-title').value.trim(),
-            price: Number(document.getElementById('dress-price').value),
-            category: document.getElementById('dress-category').value,
-            isNew: isNewChecked,
-            badge: isNewChecked ? "New Arrival" : "Stitched",
-            image: ev.target.result,
-            fabric: document.getElementById('dress-fabric').value || "Soft Cotton",
-            embroidery: document.getElementById('dress-embroidery').value || "Floral Work",
-            createdAt: serverTimestamp()
-          });
-          document.getElementById('admin-dress-form').reset();
-          await loadCatalogConfig();
-          window.showToast("New dress added! 👗");
-        } catch (err) { window.showToast("Error adding dress"); }
+          const docRef = await addDoc(collection(db, "dresses"), { ...dressPayload, createdAt: serverTimestamp() });
+          cloudDresses = cloudDresses.map(d => d.cloudId === tempId ? { ...d, id: docRef.id, cloudId: docRef.id } : d);
+          if (discVal > 0) {
+            suitOverrides[docRef.id] = suitOverrides[tempId];
+            delete suitOverrides[tempId];
+            await setDoc(doc(db, "settings", "catalog_config"), { globalDiscount, suitOverrides, saleEvent, updatedAt: serverTimestamp() });
+          }
+          renderSuitControls();
+        } catch (err) {}
       };
       reader.readAsDataURL(file);
     };
 
-    window.updateAdminPassword = async (e) => {
+    window.updateAdminPassword = function(e) {
       e.preventDefault();
       const next = document.getElementById('pw-new').value.trim();
       if (document.getElementById('pw-current').value !== currentAdminPassword || next !== document.getElementById('pw-confirm').value.trim()) {
         return window.showToast("Password mismatch!");
       }
-      try { await setDoc(doc(db, "settings", "admin"), { password: next, updatedAt: serverTimestamp() }); } catch (err) {}
       currentAdminPassword = next;
       try { localStorage.setItem('ahinoor_admin_pw', next); } catch (e) {}
       document.getElementById('admin-password-form').reset();
-      window.showToast("Admin password updated! 🔑");
+      window.showToast("Password updated! 🔑");
+      setDoc(doc(db, "settings", "admin"), { password: next, updatedAt: serverTimestamp() }).catch(() => {});
     };
 
-    window.refreshAllAdminData = async function() {
-      await Promise.all([loadNotifications(), loadOrdersOnly(), loadCatalogConfig()]);
-      window.showToast("Admin panel updated ✓");
-    };
-
-    window.verifyAdminPassword = async (e) => {
-      e.preventDefault();
+    async function syncCatalogConfigFromCloud() {
+      loadLocalCatalogConfig();
       try {
-        const pwDoc = await getDoc(doc(db, "settings", "admin"));
-        if (pwDoc.exists() && pwDoc.data().password) {
-          currentAdminPassword = pwDoc.data().password;
-          try { localStorage.setItem('ahinoor_admin_pw', currentAdminPassword); } catch (err) {}
+        const snap = await getDocs(query(collection(db, "dresses"), orderBy("createdAt", "desc")));
+        cloudDresses = snap.docs.map(d => ({ id: d.id, cloudId: d.id, ...d.data() }));
+      } catch (e) {}
+      try {
+        const discDoc = await getDoc(doc(db, "settings", "catalog_config"));
+        if (discDoc.exists()) {
+          const data = discDoc.data();
+          if (data.globalDiscount) globalDiscount = data.globalDiscount;
+          if (data.suitOverrides) suitOverrides = data.suitOverrides;
+          if (data.saleEvent) saleEvent = data.saleEvent;
+          saveLocalCatalogConfig();
         }
-      } catch (err) {}
+      } catch (e) {}
+      renderSuitControls();
+    }
 
-      if (document.getElementById('admin-password-input').value === currentAdminPassword) {
+    window.refreshAllAdminData = function() {
+      // Render immediately from local state so click feels instant
+      cloudOrders = getLocalOrders();
+      cloudNotifications = getLocalNotifs();
+      loadLocalCatalogConfig();
+      renderNotifications();
+      renderAdminOrders();
+      renderSuitControls();
+      // Sync cloud in background
+      Promise.all([syncNotificationsFromCloud(), syncOrdersFromCloud(), syncCatalogConfigFromCloud()]).catch(() => {});
+    };
+
+    window.verifyAdminPassword = function(e) {
+      e.preventDefault();
+      const entered = document.getElementById('admin-password-input').value;
+      if (entered === currentAdminPassword) {
         try { sessionStorage.setItem('ahinoor_admin_unlocked', 'true'); } catch (err) {}
         document.getElementById('admin-login-error').classList.add('hidden');
         showAdminWorkspace();
       } else {
         document.getElementById('admin-login-error').classList.remove('hidden');
       }
+      getDoc(doc(db, "settings", "admin")).then(pwDoc => {
+        if (pwDoc.exists() && pwDoc.data().password) {
+          currentAdminPassword = pwDoc.data().password;
+          try { localStorage.setItem('ahinoor_admin_pw', currentAdminPassword); } catch (err) {}
+        }
+      }).catch(() => {});
     };
 
     function showAdminWorkspace() {
       document.getElementById('admin-login-view').classList.add('hidden');
       document.getElementById('admin-workspace-view').classList.remove('hidden');
       document.getElementById('admin-logout-btn').classList.remove('hidden');
-      refreshAllAdminData();
+      window.refreshAllAdminData();
     }
 
-    window.logoutAdmin = () => {
+    window.logoutAdmin = function() {
       try { sessionStorage.removeItem('ahinoor_admin_unlocked'); } catch (e) {}
       document.getElementById('admin-workspace-view').classList.add('hidden');
       document.getElementById('admin-logout-btn').classList.add('hidden');
       document.getElementById('admin-login-view').classList.remove('hidden');
     };
 
-    window.switchAdminTab = (tab) => {
-      ['notifications', 'orders', 'discounts', 'dress', 'password'].forEach(t => {
-        const b = document.getElementById('admin-tab-' + t);
-        if (b) {
-          b.classList.toggle('bg-brand-maroon', t === tab);
-          b.classList.toggle('text-white', t === tab);
-          b.classList.toggle('bg-white', t !== tab);
-        }
+    window.switchAdminTab = function(tab) {
+      requestAnimationFrame(() => {
+        ['notifications', 'orders', 'discounts', 'dress', 'password'].forEach(t => {
+          const b = document.getElementById('admin-tab-' + t);
+          if (b) {
+            b.classList.toggle('bg-brand-maroon', t === tab);
+            b.classList.toggle('text-white', t === tab);
+            b.classList.toggle('bg-white', t !== tab);
+          }
+        });
+        document.getElementById('admin-notifications-view').classList.toggle('hidden', tab !== 'notifications');
+        document.getElementById('admin-orders-view').classList.toggle('hidden', tab !== 'orders');
+        document.getElementById('admin-discounts-view').classList.toggle('hidden', tab !== 'discounts');
+        document.getElementById('admin-dress-form-wrap').classList.toggle('hidden', tab !== 'dress');
+        document.getElementById('admin-password-wrap').classList.toggle('hidden', tab !== 'password');
       });
-      document.getElementById('admin-notifications-view').classList.toggle('hidden', tab !== 'notifications');
-      document.getElementById('admin-orders-view').classList.toggle('hidden', tab !== 'orders');
-      document.getElementById('admin-discounts-view').classList.toggle('hidden', tab !== 'discounts');
-      document.getElementById('admin-dress-form-wrap').classList.toggle('hidden', tab !== 'dress');
-      document.getElementById('admin-password-wrap').classList.toggle('hidden', tab !== 'password');
     };
 
     try {
