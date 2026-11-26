@@ -6,11 +6,13 @@
   <title>AHINOOR | Exclusive Stitched &amp; Embroidered Women &amp; Girls Wear</title>
   <link rel="icon" type="image/jpeg" href="1000827919.jpg" />
 
+  <!-- Preload primary hero showcase image for faster LCP -->
   <link rel="preload" as="image" href="1000827972.jpg" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- Instant Dark/Light Mode Sync Before Paint -->
   <script>
     (function() {
       try {
@@ -46,7 +48,7 @@
           }
         }
       }
-    }
+    };
   </script>
   <style>
     body {
@@ -64,6 +66,7 @@
     .product-card { contain: layout style; will-change: transform; }
     .card-img-zoom { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
     .product-card:hover .card-img-zoom { transform: scale(1.05); }
+
     .review-stage, .hero-showcase-stage { perspective: 1200px; }
     @keyframes flipInCard {
       0% { opacity: 0.4; transform: rotateY(-45deg) scale(0.97); }
@@ -75,8 +78,16 @@
     }
     .review-flip-in { animation: flipInCard 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
     .review-flip-out { animation: flipOutCard 0.25s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards; }
-    @keyframes progressFill { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
-    .review-timer-bar { transform-origin: left; animation: progressFill 5s linear forwards; }
+
+    @keyframes progressFill {
+      0% { transform: scaleX(0); }
+      100% { transform: scaleX(1); }
+    }
+    .review-timer-bar {
+      transform-origin: left;
+      animation: progressFill 5s linear forwards;
+    }
+
     .btn-sheen { position: relative; overflow: hidden; }
     .btn-sheen::after {
       content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
@@ -84,6 +95,7 @@
       transform: skewX(-20deg); transition: left 0.55s ease;
     }
     .btn-sheen:hover::after { left: 140%; }
+
     .filter-bar-container {
       position: relative; display: inline-flex; align-items: center;
       background-color: #EBE6DC; border: 1px solid #DFD7C8; border-radius: 9999px;
@@ -101,10 +113,12 @@
       z-index: 0;
     }
     .filter-tab-btn { position: relative; z-index: 1; white-space: nowrap; touch-action: manipulation; }
+
     .ticker-wrap { overflow: hidden; white-space: nowrap; width: 100%; }
     .ticker-move { display: inline-flex; align-items: center; white-space: nowrap; animation: marquee-rtl 26s linear infinite; }
     .ticker-wrap:hover .ticker-move { animation-play-state: paused; }
     @keyframes marquee-rtl { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-50%, 0, 0); } }
+
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { scrollbar-width: none; }
     button, a { touch-action: manipulation; }
@@ -112,7 +126,7 @@
 </head>
 <body class="antialiased selection:bg-brand-maroon selection:text-white">
 
-  <!-- Top Running Marquee Bar -->
+  <!-- Top Running Marquee Bar (Free Delivery & Brand Highlights) -->
   <div class="bg-[#2E1119] text-[#F5F2EC] text-xs py-2.5 border-b border-white/10 ticker-wrap">
     <div class="ticker-move">
       <div class="flex items-center space-x-8 px-6 font-medium tracking-wide">
@@ -120,9 +134,7 @@
         <span class="text-white/40">|</span>
         <span>🌸 Ahinoor Exclusive: Custom Stitching &amp; Fine Embroidery for Women &amp; Girls</span>
         <span class="text-white/40">|</span>
-        <button type="button" onclick="openTrackModal()" class="underline decoration-white/60 hover:text-white font-semibold">
-          📍 Track Your Order &amp; PostEx ID
-        </button>
+        <span id="marquee-discount-banner" class="text-[#E5C687] font-semibold">💖 Handcrafted Pret &amp; Custom Naap Available</span>
         <span class="text-white/40">•</span>
       </div>
       <div class="flex items-center space-x-8 px-6 font-medium tracking-wide" aria-hidden="true">
@@ -130,18 +142,17 @@
         <span class="text-white/40">|</span>
         <span>🌸 Ahinoor Exclusive: Custom Stitching &amp; Fine Embroidery for Women &amp; Girls</span>
         <span class="text-white/40">|</span>
-        <button type="button" onclick="openTrackModal()" class="underline decoration-white/60 hover:text-white font-semibold">
-          📍 Track Your Order &amp; PostEx ID
-        </button>
+        <span class="text-[#E5C687] font-semibold">💖 Handcrafted Pret &amp; Custom Naap Available</span>
         <span class="text-white/40">•</span>
       </div>
     </div>
   </div>
 
-  <!-- Header -->
+  <!-- Header with Single Track Order Icon & Order History Icon -->
   <header class="sticky top-0 z-40 bg-gradient-to-r from-[#FDFBF7] via-[#F7EFE6] to-[#EFE4D6] dark:from-[#241A1E] dark:via-[#1F1418] dark:to-[#181013] backdrop-blur-md border-b border-[#DFD2BE] dark:border-[#3E2E33] shadow-[0_2px_16px_rgba(106,35,56,0.06)]">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 sm:h-[84px] flex items-center justify-between gap-2">
       
+      <!-- Mobile Menu Toggle + Logo -->
       <div class="flex items-center gap-2 lg:hidden">
         <button type="button" onclick="toggleMobileMenu()" class="p-1.5 text-brand-charcoal dark:text-white hover:text-brand-maroon" aria-label="Menu">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,6 +166,7 @@
         </a>
       </div>
 
+      <!-- Desktop Left: 74px Framed Logo Before HOME + Navigation -->
       <div class="hidden lg:flex items-center space-x-5">
         <a href="#" class="shrink-0 group" title="Ahinoor Home">
           <div class="w-[74px] h-[74px] rounded-full p-[2px] bg-gradient-to-tr from-[#B68D40] via-[#E5C687] to-[#6A2338] shadow-md group-hover:scale-105 transition-transform duration-300">
@@ -165,7 +177,6 @@
           <a href="#" class="hover:text-brand-maroon dark:hover:text-[#E5C687] transition">HOME</a>
           <a href="#collection" onclick="filterProducts('all')" class="hover:text-brand-maroon dark:hover:text-[#E5C687] transition">PRET COLLECTION</a>
           <button type="button" onclick="openSizeChartModal()" class="text-brand-maroon dark:text-[#E5C687] hover:underline font-bold transition">📏 SIZE CHART</button>
-          <button type="button" onclick="openTrackModal()" class="text-brand-teal dark:text-[#4ADE80] hover:underline font-bold transition">📍 TRACK ORDER</button>
           <a href="#custom-naap" class="inline-flex items-center gap-1.5 hover:text-brand-maroon dark:hover:text-[#E5C687] transition">
             <span>CUSTOM STITCH</span>
             <span class="bg-[#E5D7BF] dark:bg-[#3E2E33] text-brand-maroon dark:text-[#E5C687] text-[9px] px-2 py-0.5 rounded font-bold tracking-wider">ATELIER</span>
@@ -173,27 +184,43 @@
         </nav>
       </div>
 
+      <!-- Center Brand Title -->
       <a href="#" class="flex flex-col items-center text-center shrink-0">
         <span class="font-editorial text-lg sm:text-[27px] font-bold tracking-[0.2em] sm:tracking-[0.22em] text-brand-maroon dark:text-[#F3EFEA] leading-none">AHINOOR</span>
         <span class="text-[7px] sm:text-[9px] tracking-[0.22em] sm:tracking-[0.26em] uppercase text-brand-gold font-bold mt-1">STITCHED &amp; EMBROIDERED</span>
       </a>
 
-      <div class="flex items-center space-x-1.5 sm:space-x-2.5">
-        <button type="button" onclick="openTrackModal()" class="px-2.5 py-1.5 rounded-full bg-brand-teal/10 dark:bg-[#1E332B] text-brand-teal dark:text-[#4ADE80] border border-brand-teal/30 text-[10px] sm:text-xs font-bold hover:bg-brand-teal hover:text-white transition" title="Track Order">
-          📍 Track
+      <!-- Right Action Icons: Single Track Order Icon + Order History Icon + Theme + Wishlist + Bag -->
+      <div class="flex items-center space-x-1.5 sm:space-x-2">
+        <!-- Single Track Order Icon in Header -->
+        <button type="button" onclick="openTrackModal()" class="p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-brand-teal text-brand-teal dark:text-[#4ADE80] hover:text-white border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs" title="Track Order &amp; PostEx ID" aria-label="Track Order">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
         </button>
 
-        <button type="button" onclick="toggleTheme()" class="p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-white text-brand-maroon dark:text-[#E5C687] border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs" title="Toggle Dark/Light Mode">
+        <!-- Customer Order History Icon in Header -->
+        <button type="button" onclick="openOrderHistoryModal()" class="p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-brand-maroon text-brand-maroon dark:text-[#E5C687] hover:text-white border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs" title="Order History" aria-label="Order History">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </button>
+
+        <!-- Dark / Light Mode Toggle -->
+        <button type="button" onclick="toggleTheme()" class="p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-white text-brand-maroon dark:text-[#E5C687] border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">
           <span id="theme-icon" class="text-sm">🌙</span>
         </button>
 
-        <button type="button" onclick="toggleWishlistFilter()" id="wishlist-header-btn" class="relative p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-white text-brand-maroon border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs" title="Saved Favorites">
+        <!-- Wishlist -->
+        <button type="button" onclick="toggleWishlistFilter()" id="wishlist-header-btn" class="relative p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-white text-brand-maroon border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs" title="Saved Favorites" aria-label="Saved Favorites">
           <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
           </svg>
           <span id="wishlist-badge" class="hidden absolute -top-1 -right-1 bg-[#D62976] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">0</span>
         </button>
 
+        <!-- Cart Drawer -->
         <button type="button" onclick="openCartDrawer()" class="relative p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-white text-brand-charcoal dark:text-[#EFECE4] hover:text-brand-maroon border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs" aria-label="Order Bag">
           <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M16 6V4a4 4 0 00-8 0v2H4v14a2 2 0 002 2h12a2 2 0 002-2V6h-4zm-6-2a2 2 0 114 0v2h-4V4z"/>
@@ -203,25 +230,25 @@
       </div>
     </div>
 
+    <!-- Mobile Dropdown Menu -->
     <div id="mobile-menu" class="hidden lg:hidden bg-[#F7EFE6] dark:bg-[#1F1418] border-t border-[#DFD2BE] dark:border-[#3E2E33] px-4 py-4 space-y-3">
       <a href="#" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">HOME</a>
       <a href="#collection" onclick="filterProducts('new'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon">NEW ARRIVALS</a>
       <a href="#collection" onclick="filterProducts('all'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">PRET COLLECTION</a>
-      <button type="button" onclick="toggleMobileMenu(); openTrackModal()" class="block text-xs font-bold tracking-wider uppercase text-brand-teal dark:text-[#4ADE80] text-left w-full">📍 TRACK ORDER &amp; POSTEX</button>
       <button type="button" onclick="toggleMobileMenu(); openSizeChartModal()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon text-left w-full">📏 OFFICIAL SIZE CHART</button>
       <a href="#custom-naap" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">CUSTOM STITCH &amp; EMBROIDERY</a>
-      <a href="#reviews-section" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">CUSTOMER REVIEWS (20)</a>
+      <a href="#reviews-section" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">CUSTOMER REVIEWS</a>
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero Section with 5-Second Auto-Flipping Showcase Card -->
   <section class="relative overflow-hidden bg-gradient-to-br from-[#F5F2EC] via-[#EFECE4] to-[#E6DFD3] dark:from-[#1E1519] dark:via-[#181014] dark:to-[#120B0E] border-b border-[#E2DBD0] dark:border-[#3E2E33]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
         <div class="lg:col-span-6 space-y-5 sm:space-y-6">
           <div class="inline-block bg-[#E6E0D6] dark:bg-[#322429] text-brand-maroon dark:text-[#E5C687] text-[11px] font-semibold tracking-wide px-4 py-1.5 rounded-full">
-            100% Women &amp; Girls Handcrafted Apparel • Free Delivery
+            100% Free Delivery All Over Pakistan • Women &amp; Girls Wear
           </div>
 
           <h1 class="font-editorial text-4xl sm:text-5xl lg:text-[56px] font-bold text-brand-charcoal dark:text-[#F3EFEA] leading-[1.08] tracking-tight">
@@ -230,15 +257,15 @@
           </h1>
 
           <p class="text-brand-muted dark:text-[#B5A8A3] text-sm sm:text-[15px] max-w-lg leading-relaxed">
-            Welcome to <strong class="text-brand-charcoal dark:text-white font-semibold">Ahinoor</strong>. Hum ladies aur choti bacchiyon ke liye high-grade fabric par behtareen silai aur khubsurat hath ki phoolo wali embroidery bana kar dety hain. Direct online booking &amp; live PostEx tracking!
+            Welcome to <strong class="text-brand-charcoal dark:text-white font-semibold">Ahinoor</strong>. Hum ladies aur choti bacchiyon ke liye high-grade fabric par behtareen silai aur khubsurat hath ki phoolo wali embroidery bana kar dety hain.
           </p>
 
           <div class="flex flex-wrap items-center gap-3 pt-1">
             <a href="#collection" onclick="filterProducts('all')" class="btn-sheen px-6 sm:px-7 py-3.5 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold tracking-[0.14em] uppercase rounded-full transition shadow-sm">
               EXPLORE AVAILABLE DESIGNS
             </a>
-            <button type="button" onclick="openTrackModal()" class="px-5 sm:px-6 py-3.5 bg-white/80 dark:bg-[#2A2225] hover:bg-white text-brand-teal dark:text-[#4ADE80] border border-brand-teal/50 text-xs font-bold tracking-[0.12em] uppercase rounded-full transition inline-flex items-center gap-2 shadow-2xs">
-              📍 TRACK ORDER
+            <button type="button" onclick="openSizeChartModal()" class="px-5 sm:px-6 py-3.5 bg-white/80 dark:bg-[#2A2225] hover:bg-white text-brand-maroon dark:text-[#E5C687] border border-brand-maroon/50 dark:border-[#4E3B42] text-xs font-bold tracking-[0.12em] uppercase rounded-full transition inline-flex items-center gap-2 shadow-2xs">
+              📏 SIZE CHART
             </button>
           </div>
 
@@ -258,11 +285,11 @@
           </div>
         </div>
 
-        <!-- Right Auto-Flipping Showcase Card -->
+        <!-- Right Auto-Flipping 3D Showcase Card (object-contain so full dress is visible) -->
         <div class="lg:col-span-6 hero-showcase-stage" onmouseenter="pauseHeroAutoFlip()" onmouseleave="resumeHeroAutoFlip()">
           <div id="hero-showcase-card" class="bg-[#EFECE4]/90 dark:bg-[#241A1E]/90 border border-[#DFD7C8] dark:border-[#3E2E33] rounded-3xl p-4 sm:p-7 shadow-md max-w-lg mx-auto relative overflow-hidden">
             <div class="flex items-center justify-between mb-3 sm:mb-4">
-              <span id="hero-card-badge" class="text-[10px] sm:text-[11px] font-bold tracking-[0.16em] uppercase text-brand-charcoal dark:text-[#E5C687]">AHINOOR • NEW ARRIVAL</span>
+              <span id="hero-card-badge" class="text-[10px] sm:text-[11px] font-bold tracking-[0.16em] uppercase text-brand-charcoal dark:text-[#E5C687]">AHINOOR • SIGNATURE PIECE</span>
               <span id="hero-card-price" class="bg-[#1F2421] dark:bg-[#3E2E33] text-white text-xs font-bold px-3.5 py-1 rounded-full">Rs. 2,650</span>
             </div>
 
@@ -296,7 +323,7 @@
     </div>
   </section>
 
-  <!-- Visual Quick-Shop Category Circles -->
+  <!-- Visual Quick-Shop Category Circles (No duplicate Track Order trigger) -->
   <section class="py-7 sm:py-9 bg-[#FAF7F2] dark:bg-[#1A1215] border-b border-[#E4DDD0] dark:border-[#3E2E33]">
     <div class="max-w-5xl mx-auto px-4">
       <div class="flex items-center justify-start sm:justify-center gap-5 sm:gap-9 overflow-x-auto no-scrollbar py-1">
@@ -336,11 +363,11 @@
           <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">Frocks &amp; Peplums</span>
         </a>
 
-        <button type="button" onclick="openTrackModal()" class="group flex flex-col items-center gap-2 shrink-0 bg-transparent border-0 cursor-pointer">
-          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-[#176B58] to-[#2E1119] shadow-sm group-hover:scale-105 transition flex items-center justify-center bg-white">
-            <span class="text-xl">📍</span>
+        <button type="button" onclick="openSizeChartModal()" class="group flex flex-col items-center gap-2 shrink-0 bg-transparent border-0 cursor-pointer">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-[#9E7B3E] to-[#2E1119] shadow-sm group-hover:scale-105 transition flex items-center justify-center bg-white">
+            <span class="text-xl">📏</span>
           </div>
-          <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-teal transition">Track Order</span>
+          <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">Size Chart</span>
         </button>
       </div>
     </div>
@@ -357,10 +384,10 @@
       <div class="filter-bar-container" id="filter-bar">
         <div id="filter-pill" class="filter-pill-indicator"></div>
         <button type="button" id="tab-all" onclick="filterProducts('all', this)" data-filter="all" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-white">
-          All Suits (18)
+          All Suits
         </button>
         <button type="button" id="tab-new" onclick="filterProducts('new', this)" data-filter="new" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal dark:text-[#EFECE4] hover:text-brand-maroon">
-          New Arrivals (8)
+          New Arrivals
         </button>
         <button type="button" onclick="filterProducts('girls', this)" data-filter="girls" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal dark:text-[#EFECE4] hover:text-brand-maroon">
           Girls Co-ords
@@ -374,6 +401,7 @@
       </div>
     </div>
 
+    <!-- Search & Price Sort -->
     <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-8 bg-white/80 dark:bg-[#241A1E] p-3 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33]">
       <div class="relative flex-1">
         <svg class="w-4 h-4 text-brand-muted absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -393,7 +421,7 @@
     <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7"></div>
   </section>
 
-  <!-- Brand Assurance & Trust Strip -->
+  <!-- Brand Assurance Strip -->
   <section class="py-10 bg-white dark:bg-[#1A1215] border-y border-[#E2DBD0] dark:border-[#3E2E33]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
@@ -403,9 +431,9 @@
           <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">100% Free Shipping All Over Pakistan</p>
         </div>
         <div class="p-3 space-y-1.5">
-          <div class="w-10 h-10 rounded-full bg-brand-maroon/10 text-brand-maroon flex items-center justify-center mx-auto text-lg">📦</div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">Easy Order &amp; ID</h4>
-          <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">Instant order number &amp; status tracking</p>
+          <div class="w-10 h-10 rounded-full bg-brand-maroon/10 text-brand-maroon flex items-center justify-center mx-auto text-lg">🕒</div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">Order History</h4>
+          <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">View past orders with phone &amp; password</p>
         </div>
         <div class="p-3 space-y-1.5">
           <div class="w-10 h-10 rounded-full bg-brand-maroon/10 text-brand-maroon flex items-center justify-center mx-auto text-lg">🪡</div>
@@ -413,140 +441,97 @@
           <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">Fine floral threadwork &amp; neat stitching</p>
         </div>
         <div class="p-3 space-y-1.5">
-          <div class="w-10 h-10 rounded-full bg-brand-maroon/10 text-brand-maroon flex items-center justify-center mx-auto text-lg">🚚</div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">PostEx Live Tracking</h4>
-          <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">Track on Ahinoor or PostEx portal</p>
+          <div class="w-10 h-10 rounded-full bg-brand-maroon/10 text-brand-maroon flex items-center justify-center mx-auto text-lg">📍</div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">PostEx Tracking</h4>
+          <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">Live status &amp; PostEx tracking ID</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Bespoke Custom Stitching & Embroidery Order Section -->
+  <!-- Custom Naap & Embroidery Form -->
   <section id="custom-naap" class="py-14 sm:py-24 bg-[#EAE4D9] dark:bg-[#181013] border-b border-[#DDD5C7] dark:border-[#3E2E33]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        
         <div class="lg:col-span-5 space-y-6">
           <div class="inline-block bg-[#242021] dark:bg-[#3E2E33] text-white text-[10px] font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full">
             BESPOKE TAILORING &amp; KAAM
           </div>
-
           <h2 class="font-editorial text-3xl sm:text-[44px] font-bold text-brand-charcoal dark:text-[#F3EFEA] leading-[1.12]">
             Custom Stitching &amp; <br/>
             Embroidery Order
           </h2>
-
           <p class="text-sm text-brand-muted dark:text-[#B5A8A3] leading-relaxed">
-            Agar aapko apna pasandeeda kapra kisi makhsoos naap (measurement) par silwana ho, ya neckline, sleeves aur daman par customized phoolo wali embroidery karwani ho, to ye form bharein. Aapka order book hote hi Order ID mil jayegi!
+            Apne pasandeeda kapray aur naap ke mutabiq silai ya embroidery order karein. First order par password set karein aur address save rakhein taake agli baar address khud aa jaye.
           </p>
-
-          <div class="space-y-4 pt-3">
-            <div class="flex items-start gap-3.5">
-              <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">1</span>
-              <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">SUIT YA FROCK CHOICE</h4>
-                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-0.5 leading-relaxed">Women 2-piece, little girls embroidered set, flared frock, ya custom design.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3.5">
-              <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">2</span>
-              <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">EMBROIDERY STYLE</h4>
-                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-0.5 leading-relaxed">Hath ki floral threadwork embroidery, pocket motifs, ringlets, ya sleeves ruffles.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3.5">
-              <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">3</span>
-              <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">INSTANT ORDER ID &amp; TRACKING</h4>
-                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-0.5 leading-relaxed">Submit karte hi Order Number milega aur dispatch par PostEx tracking ID show hogi.</p>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="lg:col-span-7">
           <div class="bg-[#F9F6F0] dark:bg-[#241A1E] rounded-[28px] shadow-md border border-[#DFD7C8] dark:border-[#3E2E33] p-6 sm:p-9">
-            <div class="mb-6 flex items-center justify-between">
-              <div>
-                <h3 class="font-editorial text-2xl sm:text-[26px] font-bold text-brand-charcoal dark:text-[#F3EFEA]">
-                  Custom Naap &amp; Embroidery Form
-                </h3>
-                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">
-                  Apna naap aur detail likhein — order direct book ho jayega.
-                </p>
-              </div>
-              <button type="button" onclick="openSizeChartModal()" class="px-3 py-1.5 rounded-xl bg-brand-maroon/10 dark:bg-[#3E2E33] text-brand-maroon dark:text-[#E5C687] text-xs font-bold hover:bg-brand-maroon hover:text-white transition shrink-0">
-                📏 View Size Chart
-              </button>
-            </div>
-
             <form id="naap-form" onsubmit="submitCustomNaap(event)" class="space-y-4">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">CUSTOMER NAME *</label>
-                  <input type="text" id="naap-name" required placeholder="Aapka Naam" class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm focus:outline-none focus:border-brand-maroon transition" />
+                  <input type="text" id="naap-name" required placeholder="Aapka Naam" class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
                 </div>
                 <div>
-                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">MOBILE / WHATSAPP NUMBER *</label>
-                  <input type="tel" id="naap-phone" required placeholder="03xx xxxxxxx" class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm focus:outline-none focus:border-brand-maroon transition" />
+                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">PHONE NUMBER *</label>
+                  <input type="tel" id="naap-phone" oninput="autofillCustomerProfile('naap')" required placeholder="03xx xxxxxxx" class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
                 </div>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">GARMENT CATEGORY</label>
-                  <select id="naap-category" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] text-sm bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] focus:outline-none focus:border-brand-maroon transition">
+                  <select id="naap-category" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] text-sm bg-white dark:bg-[#1A1215]">
                     <option value="Women Stitched Kurti & Trouser">Women Stitched Kurti &amp; Trouser</option>
                     <option value="Girls Embroidered Co-ord Set">Girls Embroidered Co-ord Set</option>
                     <option value="Girls Flared Frock & Culottes">Girls Flared Frock &amp; Culottes</option>
                     <option value="Custom Embroidered Peplum Suit">Custom Embroidered Peplum Suit</option>
                   </select>
                 </div>
-
                 <div>
                   <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">EMBROIDERY PREFERENCE</label>
-                  <select id="naap-embroidery" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] text-sm bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] focus:outline-none focus:border-brand-maroon transition">
+                  <select id="naap-embroidery" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] text-sm bg-white dark:bg-[#1A1215]">
                     <option value="Neckline & Pocket Floral Embroidery">Neckline &amp; Pocket Floral Embroidery</option>
                     <option value="Heavy Daman & Sleeves Border">Heavy Daman &amp; Sleeves Border</option>
                     <option value="Minimalist Scattered Booti Work">Minimalist Scattered Booti Work</option>
-                    <option value="Same As Selected Catalog Design">Same As Selected Catalog Design</option>
                   </select>
                 </div>
               </div>
 
               <div>
                 <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-2">AGE / SIZE CATEGORY</label>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="naap-size-group">
-                  <button type="button" onclick="selectNaapSize(this, 'Girls (3–6 Yrs)')" class="naap-size-btn active py-2.5 px-3 rounded-full text-xs font-semibold bg-brand-maroon text-white border border-brand-maroon shadow-xs transition whitespace-nowrap">
-                    Girls (3–6 Yrs)
-                  </button>
-                  <button type="button" onclick="selectNaapSize(this, 'Girls (7–12 Yrs)')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#EFECE4] border border-[#DFD7C8] dark:border-[#3E2E33] hover:border-brand-maroon transition whitespace-nowrap">
-                    Girls (7–12 Yrs)
-                  </button>
-                  <button type="button" onclick="selectNaapSize(this, 'Women (S/M/L)')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#EFECE4] border border-[#DFD7C8] dark:border-[#3E2E33] hover:border-brand-maroon transition whitespace-nowrap">
-                    Women (S/M/L)
-                  </button>
-                  <button type="button" onclick="selectNaapSize(this, 'Custom In Inches')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#EFECE4] border border-[#DFD7C8] dark:border-[#3E2E33] hover:border-brand-maroon transition whitespace-nowrap">
-                    Custom In Inches
-                  </button>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                  <button type="button" onclick="selectNaapSize(this, 'Girls (3–6 Yrs)')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-brand-maroon text-white border border-brand-maroon transition">Girls (3–6 Yrs)</button>
+                  <button type="button" onclick="selectNaapSize(this, 'Girls (7–12 Yrs)')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33] transition">Girls (7–12 Yrs)</button>
+                  <button type="button" onclick="selectNaapSize(this, 'Women (S/M/L)')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33] transition">Women (S/M/L)</button>
+                  <button type="button" onclick="selectNaapSize(this, 'Custom In Inches')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33] transition">Custom In Inches</button>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">ACCOUNT PASSWORD (FOR ORDER HISTORY) *</label>
+                  <input type="password" id="naap-password" required minlength="4" placeholder="Set password for history" class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
+                </div>
+                <div>
+                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">DELIVERY ADDRESS (AUTO-SAVED) *</label>
+                  <input type="text" id="naap-address" required placeholder="House, Street, City..." class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
                 </div>
               </div>
 
               <div>
-                <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">DELIVERY ADDRESS, MEASUREMENTS &amp; NOTES *</label>
-                <textarea id="naap-notes" rows="3" required placeholder="City & Street Address, Chest: 36 in, Shirt Length: 38 in, Sleeve: 19 in..." class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm focus:outline-none focus:border-brand-maroon transition"></textarea>
+                <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">MEASUREMENTS &amp; NOTES *</label>
+                <textarea id="naap-notes" rows="2" required placeholder="Chest: 36 in, Length: 38 in, Sleeve: 19 in..." class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm"></textarea>
               </div>
 
-              <button type="submit" class="btn-sheen w-full py-3.5 px-5 bg-brand-maroon hover:bg-brand-maroonDark text-white font-bold text-xs tracking-wider uppercase rounded-full transition flex items-center justify-center gap-2.5 shadow-sm">
-                <span>📦 BOOK CUSTOM ORDER</span>
+              <button type="submit" class="btn-sheen w-full py-3.5 px-5 bg-brand-maroon hover:bg-brand-maroonDark text-white font-bold text-xs tracking-wider uppercase rounded-full transition">
+                📦 BOOK CUSTOM ORDER (FREE DELIVERY)
               </button>
             </form>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -554,147 +539,140 @@
   <!-- Customer Reviews Auto-Flipping Showcase -->
   <section id="reviews-section" class="py-16 sm:py-24 bg-gradient-to-b from-[#F5F2EC] via-[#F0EAE0] to-[#F5F2EC] dark:from-[#181215] dark:via-[#140E11] dark:to-[#181215] border-b border-[#E2DBD0] dark:border-[#3E2E33] px-4">
     <div class="max-w-4xl mx-auto">
-      <div class="text-center space-y-2.5 mb-10 sm:mb-12">
+      <div class="text-center space-y-2.5 mb-10">
         <span class="inline-block bg-[#E6DEC9] dark:bg-[#322429] text-brand-maroon dark:text-[#E5C687] text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full">
           VERIFIED CLIENT LOVE • 4.9/5 RATING
         </span>
-        <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal dark:text-[#F3EFEA]">
-          What Our Happy Customers Say
-        </h2>
-        <p class="text-xs sm:text-sm text-brand-muted dark:text-[#B5A8A3] max-w-md mx-auto">
-          Pakistan bhar se mothers aur khawateen ke aetmaad aur silai ki tareef — har 5 second baad naya review dekhein.
-        </p>
+        <h2 class="font-editorial text-3xl sm:text-4xl font-bold">What Our Happy Customers Say</h2>
       </div>
 
       <div class="review-stage relative max-w-2xl mx-auto" onmouseenter="pauseReviewAutoFlip()" onmouseleave="resumeReviewAutoFlip()">
-        <div id="review-card" class="bg-white dark:bg-[#241A1E] rounded-[28px] border border-[#DFD7C8] dark:border-[#3E2E33] shadow-[0_12px_36px_rgba(106,35,56,0.08)] p-6 sm:p-10 relative overflow-hidden">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-5 relative z-10">
-            <div class="flex items-center gap-1 text-[#D49A2A]" aria-label="5 out of 5 stars">
-              <span>★★★★★</span>
-            </div>
-            <span class="inline-flex items-center gap-1 bg-[#E8F5F0] dark:bg-[#1E332B] text-[#176B58] dark:text-[#4ADE80] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
-              ✓ Verified Buyer
-            </span>
+        <div id="review-card" class="bg-white dark:bg-[#241A1E] rounded-[28px] border border-[#DFD7C8] dark:border-[#3E2E33] shadow-md p-6 sm:p-10 relative overflow-hidden">
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="text-[#D49A2A]">★★★★★</span>
+            <span class="bg-[#E8F5F0] dark:bg-[#1E332B] text-[#176B58] dark:text-[#4ADE80] text-[10px] font-bold uppercase px-3 py-1 rounded-full">✓ Verified Buyer</span>
           </div>
-
-          <p id="review-text" class="font-editorial text-xl sm:text-2xl text-brand-charcoal dark:text-[#F3EFEA] leading-relaxed italic min-h-[96px] sm:min-h-[84px] relative z-10">
-            "Meri beti ke liye Rose Pink Daisy Co-ord order kiya tha. Silai itni neat aur embroidery bilkul hath ke kaam jaisi nafees hai. Fabric bhi bohat soft hai!"
-          </p>
-
-          <div class="mt-4">
-            <span id="review-item" class="inline-block bg-[#F5F2EC] dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33] text-brand-maroon dark:text-[#E5C687] text-[11px] font-semibold px-3 py-1 rounded-lg">
-              Ordered: Rose Pink Daisy Embroidered Co-ord
-            </span>
-          </div>
-
-          <div class="mt-6 pt-5 border-t border-[#EFEAE0] dark:border-[#3E2E33] flex items-center justify-between gap-4">
+          <p id="review-text" class="font-editorial text-xl sm:text-2xl italic min-h-[84px]"></p>
+          <div class="mt-3"><span id="review-item" class="inline-block bg-[#F5F2EC] dark:bg-[#1A1215] text-brand-maroon dark:text-[#E5C687] text-[11px] font-semibold px-3 py-1 rounded-lg"></span></div>
+          <div class="mt-6 pt-4 border-t border-[#EFEAE0] dark:border-[#3E2E33] flex items-center justify-between gap-4">
             <div class="flex items-center gap-3">
-              <div id="review-avatar" class="w-11 h-11 rounded-full bg-gradient-to-tr from-brand-maroon to-[#9E7B3E] text-white font-editorial text-lg font-bold flex items-center justify-center shadow-xs shrink-0">
-                A
-              </div>
+              <div id="review-avatar" class="w-10 h-10 rounded-full bg-brand-maroon text-white font-editorial font-bold flex items-center justify-center">A</div>
               <div>
-                <h4 id="review-author" class="text-sm font-bold text-brand-charcoal dark:text-[#F3EFEA]">Ayesha Tariq</h4>
-                <p id="review-city" class="text-xs text-brand-muted dark:text-[#B5A8A3]">Lahore • 2 days ago</p>
+                <h4 id="review-author" class="text-sm font-bold"></h4>
+                <p id="review-city" class="text-xs text-brand-muted dark:text-[#B5A8A3]"></p>
               </div>
             </div>
-
             <div class="flex items-center gap-2">
-              <span id="review-counter" class="text-xs font-bold text-brand-muted dark:text-[#B5A8A3] mr-1">1 / 20</span>
-              <button type="button" onclick="prevReview()" aria-label="Previous Review" class="w-9 h-9 rounded-full border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#FAF7F2] dark:bg-[#1A1215] hover:bg-brand-maroon hover:text-white hover:border-brand-maroon text-brand-charcoal dark:text-[#EFECE4] flex items-center justify-center transition">‹</button>
-              <button type="button" onclick="nextReview()" aria-label="Next Review" class="w-9 h-9 rounded-full border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#FAF7F2] dark:bg-[#1A1215] hover:bg-brand-maroon hover:text-white hover:border-brand-maroon text-brand-charcoal dark:text-[#EFECE4] flex items-center justify-center transition">›</button>
+              <span id="review-counter" class="text-xs font-bold text-brand-muted">1 / 5</span>
+              <button type="button" onclick="prevReview()" class="w-9 h-9 rounded-full border border-[#DFD7C8] dark:border-[#3E2E33]">‹</button>
+              <button type="button" onclick="nextReview()" class="w-9 h-9 rounded-full border border-[#DFD7C8] dark:border-[#3E2E33]">›</button>
             </div>
           </div>
-
           <div class="absolute bottom-0 left-0 right-0 h-1 bg-[#EFEAE0] dark:bg-[#3E2E33]">
-            <div id="review-progress" class="h-full bg-gradient-to-r from-brand-maroon via-[#B68D40] to-[#176B58] review-timer-bar"></div>
+            <div id="review-progress" class="h-full bg-brand-maroon review-timer-bar"></div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Official Instagram Section -->
-  <section id="instagram-section" class="py-16 sm:py-20 bg-[#F5F2EC] dark:bg-[#181215] border-b border-[#E2DBD0] dark:border-[#3E2E33] text-center px-4">
-    <div class="max-w-2xl mx-auto space-y-4">
-      <div class="inline-flex items-center justify-center gap-1.5 text-[11px] font-bold tracking-[0.18em] uppercase text-brand-maroon dark:text-[#E5C687]">
-        <span>FOLLOW ON INSTAGRAM</span>
-      </div>
-      <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal dark:text-[#F3EFEA]">@ahinoor_clothing_</h2>
-      <p class="text-sm text-brand-muted dark:text-[#B5A8A3] max-w-md mx-auto leading-relaxed">
-        Rozana ke naye designs, client videos aur stitching updates dekhne ke liye hamara official Instagram zaroor follow karein.
-      </p>
-      <div class="pt-3">
-        <a href="https://instagram.com/ahinoor_clothing_" target="_blank" rel="noopener" class="btn-sheen inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white text-xs font-bold tracking-[0.14em] uppercase bg-gradient-to-r from-[#D62976] via-[#962FBF] to-[#4F5BD5] hover:opacity-95 transition shadow-md">
-          <span>VISIT @AHINOOR_CLOTHING_</span>
-        </a>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-[#EDE8DF] dark:bg-[#140E11] text-brand-charcoal dark:text-[#EFECE4] py-12 pb-24 sm:pb-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-[#DCD4C6] dark:border-[#3E2E33]">
-        <div class="flex items-start gap-3.5">
-          <div class="w-14 h-14 rounded-full p-0.5 bg-gradient-to-tr from-[#B68D40] to-[#6A2338] shrink-0">
-            <img src="1000827919.jpg" onerror="this.src='https://placehold.co/112x112/6A2338/FFFFFF?text=A'" alt="Ahinoor Logo" loading="lazy" width="56" height="56" class="w-full h-full rounded-full object-contain bg-white p-0.5" />
-          </div>
-          <div>
-            <span class="font-editorial text-2xl font-bold tracking-[0.2em] text-brand-maroon dark:text-[#E5C687]">AHINOOR</span>
-            <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-2 leading-relaxed max-w-xs">
-              Exclusively stitched &amp; embroidered women and girls wear. Free delivery all over Pakistan.
-            </p>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-[0.16em] text-brand-charcoal dark:text-[#F3EFEA] mb-3">OFFICIAL CONTACT</h4>
-          <ul class="space-y-2 text-xs text-brand-muted dark:text-[#B5A8A3]">
-            <li>WhatsApp Support: <a href="https://wa.me/923154124959" target="_blank" class="text-brand-maroon dark:text-[#E5C687] font-bold hover:underline">+92 315 4124959</a></li>
-            <li>Instagram: <a href="https://instagram.com/ahinoor_clothing_" target="_blank" class="text-brand-maroon dark:text-[#E5C687] font-bold hover:underline">@ahinoor_clothing_</a></li>
-            <li>Website: <span class="font-semibold text-brand-charcoal dark:text-white">ahinoor.online</span></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-[0.16em] text-brand-charcoal dark:text-[#F3EFEA] mb-3">ORDER &amp; TRACKING</h4>
-          <ul class="space-y-2 text-xs text-brand-muted dark:text-[#B5A8A3]">
-            <li>1. Book directly online &amp; get your Order ID</li>
-            <li>2. Check status or cancel before dispatch via 📍 Track Order</li>
-            <li>3. Track PostEx parcel on Ahinoor or PostEx</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="pt-6 text-center text-xs text-brand-muted dark:text-[#B5A8A3]">
-        <span>© 2026 AHINOOR (ahinoor.online) • All Rights Reserved.</span>
-      </div>
+  <footer class="bg-[#EDE8DF] dark:bg-[#140E11] py-10 px-4 text-xs text-brand-muted dark:text-[#B5A8A3]">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <span>© 2026 AHINOOR (ahinoor.online) • 100% Free Delivery All Over Pakistan</span>
+      <button type="button" onclick="openAdminPanelView()" class="font-bold text-brand-maroon dark:text-[#E5C687] hover:underline">
+        Admin Console (#admin)
+      </button>
     </div>
   </footer>
 
-  <!-- Customer Order & PostEx Tracking Modal -->
+  <!-- Track Order Modal (Order Number or Phone + PostEx Tracking + Cancel Before Dispatch) -->
   <div id="track-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
     <div class="bg-[#F5F2EC] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
       <div class="bg-brand-teal text-white px-6 py-4 flex items-center justify-between">
         <div>
-          <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#A7F3D0]">AHINOOR LIVE TRACKING</span>
-          <h3 class="font-editorial text-xl sm:text-2xl font-bold">Track or Cancel Order</h3>
+          <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#A7F3D0]">AHINOOR TRACKING</span>
+          <h3 class="font-editorial text-xl sm:text-2xl font-bold">Track Your Order</h3>
         </div>
-        <button type="button" onclick="closeTrackModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition">✕</button>
+        <button type="button" onclick="closeTrackModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center">✕</button>
       </div>
-
-      <div class="p-6 space-y-5">
+      <div class="p-6 space-y-4">
         <form onsubmit="lookupCustomerOrder(event)" class="flex gap-2">
-          <input type="text" id="track-input" required placeholder="Enter Order ID (e.g., AHN-1234) or Phone..." class="flex-1 px-4 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm focus:outline-none focus:border-brand-teal" />
-          <button type="submit" class="px-5 py-2.5 rounded-xl bg-brand-teal hover:bg-[#115243] text-white text-xs font-bold uppercase tracking-wider transition">
-            Track
-          </button>
+          <input type="text" id="track-input" required placeholder="Enter Order ID (e.g., AHN-1234) or Phone..." class="flex-1 px-4 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-brand-teal text-white text-xs font-bold uppercase">Track</button>
         </form>
-
         <div id="track-result" class="space-y-3 text-xs">
-          <p class="text-brand-muted dark:text-[#B5A8A3]">Apna Order Number ya Mobile Number likh kar status check karein. Dispatch hone se pehle aap order cancel bhi kar sakte hain.</p>
+          <p class="text-brand-muted dark:text-[#B5A8A3]">Apna Order Number ya Phone Number likh kar status aur PostEx tracking ID check karein.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Order History Modal (Login with Phone Number + Password) -->
+  <div id="history-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
+    <div class="bg-[#F5F2EC] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
+      <div class="bg-brand-maroon text-white px-6 py-4 flex items-center justify-between">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E5C687]">CUSTOMER ACCOUNT</span>
+          <h3 class="font-editorial text-xl sm:text-2xl font-bold">My Order History</h3>
+        </div>
+        <button type="button" onclick="closeOrderHistoryModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center">✕</button>
+      </div>
+      <div class="p-6 space-y-5 max-h-[80vh] overflow-y-auto">
+        <form id="history-login-form" onsubmit="loginOrderHistory(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 bg-white dark:bg-[#1A1215] p-4 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33]">
+          <input type="tel" id="hist-phone" required placeholder="Phone Number (03xx...)" class="px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#241A1E] text-sm" />
+          <input type="password" id="hist-password" required placeholder="Your Password" class="px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#241A1E] text-sm" />
+          <button type="submit" class="py-2.5 px-4 rounded-xl bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold uppercase">View History</button>
+        </form>
+        <div id="history-result" class="space-y-3 text-xs">
+          <p class="text-brand-muted dark:text-[#B5A8A3]">Apna Phone Number aur first order par banaya gaya Password daal kar apni order history dekhein.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal (Includes Password Field + Saved Default Address Auto-Fill) -->
+  <div id="checkout-form-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
+    <div class="bg-[#F9F6F0] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
+      <div class="bg-brand-maroon text-white px-6 py-4 flex items-center justify-between">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E5C687]">AHINOOR CHECKOUT</span>
+          <h3 class="font-editorial text-xl sm:text-2xl font-bold">Complete Your Order</h3>
+        </div>
+        <button type="button" onclick="closeCheckoutFormModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center">✕</button>
+      </div>
+
+      <form id="panel-order-form" onsubmit="submitPanelOrder(event)" class="p-6 space-y-4">
+        <div id="checkout-summary-box" class="bg-white dark:bg-[#1A1215] p-3 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] text-xs space-y-1"></div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Full Name *</label>
+            <input type="text" id="ord-name" required placeholder="Aapka Naam" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Phone Number *</label>
+            <input type="tel" id="ord-phone" oninput="autofillCustomerProfile('checkout')" required placeholder="03xx xxxxxxx" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="block text-[10px] font-bold uppercase tracking-wider">Account Password (For Order History) *</label>
+            <span id="profile-status-hint" class="text-[10px] font-bold text-brand-teal dark:text-[#4ADE80]"></span>
+          </div>
+          <input type="password" id="ord-password" required minlength="4" placeholder="Create or enter password" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">City &amp; Delivery Address (Saved for Future Orders) *</label>
+          <textarea id="ord-address" rows="2" required placeholder="House/Street, Area, City..." class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm"></textarea>
+        </div>
+
+        <button type="submit" class="btn-sheen w-full py-3.5 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold uppercase tracking-wider rounded-xl transition">
+          📦 CONFIRM ORDER (100% FREE DELIVERY)
+        </button>
+      </form>
     </div>
   </div>
 
@@ -703,75 +681,38 @@
     <div class="bg-[#F9F6F0] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] p-6 sm:p-8 text-center space-y-4 my-auto">
       <div class="w-14 h-14 rounded-full bg-[#176B58]/15 text-[#176B58] dark:text-[#4ADE80] flex items-center justify-center mx-auto text-2xl font-bold">✓</div>
       <h3 class="font-editorial text-2xl font-bold">Order Booked Successfully!</h3>
-      <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Aapka order book ho gaya hai. Apna Order Number sambhal kar rakhein:</p>
+      <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Aapka profile aur address save ho gaya hai. Order History mein aap phone + password se orders dekh sakte hain.</p>
       <div class="bg-white dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33] rounded-2xl p-4 space-y-1">
         <span class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">YOUR ORDER NUMBER</span>
         <p id="receipt-order-id" class="font-editorial text-2xl font-bold text-brand-maroon dark:text-[#E5C687]">AHN-0000</p>
         <p id="receipt-customer-info" class="text-xs text-brand-muted dark:text-[#B5A8A3]"></p>
       </div>
       <div class="flex flex-wrap gap-2 pt-2">
-        <button type="button" onclick="closeReceiptAndTrack()" class="flex-1 py-3 rounded-xl bg-brand-teal text-white text-xs font-bold uppercase tracking-wider">📍 Track Order</button>
-        <button type="button" onclick="cancelJustBookedOrder()" class="px-3.5 py-3 rounded-xl bg-red-600/10 text-red-600 dark:text-red-400 border border-red-300 dark:border-red-900 text-xs font-bold hover:bg-red-600 hover:text-white transition">❌ Cancel</button>
-        <button type="button" onclick="closeReceiptModal()" class="px-4 py-3 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] text-xs font-bold">Done</button>
+        <button type="button" onclick="cancelJustBookedOrder()" class="flex-1 py-3 rounded-xl bg-red-600/10 text-red-600 dark:text-red-400 border border-red-300 dark:border-red-900 text-xs font-bold hover:bg-red-600 hover:text-white transition">❌ Cancel Order</button>
+        <button type="button" onclick="closeReceiptModal()" class="flex-1 py-3 rounded-xl bg-brand-maroon text-white text-xs font-bold uppercase">Done</button>
       </div>
     </div>
   </div>
 
-  <!-- Checkout Form Modal -->
-  <div id="checkout-form-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
-    <div class="bg-[#F9F6F0] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
-      <div class="bg-brand-maroon text-white px-6 py-4 flex items-center justify-between">
-        <div>
-          <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E5C687]">AHINOOR CHECKOUT</span>
-          <h3 class="font-editorial text-xl sm:text-2xl font-bold">Complete Your Order</h3>
-        </div>
-        <button type="button" onclick="closeCheckoutFormModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition">✕</button>
-      </div>
-
-      <form id="panel-order-form" onsubmit="submitPanelOrder(event)" class="p-6 space-y-4">
-        <div id="checkout-summary-box" class="bg-white dark:bg-[#1A1215] p-3 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] text-xs space-y-1"></div>
-        <div>
-          <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Full Name *</label>
-          <input type="text" id="ord-name" required placeholder="Aapka Naam" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
-        </div>
-        <div>
-          <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Phone Number *</label>
-          <input type="tel" id="ord-phone" required placeholder="03xx xxxxxxx" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
-        </div>
-        <div>
-          <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">City &amp; Full Delivery Address *</label>
-          <textarea id="ord-address" rows="2" required placeholder="House/Street, Area, City..." class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm"></textarea>
-        </div>
-        <button type="submit" class="btn-sheen w-full py-3.5 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold uppercase tracking-wider rounded-xl transition">
-          📦 CONFIRM ORDER (FREE DELIVERY)
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Quick View Product Modal -->
+  <!-- Product Details Modal -->
   <div id="product-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-xs p-4 overflow-y-auto">
     <div class="bg-[#F5F2EC] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
-      <button type="button" onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/95 dark:bg-[#3E2E33] text-brand-charcoal dark:text-white hover:bg-brand-maroon hover:text-white flex items-center justify-center transition shadow-xs">✕</button>
-
+      <button type="button" onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/95 dark:bg-[#3E2E33] flex items-center justify-center">✕</button>
       <div class="grid grid-cols-1 md:grid-cols-12">
         <div class="md:col-span-6 bg-white dark:bg-[#1A1215] flex items-center justify-center p-4 sm:p-6">
           <div class="w-full aspect-[3/4] rounded-2xl overflow-hidden bg-[#F5F2EC] dark:bg-[#120B0E]">
-            <img id="modal-img" src="" alt="Dress Preview" class="w-full h-full object-cover" />
+            <img id="modal-img" src="" alt="Dress Preview" class="w-full h-full object-contain" />
           </div>
         </div>
-
         <div class="md:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-5">
           <div class="space-y-3">
-            <span id="modal-category" class="text-[11px] font-bold uppercase tracking-widest text-brand-gold">CATEGORY</span>
-            <h3 id="modal-title" class="font-editorial text-2xl sm:text-3xl font-bold leading-snug">Product Name</h3>
-            <p id="modal-price" class="text-2xl font-bold text-brand-maroon dark:text-[#E5C687]">Rs. 3,150</p>
-
+            <span id="modal-category" class="text-[11px] font-bold uppercase tracking-widest text-brand-gold"></span>
+            <h3 id="modal-title" class="font-editorial text-2xl sm:text-3xl font-bold leading-snug"></h3>
+            <div id="modal-price-wrap" class="flex items-baseline gap-2"></div>
             <div class="pt-2 space-y-1.5 text-xs text-brand-muted dark:text-[#B5A8A3] border-t border-[#DFD7C8] dark:border-[#3E2E33]">
-              <p><strong class="text-brand-charcoal dark:text-white">Fabric &amp; Style:</strong> <span id="modal-fabric"></span></p>
+              <p><strong class="text-brand-charcoal dark:text-white">Fabric:</strong> <span id="modal-fabric"></span></p>
               <p><strong class="text-brand-charcoal dark:text-white">Embroidery:</strong> <span id="modal-embroidery"></span></p>
             </div>
-
             <div class="pt-2">
               <div class="flex items-center justify-between mb-1">
                 <label class="block text-xs font-bold uppercase tracking-wider">Select Size:</label>
@@ -780,42 +721,33 @@
               <div id="modal-sizes" class="grid grid-cols-2 gap-2.5"></div>
             </div>
           </div>
-
           <div class="space-y-2.5 pt-2">
-            <button type="button" id="modal-add-btn" onclick="addModalProductToCart()" class="w-full py-3.5 px-4 bg-brand-charcoal dark:bg-[#3E2E33] hover:bg-brand-maroon text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2">
-              <span>🛍️ ADD TO ORDER BAG</span>
-            </button>
-            <button type="button" onclick="openDirectModalCheckout()" class="btn-sheen w-full py-3.5 px-4 bg-[#176B58] hover:bg-[#115243] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2">
-              <span>📦 BOOK ORDER DIRECTLY</span>
-            </button>
+            <button type="button" onclick="addModalProductToCart()" class="w-full py-3.5 px-4 bg-brand-charcoal dark:bg-[#3E2E33] hover:bg-brand-maroon text-white text-xs font-bold uppercase rounded-xl transition">🛍️ ADD TO ORDER BAG</button>
+            <button type="button" onclick="openDirectModalCheckout()" class="btn-sheen w-full py-3.5 px-4 bg-[#176B58] hover:bg-[#115243] text-white text-xs font-bold uppercase rounded-xl transition">📦 ORDER NOW (FREE DELIVERY)</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Slide-over Order Bag Drawer -->
+  <!-- Order Bag Drawer -->
   <div id="cart-drawer" class="fixed inset-0 z-50 hidden">
     <div onclick="closeCartDrawer()" class="fixed inset-0 bg-black/50 backdrop-blur-xs"></div>
     <div class="fixed inset-y-0 right-0 max-w-md w-full bg-[#F5F2EC] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] shadow-2xl flex flex-col justify-between z-10">
       <div class="p-5 border-b border-[#DFD7C8] dark:border-[#3E2E33] flex items-center justify-between bg-white dark:bg-[#1A1215]">
         <div>
           <h3 class="font-editorial text-2xl font-bold">Your Order Bag</h3>
-          <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Direct Online Booking</p>
+          <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">100% Free Delivery All Over Pakistan</p>
         </div>
-        <button type="button" onclick="closeCartDrawer()" class="w-8 h-8 rounded-full bg-[#EBE6DC] dark:bg-[#3E2E33] text-brand-charcoal dark:text-white hover:bg-brand-maroon hover:text-white flex items-center justify-center transition">✕</button>
+        <button type="button" onclick="closeCartDrawer()" class="w-8 h-8 rounded-full bg-[#EBE6DC] dark:bg-[#3E2E33] flex items-center justify-center">✕</button>
       </div>
-
       <div id="cart-items" class="flex-1 overflow-y-auto p-5 space-y-4"></div>
-
       <div class="p-5 border-t border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] space-y-3">
         <div class="flex items-center justify-between text-sm font-bold">
           <span>Total (Free Delivery):</span>
           <span id="cart-total" class="text-lg text-brand-maroon dark:text-[#E5C687]">Rs. 0</span>
         </div>
-        <button type="button" onclick="openBagCheckoutModal()" class="btn-sheen w-full py-3.5 px-4 bg-[#176B58] hover:bg-[#115243] text-white text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
-          <span>📦 PROCEED TO CHECKOUT</span>
-        </button>
+        <button type="button" onclick="openBagCheckoutModal()" class="btn-sheen w-full py-3.5 px-4 bg-[#176B58] hover:bg-[#115243] text-white text-xs sm:text-sm font-bold uppercase rounded-xl transition">📦 PROCEED TO CHECKOUT</button>
       </div>
     </div>
   </div>
@@ -828,117 +760,147 @@
           <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E5C687]">AHINOOR OFFICIAL</span>
           <h3 class="font-editorial text-xl sm:text-2xl font-bold">Complete Size Chart (Inches)</h3>
         </div>
-        <button type="button" onclick="closeSizeChartModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition">✕</button>
+        <button type="button" onclick="closeSizeChartModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center">✕</button>
       </div>
-
-      <div class="p-6 sm:p-8 space-y-8 max-h-[80vh] overflow-y-auto text-xs sm:text-sm">
-        <div class="space-y-4">
-          <h4 class="font-editorial text-lg font-bold text-brand-maroon dark:text-[#E5C687] border-b border-[#DFD7C8] dark:border-[#3E2E33] pb-1">👶 Babies, Toddlers &amp; Kids Size Chart</h4>
+      <div class="p-6 sm:p-8 space-y-6 max-h-[80vh] overflow-y-auto text-xs sm:text-sm">
+        <div>
+          <h4 class="font-editorial text-lg font-bold text-brand-maroon dark:text-[#E5C687] mb-2">👶 Babies, Toddlers &amp; Kids</h4>
           <div class="overflow-x-auto">
             <table class="w-full text-center border-collapse bg-white dark:bg-[#1A1215] rounded-xl overflow-hidden border border-[#DFD7C8] dark:border-[#3E2E33]">
               <thead>
                 <tr class="bg-[#EBE6DC] dark:bg-[#322429] text-[11px] font-bold">
-                  <th class="p-2 border-r">Age / Size</th>
-                  <th class="p-2 border-r">0-6 M</th>
-                  <th class="p-2 border-r">1-2 Y</th>
-                  <th class="p-2 border-r">3-4 Y</th>
-                  <th class="p-2 border-r">5-6 Y</th>
-                  <th class="p-2 border-r">7-8 Y</th>
-                  <th class="p-2">9-12 Y</th>
+                  <th class="p-2 border-r">Size</th><th class="p-2 border-r">0-6 M</th><th class="p-2 border-r">1-2 Y</th><th class="p-2 border-r">3-4 Y</th><th class="p-2 border-r">5-6 Y</th><th class="p-2 border-r">7-8 Y</th><th class="p-2">9-12 Y</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-[#DFD7C8] dark:divide-[#3E2E33]">
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shirt Length</td><td class="p-2 border-r">13</td><td class="p-2 border-r">18</td><td class="p-2 border-r">22</td><td class="p-2 border-r">26.5</td><td class="p-2 border-r">28.5</td><td class="p-2">31.5</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Chest</td><td class="p-2 border-r">10</td><td class="p-2 border-r">12.5</td><td class="p-2 border-r">14</td><td class="p-2 border-r">15</td><td class="p-2 border-r">15</td><td class="p-2">17</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Trouser Length</td><td class="p-2 border-r">13</td><td class="p-2 border-r">18</td><td class="p-2 border-r">22</td><td class="p-2 border-r">27</td><td class="p-2 border-r">29</td><td class="p-2">31.5</td></tr>
+                <tr><td class="p-2 font-semibold border-r">Length</td><td class="p-2 border-r">13</td><td class="p-2 border-r">18</td><td class="p-2 border-r">22</td><td class="p-2 border-r">26.5</td><td class="p-2 border-r">28.5</td><td class="p-2">31.5</td></tr>
+                <tr><td class="p-2 font-semibold border-r">Chest</td><td class="p-2 border-r">10</td><td class="p-2 border-r">12.5</td><td class="p-2 border-r">14</td><td class="p-2 border-r">15</td><td class="p-2 border-r">15</td><td class="p-2">17</td></tr>
+                <tr><td class="p-2 font-semibold border-r">Trouser</td><td class="p-2 border-r">13</td><td class="p-2 border-r">18</td><td class="p-2 border-r">22</td><td class="p-2 border-r">27</td><td class="p-2 border-r">29</td><td class="p-2">31.5</td></tr>
               </tbody>
             </table>
           </div>
         </div>
-        <div class="space-y-4 pt-4 border-t border-[#DFD7C8] dark:border-[#3E2E33]">
-          <h4 class="font-editorial text-lg font-bold text-brand-maroon dark:text-[#E5C687] border-b border-[#DFD7C8] dark:border-[#3E2E33] pb-1">👩 Women Kurta / Shirt Size Chart</h4>
+        <div>
+          <h4 class="font-editorial text-lg font-bold text-brand-maroon dark:text-[#E5C687] mb-2">👩 Women Kurta / Shirt</h4>
           <div class="overflow-x-auto">
             <table class="w-full text-center border-collapse bg-white dark:bg-[#1A1215] rounded-xl overflow-hidden border border-[#DFD7C8] dark:border-[#3E2E33]">
               <thead>
                 <tr class="bg-[#EBE6DC] dark:bg-[#322429] text-[11px] font-bold">
-                  <th class="p-2 border-r">Kurta / Shirt</th>
-                  <th class="p-2 border-r">S</th>
-                  <th class="p-2 border-r">M</th>
-                  <th class="p-2 border-r">L</th>
-                  <th class="p-2">XL</th>
+                  <th class="p-2 border-r">Size</th><th class="p-2 border-r">S</th><th class="p-2 border-r">M</th><th class="p-2 border-r">L</th><th class="p-2">XL</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-[#DFD7C8] dark:divide-[#3E2E33]">
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Chest</td><td class="p-2 border-r">20</td><td class="p-2 border-r">21</td><td class="p-2 border-r">22</td><td class="p-2">23.5</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shirt Length</td><td class="p-2 border-r">34</td><td class="p-2 border-r">34</td><td class="p-2 border-r">35</td><td class="p-2">35</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shoulder</td><td class="p-2 border-r">14.5</td><td class="p-2 border-r">15</td><td class="p-2 border-r">15.5</td><td class="p-2">16</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Hip</td><td class="p-2 border-r">21.5</td><td class="p-2 border-r">23.5</td><td class="p-2 border-r">25</td><td class="p-2">26</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Trouser Length</td><td class="p-2 border-r">39</td><td class="p-2 border-r">40</td><td class="p-2 border-r">41</td><td class="p-2">42</td></tr>
+                <tr><td class="p-2 font-semibold border-r">Chest</td><td class="p-2 border-r">20</td><td class="p-2 border-r">21</td><td class="p-2 border-r">22</td><td class="p-2">23.5</td></tr>
+                <tr><td class="p-2 font-semibold border-r">Length</td><td class="p-2 border-r">34</td><td class="p-2 border-r">34</td><td class="p-2 border-r">35</td><td class="p-2">35</td></tr>
+                <tr><td class="p-2 font-semibold border-r">Trouser</td><td class="p-2 border-r">39</td><td class="p-2 border-r">40</td><td class="p-2 border-r">41</td><td class="p-2">42</td></tr>
               </tbody>
             </table>
           </div>
         </div>
-        <div class="space-y-4 pt-4 border-t border-[#DFD7C8] dark:border-[#3E2E33]">
-          <h4 class="font-editorial text-lg font-bold text-brand-maroon dark:text-[#E5C687] border-b border-[#DFD7C8] dark:border-[#3E2E33] pb-1">🌸 Women's Tunic Size Chart</h4>
-          <div class="overflow-x-auto">
-            <table class="w-full text-center border-collapse bg-white dark:bg-[#1A1215] rounded-xl overflow-hidden border border-[#DFD7C8] dark:border-[#3E2E33]">
-              <thead>
-                <tr class="bg-[#EBE6DC] dark:bg-[#322429] text-[11px] font-bold">
-                  <th class="p-2 border-r">Measurement</th>
-                  <th class="p-2 border-r">XS</th>
-                  <th class="p-2 border-r">S</th>
-                  <th class="p-2 border-r">M</th>
-                  <th class="p-2 border-r">L</th>
-                  <th class="p-2">XL</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-[#DFD7C8] dark:divide-[#3E2E33]">
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Chest</td><td class="p-2 border-r">19</td><td class="p-2 border-r">20</td><td class="p-2 border-r">21</td><td class="p-2 border-r">22</td><td class="p-2">23.5</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Waist</td><td class="p-2 border-r">18</td><td class="p-2 border-r">19</td><td class="p-2 border-r">20</td><td class="p-2 border-r">21</td><td class="p-2">22</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Hip</td><td class="p-2 border-r">20</td><td class="p-2 border-r">21</td><td class="p-2 border-r">22</td><td class="p-2 border-r">23</td><td class="p-2">24</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shoulder</td><td class="p-2 border-r">14</td><td class="p-2 border-r">14.5</td><td class="p-2 border-r">15</td><td class="p-2 border-r">15.5</td><td class="p-2">16</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Sleeve Length</td><td class="p-2 border-r">21</td><td class="p-2 border-r">22</td><td class="p-2 border-r">22</td><td class="p-2 border-r">23</td><td class="p-2">23</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shirt Length</td><td class="p-2 border-r">51</td><td class="p-2 border-r">52</td><td class="p-2 border-r">52</td><td class="p-2 border-r">53</td><td class="p-2">53</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Armhole</td><td class="p-2 border-r">8.5</td><td class="p-2 border-r">9</td><td class="p-2 border-r">9.5</td><td class="p-2 border-r">10</td><td class="p-2">10.5</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Trouser Length</td><td class="p-2 border-r">37</td><td class="p-2 border-r">38</td><td class="p-2 border-r">39</td><td class="p-2 border-r">40</td><td class="p-2">41</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3] text-center pt-2">Note: All measurements are in inches. Size may vary +/- 0.5 to 1 inch due to hand measurement.</p>
       </div>
     </div>
   </div>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-brand-charcoal text-white text-xs font-semibold px-5 py-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300">
-    Added to order bag! 🛍️
+  <!-- Admin Panel Modal (Toggle/Remove New Arrival + Set/Clear Discounts % or Rs. + Orders + Notifications) -->
+  <div id="admin-panel-modal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/75 backdrop-blur-xs p-4 overflow-y-auto">
+    <div class="bg-[#F5F2EC] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
+      <div class="bg-brand-maroon text-white px-6 py-4 flex items-center justify-between">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E5C687]">AHINOOR.ONLINE/ADMIN</span>
+          <h3 class="font-editorial text-xl sm:text-2xl font-bold">Admin Dashboard</h3>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" id="adm-logout-btn" onclick="logoutAdmin()" class="hidden px-3 py-1 rounded-full bg-red-600 text-xs font-bold">Logout</button>
+          <button type="button" onclick="closeAdminPanelView()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center">✕</button>
+        </div>
+      </div>
+
+      <!-- Admin Login -->
+      <div id="adm-login-box" class="p-8 max-w-md mx-auto text-center space-y-4">
+        <h4 class="font-editorial text-2xl font-bold">Admin Login</h4>
+        <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">New Arrival badges, Discounts, Notifications aur Orders manage karein.</p>
+        <form onsubmit="verifyAdminLogin(event)" class="space-y-3">
+          <input type="password" id="adm-pass-input" required placeholder="Enter Admin Password" class="w-full px-4 py-3 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm text-center" />
+          <p id="adm-pass-err" class="hidden text-xs text-red-600 font-semibold">Galat password hai!</p>
+          <button type="submit" class="w-full py-3 bg-brand-maroon text-white text-xs font-bold uppercase rounded-xl">UNLOCK ADMIN</button>
+        </form>
+      </div>
+
+      <!-- Admin Workspace -->
+      <div id="adm-workspace-box" class="hidden p-6 space-y-5 max-h-[82vh] overflow-y-auto">
+        <div class="flex flex-wrap gap-2 border-b border-[#DFD7C8] dark:border-[#3E2E33] pb-3">
+          <button type="button" id="atab-catalog" onclick="switchAdmTab('catalog')" class="px-4 py-2 rounded-full text-xs font-bold bg-brand-maroon text-white">🏷️ New Arrival &amp; Discounts</button>
+          <button type="button" id="atab-notifs" onclick="switchAdmTab('notifs')" class="px-4 py-2 rounded-full text-xs font-bold bg-white dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33]">🔔 Notifications (<span id="adm-notif-badge">0</span>)</button>
+          <button type="button" id="atab-orders" onclick="switchAdmTab('orders')" class="px-4 py-2 rounded-full text-xs font-bold bg-white dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33]">📦 Orders</button>
+        </div>
+
+        <!-- Tab 1: New Arrival Toggle + Item & Catalog Discount Controls -->
+        <div id="aview-catalog" class="space-y-5 text-xs">
+          <!-- Catalog-Wide Discount Box -->
+          <div class="bg-white dark:bg-[#1A1215] p-4 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h4 class="font-bold text-sm text-brand-maroon dark:text-[#E5C687]">Catalog-Wide Discount (Sab Suits Par)</h4>
+              <span id="global-discount-status" class="font-bold text-brand-teal dark:text-[#4ADE80]">No Global Discount Active</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <select id="global-disc-type" class="px-3 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#241A1E] text-xs">
+                <option value="percent">% Off</option>
+                <option value="flat">Rs. Off</option>
+              </select>
+              <input type="number" id="global-disc-val" min="0" placeholder="Value (e.g., 15 or 300)" class="w-40 px-3 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#241A1E] text-xs" />
+              <button type="button" onclick="applyGlobalDiscount()" class="px-3.5 py-2 rounded-xl bg-brand-teal text-white font-bold">Apply to All</button>
+              <button type="button" onclick="clearGlobalDiscount()" class="px-3.5 py-2 rounded-xl bg-red-600 text-white font-bold">Remove Global Discount</button>
+            </div>
+          </div>
+
+          <!-- Per-Suit New Arrival Toggle & Individual Discount -->
+          <div id="adm-suits-controls" class="space-y-2.5"></div>
+        </div>
+
+        <!-- Tab 2: Notifications -->
+        <div id="aview-notifs" class="hidden space-y-2.5 text-xs"></div>
+
+        <!-- Tab 3: Orders -->
+        <div id="aview-orders" class="hidden space-y-3 text-xs"></div>
+      </div>
+    </div>
   </div>
 
-  <!-- Storefront UI Script -->
-  <script>
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[80] bg-brand-charcoal text-white text-xs font-semibold px-5 py-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <!-- Storefront + Customer Profile + History + Admin Discount & New Arrival Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCl1OcFNYv-7-iB4Gf2WbQO3Jw-1ipE4ww",
+      authDomain: "ahinoor-store.firebaseapp.com",
+      projectId: "ahinoor-store",
+      storageBucket: "ahinoor-store.firebasestorage.app",
+      messagingSenderId: "17933030943",
+      appId: "1:17933030943:web:76fbb09c75b0aef68aa72a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
     const BASE_PRODUCTS = [
-      { id: 101, title: "Rose Pink Daisy Embroidered Co-ord", price: 2650, category: "girls", isNew: true, badge: "New Arrival", image: "1000827972.jpg", fabric: "Soft Breathable Cotton Lawn Two-Piece (Shirt & Wide-Leg Trouser)", embroidery: "Delicate White & Olive Daisy Floral Embroidery on Neckline, Sleeves & Daman" },
-      { id: 102, title: "Deep Maroon Floral Neckline Co-ord", price: 2650, category: "girls", isNew: true, badge: "New Arrival", image: "1000827973.jpg", fabric: "Rich Maroon Premium Linen-Cotton Stitched Two-Piece Set", embroidery: "Ivory & Sage Botanical Motif Work on Round Neckline, Cuffs & Hem" },
-      { id: 103, title: "Midnight Black Daisy Trim Co-ord", price: 2650, category: "girls", isNew: true, badge: "New Arrival", image: "1000827974.jpg", fabric: "Jet Black Soft Stitched Shirt & Flared Culottes", embroidery: "Keyhole Neckline & Sleeve Border White Floral Thread Embroidery" },
-      { id: 104, title: "Pastel Pink Blossom Embroidered Frock", price: 2799, category: "frocks", isNew: true, badge: "New Arrival", image: "1000827975.jpg", fabric: "Pure Pastel Pink Cotton Cambric Full-Sleeve Pleated Frock", embroidery: "Hand-Finished Multi-Tone Marigold & Rose Floral Stems Across Bodice & Skirt" },
-      { id: 105, title: "Olive Green Pleated Collar Co-ord", price: 2750, category: "girls", isNew: true, badge: "New Arrival", image: "1000827976.jpg", fabric: "Earthy Olive Cotton-Linen Button-Down Shirt & Wide Palazzo", embroidery: "Yoke White Blossom Vine Embroidery with Gather Pleats & Side Pockets" },
-      { id: 106, title: "Royal Plum Gathered Collar Co-ord", price: 2750, category: "girls", isNew: true, badge: "New Arrival", image: "1000827977.jpg", fabric: "Deep Aubergine Plum Soft Slub Cotton Co-ord Set", embroidery: "Shoulder Floral Vine Embroidery with Pearl-White Front Buttons" },
-      { id: 107, title: "Mustard Yellow Meadow Co-ord", price: 2750, category: "girls", isNew: true, badge: "New Arrival", image: "1000827978.jpg", fabric: "Warm Mustard Gold Breathable Cotton Shirt & Wide-Leg Trouser", embroidery: "Delicate White Daisy Sprigs on Yoke with Matching Bow Detail" },
-      { id: 108, title: "Charcoal Black Buttoned Collar Co-ord", price: 2750, category: "girls", isNew: true, badge: "New Arrival", image: "1000827979.jpg", fabric: "Classic Black Cotton-Linen Collared Tunic & Wide Trouser", embroidery: "Crisp White & Sage Shoulder Floral Embroidery with Contrast Buttons" },
-      { id: 1, title: "Sage Olive Floral Pocket Co-ord Set", price: 3699, category: "girls", isNew: false, badge: "Bestseller", image: "1000827954.jpg", fabric: "Soft Breathable Cotton Linen Two-Piece Co-ord", embroidery: "Botanical Wildflower Vine on Neckline & Front Pockets" },
-      { id: 2, title: "Blossom Pink Pintucked Flare Frock & Culottes", price: 2650, category: "frocks", isNew: false, badge: "Festive Pick", image: "1000827955.jpg", fabric: "Pure Pastel Pink Lawn with Matching Trouser", embroidery: "Multi-Color Floral Border on Daman & Neckline Motif" },
-      { id: 3, title: "Lavender Mist V-Neck Embroidered Kurti Set", price: 2650, category: "women", isNew: false, badge: "Women's Edit", image: "1000827956.jpg", fabric: "Premium Lilac Cambric Kurti & Straight Trousers", embroidery: "Intricate Resham Floral Neckline & Sleeve Border" },
-      { id: 4, title: "Emerald Checkered Bow-Sleeve Peplum Suit", price: 2799, category: "frocks", isNew: false, badge: "Signature", image: "1000827957.jpg", fabric: "Woven Slub Linen Peplum with Ivory Flared Trouser", embroidery: "Double-Tiered Tie Sleeves & Pleated Front Yoke" },
-      { id: 5, title: "Ivory Cream Garden Motif Tunic & Palazzo", price: 2799, category: "women", isNew: false, badge: "Elegant", image: "1000827958.jpg", fabric: "Off-White Textured Cotton Tunic & Wide Palazzo", embroidery: "Pastel Meadow Floral Embroidery on Bodice & Hem" },
-      { id: 6, title: "Sky Blue Daisy Embroidered A-Line Set", price: 2799, category: "girls", isNew: false, badge: "Summer Favorite", image: "1000827959.jpg", fabric: "Soft Powder Blue Cotton Cambric Two-Piece", embroidery: "White & Yellow Daisy Clusters on Sleeves & Daman" },
-      { id: 7, title: "Deep Maroon Festive Threadwork Kurti", price: 3050, category: "women", isNew: false, badge: "Festive", image: "1000827960.jpg", fabric: "Rich Maroon Karandi-Cotton Straight Shirt & Trouser", embroidery: "Antique Gold & Ivory Floral Gala Embroidery" },
-      { id: 8, title: "Mint Green Ruffle Collar Frock Set", price: 2799, category: "frocks", isNew: false, badge: "Girls Special", image: "1000827961.jpg", fabric: "Pastel Mint Soft Lawn Tiered Frock & Pajama", embroidery: "Delicate Rosebud Embroidery on Peter Pan Collar" },
-      { id: 9, title: "Beige Sand Heritage Chikankari Co-ord", price: 2750, category: "women", isNew: false, badge: "Luxury Pret", image: "1000827962.jpg", fabric: "Warm Beige Cotton Net & Cambric Stitched Suit", embroidery: "All-Over Schiffli & Threadwork Daman Border" },
-      { id: 10, title: "Peach Coral Pleated Tunic & Culottes", price: 2650, category: "girls", isNew: false, badge: "Trending", image: "1000827963.jpg", fabric: "Soft Coral Peach Breathable Cotton Co-ord", embroidery: "Floral Pocket & Cuff Threadwork Detailing" }
+      { id: 101, title: "Rose Pink Daisy Embroidered Co-ord", price: 2650, category: "girls", isNew: true, badge: "New Arrival", image: "1000827972.jpg", fabric: "Soft Breathable Cotton Lawn Two-Piece", embroidery: "Delicate White & Olive Daisy Floral Embroidery", discountType: null, discountValue: 0 },
+      { id: 102, title: "Deep Maroon Floral Neckline Co-ord", price: 2650, category: "girls", isNew: true, badge: "New Arrival", image: "1000827973.jpg", fabric: "Rich Maroon Linen-Cotton Two-Piece Set", embroidery: "Ivory & Sage Botanical Motif Work", discountType: null, discountValue: 0 },
+      { id: 103, title: "Midnight Black Daisy Trim Co-ord", price: 2650, category: "girls", isNew: true, badge: "New Arrival", image: "1000827974.jpg", fabric: "Jet Black Soft Stitched Shirt & Culottes", embroidery: "Keyhole Neckline & Sleeve Border Floral Embroidery", discountType: null, discountValue: 0 },
+      { id: 104, title: "Pastel Pink Blossom Embroidered Frock", price: 2799, category: "frocks", isNew: true, badge: "New Arrival", image: "1000827975.jpg", fabric: "Pure Pastel Pink Cotton Cambric Frock", embroidery: "Hand-Finished Marigold & Rose Floral Stems", discountType: null, discountValue: 0 },
+      { id: 105, title: "Olive Green Pleated Collar Co-ord", price: 2750, category: "girls", isNew: true, badge: "New Arrival", image: "1000827976.jpg", fabric: "Earthy Olive Cotton-Linen Shirt & Palazzo", embroidery: "Yoke White Blossom Vine Embroidery", discountType: null, discountValue: 0 },
+      { id: 106, title: "Royal Plum Gathered Collar Co-ord", price: 2750, category: "girls", isNew: true, badge: "New Arrival", image: "1000827977.jpg", fabric: "Deep Aubergine Plum Slub Cotton Co-ord", embroidery: "Shoulder Floral Vine Embroidery", discountType: null, discountValue: 0 },
+      { id: 107, title: "Mustard Yellow Meadow Co-ord", price: 2750, category: "girls", isNew: true, badge: "New Arrival", image: "1000827978.jpg", fabric: "Warm Mustard Gold Cotton Co-ord", embroidery: "Delicate White Daisy Sprigs on Yoke", discountType: null, discountValue: 0 },
+      { id: 108, title: "Charcoal Black Buttoned Collar Co-ord", price: 2750, category: "girls", isNew: true, badge: "New Arrival", image: "1000827979.jpg", fabric: "Classic Black Cotton-Linen Tunic & Trouser", embroidery: "Crisp White & Sage Shoulder Embroidery", discountType: null, discountValue: 0 },
+      { id: 1, title: "Sage Olive Floral Pocket Co-ord Set", price: 3699, category: "girls", isNew: false, badge: "Bestseller", image: "1000827954.jpg", fabric: "Soft Cotton Linen Two-Piece", embroidery: "Botanical Wildflower Vine on Neckline & Pockets", discountType: null, discountValue: 0 },
+      { id: 2, title: "Blossom Pink Pintucked Flare Frock & Culottes", price: 2650, category: "frocks", isNew: false, badge: "Festive Pick", image: "1000827955.jpg", fabric: "Pure Pastel Pink Lawn with Trouser", embroidery: "Multi-Color Floral Border on Daman", discountType: null, discountValue: 0 },
+      { id: 3, title: "Lavender Mist V-Neck Embroidered Kurti Set", price: 2650, category: "women", isNew: false, badge: "Women's Edit", image: "1000827956.jpg", fabric: "Premium Lilac Cambric Kurti & Trouser", embroidery: "Intricate Resham Floral Neckline", discountType: null, discountValue: 0 },
+      { id: 4, title: "Emerald Checkered Bow-Sleeve Peplum Suit", price: 2799, category: "frocks", isNew: false, badge: "Signature", image: "1000827957.jpg", fabric: "Woven Slub Linen Peplum & Trouser", embroidery: "Double-Tiered Tie Sleeves & Pleated Yoke", discountType: null, discountValue: 0 }
     ];
 
-    window.PRODUCTS = [...BASE_PRODUCTS];
     const SIZE_TIERS = [
       { label: "Small (3-5 Yrs / S)", extra: 0 },
       { label: "Medium (6-8 Yrs / M)", extra: 350 },
@@ -946,18 +908,20 @@
     ];
 
     const CUSTOMER_REVIEWS = [
-      { name: "Ayesha Tariq", city: "Lahore", time: "2 days ago", item: "Rose Pink Daisy Embroidered Co-ord", text: "Meri beti ke liye Rose Pink Daisy Co-ord order kiya tha. Silai itni neat aur embroidery bilkul hath ke kaam jaisi nafees hai. Fabric bhi bohat soft hai!" },
-      { name: "Dr. Sidra Kamran", city: "Islamabad", time: "4 days ago", item: "Emerald Checkered Bow-Sleeve Peplum Suit", text: "Ahinoor ka signature peplum suit mangwaya, fitting bilkul tailor-made jaisi aayi. Sleeves ke bows aur pleats ki finishing bohot hi classy hai." },
-      { name: "Hina Salman", city: "Karachi", time: "5 days ago", item: "Pastel Pink Blossom Embroidered Frock", text: "Karachi ki garmi ke hisab se cotton cambric fabric bohat airy aur comfortable hai. Phoolon ki embroidery ke rang bilkul tasveer jaise pyare hain." },
-      { name: "Madiha Usman", city: "Faisalabad", time: "1 week ago", item: "Deep Maroon Floral Neckline Co-ord", text: "Deep Maroon colour bohat rich lag raha hai pehne hue. Neckline aur cuffs par ivory embroidery ki safai dekh kar dil khush ho gaya." },
-      { name: "Sana Bilal", city: "Rawalpindi", time: "1 week ago", item: "Custom Naap Stitching Order", text: "Maine apni 7 saal ki beti ka custom naap online book kiya tha. Exact wahi length aur fitting mili jo maine likhi thi. Highly recommended!" }
+      { name: "Ayesha Tariq", city: "Lahore", time: "2 days ago", item: "Rose Pink Daisy Embroidered Co-ord", text: "Meri beti ke liye Rose Pink Daisy Co-ord order kiya tha. Silai itni neat aur embroidery bilkul hath ke kaam jaisi nafees hai!" },
+      { name: "Dr. Sidra Kamran", city: "Islamabad", time: "4 days ago", item: "Emerald Checkered Bow-Sleeve Peplum Suit", text: "Ahinoor ka signature peplum suit mangwaya, fitting bilkul tailor-made jaisi aayi." },
+      { name: "Hina Salman", city: "Karachi", time: "5 days ago", item: "Pastel Pink Blossom Embroidered Frock", text: "Karachi ki garmi ke hisab se cotton cambric fabric bohat airy aur comfortable hai." },
+      { name: "Madiha Usman", city: "Faisalabad", time: "1 week ago", item: "Deep Maroon Floral Neckline Co-ord", text: "Deep Maroon colour bohat rich lag raha hai pehne hue aur embroidery ki safai zabardast hai." },
+      { name: "Sana Bilal", city: "Rawalpindi", time: "1 week ago", item: "Custom Naap Stitching Order", text: "Agli baar order kiya toh address khud bhar gaya tha — bohat smooth experience hai!" }
     ];
 
+    let products = [...BASE_PRODUCTS];
+    let globalDiscount = { type: null, value: 0 };
     let cart = [];
     let wishlist = [];
     try { wishlist = JSON.parse(localStorage.getItem('ahinoor_wishlist') || '[]'); } catch (e) {}
     let showOnlyWishlist = false;
-    window.currentFilter = 'all';
+    let currentFilter = 'all';
     let searchQuery = '';
     let sortOrder = 'featured';
     let activeModalProduct = null;
@@ -966,8 +930,7 @@
     let pendingCheckoutItems = [];
     let pendingCheckoutTotal = 0;
     let pendingCheckoutType = 'catalog';
-    let lastTrackedQuery = '';
-
+    let lastTrackedCode = '';
     let currentHeroIndex = 0;
     let heroInterval = null;
     let isHeroPaused = false;
@@ -975,8 +938,188 @@
     let reviewInterval = null;
     let isReviewPaused = false;
 
-    window.formatPKR = (amount) => 'Rs. ' + Number(amount).toLocaleString('en-PK');
+    const ADMIN_SECRET = "ahinoor2026";
+    let adminUnlocked = false;
 
+    function formatPKR(amount) {
+      return 'Rs. ' + Math.max(0, Math.round(Number(amount))).toLocaleString('en-PK');
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      if (!t) return;
+      t.textContent = msg;
+      t.classList.remove('opacity-0');
+      setTimeout(() => t.classList.add('opacity-0'), 2500);
+    }
+
+    // Calculate discounted price for any product (item discount takes priority over global discount)
+    function getDiscountedPrice(product, baseOverride = null) {
+      const original = baseOverride !== null ? baseOverride : Number(product.price || 0);
+      let dType = product.discountType;
+      let dVal = Number(product.discountValue || 0);
+
+      if (!dType || dVal <= 0) {
+        if (globalDiscount.type && Number(globalDiscount.value) > 0) {
+          dType = globalDiscount.type;
+          dVal = Number(globalDiscount.value);
+        }
+      }
+
+      if (!dType || dVal <= 0) {
+        return { finalPrice: original, originalPrice: original, hasDiscount: false, label: '' };
+      }
+
+      let finalPrice = original;
+      let label = '';
+      if (dType === 'percent') {
+        finalPrice = original - (original * dVal / 100);
+        label = `${dVal}% OFF`;
+      } else {
+        finalPrice = original - dVal;
+        label = `Rs. ${Number(dVal).toLocaleString('en-PK')} OFF`;
+      }
+      return { finalPrice: Math.max(100, Math.round(finalPrice)), originalPrice: original, hasDiscount: true, label };
+    }
+
+    function updateDiscountBanner() {
+      const banner = document.getElementById('marquee-discount-banner');
+      const statusEl = document.getElementById('global-discount-status');
+      if (globalDiscount.type && Number(globalDiscount.value) > 0) {
+        const text = globalDiscount.type === 'percent'
+          ? `🔥 Special Offer: ${globalDiscount.value}% OFF Across Collection + Free Delivery`
+          : `🔥 Special Offer: Rs. ${Number(globalDiscount.value).toLocaleString('en-PK')} OFF Across Collection + Free Delivery`;
+        if (banner) banner.textContent = text;
+        if (statusEl) statusEl.textContent = `Active: ${globalDiscount.type === 'percent' ? globalDiscount.value + '% OFF' : 'Rs. ' + globalDiscount.value + ' OFF'}`;
+      } else {
+        if (banner) banner.textContent = '💖 Handcrafted Pret & Custom Naap Available';
+        if (statusEl) statusEl.textContent = 'No Global Discount Active';
+      }
+    }
+
+    // Customer Profiles (Phone + Password + Saved Default Address)
+    function getCustomerProfiles() {
+      try { return JSON.parse(localStorage.getItem('ahinoor_customer_profiles') || '{}'); } catch (e) { return {}; }
+    }
+    function saveCustomerProfile(phone, name, password, address) {
+      const cleanPhone = String(phone || '').replace(/\D/g, '');
+      if (!cleanPhone) return;
+      const profiles = getCustomerProfiles();
+      profiles[cleanPhone] = {
+        phone: cleanPhone,
+        name: name || profiles[cleanPhone]?.name || '',
+        password: password || profiles[cleanPhone]?.password || '',
+        address: address || profiles[cleanPhone]?.address || ''
+      };
+      try { localStorage.setItem('ahinoor_customer_profiles', JSON.stringify(profiles)); } catch (e) {}
+    }
+
+    // Auto-fill saved delivery address when customer types an existing phone number
+    window.autofillCustomerProfile = function(context) {
+      const phoneInputId = context === 'naap' ? 'naap-phone' : 'ord-phone';
+      const addrInputId = context === 'naap' ? 'naap-address' : 'ord-address';
+      const nameInputId = context === 'naap' ? 'naap-name' : 'ord-name';
+      const hintId = 'profile-status-hint';
+
+      const rawPhone = document.getElementById(phoneInputId)?.value || '';
+      const cleanPhone = rawPhone.replace(/\D/g, '');
+      const profiles = getCustomerProfiles();
+      const existing = profiles[cleanPhone];
+
+      if (existing) {
+        const addrEl = document.getElementById(addrInputId);
+        const nameEl = document.getElementById(nameInputId);
+        if (addrEl && existing.address) addrEl.value = existing.address;
+        if (nameEl && !nameEl.value && existing.name) nameEl.value = existing.name;
+        if (context === 'checkout' && document.getElementById(hintId)) {
+          document.getElementById(hintId).textContent = '✓ Saved address auto-filled';
+        }
+      } else if (context === 'checkout' && document.getElementById(hintId)) {
+        document.getElementById(hintId).textContent = '';
+      }
+    };
+
+    // Orders Storage (Local + Firestore)
+    function getLocalOrders() {
+      try { return JSON.parse(localStorage.getItem('ahinoor_local_orders') || '[]'); } catch (e) { return []; }
+    }
+    function saveLocalOrders(list) {
+      try { localStorage.setItem('ahinoor_local_orders', JSON.stringify(list)); } catch (e) {}
+    }
+    function getLocalNotifs() {
+      try { return JSON.parse(localStorage.getItem('ahinoor_admin_notifs') || '[]'); } catch (e) { return []; }
+    }
+    function saveLocalNotifs(list) {
+      try { localStorage.setItem('ahinoor_admin_notifs', JSON.stringify(list)); } catch (e) {}
+    }
+
+    async function pushAdminNotification(type, orderCode, customerName, phone, message) {
+      const item = { id: 'notif-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6), type, orderCode, customerName, phone, message, read: false };
+      const list = getLocalNotifs();
+      list.unshift(item);
+      saveLocalNotifs(list.slice(0, 60));
+      try {
+        await addDoc(collection(db, "admin_notifications"), { type, orderCode, customerName, phone, message, read: false, createdAt: serverTimestamp() });
+      } catch (e) {}
+    }
+
+    function generateOrderCode() {
+      return `AHN-${Math.floor(1000 + Math.random() * 9000)}`;
+    }
+
+    async function createCustomerOrder(payload) {
+      const cleanPhone = String(payload.phone || '').replace(/\D/g, '');
+      saveCustomerProfile(cleanPhone, payload.customerName, payload.password, payload.address);
+
+      const orderCode = generateOrderCode();
+      const newOrder = {
+        id: 'ord-' + Date.now(),
+        orderCode,
+        customerName: payload.customerName,
+        phone: payload.phone,
+        cleanPhone,
+        password: payload.password,
+        address: payload.address,
+        items: payload.items || [],
+        total: payload.total || 0,
+        orderType: payload.orderType || 'catalog',
+        status: 'Pending',
+        postexTrackingId: ''
+      };
+
+      const orders = getLocalOrders();
+      orders.unshift(newOrder);
+      saveLocalOrders(orders);
+
+      try {
+        await addDoc(collection(db, "orders"), {
+          orderCode: newOrder.orderCode,
+          customerName: newOrder.customerName,
+          phone: newOrder.phone,
+          cleanPhone: newOrder.cleanPhone,
+          password: newOrder.password,
+          address: newOrder.address,
+          items: newOrder.items,
+          total: newOrder.total,
+          orderType: newOrder.orderType,
+          status: 'Pending',
+          postexTrackingId: '',
+          createdAt: serverTimestamp()
+        });
+      } catch (e) {}
+
+      const itemsText = (newOrder.items || []).map(i => `${i.title} x${i.qty || 1}`).join(', ');
+      await pushAdminNotification('new_order', orderCode, newOrder.customerName, newOrder.phone, `New Order #${orderCode} by ${newOrder.customerName} (${itemsText})`);
+
+      lastTrackedCode = orderCode;
+      document.getElementById('receipt-order-id').textContent = orderCode;
+      document.getElementById('receipt-customer-info').textContent = `${newOrder.customerName} • ${newOrder.phone}`;
+      const rModal = document.getElementById('order-receipt-modal');
+      rModal.classList.remove('hidden');
+      rModal.classList.add('flex');
+    }
+
+    // Theme Toggle
     function syncThemeIcon() {
       const isDark = document.documentElement.classList.contains('dark');
       document.body.classList.toggle('dark-mode', isDark);
@@ -991,44 +1134,163 @@
       syncThemeIcon();
     };
 
-    window.openTrackModal = function(prefill = '') {
+    // Track Order Modal
+    window.openTrackModal = () => {
       const m = document.getElementById('track-modal');
       m.classList.remove('hidden'); m.classList.add('flex');
-      const input = document.getElementById('track-input');
-      if (prefill && input) {
-        input.value = prefill;
-        if (window.lookupCustomerOrder) window.lookupCustomerOrder({ preventDefault: () => {} });
-      }
     };
     window.closeTrackModal = () => {
       const m = document.getElementById('track-modal');
       m.classList.add('hidden'); m.classList.remove('flex');
     };
 
+    function getStatusBadge(status) {
+      if (status === 'Delivered') return `<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 font-bold text-[10px] uppercase">Delivered ✓</span>`;
+      if (status === 'Dispatched') return `<span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 font-bold text-[10px] uppercase">Dispatched 🚚</span>`;
+      if (status === 'Cancelled') return `<span class="px-2.5 py-1 rounded-full bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300 font-bold text-[10px] uppercase">Cancelled ✕</span>`;
+      return `<span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-300 font-bold text-[10px] uppercase">Pending</span>`;
+    }
+
+    window.lookupCustomerOrder = function(e) {
+      e.preventDefault();
+      const q = document.getElementById('track-input').value.trim().toLowerCase().replace(/\s+/g, '');
+      const orders = getLocalOrders();
+      const found = orders.find(o =>
+        (o.orderCode && o.orderCode.toLowerCase() === q) ||
+        (o.phone && o.phone.replace(/\D/g, '').includes(q.replace(/\D/g, '')) && q.replace(/\D/g, '').length >= 7)
+      );
+      const box = document.getElementById('track-result');
+      if (!found) {
+        box.innerHTML = `<div class="p-3.5 rounded-2xl bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-300 font-semibold">Is Order ID ya Phone Number se koi order nahi mila.</div>`;
+        return;
+      }
+
+      const cancelBtn = found.status === 'Pending'
+        ? `<button type="button" onclick="cancelOrderByCode('${found.orderCode}', 'track')" class="px-3 py-1.5 rounded-xl bg-red-600 text-white font-bold text-[11px]">❌ Cancel Order</button>`
+        : '';
+
+      const postexHtml = found.postexTrackingId
+        ? `<div class="p-3 rounded-xl bg-[#F5F2EC] dark:bg-[#241A1E] border border-[#DFD7C8] dark:border-[#3E2E33] space-y-1.5">
+            <div class="flex justify-between font-bold"><span>PostEx Tracking ID:</span><span class="font-mono text-brand-maroon dark:text-[#E5C687]">${found.postexTrackingId}</span></div>
+            <a href="https://postex.pk/tracking?trackingNumber=${encodeURIComponent(found.postexTrackingId)}" target="_blank" rel="noopener" class="inline-block text-brand-teal dark:text-[#4ADE80] font-bold underline">Check on PostEx Website ↗</a>
+          </div>`
+        : `<p class="text-brand-muted dark:text-[#B5A8A3]">PostEx Tracking ID abhi assign nahi hui (${found.status}).</p>`;
+
+      box.innerHTML = `
+        <div class="p-4 rounded-2xl bg-white dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33] space-y-2.5">
+          <div class="flex items-center justify-between gap-2">
+            <div><span class="font-bold text-sm text-brand-maroon dark:text-[#E5C687]">${found.orderCode}</span> • <strong>${found.customerName}</strong></div>
+            ${getStatusBadge(found.status)}
+          </div>
+          <div>${(found.items || []).map(i => `<div>• ${i.title} (${i.size || 'Custom'}) x${i.qty || 1}</div>`).join('')}</div>
+          ${postexHtml}
+          <div class="flex justify-end pt-1">${cancelBtn}</div>
+        </div>
+      `;
+    };
+
+    window.cancelOrderByCode = async function(orderCode, source) {
+      const orders = getLocalOrders();
+      const target = orders.find(o => o.orderCode === orderCode);
+      if (!target || target.status !== 'Pending') {
+        return showToast("Sirf Pending order dispatch se pehle cancel ho sakta hai.");
+      }
+      target.status = 'Cancelled';
+      saveLocalOrders(orders);
+      await pushAdminNotification('cancelled_order', orderCode, target.customerName, target.phone, `Customer ${target.customerName} (${target.phone}) cancelled Order #${orderCode}`);
+      showToast(`Order #${orderCode} cancelled.`);
+      if (source === 'receipt') {
+        closeReceiptModal();
+      } else if (source === 'track') {
+        lookupCustomerOrder({ preventDefault: () => {} });
+      } else if (source === 'history') {
+        renderHistoryOrdersForPhone(target.cleanPhone || target.phone.replace(/\D/g, ''));
+      }
+    };
+
+    // Order History Modal (Phone + Password Authentication)
+    window.openOrderHistoryModal = () => {
+      const m = document.getElementById('history-modal');
+      m.classList.remove('hidden'); m.classList.add('flex');
+    };
+    window.closeOrderHistoryModal = () => {
+      const m = document.getElementById('history-modal');
+      m.classList.add('hidden'); m.classList.remove('flex');
+    };
+
+    function renderHistoryOrdersForPhone(cleanPhone) {
+      const box = document.getElementById('history-result');
+      const orders = getLocalOrders().filter(o => (o.cleanPhone || String(o.phone || '').replace(/\D/g, '')) === cleanPhone);
+      if (orders.length === 0) {
+        box.innerHTML = `<p class="text-brand-muted dark:text-[#B5A8A3]">Is number par abhi koi order history nahi hai.</p>`;
+        return;
+      }
+
+      box.innerHTML = orders.map(o => `
+        <div class="p-4 rounded-2xl bg-white dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <span class="font-bold text-sm text-brand-maroon dark:text-[#E5C687]">Order # ${o.orderCode}</span>
+              ${o.total ? `<span class="ml-2 font-bold">${formatPKR(o.total)}</span>` : ''}
+            </div>
+            ${getStatusBadge(o.status)}
+          </div>
+          <div class="text-brand-charcoal dark:text-[#EFECE4]">
+            ${(o.items || []).map(i => `<div>• ${i.title} (${i.size || 'Custom'}) x${i.qty || 1}</div>`).join('')}
+          </div>
+          <p class="text-brand-muted dark:text-[#B5A8A3]"><strong>Delivery Address:</strong> ${o.address}</p>
+          <p class="text-brand-teal dark:text-[#4ADE80] font-semibold">
+            <strong>PostEx Tracking ID:</strong> ${o.postexTrackingId ? `<span class="font-mono">${o.postexTrackingId}</span>` : 'Not assigned yet'}
+          </p>
+          ${o.status === 'Pending' ? `<div class="pt-1"><button type="button" onclick="cancelOrderByCode('${o.orderCode}', 'history')" class="px-3 py-1 rounded-lg bg-red-600 text-white text-[11px] font-bold">❌ Cancel Order</button></div>` : ''}
+        </div>
+      `).join('');
+    }
+
+    window.loginOrderHistory = function(e) {
+      e.preventDefault();
+      const cleanPhone = document.getElementById('hist-phone').value.replace(/\D/g, '');
+      const pass = document.getElementById('hist-password').value;
+      const profiles = getCustomerProfiles();
+      const profile = profiles[cleanPhone];
+
+      if (!profile || profile.password !== pass) {
+        document.getElementById('history-result').innerHTML = `<div class="p-3.5 rounded-2xl bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-300 font-semibold">Phone number ya password galat hai. First order wala password check karein.</div>`;
+        return;
+      }
+      renderHistoryOrdersForPhone(cleanPhone);
+    };
+
+    // Receipt Modal Controls
     window.closeReceiptModal = () => {
       const m = document.getElementById('order-receipt-modal');
       m.classList.add('hidden'); m.classList.remove('flex');
     };
-    window.closeReceiptAndTrack = () => {
-      closeReceiptModal();
-      openTrackModal(lastTrackedQuery);
-    };
     window.cancelJustBookedOrder = () => {
-      if (lastTrackedQuery && window.customerCancelOrderByCode) {
-        window.customerCancelOrderByCode(lastTrackedQuery, true);
-      }
+      if (lastTrackedCode) cancelOrderByCode(lastTrackedCode, 'receipt');
     };
 
+    // Checkout Modal Controls
     function openCheckoutModal(items, total, type = 'catalog') {
       pendingCheckoutItems = items;
       pendingCheckoutTotal = total;
       pendingCheckoutType = type;
       const box = document.getElementById('checkout-summary-box');
-      if (type === 'custom-naap') {
-        box.innerHTML = `<p class="font-bold text-brand-maroon dark:text-[#E5C687]">Custom Naap &amp; Embroidery Order</p><p class="text-brand-muted dark:text-[#B5A8A3]">Free Delivery All Over Pakistan</p>`;
-      } else {
-        box.innerHTML = items.map(i => `<div class="flex justify-between"><span>${i.title} (${i.size}) x${i.qty}</span><span class="font-bold">${formatPKR(i.price * i.qty)}</span></div>`).join('') + `<div class="border-t border-[#E2DBD0] dark:border-[#3E2E33] pt-1 mt-1 flex justify-between font-bold text-brand-maroon dark:text-[#E5C687]"><span>Total (Free Shipping):</span><span>${formatPKR(total)}</span></div>`;
+      box.innerHTML = items.map(i => `<div class="flex justify-between"><span>${i.title} (${i.size}) x${i.qty}</span><span class="font-bold">${formatPKR(i.price * i.qty)}</span></div>`).join('') +
+        `<div class="border-t border-[#E2DBD0] dark:border-[#3E2E33] pt-1 mt-1 flex justify-between font-bold text-brand-maroon dark:text-[#E5C687]"><span>Total (100% Free Delivery):</span><span>${formatPKR(total)}</span></div>`;
+
+      // Pre-fill if single saved customer profile exists in browser
+      const profiles = getCustomerProfiles();
+      const keys = Object.keys(profiles);
+      if (keys.length === 1) {
+        const p = profiles[keys[0]];
+        const phoneEl = document.getElementById('ord-phone');
+        if (phoneEl && !phoneEl.value) {
+          phoneEl.value = p.phone;
+          autofillCustomerProfile('checkout');
+        }
       }
+
       const m = document.getElementById('checkout-form-modal');
       m.classList.remove('hidden'); m.classList.add('flex');
     }
@@ -1038,58 +1300,90 @@
     };
 
     window.openHeroModalSuit = () => {
-      const product = window.PRODUCTS[currentHeroIndex];
-      if (product) openProductModal(product.id);
+      const p = products[currentHeroIndex];
+      if (p) openProductModal(p.id);
     };
     window.orderHeroSuitDirect = () => {
-      const product = window.PRODUCTS[currentHeroIndex];
-      if (!product) return;
-      openCheckoutModal([{ id: product.id, title: product.title, size: SIZE_TIERS[0].label, price: product.price, qty: 1 }], product.price, 'catalog');
+      const p = products[currentHeroIndex];
+      if (!p) return;
+      const d = getDiscountedPrice(p);
+      openCheckoutModal([{ id: p.id, title: p.title, size: SIZE_TIERS[0].label, price: d.finalPrice, qty: 1 }], d.finalPrice, 'catalog');
     };
     window.openDirectModalCheckout = () => {
       if (!activeModalProduct) return;
       const tier = SIZE_TIERS[selectedModalSizeIndex];
-      const finalPrice = activeModalProduct.price + tier.extra;
+      const d = getDiscountedPrice(activeModalProduct, activeModalProduct.price + tier.extra);
       closeProductModal();
-      openCheckoutModal([{ id: activeModalProduct.id, title: activeModalProduct.title, size: tier.label, price: finalPrice, qty: 1 }], finalPrice, 'catalog');
+      openCheckoutModal([{ id: activeModalProduct.id, title: activeModalProduct.title, size: tier.label, price: d.finalPrice, qty: 1 }], d.finalPrice, 'catalog');
     };
     window.openBagCheckoutModal = () => {
-      if (cart.length === 0) return showToast("Pehle order bag me koi dress add karein.");
+      if (cart.length === 0) return showToast("Pehle order bag me dress add karein.");
       const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
       closeCartDrawer();
       openCheckoutModal([...cart], total, 'catalog');
     };
 
-    window.openSizeChartModal = () => {
-      const m = document.getElementById('size-chart-modal');
-      m.classList.remove('hidden'); m.classList.add('flex');
-    };
-    window.closeSizeChartModal = () => {
-      const m = document.getElementById('size-chart-modal');
-      m.classList.add('hidden'); m.classList.remove('flex');
+    window.submitPanelOrder = async function(e) {
+      e.preventDefault();
+      await createCustomerOrder({
+        customerName: document.getElementById('ord-name').value.trim(),
+        phone: document.getElementById('ord-phone').value.trim(),
+        password: document.getElementById('ord-password').value,
+        address: document.getElementById('ord-address').value.trim(),
+        items: pendingCheckoutItems,
+        total: pendingCheckoutTotal,
+        orderType: pendingCheckoutType
+      });
+      cart = [];
+      updateCartUI();
+      document.getElementById('panel-order-form').reset();
+      closeCheckoutFormModal();
     };
 
-    window.quickBookSuit = function(id) {
-      const product = window.PRODUCTS.find(p => String(p.id) === String(id));
-      if (!product) return;
-      openCheckoutModal([{ id: product.id, title: product.title, size: SIZE_TIERS[0].label, price: product.price, qty: 1 }], product.price, 'catalog');
+    window.selectNaapSize = (btn, sizeText) => {
+      selectedNaapSize = sizeText;
+      document.querySelectorAll('.naap-size-btn').forEach(b => {
+        b.classList.remove('bg-brand-maroon', 'text-white', 'border-brand-maroon');
+        b.classList.add('bg-white', 'dark:bg-[#1A1215]');
+      });
+      btn.classList.remove('bg-white', 'dark:bg-[#1A1215]');
+      btn.classList.add('bg-brand-maroon', 'text-white', 'border-brand-maroon');
     };
 
+    window.submitCustomNaap = async function(e) {
+      e.preventDefault();
+      const cat = document.getElementById('naap-category').value;
+      const emb = document.getElementById('naap-embroidery').value;
+      const notes = document.getElementById('naap-notes').value.trim();
+      const addr = document.getElementById('naap-address').value.trim();
+      await createCustomerOrder({
+        customerName: document.getElementById('naap-name').value.trim(),
+        phone: document.getElementById('naap-phone').value.trim(),
+        password: document.getElementById('naap-password').value,
+        address: `${addr} | Naap: ${notes}`,
+        items: [{ title: `${cat} (${emb})`, size: selectedNaapSize, qty: 1, price: 0 }],
+        total: 0,
+        orderType: 'Custom Naap'
+      });
+      document.getElementById('naap-form').reset();
+    };
+
+    // Hero Showcase Flip (Every 5 Seconds)
     function showHeroShowcase(index, animate = true) {
       const card = document.getElementById('hero-showcase-card');
       const progress = document.getElementById('hero-progress');
-      if (!card || window.PRODUCTS.length === 0) return;
+      if (!card || products.length === 0) return;
 
-      currentHeroIndex = (index + window.PRODUCTS.length) % window.PRODUCTS.length;
-      const product = window.PRODUCTS[currentHeroIndex];
+      currentHeroIndex = (index + products.length) % products.length;
+      const p = products[currentHeroIndex];
+      const d = getDiscountedPrice(p);
 
       const updateDOM = () => {
-        document.getElementById('hero-card-img').src = product.image;
-        document.getElementById('hero-card-title').textContent = product.title;
-        document.getElementById('hero-card-emb').textContent = product.embroidery;
-        document.getElementById('hero-card-price').textContent = formatPKR(product.price);
-        document.getElementById('hero-card-badge').textContent = product.badge ? `AHINOOR • ${product.badge.toUpperCase()}` : 'AHINOOR SIGNATURE PIECE';
-
+        document.getElementById('hero-card-img').src = p.image;
+        document.getElementById('hero-card-title').textContent = p.title;
+        document.getElementById('hero-card-emb').textContent = p.embroidery;
+        document.getElementById('hero-card-price').textContent = d.hasDiscount ? `${formatPKR(d.finalPrice)} (${d.label})` : formatPKR(p.price);
+        document.getElementById('hero-card-badge').textContent = (p.isNew ? 'AHINOOR • NEW ARRIVAL' : 'AHINOOR • SIGNATURE PIECE');
         if (progress) {
           progress.classList.remove('review-timer-bar');
           void progress.offsetWidth;
@@ -1116,38 +1410,33 @@
     window.pauseHeroAutoFlip = () => { isHeroPaused = true; };
     window.resumeHeroAutoFlip = () => { isHeroPaused = false; };
 
+    // Wishlist & Catalog Rendering
     function updateWishlistUI() {
       const badge = document.getElementById('wishlist-badge');
-      const headerBtn = document.getElementById('wishlist-header-btn');
       if (!badge) return;
       if (wishlist.length > 0) { badge.textContent = wishlist.length; badge.classList.remove('hidden'); }
       else badge.classList.add('hidden');
-      if (headerBtn) {
-        headerBtn.classList.toggle('bg-brand-maroon', showOnlyWishlist);
-        headerBtn.classList.toggle('text-white', showOnlyWishlist);
-      }
     }
 
     window.toggleWishlistItem = function(id, event) {
       if (event) event.stopPropagation();
       const strId = String(id);
       const idx = wishlist.indexOf(strId);
-      if (idx > -1) { wishlist.splice(idx, 1); showToast("Removed from saved favorites"); }
+      if (idx > -1) { wishlist.splice(idx, 1); showToast("Removed from favorites"); }
       else { wishlist.push(strId); showToast("Saved to favorites! ❤️"); }
       try { localStorage.setItem('ahinoor_wishlist', JSON.stringify(wishlist)); } catch (e) {}
       updateWishlistUI();
-      renderProducts(window.currentFilter);
+      renderProducts(currentFilter);
     };
 
     window.toggleWishlistFilter = function() {
       showOnlyWishlist = !showOnlyWishlist;
-      updateWishlistUI();
-      renderProducts(window.currentFilter);
+      renderProducts(currentFilter);
       document.getElementById('collection').scrollIntoView({ behavior: 'smooth' });
     };
 
-    window.handleCatalogSearch = () => { searchQuery = document.getElementById('catalog-search').value.trim().toLowerCase(); renderProducts(window.currentFilter); };
-    window.handleCatalogSort = () => { sortOrder = document.getElementById('catalog-sort').value; renderProducts(window.currentFilter); };
+    window.handleCatalogSearch = () => { searchQuery = document.getElementById('catalog-search').value.trim().toLowerCase(); renderProducts(currentFilter); };
+    window.handleCatalogSort = () => { sortOrder = document.getElementById('catalog-sort').value; renderProducts(currentFilter); };
 
     function updateFilterPill(activeBtn) {
       const pill = document.getElementById('filter-pill');
@@ -1157,68 +1446,73 @@
       pill.style.transform = `translateX(${activeBtn.offsetLeft}px)`;
     }
 
-    window.renderProducts = function(filter = 'all') {
-      window.currentFilter = filter;
+    function renderProducts(filter = 'all') {
+      currentFilter = filter;
       const grid = document.getElementById('product-grid');
       if (!grid) return;
 
-      let filtered = window.PRODUCTS.filter(p => {
+      let filtered = products.filter(p => {
         if (showOnlyWishlist && !wishlist.includes(String(p.id))) return false;
         if (filter === 'new' && !p.isNew) return false;
         if (filter !== 'all' && filter !== 'new' && p.category !== filter) return false;
         if (searchQuery) {
-          const hay = `${p.title} ${p.category} ${p.fabric} ${p.embroidery} ${p.badge}`.toLowerCase();
+          const hay = `${p.title} ${p.category} ${p.fabric} ${p.embroidery}`.toLowerCase();
           if (!hay.includes(searchQuery)) return false;
         }
         return true;
       });
 
-      if (sortOrder === 'low-high') filtered = [...filtered].sort((a, b) => a.price - b.price);
-      else if (sortOrder === 'high-low') filtered = [...filtered].sort((a, b) => b.price - a.price);
+      if (sortOrder === 'low-high') filtered = [...filtered].sort((a, b) => getDiscountedPrice(a).finalPrice - getDiscountedPrice(b).finalPrice);
+      else if (sortOrder === 'high-low') filtered = [...filtered].sort((a, b) => getDiscountedPrice(b).finalPrice - getDiscountedPrice(a).finalPrice);
 
-      if (filtered.length === 0) {
-        grid.innerHTML = `<div class="col-span-full text-center py-14 bg-white dark:bg-[#241A1E] rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33] space-y-3"><p class="font-editorial text-2xl">No matching suits found</p><button type="button" onclick="resetCatalogFilters()" class="px-5 py-2.5 bg-brand-maroon text-white text-xs font-bold uppercase tracking-wider rounded-full">Show All Suits</button></div>`;
-        return;
-      }
+      grid.innerHTML = filtered.map(p => {
+        const isSaved = wishlist.includes(String(p.id));
+        const d = getDiscountedPrice(p);
+        const fallbackImg = `https://placehold.co/400x533/EBE6DC/6A2338?text=${encodeURIComponent(p.title.slice(0, 16))}`;
 
-      grid.innerHTML = filtered.map((product) => {
-        const isSaved = wishlist.includes(String(product.id));
-        const fallbackImg = `https://placehold.co/400x533/EBE6DC/6A2338?text=${encodeURIComponent(product.title.slice(0, 18))}`;
+        const topBadge = p.isNew
+          ? `<span class="absolute top-3 left-3 bg-brand-maroon text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs">New Arrival</span>`
+          : '';
+
+        const discTag = d.hasDiscount
+          ? `<span class="inline-block bg-[#176B58] text-white text-[9px] font-bold uppercase px-2 py-0.5 rounded-full ml-1">${d.label}</span>`
+          : '';
+
+        const priceHtml = d.hasDiscount
+          ? `<span class="text-base font-bold text-brand-maroon dark:text-[#E5C687]">${formatPKR(d.finalPrice)}</span> <span class="text-xs line-through text-brand-muted">${formatPKR(d.originalPrice)}</span>`
+          : `<span class="text-base font-bold text-brand-maroon dark:text-[#E5C687]">${formatPKR(p.price)}</span>`;
+
         return `
-        <div class="product-card group bg-white dark:bg-[#241A1E] rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] hover:border-brand-gold/70 overflow-hidden shadow-xs hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between">
-          <div>
-            <div onclick="openProductModal('${product.id}')" class="relative aspect-[3/4] overflow-hidden bg-[#EBE6DC] dark:bg-[#1A1215] cursor-pointer">
-              <img src="${product.image}" onerror="this.src='${fallbackImg}'" alt="${product.title}" loading="lazy" decoding="async" width="400" height="533" class="w-full h-full object-cover card-img-zoom" />
-              ${product.badge ? `<span class="absolute top-3 left-3 ${product.isNew ? 'bg-brand-maroon text-white' : 'bg-white/95 dark:bg-[#3E2E33] text-brand-charcoal dark:text-white'} text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs">${product.badge}</span>` : ''}
-              <button type="button" onclick="toggleWishlistItem('${product.id}', event)" aria-label="Save" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 dark:bg-[#3E2E33]/90 flex items-center justify-center shadow-xs ${isSaved ? 'text-[#D62976]' : 'text-brand-charcoal dark:text-white'}">${isSaved ? '❤️' : '🤍'}</button>
+          <div class="product-card group bg-white dark:bg-[#241A1E] rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] overflow-hidden shadow-xs hover:shadow-lg transition-shadow flex flex-col justify-between">
+            <div>
+              <div onclick="openProductModal('${p.id}')" class="relative aspect-[3/4] overflow-hidden bg-[#EBE6DC] dark:bg-[#1A1215] cursor-pointer">
+                <img src="${p.image}" onerror="this.src='${fallbackImg}'" alt="${p.title}" loading="lazy" decoding="async" width="400" height="533" class="w-full h-full object-cover card-img-zoom" />
+                ${topBadge}
+                <button type="button" onclick="toggleWishlistItem('${p.id}', event)" aria-label="Save" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 dark:bg-[#3E2E33]/90 flex items-center justify-center shadow-xs">${isSaved ? '❤️' : '🤍'}</button>
+              </div>
+              <div class="p-4 space-y-1">
+                <div class="flex items-center flex-wrap gap-1">
+                  <span class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">${p.category}</span>
+                  ${discTag}
+                </div>
+                <h3 onclick="openProductModal('${p.id}')" class="font-editorial text-xl font-bold leading-snug cursor-pointer hover:text-brand-maroon transition">${p.title}</h3>
+                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] line-clamp-1">${p.embroidery}</p>
+              </div>
             </div>
-            <div class="p-4 space-y-1.5">
-              <p class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">${product.isNew ? 'New Arrival • ' : ''}${product.category}</p>
-              <h3 onclick="openProductModal('${product.id}')" class="font-editorial text-xl font-bold text-brand-charcoal dark:text-[#F3EFEA] leading-snug cursor-pointer hover:text-brand-maroon transition">${product.title}</h3>
-              <p class="text-xs text-brand-muted dark:text-[#B5A8A3] line-clamp-1">${product.embroidery}</p>
+            <div class="px-4 pb-4 pt-2 flex items-center justify-between border-t border-[#EFECE4] dark:border-[#3E2E33]">
+              <div>${priceHtml}</div>
+              <div class="flex items-center gap-1.5">
+                <button type="button" onclick="openProductModal('${p.id}')" class="px-2.5 py-1.5 rounded-lg border border-[#DFD7C8] dark:border-[#3E2E33] text-[11px] font-bold">Sizes</button>
+                <button type="button" onclick="quickBookSuit('${p.id}')" class="px-2.5 py-1.5 rounded-lg bg-brand-maroon text-white text-[11px] font-bold">Order</button>
+              </div>
             </div>
           </div>
-          <div class="px-4 pb-4 pt-2 flex items-center justify-between border-t border-[#EFECE4] dark:border-[#3E2E33]">
-            <span class="text-base font-bold text-brand-maroon dark:text-[#E5C687]">${formatPKR(product.price)}</span>
-            <div class="flex items-center gap-1.5">
-              <button type="button" onclick="openProductModal('${product.id}')" class="px-2.5 py-1.5 rounded-lg border border-[#DFD7C8] dark:border-[#3E2E33] text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] hover:border-brand-maroon">Sizes</button>
-              <button type="button" onclick="quickBookSuit('${product.id}')" class="px-2.5 py-1.5 rounded-lg bg-brand-maroon text-white text-[11px] font-bold hover:bg-brand-maroonDark">Order</button>
-            </div>
-          </div>
-        </div>`;
+        `;
       }).join('');
-    };
-
-    window.resetCatalogFilters = () => {
-      showOnlyWishlist = false; searchQuery = ''; sortOrder = 'featured';
-      document.getElementById('catalog-search').value = '';
-      document.getElementById('catalog-sort').value = 'featured';
-      updateWishlistUI(); filterProducts('all');
-    };
+    }
 
     window.filterProducts = function(category, clickedBtn = null) {
-      if (category !== 'wishlist') showOnlyWishlist = false;
-      updateWishlistUI();
+      showOnlyWishlist = false;
       const targetBtn = clickedBtn || document.querySelector(`.filter-tab-btn[data-filter="${category}"]`);
       document.querySelectorAll('.filter-tab-btn').forEach(btn => {
         const active = btn === targetBtn;
@@ -1230,34 +1524,45 @@
       renderProducts(category);
     };
 
+    window.quickBookSuit = function(id) {
+      const p = products.find(item => String(item.id) === String(id));
+      if (!p) return;
+      const d = getDiscountedPrice(p);
+      openCheckoutModal([{ id: p.id, title: p.title, size: SIZE_TIERS[0].label, price: d.finalPrice, qty: 1 }], d.finalPrice, 'catalog');
+    };
+
     window.openProductModal = function(id) {
-      const product = window.PRODUCTS.find(p => String(p.id) === String(id));
-      if (!product) return;
-      activeModalProduct = product;
+      const p = products.find(item => String(item.id) === String(id));
+      if (!p) return;
+      activeModalProduct = p;
       selectedModalSizeIndex = 0;
-      document.getElementById('modal-img').src = product.image;
-      document.getElementById('modal-category').textContent = (product.isNew ? 'NEW ARRIVAL • ' : '') + product.category.toUpperCase();
-      document.getElementById('modal-title').textContent = product.title;
-      document.getElementById('modal-fabric').textContent = product.fabric;
-      document.getElementById('modal-embroidery').textContent = product.embroidery;
+      document.getElementById('modal-img').src = p.image;
+      document.getElementById('modal-category').textContent = p.category.toUpperCase();
+      document.getElementById('modal-title').textContent = p.title;
+      document.getElementById('modal-fabric').textContent = p.fabric;
+      document.getElementById('modal-embroidery').textContent = p.embroidery;
       renderModalSizes();
-      const modal = document.getElementById('product-modal');
-      modal.classList.remove('hidden'); modal.classList.add('flex');
+      const m = document.getElementById('product-modal');
+      m.classList.remove('hidden'); m.classList.add('flex');
     };
 
     window.closeProductModal = () => {
-      const modal = document.getElementById('product-modal');
-      modal.classList.add('hidden'); modal.classList.remove('flex');
+      const m = document.getElementById('product-modal');
+      m.classList.add('hidden'); m.classList.remove('flex');
     };
 
     function renderModalSizes() {
       if (!activeModalProduct) return;
-      const container = document.getElementById('modal-sizes');
-      const activeTier = SIZE_TIERS[selectedModalSizeIndex];
-      document.getElementById('modal-price').textContent = formatPKR(activeModalProduct.price + activeTier.extra);
-      container.innerHTML = SIZE_TIERS.map((tier, idx) => {
-        const isSelected = idx === selectedModalSizeIndex;
-        return `<button type="button" onclick="selectModalSize(${idx})" class="p-2.5 rounded-xl border text-left transition ${isSelected ? 'bg-brand-maroon text-white border-brand-maroon shadow-xs' : 'bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#EFECE4] border-gray-200 dark:border-[#3E2E33]'}"><div class="text-xs font-bold leading-tight">${tier.label}</div><div class="text-xs font-semibold mt-1 ${isSelected ? 'text-[#E5C687]' : 'text-brand-maroon dark:text-[#E5C687]'}">${formatPKR(activeModalProduct.price + tier.extra)}</div></button>`;
+      const tier = SIZE_TIERS[selectedModalSizeIndex];
+      const d = getDiscountedPrice(activeModalProduct, activeModalProduct.price + tier.extra);
+      document.getElementById('modal-price-wrap').innerHTML = d.hasDiscount
+        ? `<span class="text-2xl font-bold text-brand-maroon dark:text-[#E5C687]">${formatPKR(d.finalPrice)}</span> <span class="text-sm line-through text-brand-muted">${formatPKR(d.originalPrice)}</span> <span class="text-xs font-bold text-brand-teal dark:text-[#4ADE80]">(${d.label})</span>`
+        : `<span class="text-2xl font-bold text-brand-maroon dark:text-[#E5C687]">${formatPKR(d.finalPrice)}</span>`;
+
+      document.getElementById('modal-sizes').innerHTML = SIZE_TIERS.map((t, idx) => {
+        const td = getDiscountedPrice(activeModalProduct, activeModalProduct.price + t.extra);
+        const active = idx === selectedModalSizeIndex;
+        return `<button type="button" onclick="selectModalSize(${idx})" class="p-2.5 rounded-xl border text-left transition ${active ? 'bg-brand-maroon text-white border-brand-maroon' : 'bg-white dark:bg-[#1A1215] border-[#DFD7C8] dark:border-[#3E2E33]'}"><div class="text-xs font-bold">${t.label}</div><div class="text-xs mt-1 ${active ? 'text-[#E5C687]' : 'text-brand-maroon dark:text-[#E5C687]'}">${formatPKR(td.finalPrice)}</div></button>`;
       }).join('');
     }
 
@@ -1265,15 +1570,14 @@
     window.addModalProductToCart = () => {
       if (!activeModalProduct) return;
       const tier = SIZE_TIERS[selectedModalSizeIndex];
-      addToCart(activeModalProduct, tier.label, activeModalProduct.price + tier.extra);
-      closeProductModal();
-    };
-
-    window.addToCart = function(product, sizeLabel, unitPrice) {
-      const existing = cart.find(item => String(item.id) === String(product.id) && item.size === sizeLabel);
+      const d = getDiscountedPrice(activeModalProduct, activeModalProduct.price + tier.extra);
+      const existing = cart.find(c => String(c.id) === String(activeModalProduct.id) && c.size === tier.label);
       if (existing) existing.qty += 1;
-      else cart.push({ id: product.id, title: product.title, image: product.image, size: sizeLabel, price: unitPrice, qty: 1 });
-      updateCartUI(); showToast(); openCartDrawer();
+      else cart.push({ id: activeModalProduct.id, title: activeModalProduct.title, image: activeModalProduct.image, size: tier.label, price: d.finalPrice, qty: 1 });
+      updateCartUI();
+      showToast("Added to order bag! 🛍️");
+      closeProductModal();
+      openCartDrawer();
     };
 
     window.changeItemQty = (idx, delta) => {
@@ -1285,90 +1589,39 @@
 
     function updateCartUI() {
       const badge = document.getElementById('cart-badge');
-      const itemsContainer = document.getElementById('cart-items');
+      const itemsBox = document.getElementById('cart-items');
       const totalEl = document.getElementById('cart-total');
-      badge.textContent = cart.reduce((s, i) => s + i.qty, 0);
-      totalEl.textContent = formatPKR(cart.reduce((s, i) => s + (i.price * i.qty), 0));
+      if (badge) badge.textContent = cart.reduce((s, i) => s + i.qty, 0);
+      if (totalEl) totalEl.textContent = formatPKR(cart.reduce((s, i) => s + (i.price * i.qty), 0));
+      if (!itemsBox) return;
       if (cart.length === 0) {
-        itemsContainer.innerHTML = `<div class="text-center py-16 space-y-3"><p class="font-editorial text-2xl">Aapka Order Bag Khali Hai</p><p class="text-xs text-brand-muted">Catalog se koi bhi stitched dress select karein.</p></div>`;
+        itemsBox.innerHTML = `<p class="text-center text-xs text-brand-muted py-12">Aapka order bag khali hai.</p>`;
         return;
       }
-      itemsContainer.innerHTML = cart.map((item, idx) => `<div class="flex gap-3.5 bg-white dark:bg-[#1A1215] p-3 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] items-center"><img src="${item.image}" onerror="this.src='https://placehold.co/80x100/EBE6DC/6A2338?text=Suit'" alt="${item.title}" class="w-16 h-20 object-cover rounded-xl" /><div class="flex-1 min-w-0"><h4 class="font-editorial text-base font-bold truncate">${item.title}</h4><p class="text-[11px] text-brand-muted">${item.size}</p><p class="text-xs font-bold text-brand-maroon dark:text-[#E5C687] mt-0.5">${formatPKR(item.price * item.qty)}</p></div><div class="flex items-center gap-1.5 bg-[#F5F2EC] dark:bg-[#322429] rounded-lg px-2 py-1"><button type="button" onclick="changeItemQty(${idx}, -1)" class="w-5 h-5 text-xs font-bold">-</button><span class="text-xs font-bold w-4 text-center">${item.qty}</span><button type="button" onclick="changeItemQty(${idx}, 1)" class="w-5 h-5 text-xs font-bold">+</button></div></div>`).join('');
+      itemsBox.innerHTML = cart.map((item, idx) => `
+        <div class="flex gap-3 bg-white dark:bg-[#1A1215] p-3 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] items-center">
+          <img src="${item.image}" alt="${item.title}" class="w-14 h-16 object-cover rounded-xl" />
+          <div class="flex-1 min-w-0">
+            <h4 class="font-editorial text-sm font-bold truncate">${item.title}</h4>
+            <p class="text-[11px] text-brand-muted">${item.size}</p>
+            <p class="text-xs font-bold text-brand-maroon dark:text-[#E5C687]">${formatPKR(item.price * item.qty)}</p>
+          </div>
+          <div class="flex items-center gap-1 bg-[#F5F2EC] dark:bg-[#322429] rounded-lg px-2 py-1">
+            <button type="button" onclick="changeItemQty(${idx}, -1)" class="w-5 h-5 font-bold">-</button>
+            <span class="text-xs font-bold w-4 text-center">${item.qty}</span>
+            <button type="button" onclick="changeItemQty(${idx}, 1)" class="w-5 h-5 font-bold">+</button>
+          </div>
+        </div>
+      `).join('');
     }
 
     window.openCartDrawer = () => document.getElementById('cart-drawer').classList.remove('hidden');
     window.closeCartDrawer = () => document.getElementById('cart-drawer').classList.add('hidden');
-    window.showToast = (msg = "Added to order bag! 🛍️") => {
-      const t = document.getElementById('toast');
-      t.textContent = msg; t.classList.remove('opacity-0');
-      setTimeout(() => t.classList.add('opacity-0'), 2400);
-    };
+    window.openSizeChartModal = () => { const m = document.getElementById('size-chart-modal'); m.classList.remove('hidden'); m.classList.add('flex'); };
+    window.closeSizeChartModal = () => { const m = document.getElementById('size-chart-modal'); m.classList.add('hidden'); m.classList.remove('flex'); };
     window.toggleMobileMenu = () => document.getElementById('mobile-menu').classList.toggle('hidden');
 
-    window.selectNaapSize = (btn, sizeText) => {
-      selectedNaapSize = sizeText;
-      document.querySelectorAll('.naap-size-btn').forEach(b => {
-        b.classList.remove('bg-brand-maroon', 'text-white', 'border-brand-maroon');
-        b.classList.add('bg-white', 'dark:bg-[#1A1215]', 'text-brand-charcoal', 'dark:text-[#EFECE4]');
-      });
-      btn.classList.remove('bg-white', 'dark:bg-[#1A1215]', 'text-brand-charcoal', 'dark:text-[#EFECE4]');
-      btn.classList.add('bg-brand-maroon', 'text-white', 'border-brand-maroon');
-    };
-
-    window.submitCustomNaap = (e) => {
-      e.preventDefault();
-      const customPayload = {
-        customerName: document.getElementById('naap-name').value.trim(),
-        phone: document.getElementById('naap-phone').value.trim(),
-        address: document.getElementById('naap-notes').value.trim(),
-        category: document.getElementById('naap-category').value,
-        embroidery: document.getElementById('naap-embroidery').value,
-        sizeGroup: selectedNaapSize
-      };
-      if (window.savePanelOrder) {
-        window.savePanelOrder({
-          customerName: customPayload.customerName,
-          phone: customPayload.phone,
-          address: customPayload.address,
-          items: [{ title: `${customPayload.category} (${customPayload.embroidery})`, size: customPayload.sizeGroup, qty: 1, price: 0 }],
-          total: 0,
-          orderType: 'Custom Naap'
-        }, () => {
-          document.getElementById('naap-form').reset();
-        });
-      }
-    };
-
-    window.submitPanelOrder = function(e) {
-      e.preventDefault();
-      const name = document.getElementById('ord-name').value.trim();
-      const phone = document.getElementById('ord-phone').value.trim();
-      const address = document.getElementById('ord-address').value.trim();
-      if (window.savePanelOrder) {
-        window.savePanelOrder({
-          customerName: name,
-          phone: phone,
-          address: address,
-          items: pendingCheckoutItems,
-          total: pendingCheckoutTotal,
-          orderType: pendingCheckoutType
-        }, () => {
-          cart = [];
-          updateCartUI();
-          document.getElementById('panel-order-form').reset();
-          closeCheckoutFormModal();
-        });
-      }
-    };
-
-    window.showOrderReceipt = function(orderId, customerName, phone) {
-      lastTrackedQuery = orderId;
-      document.getElementById('receipt-order-id').textContent = orderId;
-      document.getElementById('receipt-customer-info').textContent = `${customerName} • ${phone}`;
-      const m = document.getElementById('order-receipt-modal');
-      m.classList.remove('hidden'); m.classList.add('flex');
-    };
-
+    // Reviews Auto-Flip
     function showReview(index, animate = true) {
       const card = document.getElementById('review-card');
       const progress = document.getElementById('review-progress');
@@ -1388,7 +1641,6 @@
       card.classList.add('review-flip-out');
       setTimeout(() => { updateDOM(); card.classList.remove('review-flip-out'); card.classList.add('review-flip-in'); }, 240);
     }
-
     function startReviewAutoFlip() {
       clearInterval(reviewInterval);
       reviewInterval = setInterval(() => { if (!isReviewPaused) showReview(currentReviewIndex + 1, true); }, 5000);
@@ -1398,6 +1650,219 @@
     window.pauseReviewAutoFlip = () => { isReviewPaused = true; };
     window.resumeReviewAutoFlip = () => { isReviewPaused = false; };
 
+    // Admin Console Controls (New Arrival Toggle, Item & Global Discount Apply/Clear, Orders & Notifications)
+    window.openAdminPanelView = () => {
+      const m = document.getElementById('admin-panel-modal');
+      m.classList.remove('hidden'); m.classList.add('flex');
+      if (adminUnlocked) renderAdminWorkspace();
+    };
+    window.closeAdminPanelView = () => {
+      const m = document.getElementById('admin-panel-modal');
+      m.classList.add('hidden'); m.classList.remove('flex');
+    };
+    window.verifyAdminLogin = (e) => {
+      e.preventDefault();
+      if (document.getElementById('adm-pass-input').value === ADMIN_SECRET) {
+        adminUnlocked = true;
+        document.getElementById('adm-pass-err').classList.add('hidden');
+        renderAdminWorkspace();
+      } else {
+        document.getElementById('adm-pass-err').classList.remove('hidden');
+      }
+    };
+    window.logoutAdmin = () => {
+      adminUnlocked = false;
+      document.getElementById('adm-workspace-box').classList.add('hidden');
+      document.getElementById('adm-logout-btn').classList.add('hidden');
+      document.getElementById('adm-login-box').classList.remove('hidden');
+    };
+
+    window.switchAdmTab = (tab) => {
+      ['catalog', 'notifs', 'orders'].forEach(t => {
+        const b = document.getElementById('atab-' + t);
+        if (b) {
+          b.classList.toggle('bg-brand-maroon', t === tab);
+          b.classList.toggle('text-white', t === tab);
+        }
+      });
+      document.getElementById('aview-catalog').classList.toggle('hidden', tab !== 'catalog');
+      document.getElementById('aview-notifs').classList.toggle('hidden', tab !== 'notifs');
+      document.getElementById('aview-orders').classList.toggle('hidden', tab !== 'orders');
+      if (tab === 'notifs') renderAdmNotifs();
+      if (tab === 'orders') renderAdmOrders();
+    };
+
+    window.toggleNewArrivalBadge = function(id) {
+      const p = products.find(item => String(item.id) === String(id));
+      if (!p) return;
+      p.isNew = !p.isNew;
+      renderProducts(currentFilter);
+      showHeroShowcase(currentHeroIndex, false);
+      renderAdmSuitsList();
+      showToast(p.isNew ? "New Arrival tag enabled" : "New Arrival tag removed");
+    };
+
+    window.setSuitDiscount = function(id) {
+      const p = products.find(item => String(item.id) === String(id));
+      if (!p) return;
+      const type = document.getElementById(`disc-type-${id}`).value;
+      const val = Number(document.getElementById(`disc-val-${id}`).value || 0);
+      if (val <= 0) return showToast("Discount value 0 se zyada likhein.");
+      p.discountType = type;
+      p.discountValue = val;
+      renderProducts(currentFilter);
+      showHeroShowcase(currentHeroIndex, false);
+      renderAdmSuitsList();
+      showToast("Discount applied on suit!");
+    };
+
+    window.clearSuitDiscount = function(id) {
+      const p = products.find(item => String(item.id) === String(id));
+      if (!p) return;
+      p.discountType = null;
+      p.discountValue = 0;
+      renderProducts(currentFilter);
+      showHeroShowcase(currentHeroIndex, false);
+      renderAdmSuitsList();
+      showToast("Discount removed from suit.");
+    };
+
+    window.applyGlobalDiscount = function() {
+      const type = document.getElementById('global-disc-type').value;
+      const val = Number(document.getElementById('global-disc-val').value || 0);
+      if (val <= 0) return showToast("Discount value enter karein.");
+      globalDiscount = { type, value: val };
+      updateDiscountBanner();
+      renderProducts(currentFilter);
+      showHeroShowcase(currentHeroIndex, false);
+      showToast("Catalog-wide discount applied!");
+    };
+
+    window.clearGlobalDiscount = function() {
+      globalDiscount = { type: null, value: 0 };
+      document.getElementById('global-disc-val').value = '';
+      updateDiscountBanner();
+      renderProducts(currentFilter);
+      showHeroShowcase(currentHeroIndex, false);
+      showToast("Global discount removed.");
+    };
+
+    function renderAdmSuitsList() {
+      const box = document.getElementById('adm-suits-controls');
+      if (!box) return;
+      box.innerHTML = products.map(p => {
+        const hasItemDisc = p.discountType && Number(p.discountValue) > 0;
+        return `
+          <div class="bg-white dark:bg-[#1A1215] p-3.5 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+            <div>
+              <p class="font-bold text-sm">${p.title} <span class="text-brand-maroon dark:text-[#E5C687]">(${formatPKR(p.price)})</span></p>
+              <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">
+                New Arrival: <strong>${p.isNew ? 'ON' : 'OFF'}</strong> •
+                Discount: <strong>${hasItemDisc ? (p.discountType === 'percent' ? p.discountValue + '% OFF' : 'Rs. ' + p.discountValue + ' OFF') : 'None'}</strong>
+              </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" onclick="toggleNewArrivalBadge('${p.id}')" class="px-3 py-1.5 rounded-xl font-bold ${p.isNew ? 'bg-amber-600 text-white' : 'bg-[#EBE6DC] dark:bg-[#322429]'}">
+                ${p.isNew ? 'Remove New Arrival' : 'Set New Arrival'}
+              </button>
+              <select id="disc-type-${p.id}" class="px-2.5 py-1.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#241A1E]">
+                <option value="percent" ${p.discountType === 'percent' ? 'selected' : ''}>% Off</option>
+                <option value="flat" ${p.discountType === 'flat' ? 'selected' : ''}>Rs. Off</option>
+              </select>
+              <input type="number" id="disc-val-${p.id}" min="0" value="${p.discountValue || ''}" placeholder="Off" class="w-20 px-2.5 py-1.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#241A1E]" />
+              <button type="button" onclick="setSuitDiscount('${p.id}')" class="px-3 py-1.5 rounded-xl bg-brand-teal text-white font-bold">Set Discount</button>
+              ${hasItemDisc ? `<button type="button" onclick="clearSuitDiscount('${p.id}')" class="px-2.5 py-1.5 rounded-xl bg-red-600 text-white font-bold">Clear</button>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderAdmNotifs() {
+      const box = document.getElementById('aview-notifs');
+      const notifs = getLocalNotifs();
+      document.getElementById('adm-notif-badge').textContent = notifs.filter(n => !n.read).length;
+      if (!box) return;
+      if (notifs.length === 0) {
+        box.innerHTML = `<p class="text-brand-muted py-4">Koi notification nahi hai.</p>`;
+        return;
+      }
+      box.innerHTML = notifs.map(n => `
+        <div class="p-3.5 rounded-2xl border ${n.type === 'cancelled_order' ? 'bg-red-50 dark:bg-red-950/30 border-red-200 dark:border-red-900' : 'bg-white dark:bg-[#1A1215] border-[#DFD7C8] dark:border-[#3E2E33]'} flex items-center justify-between gap-2">
+          <div>
+            <span class="font-bold uppercase text-[10px] px-2 py-0.5 rounded-full text-white ${n.type === 'cancelled_order' ? 'bg-red-600' : 'bg-brand-teal'}">${n.type === 'cancelled_order' ? '❌ Cancelled' : '🛍️ New Order'}</span>
+            <span class="ml-2 font-semibold">${n.message}</span>
+          </div>
+          <span class="font-bold text-brand-maroon dark:text-[#E5C687]">${n.orderCode}</span>
+        </div>
+      `).join('');
+    }
+
+    function renderAdmOrders() {
+      const box = document.getElementById('aview-orders');
+      const orders = getLocalOrders();
+      if (!box) return;
+      if (orders.length === 0) {
+        box.innerHTML = `<p class="text-brand-muted py-4">Abhi tak koi order book nahi hua.</p>`;
+        return;
+      }
+      box.innerHTML = orders.map(o => {
+        const isCancelled = o.status === 'Cancelled';
+        return `
+          <div class="p-4 rounded-2xl bg-white dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33] space-y-2.5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div><strong class="text-brand-maroon dark:text-[#E5C687]">${o.orderCode}</strong> • <strong>${o.customerName}</strong> (${o.phone})</div>
+              <div class="flex items-center gap-1.5">
+                <button type="button" onclick="admDeleteOrder('${o.orderCode}')" class="px-2.5 py-1 rounded-lg bg-red-600 text-white font-bold text-[10px]">🗑️ Delete</button>
+                ${getStatusBadge(o.status)}
+              </div>
+            </div>
+            <p class="text-brand-muted dark:text-[#B5A8A3]">Address: ${o.address}</p>
+            <div>${(o.items || []).map(i => `<div>• ${i.title} (${i.size || 'Custom'}) x${i.qty || 1}</div>`).join('')}</div>
+            ${!isCancelled ? `
+              <div class="flex flex-wrap gap-2 pt-2 border-t border-[#EFECE4] dark:border-[#3E2E33]">
+                <input type="text" id="adm-px-${o.orderCode}" value="${o.postexTrackingId || ''}" placeholder="PostEx Tracking ID" class="px-3 py-1.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#241A1E] text-xs" />
+                <button type="button" onclick="admSetStatus('${o.orderCode}', 'Dispatched')" class="px-3 py-1.5 rounded-xl bg-amber-600 text-white font-bold">🚚 Dispatched</button>
+                <button type="button" onclick="admSetStatus('${o.orderCode}', 'Delivered')" class="px-3 py-1.5 rounded-xl bg-brand-teal text-white font-bold">✓ Delivered</button>
+                <button type="button" onclick="admSetStatus('${o.orderCode}', 'Cancelled')" class="px-3 py-1.5 rounded-xl bg-rose-600 text-white font-bold">❌ Cancel</button>
+              </div>
+            ` : `<p class="text-red-600 font-semibold">Cancelled order — dispatch/delivery controls hidden.</p>`}
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.admSetStatus = function(orderCode, nextStatus) {
+      const orders = getLocalOrders();
+      const target = orders.find(o => o.orderCode === orderCode);
+      if (!target) return;
+      target.status = nextStatus;
+      const pxInput = document.getElementById(`adm-px-${orderCode}`);
+      if (pxInput && pxInput.value.trim()) {
+        target.postexTrackingId = pxInput.value.trim();
+      }
+      saveLocalOrders(orders);
+      renderAdmOrders();
+      showToast(`Order #${orderCode} marked ${nextStatus}`);
+    };
+
+    window.admDeleteOrder = function(orderCode) {
+      const orders = getLocalOrders().filter(o => o.orderCode !== orderCode);
+      saveLocalOrders(orders);
+      renderAdmOrders();
+      showToast(`Order #${orderCode} deleted`);
+    };
+
+    function renderAdminWorkspace() {
+      document.getElementById('adm-login-box').classList.add('hidden');
+      document.getElementById('adm-logout-btn').classList.remove('hidden');
+      document.getElementById('adm-workspace-box').classList.remove('hidden');
+      document.getElementById('adm-notif-badge').textContent = getLocalNotifs().filter(n => !n.read).length;
+      renderAdmSuitsList();
+    }
+
+    // Initialize Storefront
+    updateDiscountBanner();
     renderProducts('all');
     updateCartUI();
     updateWishlistUI();
@@ -1409,267 +1874,13 @@
       const initialBtn = document.querySelector('.filter-tab-btn[data-filter="all"]');
       if (initialBtn) updateFilterPill(initialBtn);
     });
-  </script>
 
-  <!-- Firebase Storefront Sync -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, updateDoc, doc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyCl1OcFNYv-7-iB4Gf2WbQO3Jw-1ipE4ww",
-      authDomain: "ahinoor-store.firebaseapp.com",
-      projectId: "ahinoor-store",
-      storageBucket: "ahinoor-store.firebasestorage.app",
-      messagingSenderId: "17933030943",
-      appId: "1:17933030943:web:76fbb09c75b0aef68aa72a"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    let cloudOrders = [];
-    const baseCopy = [...window.PRODUCTS];
-
-    function getLocalOrders() {
-      try { return JSON.parse(localStorage.getItem('ahinoor_local_orders') || '[]'); } catch (e) { return []; }
+    if (window.location.hash === '#admin') {
+      openAdminPanelView();
     }
-    function saveLocalOrders(list) {
-      try { localStorage.setItem('ahinoor_local_orders', JSON.stringify(list)); } catch (e) {}
-    }
-
-    function pushLocalNotification(notif) {
-      try {
-        const list = JSON.parse(localStorage.getItem('ahinoor_admin_notifs') || '[]');
-        list.unshift({ id: 'notif-' + Date.now(), read: false, timeStr: new Date().toLocaleString('en-PK'), ...notif });
-        localStorage.setItem('ahinoor_admin_notifs', JSON.stringify(list.slice(0, 50)));
-      } catch (e) {}
-    }
-
-    async function pushAdminNotification(type, orderCode, customerName, phone, message) {
-      pushLocalNotification({ type, orderCode, customerName, phone, message });
-      try {
-        await addDoc(collection(db, "admin_notifications"), {
-          type,
-          orderCode,
-          customerName,
-          phone,
-          message,
-          read: false,
-          createdAt: serverTimestamp()
-        });
-      } catch (e) { console.warn("Notification sync:", e); }
-    }
-
-    function generateOrderCode() {
-      const num = Math.floor(1000 + Math.random() * 9000);
-      return `AHN-${num}`;
-    }
-
-    window.savePanelOrder = async function(orderData, onSuccess) {
-      const orderCode = generateOrderCode();
-      const newOrderObj = {
-        id: 'local-' + Date.now(),
-        orderCode,
-        customerName: orderData.customerName,
-        phone: orderData.phone,
-        address: orderData.address,
-        items: orderData.items || [],
-        total: orderData.total || 0,
-        orderType: orderData.orderType || 'catalog',
-        status: 'Pending',
-        postexTrackingId: '',
-        createdAtStr: new Date().toLocaleDateString('en-PK')
-      };
-
-      const localList = getLocalOrders();
-      localList.unshift(newOrderObj);
-      saveLocalOrders(localList);
-
-      try {
-        await addDoc(collection(db, "orders"), {
-          orderCode: newOrderObj.orderCode,
-          customerName: newOrderObj.customerName,
-          phone: newOrderObj.phone,
-          address: newOrderObj.address,
-          items: newOrderObj.items,
-          total: newOrderObj.total,
-          orderType: newOrderObj.orderType,
-          status: 'Pending',
-          postexTrackingId: '',
-          createdAt: serverTimestamp()
-        });
-      } catch (err) { console.warn("Cloud order sync fallback:", err); }
-
-      const summary = (orderData.items || []).map(i => `${i.title} x${i.qty || 1}`).join(', ');
-      await pushAdminNotification(
-        'new_order',
-        orderCode,
-        orderData.customerName,
-        orderData.phone,
-        `New Order #${orderCode} by ${orderData.customerName} (${summary})`
-      );
-
-      await loadOrdersOnly();
-      if (onSuccess) onSuccess();
-      window.showOrderReceipt(orderCode, orderData.customerName, orderData.phone);
-    };
-
-    async function loadOrdersOnly() {
-      const localList = getLocalOrders();
-      try {
-        const snap = await getDocs(query(collection(db, "orders"), orderBy("createdAt", "desc")));
-        const remoteOrders = snap.docs.map(d => ({ id: d.id, isCloud: true, ...d.data() }));
-        const remoteCodes = new Set(remoteOrders.map(o => o.orderCode));
-        const uniqueLocal = localList.filter(o => !remoteCodes.has(o.orderCode));
-        cloudOrders = [...remoteOrders, ...uniqueLocal];
-      } catch (err) {
-        cloudOrders = localList;
-      }
-    }
-
-    function getStatusBadge(status) {
-      if (status === 'Delivered') return `<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 font-bold text-[10px] uppercase">Delivered ✓</span>`;
-      if (status === 'Dispatched') return `<span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 font-bold text-[10px] uppercase">Dispatched 🚚</span>`;
-      if (status === 'Cancelled') return `<span class="px-2.5 py-1 rounded-full bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300 font-bold text-[10px] uppercase">Cancelled ✕</span>`;
-      return `<span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-300 font-bold text-[10px] uppercase">Pending</span>`;
-    }
-
-    window.customerCancelOrderByCode = async function(orderCode, fromReceipt = false) {
-      await loadOrdersOnly();
-      const target = cloudOrders.find(o => o.orderCode && o.orderCode.toLowerCase() === String(orderCode).toLowerCase());
-      if (!target) return window.showToast("Order nahi mila.");
-
-      if (target.status !== 'Pending') {
-        return window.showToast(`Yeh order ab ${target.status} ho chuka hai, isay cancel nahi kiya ja sakta.`);
-      }
-
-      if (!confirm(`Kya aap apna order #${target.orderCode} cancel karna chahte hain?`)) return;
-
-      const localList = getLocalOrders().map(o => (o.orderCode === target.orderCode) ? { ...o, status: 'Cancelled' } : o);
-      saveLocalOrders(localList);
-
-      if (target.isCloud) {
-        try {
-          await updateDoc(doc(db, "orders", target.id), { status: 'Cancelled' });
-        } catch (err) { console.warn(err); }
-      }
-
-      await pushAdminNotification(
-        'cancelled_order',
-        target.orderCode,
-        target.customerName,
-        target.phone,
-        `Customer ${target.customerName} (${target.phone}) cancelled Order #${target.orderCode}`
-      );
-
-      await loadOrdersOnly();
-      window.showToast(`Order #${target.orderCode} cancel kar diya gaya hai.`);
-
-      if (fromReceipt) {
-        window.closeReceiptModal();
-        window.openTrackModal(target.orderCode);
-      } else {
-        window.lookupCustomerOrder({ preventDefault: () => {} });
-      }
-    };
-
-    window.lookupCustomerOrder = async function(e) {
-      e.preventDefault();
-      const qVal = document.getElementById('track-input').value.trim().toLowerCase();
-      const resBox = document.getElementById('track-result');
-      resBox.innerHTML = `<p class="text-brand-muted">Searching order...</p>`;
-
-      await loadOrdersOnly();
-
-      const found = cloudOrders.find(o =>
-        (o.orderCode && o.orderCode.toLowerCase() === qVal) ||
-        (o.phone && o.phone.replace(/\s+/g, '').toLowerCase().includes(qVal.replace(/\s+/g, '')))
-      );
-
-      if (!found) {
-        resBox.innerHTML = `<div class="p-4 rounded-2xl bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-300 font-semibold">Is Order ID ya Phone Number se koi order nahi mila.</div>`;
-        return;
-      }
-
-      const cancelControlHtml = found.status === 'Pending'
-        ? `
-          <div class="pt-2 border-t border-[#EFECE4] dark:border-[#3E2E33] flex items-center justify-between gap-2">
-            <span class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">Order abhi dispatch nahi hua — aap cancel kar sakte hain:</span>
-            <button type="button" onclick="customerCancelOrderByCode('${found.orderCode}', false)" class="px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shrink-0 transition">
-              ❌ Cancel Order
-            </button>
-          </div>
-        `
-        : '';
-
-      const postexSection = found.postexTrackingId
-        ? `
-          <div class="p-3.5 rounded-2xl bg-[#F5F2EC] dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33] space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="font-bold text-brand-charcoal dark:text-white">PostEx Tracking ID:</span>
-              <span class="font-mono font-bold text-brand-maroon dark:text-[#E5C687]">${found.postexTrackingId}</span>
-            </div>
-            <div class="flex flex-wrap gap-2 pt-1">
-              <button type="button" onclick="checkPostExOnSite('${found.postexTrackingId}')" class="px-3 py-1.5 rounded-lg bg-brand-teal text-white font-bold text-[11px]">
-                Check Here (PostEx)
-              </button>
-              <a href="https://postex.pk/tracking?trackingNumber=${encodeURIComponent(found.postexTrackingId)}" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg border border-brand-teal text-brand-teal dark:text-[#4ADE80] font-bold text-[11px] hover:bg-brand-teal hover:text-white transition">
-                Open PostEx Website ↗
-              </a>
-            </div>
-            <div id="postex-live-status" class="text-[11px] text-brand-muted dark:text-[#B5A8A3] pt-1"></div>
-          </div>
-        `
-        : `<p class="text-brand-muted dark:text-[#B5A8A3]">PostEx Tracking ID abhi assign nahi hui (Order status: <strong>${found.status}</strong>).</p>`;
-
-      resBox.innerHTML = `
-        <div class="p-4 rounded-2xl bg-white dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33] space-y-3">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="font-bold text-sm text-brand-maroon dark:text-[#E5C687]">Order # ${found.orderCode}</p>
-              <p class="text-brand-muted dark:text-[#B5A8A3]">${found.customerName} • ${found.phone}</p>
-            </div>
-            ${getStatusBadge(found.status)}
-          </div>
-          <div class="border-t border-[#EFECE4] dark:border-[#3E2E33] pt-2 space-y-1">
-            ${(found.items || []).map(it => `<div>• ${it.title} (${it.size || 'Custom'}) x${it.qty || 1}</div>`).join('')}
-          </div>
-          ${postexSection}
-          ${cancelControlHtml}
-        </div>
-      `;
-    };
-
-    window.checkPostExOnSite = async function(trackingNum) {
-      const box = document.getElementById('postex-live-status');
-      if (!box) return;
-      box.textContent = "Fetching PostEx tracking info...";
-      try {
-        const resp = await fetch(`https://api.postex.pk/services/merchant/api/order/v1/track-order/${encodeURIComponent(trackingNum)}`);
-        if (resp.ok) {
-          const data = await resp.json();
-          const latest = data?.dist?.transactionStatusHistory?.[0]?.transactionStatus || data?.data?.transactionStatus || 'In Transit';
-          box.innerHTML = `<span class="text-brand-teal dark:text-[#4ADE80] font-bold">PostEx Status: ${latest}</span>`;
-          return;
-        }
-      } catch (_) {}
-      box.innerHTML = `Tracking ID <strong>${trackingNum}</strong> ready hai. Direct PostEx portal ke liye upar <strong>Open PostEx Website</strong> par click karein.`;
-    };
-
-    async function loadCloudDresses() {
-      try {
-        const dressSnap = await getDocs(query(collection(db, "dresses"), orderBy("createdAt", "desc")));
-        const cloudDresses = dressSnap.docs.map(d => ({ id: d.id, cloudId: d.id, ...d.data() }));
-        if (cloudDresses.length > 0) {
-          window.PRODUCTS = [...cloudDresses, ...baseCopy];
-          const allBtn = document.getElementById('tab-all');
-          if (allBtn) allBtn.textContent = `All Suits (${window.PRODUCTS.length})`;
-          window.renderProducts(window.currentFilter);
-        }
-      } catch (e) { console.warn(e); }
-    }
-
-    setTimeout(loadCloudDresses, 600);
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash === '#admin') openAdminPanelView();
+    });
   </script>
 </body>
 </html>
