@@ -112,10 +112,26 @@
 </head>
 <body class="antialiased selection:bg-brand-maroon selection:text-white">
 
+  <!-- Active Sale Advertisement Strip (Shown Automatically When a Sale Is Active in Admin) -->
+  <div id="sale-ad-strip" class="hidden bg-gradient-to-r from-[#8B1E3F] via-[#6A2338] to-[#9E7B3E] text-white py-2.5 px-4 border-b border-white/15">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-center">
+      <span id="sale-ad-badge" class="bg-[#F5F2EC] text-brand-maroon text-[10px] font-extrabold uppercase tracking-widest px-3 py-0.5 rounded-full">
+        🎉 SALE LIVE
+      </span>
+      <span id="sale-ad-text" class="text-xs sm:text-sm font-bold tracking-wide">
+        New Year Sale — Flat Discount on Stitched &amp; Embroidered Suits!
+      </span>
+      <a href="#collection" onclick="filterProducts('all')" class="text-[11px] font-extrabold uppercase underline decoration-[#E5C687] text-[#FDE68A] hover:text-white">
+        Shop Now →
+      </a>
+    </div>
+  </div>
+
   <!-- Top Running Marquee Bar -->
   <div class="bg-[#2E1119] text-[#F5F2EC] text-xs py-2.5 border-b border-white/10 ticker-wrap">
     <div class="ticker-move">
       <div class="flex items-center space-x-8 px-6 font-medium tracking-wide">
+        <span id="marquee-sale-lead" class="hidden font-bold text-[#FDE68A]"></span>
         <span>✨ 100% FREE DELIVERY ALL OVER PAKISTAN</span>
         <span class="text-white/40">|</span>
         <span>🌸 Ahinoor Exclusive: Custom Stitching &amp; Fine Embroidery for Women &amp; Girls</span>
@@ -124,6 +140,7 @@
         <span class="text-white/40">•</span>
       </div>
       <div class="flex items-center space-x-8 px-6 font-medium tracking-wide" aria-hidden="true">
+        <span id="marquee-sale-lead-dup" class="hidden font-bold text-[#FDE68A]"></span>
         <span>✨ 100% FREE DELIVERY ALL OVER PAKISTAN</span>
         <span class="text-white/40">|</span>
         <span>🌸 Ahinoor Exclusive: Custom Stitching &amp; Fine Embroidery for Women &amp; Girls</span>
@@ -173,7 +190,6 @@
         <span class="text-[7px] sm:text-[9px] tracking-[0.22em] sm:tracking-[0.26em] uppercase text-brand-gold font-bold mt-1">STITCHED &amp; EMBROIDERED</span>
       </a>
 
-      <!-- Right Action Icons: Track Order + History with labels + Theme + Wishlist + Bag -->
       <div class="flex items-center space-x-1.5 sm:space-x-2">
         <button type="button" onclick="openTrackModal()" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-full bg-brand-teal/15 dark:bg-[#1E332B] text-brand-teal dark:text-[#4ADE80] border border-brand-teal/30 hover:bg-brand-teal hover:text-white transition text-[11px] font-bold" title="Track Order">
           <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -228,7 +244,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
         <div class="lg:col-span-6 space-y-5 sm:space-y-6">
-          <div class="inline-block bg-[#E6E0D6] dark:bg-[#322429] text-brand-maroon dark:text-[#E5C687] text-[11px] font-semibold tracking-wide px-4 py-1.5 rounded-full">
+          <div id="hero-promo-pill" class="inline-block bg-[#E6E0D6] dark:bg-[#322429] text-brand-maroon dark:text-[#E5C687] text-[11px] font-semibold tracking-wide px-4 py-1.5 rounded-full">
             100% Women &amp; Girls Handcrafted Apparel • Free Delivery
           </div>
 
@@ -271,7 +287,7 @@
           <div id="hero-showcase-card" class="bg-[#EFECE4]/90 dark:bg-[#241A1E]/90 border border-[#DFD7C8] dark:border-[#3E2E33] rounded-3xl p-4 sm:p-7 shadow-md max-w-lg mx-auto relative overflow-hidden">
             <div class="flex items-center justify-between mb-3 sm:mb-4">
               <span id="hero-card-badge" class="text-[10px] sm:text-[11px] font-bold tracking-[0.16em] uppercase text-brand-charcoal dark:text-[#E5C687]">AHINOOR • NEW ARRIVAL</span>
-              <span id="hero-card-price" class="bg-[#1F2421] dark:bg-[#3E2E33] text-white text-xs font-bold px-3.5 py-1 rounded-full">Rs. 2,650</span>
+              <span id="hero-card-price" class="bg-[#1F2421] dark:bg-[#3E3333] text-white text-xs font-bold px-3.5 py-1 rounded-full">Rs. 2,650</span>
             </div>
 
             <div onclick="openHeroModalSuit()" class="bg-white dark:bg-[#1A1215] rounded-2xl p-2.5 sm:p-3 shadow-xs cursor-pointer overflow-hidden">
@@ -356,6 +372,21 @@
 
   <!-- Catalog Section -->
   <section id="collection" class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Active Sale Showcase Ad Box Above Catalog -->
+    <div id="catalog-sale-ad-card" class="hidden mb-7 bg-gradient-to-r from-[#6A2338] via-[#4A1727] to-[#2E1119] text-white rounded-2xl p-4 sm:p-5 border border-[#E5C687]/40 shadow-md flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-3 text-center sm:text-left">
+        <span class="text-2xl shrink-0">✨</span>
+        <div>
+          <span id="catalog-sale-ad-tag" class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#FDE68A] block">LIMITED TIME OFFER</span>
+          <h3 id="catalog-sale-ad-title" class="font-editorial text-lg sm:text-xl font-bold">New Year Sale Is Live!</h3>
+          <p id="catalog-sale-ad-sub" class="text-xs text-[#F5F2EC]/90">Enjoy special savings + 100% Free Delivery across Pakistan.</p>
+        </div>
+      </div>
+      <a href="#custom-naap" class="px-4 py-2 rounded-full bg-[#E5C687] text-[#2E1119] text-xs font-extrabold uppercase tracking-wider shrink-0 hover:bg-white transition">
+        Custom Order →
+      </a>
+    </div>
+
     <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-6">
       <div class="shrink-0">
         <span class="text-xs font-bold tracking-[0.2em] uppercase text-brand-gold">Ahinoor Pret Collection</span>
@@ -1035,6 +1066,57 @@
 
     window.formatPKR = (amount) => 'Rs. ' + Math.max(0, Math.round(Number(amount))).toLocaleString('en-PK');
 
+    // Render Sale Advertisements Across Storefront
+    window.renderSaleAdvertisement = function() {
+      const se = window.SALE_EVENT;
+      const strip = document.getElementById('sale-ad-strip');
+      const stripBadge = document.getElementById('sale-ad-badge');
+      const stripText = document.getElementById('sale-ad-text');
+      const heroPill = document.getElementById('hero-promo-pill');
+      const catCard = document.getElementById('catalog-sale-ad-card');
+      const catTag = document.getElementById('catalog-sale-ad-tag');
+      const catTitle = document.getElementById('catalog-sale-ad-title');
+      const catSub = document.getElementById('catalog-sale-ad-sub');
+      const mLead1 = document.getElementById('marquee-sale-lead');
+      const mLead2 = document.getElementById('marquee-sale-lead-dup');
+
+      const hasSale = Boolean(se && se.name && se.name.trim());
+      if (!hasSale) {
+        if (strip) strip.classList.add('hidden');
+        if (catCard) catCard.classList.add('hidden');
+        if (heroPill) heroPill.textContent = '100% Women & Girls Handcrafted Apparel • Free Delivery';
+        if (mLead1) mLead1.classList.add('hidden');
+        if (mLead2) mLead2.classList.add('hidden');
+        return;
+      }
+
+      const saleName = se.name.trim();
+      const offLabel = Number(se.value) > 0
+        ? (se.type === 'percent' ? `${se.value}% OFF` : `RS. ${se.value} OFF`)
+        : 'SPECIAL OFFER';
+
+      if (strip) {
+        strip.classList.remove('hidden');
+        if (stripBadge) stripBadge.textContent = `🎉 ${saleName.toUpperCase()}`;
+        if (stripText) stripText.textContent = `${saleName} is LIVE — ${offLabel} + 100% Free Delivery All Over Pakistan!`;
+      }
+
+      if (heroPill) {
+        heroPill.textContent = `🎉 ${saleName} (${offLabel}) • Free Delivery All Over Pakistan`;
+      }
+
+      if (catCard) {
+        catCard.classList.remove('hidden');
+        if (catTag) catTag.textContent = `🎉 ${saleName.toUpperCase()} ADVERTISEMENT`;
+        if (catTitle) catTitle.textContent = `${saleName} — ${offLabel} on Ahinoor Collection!`;
+        if (catSub) catSub.textContent = `Hurry & book your favorite stitched or embroidered suit with free delivery across Pakistan.`;
+      }
+
+      const leadText = `🔥 ${saleName.toUpperCase()} (${offLabel})`;
+      if (mLead1) { mLead1.textContent = leadText; mLead1.classList.remove('hidden'); }
+      if (mLead2) { mLead2.textContent = leadText; mLead2.classList.remove('hidden'); }
+    };
+
     function resolveDiscountRule(product) {
       const ov = product && product.configKey && window.SUIT_OVERRIDES ? window.SUIT_OVERRIDES[product.configKey] : null;
       if (ov && ov.discount && Number(ov.discount.value) > 0) {
@@ -1575,6 +1657,7 @@
     window.resumeReviewAutoFlip = () => { isReviewPaused = false; };
 
     renderProducts('all');
+    renderSaleAdvertisement();
     updateCartUI();
     updateWishlistUI();
     showReview(0, false);
@@ -1824,6 +1907,7 @@
       });
 
       window.PRODUCTS = merged;
+      window.renderSaleAdvertisement();
       const allBtn = document.getElementById('tab-all');
       const newBtn = document.getElementById('tab-new');
       if (allBtn) allBtn.textContent = `All Suits (${window.PRODUCTS.length})`;
