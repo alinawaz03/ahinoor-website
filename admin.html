@@ -74,7 +74,7 @@
       <div class="w-14 h-14 rounded-full bg-brand-maroon/10 dark:bg-[#322429] text-brand-maroon dark:text-[#E5C687] flex items-center justify-center mx-auto text-2xl">🔒</div>
       <div>
         <h2 class="font-editorial text-2xl font-bold">Admin Login</h2>
-        <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">Orders, Notifications, PostEx Tracking aur Dresses manage karne ke liye password enter karein.</p>
+        <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">Orders, Discounts, New Arrival tags aur Dresses manage karne ke liye password enter karein.</p>
       </div>
       <form onsubmit="verifyAdminPassword(event)" class="space-y-3">
         <input type="password" id="admin-password-input" required placeholder="Enter Admin Password" class="w-full px-4 py-3 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm text-center focus:outline-none focus:border-brand-maroon" />
@@ -87,7 +87,7 @@
   <!-- Step 2: Unlocked Admin Dashboard -->
   <main id="admin-workspace-view" class="hidden max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-6">
     
-    <!-- Navigation Tabs with Live Notification Counter -->
+    <!-- Navigation Tabs -->
     <div class="flex flex-wrap items-center gap-2 border-b border-[#DFD7C8] dark:border-[#3E2E33] pb-4">
       <button type="button" id="admin-tab-notifications" onclick="switchAdminTab('notifications')" class="px-4 py-2.5 rounded-full text-xs font-bold bg-brand-maroon text-white transition inline-flex items-center gap-1.5">
         <span>🔔 Notifications</span>
@@ -96,30 +96,29 @@
       <button type="button" id="admin-tab-orders" onclick="switchAdminTab('orders')" class="px-4 py-2.5 rounded-full text-xs font-bold bg-white dark:bg-[#241A1E] border border-[#DFD7C8] dark:border-[#3E2E33] transition">
         📦 Orders &amp; Dispatch
       </button>
+      <button type="button" id="admin-tab-discounts" onclick="switchAdminTab('discounts')" class="px-4 py-2.5 rounded-full text-xs font-bold bg-white dark:bg-[#241A1E] border border-[#DFD7C8] dark:border-[#3E2E33] transition">
+        🏷️ Discounts &amp; Badges
+      </button>
       <button type="button" id="admin-tab-dress" onclick="switchAdminTab('dress')" class="px-4 py-2.5 rounded-full text-xs font-bold bg-white dark:bg-[#241A1E] border border-[#DFD7C8] dark:border-[#3E2E33] transition">
         👗 Add New Dress
-      </button>
-      <button type="button" id="admin-tab-manage" onclick="switchAdminTab('manage')" class="px-4 py-2.5 rounded-full text-xs font-bold bg-white dark:bg-[#241A1E] border border-[#DFD7C8] dark:border-[#3E2E33] transition">
-        📋 Manage Dresses
       </button>
       <button type="button" id="admin-tab-password" onclick="switchAdminTab('password')" class="px-4 py-2.5 rounded-full text-xs font-bold bg-white dark:bg-[#241A1E] border border-[#DFD7C8] dark:border-[#3E2E33] transition">
         🔑 Change Password
       </button>
     </div>
 
-    <!-- Tab 1: Dedicated Notification Center -->
+    <!-- Tab 1: Notifications -->
     <section id="admin-notifications-view" class="space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div>
           <h2 class="font-editorial text-2xl font-bold">Order &amp; Cancellation Notifications</h2>
-          <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Har naya order aur customer ki taraf se cancel kiya gaya order yahan alag show hota hai.</p>
+          <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Naye orders aur customer ki taraf se cancel kiye gaye orders yahan alag show hote hain.</p>
         </div>
         <div class="flex items-center gap-2">
           <button type="button" onclick="refreshAllAdminData()" class="px-3 py-1.5 rounded-xl bg-brand-teal/15 text-brand-teal dark:text-[#4ADE80] text-xs font-bold">↻ Refresh</button>
           <button type="button" onclick="markAllNotificationsRead()" class="px-3 py-1.5 rounded-xl bg-brand-maroon/10 text-brand-maroon dark:text-[#E5C687] text-xs font-bold">✓ Mark All Read</button>
         </div>
       </div>
-
       <div id="admin-notifications-list" class="space-y-3 text-xs">
         <p class="text-brand-muted">Loading notifications...</p>
       </div>
@@ -136,7 +135,37 @@
       </div>
     </section>
 
-    <!-- Tab 3: Add New Dress -->
+    <!-- Tab 3: Discounts & "New Arrival" Tag Controls -->
+    <section id="admin-discounts-view" class="hidden space-y-6">
+      <!-- Global Catalog Discount Box -->
+      <div class="bg-white dark:bg-[#241A1E] p-5 rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33] space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="font-editorial text-xl font-bold">Global Store Discount</h2>
+            <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Poore catalog par discount lagayein ya aik click mein khatam karein.</p>
+          </div>
+          <span id="global-discount-status" class="px-3 py-1 rounded-full text-[11px] font-bold bg-[#F5F2EC] dark:bg-[#1A1215] text-brand-maroon dark:text-[#E5C687]">No Global Discount</span>
+        </div>
+
+        <form onsubmit="applyGlobalDiscount(event)" class="flex flex-wrap items-center gap-2.5 pt-1">
+          <select id="global-disc-type" class="px-3 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-xs font-bold">
+            <option value="percent">% Off</option>
+            <option value="flat">Rs. Off</option>
+          </select>
+          <input type="number" id="global-disc-val" min="1" required placeholder="e.g., 15 or 300" class="w-36 px-3.5 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-xs" />
+          <button type="submit" class="px-4 py-2 rounded-xl bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold">Apply All</button>
+          <button type="button" onclick="removeGlobalDiscount()" class="px-4 py-2 rounded-xl bg-red-600/10 text-red-700 dark:text-red-300 border border-red-300 dark:border-red-800 hover:bg-red-600 hover:text-white text-xs font-bold transition">Remove Discount</button>
+        </form>
+      </div>
+
+      <!-- Per-Suit New Arrival Toggle & Individual Discount -->
+      <div class="space-y-3">
+        <h3 class="font-editorial text-xl font-bold">Per-Suit "New Arrival" &amp; Discount Controls</h3>
+        <div id="admin-suit-controls-list" class="space-y-2.5 text-xs"></div>
+      </div>
+    </section>
+
+    <!-- Tab 4: Add New Dress -->
     <section id="admin-dress-form-wrap" class="hidden bg-white dark:bg-[#241A1E] p-6 rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33]">
       <h2 class="font-editorial text-2xl font-bold mb-4">Add New Dress to Catalog</h2>
       <form id="admin-dress-form" onsubmit="publishNewDress(event)" class="space-y-4">
@@ -159,9 +188,11 @@
               <option value="frocks">Frocks &amp; Peplums</option>
             </select>
           </div>
-          <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Badge Tag</label>
-            <input type="text" id="dress-badge" value="New Arrival" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm" />
+          <div class="flex items-end pb-1">
+            <label class="inline-flex items-center gap-2 text-xs font-bold cursor-pointer">
+              <input type="checkbox" id="dress-is-new" checked class="rounded text-brand-maroon" />
+              <span>Mark as "New Arrival"</span>
+            </label>
           </div>
         </div>
         <div>
@@ -180,12 +211,6 @@
         </div>
         <button type="submit" id="dress-submit-btn" class="w-full py-3.5 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold uppercase tracking-wider rounded-xl transition">✨ ADD DRESS TO LIVE CATALOG</button>
       </form>
-    </section>
-
-    <!-- Tab 4: Manage Dresses -->
-    <section id="admin-manage-view" class="hidden space-y-4">
-      <h2 class="font-editorial text-2xl font-bold">Added Custom Dresses</h2>
-      <div id="admin-dresses-list" class="space-y-2 text-xs"></div>
     </section>
 
     <!-- Tab 5: Change Password -->
@@ -226,6 +251,27 @@
       appId: "1:17933030943:web:76fbb09c75b0aef68aa72a"
     };
 
+    const BASE_SUITS = [
+      { id: 101, title: "Rose Pink Daisy Embroidered Co-ord", price: 2650, isNew: true },
+      { id: 102, title: "Deep Maroon Floral Neckline Co-ord", price: 2650, isNew: true },
+      { id: 103, title: "Midnight Black Daisy Trim Co-ord", price: 2650, isNew: true },
+      { id: 104, title: "Pastel Pink Blossom Embroidered Frock", price: 2799, isNew: true },
+      { id: 105, title: "Olive Green Pleated Collar Co-ord", price: 2750, isNew: true },
+      { id: 106, title: "Royal Plum Gathered Collar Co-ord", price: 2750, isNew: true },
+      { id: 107, title: "Mustard Yellow Meadow Co-ord", price: 2750, isNew: true },
+      { id: 108, title: "Charcoal Black Buttoned Collar Co-ord", price: 2750, isNew: true },
+      { id: 1, title: "Sage Olive Floral Pocket Co-ord Set", price: 3699, isNew: false },
+      { id: 2, title: "Blossom Pink Pintucked Flare Frock & Culottes", price: 2650, isNew: false },
+      { id: 3, title: "Lavender Mist V-Neck Embroidered Kurti Set", price: 2650, isNew: false },
+      { id: 4, title: "Emerald Checkered Bow-Sleeve Peplum Suit", price: 2799, isNew: false },
+      { id: 5, title: "Ivory Cream Garden Motif Tunic & Palazzo", price: 2799, isNew: false },
+      { id: 6, title: "Sky Blue Daisy Embroidered A-Line Set", price: 2799, isNew: false },
+      { id: 7, title: "Deep Maroon Festive Threadwork Kurti", price: 3050, isNew: false },
+      { id: 8, title: "Mint Green Ruffle Collar Frock Set", price: 2799, isNew: false },
+      { id: 9, title: "Beige Sand Heritage Chikankari Co-ord", price: 2750, isNew: false },
+      { id: 10, title: "Peach Coral Pleated Tunic & Culottes", price: 2650, isNew: false }
+    ];
+
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     let currentAdminPassword = "ahinoor2026";
@@ -234,8 +280,10 @@
     let cloudOrders = [];
     let cloudNotifications = [];
     let cloudDresses = [];
+    let suitOverrides = {};
+    let globalDiscount = { type: 'percent', value: 0 };
 
-    window.formatPKR = (amount) => 'Rs. ' + Number(amount).toLocaleString('en-PK');
+    window.formatPKR = (amount) => 'Rs. ' + Math.max(0, Math.round(Number(amount))).toLocaleString('en-PK');
     window.showToast = (msg) => {
       const t = document.getElementById('toast');
       t.textContent = msg; t.classList.remove('opacity-0');
@@ -257,6 +305,19 @@
     }
     function saveLocalNotifs(list) {
       try { localStorage.setItem('ahinoor_admin_notifs', JSON.stringify(list)); } catch (e) {}
+    }
+    function loadLocalCatalogConfig() {
+      try {
+        suitOverrides = JSON.parse(localStorage.getItem('ahinoor_suit_overrides') || '{}');
+        const gd = JSON.parse(localStorage.getItem('ahinoor_global_discount') || 'null');
+        if (gd) globalDiscount = gd;
+      } catch (e) {}
+    }
+    function saveLocalCatalogConfig() {
+      try {
+        localStorage.setItem('ahinoor_suit_overrides', JSON.stringify(suitOverrides));
+        localStorage.setItem('ahinoor_global_discount', JSON.stringify(globalDiscount));
+      } catch (e) {}
     }
 
     function formatWhatsAppPhone(rawPhone) {
@@ -475,11 +536,8 @@
     window.adminCancelOrder = async function(docId) {
       const target = cloudOrders.find(o => o.id === docId);
       if (!target) return;
-      if (!confirm(`Order #${target.orderCode} ko Cancelled mark karein?`)) return;
-
       const localList = getLocalOrders().map(o => (o.id === docId || o.orderCode === target.orderCode) ? { ...o, status: 'Cancelled' } : o);
       saveLocalOrders(localList);
-
       if (target.isCloud) {
         try { await updateDoc(doc(db, "orders", docId), { status: 'Cancelled' }); } catch (e) {}
       }
@@ -490,14 +548,12 @@
     window.adminDeleteOrder = async function(docId) {
       const target = cloudOrders.find(o => o.id === docId);
       if (!target) return;
-      if (!confirm(`Kya aap waqai order #${target.orderCode} ko permanently delete karna chahte hain?`)) return;
-
       saveLocalOrders(getLocalOrders().filter(o => o.id !== docId && o.orderCode !== target.orderCode));
       if (target.isCloud) {
         try { await deleteDoc(doc(db, "orders", docId)); } catch (e) {}
       }
       await loadOrdersOnly();
-      window.showToast("Order permanently deleted! 🗑️");
+      window.showToast("Order deleted! 🗑️");
     };
 
     window.notifyCustomerDispatch = function(docId) {
@@ -562,20 +618,144 @@
       printWin.document.close();
     };
 
-    async function loadDresses() {
+    // Discounts & New Arrival Badge Controls
+    async function loadCatalogConfig() {
+      loadLocalCatalogConfig();
       try {
         const snap = await getDocs(query(collection(db, "dresses"), orderBy("createdAt", "desc")));
         cloudDresses = snap.docs.map(d => ({ id: d.id, cloudId: d.id, ...d.data() }));
       } catch (e) {}
-      const l = document.getElementById('admin-dresses-list');
-      if (!l) return;
-      l.innerHTML = cloudDresses.length === 0 ? '<p class="text-brand-muted">No custom dresses added yet.</p>' : cloudDresses.map(d => `<div class="flex justify-between items-center p-3 bg-white dark:bg-[#241A1E] rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33]"><span><strong>${d.title}</strong> (${window.formatPKR(d.price)})</span><button type="button" onclick="deleteDressItem('${d.cloudId}')" class="px-3 py-1 rounded-lg bg-red-600 text-white font-bold">Delete</button></div>`).join('');
+      try {
+        const discDoc = await getDoc(doc(db, "settings", "catalog_config"));
+        if (discDoc.exists()) {
+          const data = discDoc.data();
+          if (data.globalDiscount) globalDiscount = data.globalDiscount;
+          if (data.suitOverrides) suitOverrides = data.suitOverrides;
+          saveLocalCatalogConfig();
+        }
+      } catch (e) {}
+      renderSuitControls();
+    }
+
+    async function persistCatalogConfig() {
+      saveLocalCatalogConfig();
+      try {
+        await setDoc(doc(db, "settings", "catalog_config"), {
+          globalDiscount,
+          suitOverrides,
+          updatedAt: serverTimestamp()
+        });
+      } catch (e) {}
+      renderSuitControls();
+    }
+
+    window.applyGlobalDiscount = async function(e) {
+      e.preventDefault();
+      globalDiscount = {
+        type: document.getElementById('global-disc-type').value,
+        value: Math.max(0, Number(document.getElementById('global-disc-val').value || 0))
+      };
+      await persistCatalogConfig();
+      window.showToast("Global discount applied! 🏷️");
+    };
+
+    window.removeGlobalDiscount = async function() {
+      globalDiscount = { type: 'percent', value: 0 };
+      Object.keys(suitOverrides).forEach(k => {
+        if (suitOverrides[k]) suitOverrides[k].discount = null;
+      });
+      await persistCatalogConfig();
+      window.showToast("All discounts removed!");
+    };
+
+    window.toggleSuitNewArrival = async function(suitKey, defaultIsNew) {
+      const cur = suitOverrides[suitKey] || {};
+      const currentNew = cur.isNew !== undefined ? cur.isNew : Boolean(defaultIsNew);
+      suitOverrides[suitKey] = { ...cur, isNew: !currentNew };
+      await persistCatalogConfig();
+      window.showToast(!currentNew ? "New Arrival badge ON" : "New Arrival badge removed");
+    };
+
+    window.setSuitDiscount = async function(suitKey) {
+      const typeEl = document.getElementById(`suit-disc-type-${suitKey}`);
+      const valEl = document.getElementById(`suit-disc-val-${suitKey}`);
+      const val = Number(valEl?.value || 0);
+      const type = typeEl?.value || 'percent';
+      const cur = suitOverrides[suitKey] || {};
+      suitOverrides[suitKey] = { ...cur, discount: val > 0 ? { type, value: val } : null };
+      await persistCatalogConfig();
+      window.showToast("Suit discount updated!");
+    };
+
+    window.clearSuitDiscount = async function(suitKey) {
+      const cur = suitOverrides[suitKey] || {};
+      suitOverrides[suitKey] = { ...cur, discount: null };
+      await persistCatalogConfig();
+      window.showToast("Suit discount removed!");
+    };
+
+    window.deleteCloudDress = async function(docId) {
+      try { await deleteDoc(doc(db, "dresses", docId)); } catch (e) {}
+      cloudDresses = cloudDresses.filter(d => d.cloudId !== docId);
+      renderSuitControls();
+      window.showToast("Dress deleted!");
+    };
+
+    function renderSuitControls() {
+      const statusEl = document.getElementById('global-discount-status');
+      if (statusEl) {
+        statusEl.textContent = globalDiscount && globalDiscount.value > 0
+          ? `Active: ${globalDiscount.value}${globalDiscount.type === 'percent' ? '% Off' : ' Rs. Off'} All`
+          : 'No Global Discount';
+      }
+
+      const listEl = document.getElementById('admin-suit-controls-list');
+      if (!listEl) return;
+
+      const allSuits = [
+        ...cloudDresses.map(d => ({ key: d.cloudId, title: d.title, price: d.price, isNew: d.isNew, isCustom: true })),
+        ...BASE_SUITS.map(s => ({ key: String(s.id), title: s.title, price: s.price, isNew: s.isNew, isCustom: false }))
+      ];
+
+      listEl.innerHTML = allSuits.map(s => {
+        const ov = suitOverrides[s.key] || {};
+        const isNewNow = ov.isNew !== undefined ? ov.isNew : Boolean(s.isNew);
+        const disc = ov.discount;
+
+        return `
+          <div class="bg-white dark:bg-[#241A1E] p-3.5 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+            <div class="space-y-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <strong class="text-sm">${s.title}</strong>
+                <span class="text-brand-maroon dark:text-[#E5C687] font-bold">(${window.formatPKR(s.price)})</span>
+                ${isNewNow ? `<span class="px-2 py-0.5 rounded-full bg-brand-maroon text-white text-[10px] font-bold">New Arrival</span>` : `<span class="px-2 py-0.5 rounded-full bg-[#EBE6DC] dark:bg-[#322429] text-brand-muted text-[10px] font-bold">No New Tag</span>`}
+                ${disc ? `<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">-${disc.value}${disc.type === 'percent' ? '%' : ' Rs.'}</span>` : ''}
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" onclick="toggleSuitNewArrival('${s.key}', ${Boolean(s.isNew)})" class="px-3 py-1.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] font-bold text-[11px] hover:border-brand-maroon">
+                ${isNewNow ? '✕ Remove New Arrival' : '+ Set New Arrival'}
+              </button>
+              <select id="suit-disc-type-${s.key}" class="px-2.5 py-1.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-[11px] font-bold">
+                <option value="percent" ${disc?.type === 'percent' ? 'selected' : ''}>% Off</option>
+                <option value="flat" ${disc?.type === 'flat' ? 'selected' : ''}>Rs. Off</option>
+              </select>
+              <input type="number" id="suit-disc-val-${s.key}" value="${disc?.value || ''}" min="0" placeholder="Off" class="w-20 px-2.5 py-1.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-[11px]" />
+              <button type="button" onclick="setSuitDiscount('${s.key}')" class="px-3 py-1.5 rounded-xl bg-brand-teal text-white font-bold text-[11px]">Save</button>
+              ${disc ? `<button type="button" onclick="clearSuitDiscount('${s.key}')" class="px-2.5 py-1.5 rounded-xl bg-red-600/15 text-red-700 dark:text-red-300 font-bold text-[11px]">Clear</button>` : ''}
+              ${s.isCustom ? `<button type="button" onclick="deleteCloudDress('${s.key}')" class="px-2.5 py-1.5 rounded-xl bg-red-600 text-white font-bold text-[11px]">Delete</button>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     window.publishNewDress = async (e) => {
       e.preventDefault();
       const file = document.getElementById('dress-image-file').files[0];
       if (!file) return;
+      const isNewChecked = document.getElementById('dress-is-new').checked;
       const reader = new FileReader();
       reader.onload = async (ev) => {
         try {
@@ -583,26 +763,19 @@
             title: document.getElementById('dress-title').value.trim(),
             price: Number(document.getElementById('dress-price').value),
             category: document.getElementById('dress-category').value,
-            isNew: true,
-            badge: document.getElementById('dress-badge').value || "New Arrival",
+            isNew: isNewChecked,
+            badge: isNewChecked ? "New Arrival" : "Stitched",
             image: ev.target.result,
             fabric: document.getElementById('dress-fabric').value || "Soft Cotton",
             embroidery: document.getElementById('dress-embroidery').value || "Floral Work",
             createdAt: serverTimestamp()
           });
           document.getElementById('admin-dress-form').reset();
-          await loadDresses();
-          window.showToast("New dress published to storefront! 👗");
-        } catch (err) { alert("Error: " + err.message); }
+          await loadCatalogConfig();
+          window.showToast("New dress added! 👗");
+        } catch (err) { window.showToast("Error adding dress"); }
       };
       reader.readAsDataURL(file);
-    };
-
-    window.deleteDressItem = async (id) => {
-      if (!confirm("Delete this dress?")) return;
-      try { await deleteDoc(doc(db, "dresses", id)); } catch (e) {}
-      await loadDresses();
-      window.showToast("Dress deleted!");
     };
 
     window.updateAdminPassword = async (e) => {
@@ -619,8 +792,8 @@
     };
 
     window.refreshAllAdminData = async function() {
-      await Promise.all([loadNotifications(), loadOrdersOnly(), loadDresses()]);
-      window.showToast("Dashboard refreshed ✓");
+      await Promise.all([loadNotifications(), loadOrdersOnly(), loadCatalogConfig()]);
+      window.showToast("Admin panel updated ✓");
     };
 
     window.verifyAdminPassword = async (e) => {
@@ -657,7 +830,7 @@
     };
 
     window.switchAdminTab = (tab) => {
-      ['notifications', 'orders', 'dress', 'manage', 'password'].forEach(t => {
+      ['notifications', 'orders', 'discounts', 'dress', 'password'].forEach(t => {
         const b = document.getElementById('admin-tab-' + t);
         if (b) {
           b.classList.toggle('bg-brand-maroon', t === tab);
@@ -667,8 +840,8 @@
       });
       document.getElementById('admin-notifications-view').classList.toggle('hidden', tab !== 'notifications');
       document.getElementById('admin-orders-view').classList.toggle('hidden', tab !== 'orders');
+      document.getElementById('admin-discounts-view').classList.toggle('hidden', tab !== 'discounts');
       document.getElementById('admin-dress-form-wrap').classList.toggle('hidden', tab !== 'dress');
-      document.getElementById('admin-manage-view').classList.toggle('hidden', tab !== 'manage');
       document.getElementById('admin-password-wrap').classList.toggle('hidden', tab !== 'password');
     };
 
