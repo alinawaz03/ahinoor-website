@@ -1188,14 +1188,14 @@
       const product = window.PRODUCTS[currentHeroIndex];
       if (!product) return;
       const eff = window.getEffectivePrice(product.price, product);
-      openCheckoutModal([{ id: product.id, title: product.title, size: SIZE_TIERS[0].label, price: eff, qty: 1 }], eff, 'catalog');
+      openCheckoutModal([{ id: product.id, title: product.title, image: product.image, size: SIZE_TIERS[0].label, price: eff, qty: 1 }], eff, 'catalog');
     };
     window.openDirectModalCheckout = () => {
       if (!activeModalProduct) return;
       const tier = SIZE_TIERS[selectedModalSizeIndex];
       const finalPrice = window.getEffectivePrice(activeModalProduct.price, activeModalProduct) + tier.extra;
       closeProductModal();
-      openCheckoutModal([{ id: activeModalProduct.id, title: activeModalProduct.title, size: tier.label, price: finalPrice, qty: 1 }], finalPrice, 'catalog');
+      openCheckoutModal([{ id: activeModalProduct.id, title: activeModalProduct.title, image: activeModalProduct.image, size: tier.label, price: finalPrice, qty: 1 }], finalPrice, 'catalog');
     };
     window.openBagCheckoutModal = () => {
       if (cart.length === 0) return showToast("Pehle order bag me koi dress add karein.");
@@ -1217,7 +1217,7 @@
       const product = window.PRODUCTS.find(p => String(p.id) === String(id));
       if (!product) return;
       const eff = window.getEffectivePrice(product.price, product);
-      openCheckoutModal([{ id: product.id, title: product.title, size: SIZE_TIERS[0].label, price: eff, qty: 1 }], eff, 'catalog');
+      openCheckoutModal([{ id: product.id, title: product.title, image: product.image, size: SIZE_TIERS[0].label, price: eff, qty: 1 }], eff, 'catalog');
     };
 
     function showHeroShowcase(index, animate = true) {
@@ -1303,7 +1303,6 @@
       pill.style.transform = `translateX(${activeBtn.offsetLeft}px)`;
     }
 
-    // Top-of-card highlighted discount banner + New Arrival tag
     window.renderProducts = function(filter = 'all') {
       window.currentFilter = filter;
       const grid = document.getElementById('product-grid');
@@ -1485,6 +1484,8 @@
       const notes = document.getElementById('naap-notes').value.trim();
       const category = document.getElementById('naap-category').value;
       const embroidery = document.getElementById('naap-embroidery').value;
+      const currentHero = window.PRODUCTS[currentHeroIndex];
+      const refImage = currentHero ? currentHero.image : '1000827972.jpg';
 
       if (password) saveCustomerProfile(name, phone, password, address);
 
@@ -1494,7 +1495,7 @@
           phone: phone,
           customerPassword: password,
           address: `${address} | Naap: ${notes}`,
-          items: [{ title: `${category} (${embroidery})`, size: selectedNaapSize, qty: 1, price: 0 }],
+          items: [{ title: `${category} (${embroidery})`, image: refImage, size: selectedNaapSize, qty: 1, price: 0 }],
           total: 0,
           orderType: 'Custom Naap'
         }, () => {
@@ -1512,13 +1513,19 @@
 
       saveCustomerProfile(name, phone, password, address);
 
+      const itemsWithImages = pendingCheckoutItems.map(it => {
+        if (it.image) return it;
+        const foundProd = window.PRODUCTS.find(p => String(p.id) === String(it.id) || p.title === it.title);
+        return { ...it, image: foundProd ? foundProd.image : '1000827972.jpg' };
+      });
+
       if (window.savePanelOrder) {
         window.savePanelOrder({
           customerName: name,
           phone: phone,
           customerPassword: password,
           address: address,
-          items: pendingCheckoutItems,
+          items: itemsWithImages,
           total: pendingCheckoutTotal,
           orderType: pendingCheckoutType
         }, () => {
