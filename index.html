@@ -6,13 +6,11 @@
   <title>AHINOOR | Exclusive Stitched &amp; Embroidered Women &amp; Girls Wear</title>
   <link rel="icon" type="image/jpeg" href="1000827919.jpg" />
 
-  <!-- LCP Optimization: Preload Hero Showcase Image Immediately -->
   <link rel="preload" as="image" href="1000827972.jpg" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Instant Dark/Light Theme Sync Before First Paint -->
   <script>
     (function() {
       try {
@@ -62,24 +60,11 @@
       background-color: #181215 !important;
       color: #F3EFEA !important;
     }
-    .font-editorial {
-      font-family: 'Playfair Display', Georgia, serif;
-    }
-
-    .product-card {
-      contain: layout style;
-      will-change: transform;
-    }
-    .card-img-zoom {
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .product-card:hover .card-img-zoom {
-      transform: scale(1.05);
-    }
-
-    .review-stage, .hero-showcase-stage {
-      perspective: 1200px;
-    }
+    .font-editorial { font-family: 'Playfair Display', Georgia, serif; }
+    .product-card { contain: layout style; will-change: transform; }
+    .card-img-zoom { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    .product-card:hover .card-img-zoom { transform: scale(1.05); }
+    .review-stage, .hero-showcase-stage { perspective: 1200px; }
     @keyframes flipInCard {
       0% { opacity: 0.4; transform: rotateY(-45deg) scale(0.97); }
       100% { opacity: 1; transform: rotateY(0deg) scale(1); }
@@ -90,81 +75,36 @@
     }
     .review-flip-in { animation: flipInCard 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
     .review-flip-out { animation: flipOutCard 0.25s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards; }
-
-    @keyframes progressFill {
-      0% { transform: scaleX(0); }
-      100% { transform: scaleX(1); }
-    }
-    .review-timer-bar {
-      transform-origin: left;
-      animation: progressFill 5s linear forwards;
-    }
-
-    .btn-sheen {
-      position: relative;
-      overflow: hidden;
-    }
+    @keyframes progressFill { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+    .review-timer-bar { transform-origin: left; animation: progressFill 5s linear forwards; }
+    .btn-sheen { position: relative; overflow: hidden; }
     .btn-sheen::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 60%;
-      height: 100%;
+      content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-      transform: skewX(-20deg);
-      transition: left 0.55s ease;
+      transform: skewX(-20deg); transition: left 0.55s ease;
     }
     .btn-sheen:hover::after { left: 140%; }
-
     .filter-bar-container {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      background-color: #EBE6DC;
-      border: 1px solid #DFD7C8;
-      border-radius: 9999px;
-      padding: 4px;
-      max-width: 100%;
-      overflow-x: auto;
-      scrollbar-width: none;
+      position: relative; display: inline-flex; align-items: center;
+      background-color: #EBE6DC; border: 1px solid #DFD7C8; border-radius: 9999px;
+      padding: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none;
     }
     .dark .filter-bar-container, body.dark-mode .filter-bar-container {
-      background-color: #2A2225 !important;
-      border-color: #3E3236 !important;
+      background-color: #2A2225 !important; border-color: #3E3236 !important;
     }
     .filter-bar-container::-webkit-scrollbar { display: none; }
     .filter-pill-indicator {
-      position: absolute;
-      top: 4px;
-      bottom: 4px;
-      left: 0;
-      background-color: #6A2338;
-      border-radius: 9999px;
+      position: absolute; top: 4px; bottom: 4px; left: 0;
+      background-color: #6A2338; border-radius: 9999px;
       box-shadow: 0 4px 12px rgba(106, 35, 56, 0.22);
       transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), width 0.32s cubic-bezier(0.22, 1, 0.36, 1);
       z-index: 0;
     }
-    .filter-tab-btn {
-      position: relative;
-      z-index: 1;
-      white-space: nowrap;
-      touch-action: manipulation;
-    }
-
+    .filter-tab-btn { position: relative; z-index: 1; white-space: nowrap; touch-action: manipulation; }
     .ticker-wrap { overflow: hidden; white-space: nowrap; width: 100%; }
-    .ticker-move {
-      display: inline-flex;
-      align-items: center;
-      white-space: nowrap;
-      animation: marquee-rtl 26s linear infinite;
-    }
+    .ticker-move { display: inline-flex; align-items: center; white-space: nowrap; animation: marquee-rtl 26s linear infinite; }
     .ticker-wrap:hover .ticker-move { animation-play-state: paused; }
-    @keyframes marquee-rtl {
-      0% { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(-50%, 0, 0); }
-    }
-
+    @keyframes marquee-rtl { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-50%, 0, 0); } }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { scrollbar-width: none; }
     button, a { touch-action: manipulation; }
@@ -202,7 +142,6 @@
   <header class="sticky top-0 z-40 bg-gradient-to-r from-[#FDFBF7] via-[#F7EFE6] to-[#EFE4D6] dark:from-[#241A1E] dark:via-[#1F1418] dark:to-[#181013] backdrop-blur-md border-b border-[#DFD2BE] dark:border-[#3E2E33] shadow-[0_2px_16px_rgba(106,35,56,0.06)]">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 sm:h-[84px] flex items-center justify-between gap-2">
       
-      <!-- Mobile Menu Toggle + Logo -->
       <div class="flex items-center gap-2 lg:hidden">
         <button type="button" onclick="toggleMobileMenu()" class="p-1.5 text-brand-charcoal dark:text-white hover:text-brand-maroon" aria-label="Menu">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -216,11 +155,10 @@
         </a>
       </div>
 
-      <!-- Desktop Navigation with 74px Framed Logo Before HOME -->
       <div class="hidden lg:flex items-center space-x-5">
         <a href="#" class="shrink-0 group" title="Ahinoor Home">
           <div class="w-[74px] h-[74px] rounded-full p-[2px] bg-gradient-to-tr from-[#B68D40] via-[#E5C687] to-[#6A2338] shadow-md group-hover:scale-105 transition-transform duration-300">
-            <img src="1000827919.jpg" onerror="this.src='https://placehold.co/148x148/6A2338/FFFFFF?text=AHINOOR'" alt="Ahinoor Kids & Women Clothing Logo" width="74" height="74" class="w-full h-full rounded-full object-contain bg-white p-0.5" />
+            <img src="1000827919.jpg" onerror="this.src='https://placehold.co/148x148/6A2338/FFFFFF?text=AHINOOR'" alt="Ahinoor Logo" width="74" height="74" class="w-full h-full rounded-full object-contain bg-white p-0.5" />
           </div>
         </a>
         <nav class="flex items-center space-x-4 text-[11px] font-bold tracking-[0.12em] uppercase text-brand-charcoal dark:text-[#EFECE4]">
@@ -235,13 +173,11 @@
         </nav>
       </div>
 
-      <!-- Center Brand Title -->
       <a href="#" class="flex flex-col items-center text-center shrink-0">
         <span class="font-editorial text-lg sm:text-[27px] font-bold tracking-[0.2em] sm:tracking-[0.22em] text-brand-maroon dark:text-[#F3EFEA] leading-none">AHINOOR</span>
         <span class="text-[7px] sm:text-[9px] tracking-[0.22em] sm:tracking-[0.26em] uppercase text-brand-gold font-bold mt-1">STITCHED &amp; EMBROIDERED</span>
       </a>
 
-      <!-- Right Action Icons -->
       <div class="flex items-center space-x-1.5 sm:space-x-2.5">
         <button type="button" onclick="openTrackModal()" class="px-2.5 py-1.5 rounded-full bg-brand-teal/10 dark:bg-[#1E332B] text-brand-teal dark:text-[#4ADE80] border border-brand-teal/30 text-[10px] sm:text-xs font-bold hover:bg-brand-teal hover:text-white transition" title="Track Order">
           📍 Track
@@ -258,12 +194,6 @@
           <span id="wishlist-badge" class="hidden absolute -top-1 -right-1 bg-[#D62976] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">0</span>
         </button>
 
-        <button type="button" onclick="openAdminModal()" class="p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-brand-maroon text-brand-maroon hover:text-white border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs" title="Admin Panel">
-          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-          </svg>
-        </button>
-
         <button type="button" onclick="openCartDrawer()" class="relative p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-white text-brand-charcoal dark:text-[#EFECE4] hover:text-brand-maroon border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs" aria-label="Order Bag">
           <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M16 6V4a4 4 0 00-8 0v2H4v14a2 2 0 002 2h12a2 2 0 002-2V6h-4zm-6-2a2 2 0 114 0v2h-4V4z"/>
@@ -273,7 +203,6 @@
       </div>
     </div>
 
-    <!-- Mobile Dropdown Menu -->
     <div id="mobile-menu" class="hidden lg:hidden bg-[#F7EFE6] dark:bg-[#1F1418] border-t border-[#DFD2BE] dark:border-[#3E2E33] px-4 py-4 space-y-3">
       <a href="#" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">HOME</a>
       <a href="#collection" onclick="filterProducts('new'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon">NEW ARRIVALS</a>
@@ -282,11 +211,10 @@
       <button type="button" onclick="toggleMobileMenu(); openSizeChartModal()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon text-left w-full">📏 OFFICIAL SIZE CHART</button>
       <a href="#custom-naap" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">CUSTOM STITCH &amp; EMBROIDERY</a>
       <a href="#reviews-section" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">CUSTOMER REVIEWS (20)</a>
-      <button type="button" onclick="toggleMobileMenu(); openAdminModal()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon">🔒 ADMIN PANEL</button>
     </div>
   </header>
 
-  <!-- Hero Section (LCP Optimized) -->
+  <!-- Hero Section -->
   <section class="relative overflow-hidden bg-gradient-to-br from-[#F5F2EC] via-[#EFECE4] to-[#E6DFD3] dark:from-[#1E1519] dark:via-[#181014] dark:to-[#120B0E] border-b border-[#E2DBD0] dark:border-[#3E2E33]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -302,7 +230,7 @@
           </h1>
 
           <p class="text-brand-muted dark:text-[#B5A8A3] text-sm sm:text-[15px] max-w-lg leading-relaxed">
-            Welcome to <strong class="text-brand-charcoal dark:text-white font-semibold">Ahinoor</strong>. Hum ladies aur choti bacchiyon ke liye high-grade fabric par behtareen silai aur khubsurat hath ki phoolo wali embroidery bana kar dety hain. Direct panel ordering &amp; live PostEx tracking!
+            Welcome to <strong class="text-brand-charcoal dark:text-white font-semibold">Ahinoor</strong>. Hum ladies aur choti bacchiyon ke liye high-grade fabric par behtareen silai aur khubsurat hath ki phoolo wali embroidery bana kar dety hain. Direct online booking &amp; live PostEx tracking!
           </p>
 
           <div class="flex flex-wrap items-center gap-3 pt-1">
@@ -330,7 +258,7 @@
           </div>
         </div>
 
-        <!-- Right Auto-Flipping 3D Showcase Card -->
+        <!-- Right Auto-Flipping Showcase Card -->
         <div class="lg:col-span-6 hero-showcase-stage" onmouseenter="pauseHeroAutoFlip()" onmouseleave="resumeHeroAutoFlip()">
           <div id="hero-showcase-card" class="bg-[#EFECE4]/90 dark:bg-[#241A1E]/90 border border-[#DFD7C8] dark:border-[#3E2E33] rounded-3xl p-4 sm:p-7 shadow-md max-w-lg mx-auto relative overflow-hidden">
             <div class="flex items-center justify-between mb-3 sm:mb-4">
@@ -354,7 +282,7 @@
                 VIEW SUIT DETAILS
               </button>
               <button type="button" onclick="orderHeroSuitDirect()" class="btn-sheen py-3 px-3 sm:px-4 bg-[#176B58] hover:bg-[#115243] text-white text-[10px] sm:text-[11px] font-bold tracking-[0.1em] uppercase rounded-full transition flex items-center justify-center gap-1.5">
-                <span>BOOK IN PANEL</span>
+                <span>ORDER NOW</span>
               </button>
             </div>
 
@@ -446,7 +374,6 @@
       </div>
     </div>
 
-    <!-- Instant Search & Price Sort Toolbar -->
     <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-8 bg-white/80 dark:bg-[#241A1E] p-3 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33]">
       <div class="relative flex-1">
         <svg class="w-4 h-4 text-brand-muted absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -463,10 +390,7 @@
       </div>
     </div>
 
-    <!-- Product Grid -->
-    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
-      <!-- Rendered dynamically by JS -->
-    </div>
+    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7"></div>
   </section>
 
   <!-- Brand Assurance & Trust Strip -->
@@ -480,7 +404,7 @@
         </div>
         <div class="p-3 space-y-1.5">
           <div class="w-10 h-10 rounded-full bg-brand-maroon/10 text-brand-maroon flex items-center justify-center mx-auto text-lg">📦</div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">Panel Order &amp; ID</h4>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">Easy Order &amp; ID</h4>
           <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">Instant order number &amp; status tracking</p>
         </div>
         <div class="p-3 space-y-1.5">
@@ -513,7 +437,7 @@
           </h2>
 
           <p class="text-sm text-brand-muted dark:text-[#B5A8A3] leading-relaxed">
-            Agar aapko apna pasandeeda kapra kisi makhsoos naap (measurement) par silwana ho, ya neckline, sleeves aur daman par customized phoolo wali embroidery karwani ho, to ye form bharein. Aapka order direct Admin Panel mein book hoga aur aapko Order ID mil jayegi!
+            Agar aapko apna pasandeeda kapra kisi makhsoos naap (measurement) par silwana ho, ya neckline, sleeves aur daman par customized phoolo wali embroidery karwani ho, to ye form bharein. Aapka order book hote hi Order ID mil jayegi!
           </p>
 
           <div class="space-y-4 pt-3">
@@ -551,7 +475,7 @@
                   Custom Naap &amp; Embroidery Form
                 </h3>
                 <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">
-                  Apna naap aur detail likhein — order direct Admin Panel mein book hoga.
+                  Apna naap aur detail likhein — order direct book ho jayega.
                 </p>
               </div>
               <button type="button" onclick="openSizeChartModal()" class="px-3 py-1.5 rounded-xl bg-brand-maroon/10 dark:bg-[#3E2E33] text-brand-maroon dark:text-[#E5C687] text-xs font-bold hover:bg-brand-maroon hover:text-white transition shrink-0">
@@ -627,7 +551,7 @@
     </div>
   </section>
 
-  <!-- 20 Customer Reviews Auto-Flipping Showcase -->
+  <!-- Customer Reviews Auto-Flipping Showcase -->
   <section id="reviews-section" class="py-16 sm:py-24 bg-gradient-to-b from-[#F5F2EC] via-[#F0EAE0] to-[#F5F2EC] dark:from-[#181215] dark:via-[#140E11] dark:to-[#181215] border-b border-[#E2DBD0] dark:border-[#3E2E33] px-4">
     <div class="max-w-4xl mx-auto">
       <div class="text-center space-y-2.5 mb-10 sm:mb-12">
@@ -735,23 +659,20 @@
         <div>
           <h4 class="text-xs font-bold uppercase tracking-[0.16em] text-brand-charcoal dark:text-[#F3EFEA] mb-3">ORDER &amp; TRACKING</h4>
           <ul class="space-y-2 text-xs text-brand-muted dark:text-[#B5A8A3]">
-            <li>1. Book directly in Admin Panel &amp; get Order ID</li>
+            <li>1. Book directly online &amp; get your Order ID</li>
             <li>2. Check status or cancel before dispatch via 📍 Track Order</li>
             <li>3. Track PostEx parcel on Ahinoor or PostEx</li>
           </ul>
         </div>
       </div>
 
-      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-brand-muted dark:text-[#B5A8A3]">
-        <span>© 2026 AHINOOR (Ali Nawaz) • All Rights Reserved.</span>
-        <button type="button" onclick="openAdminModal()" class="text-xs font-bold text-brand-maroon dark:text-[#E5C687] hover:underline">
-          🔒 Admin Login
-        </button>
+      <div class="pt-6 text-center text-xs text-brand-muted dark:text-[#B5A8A3]">
+        <span>© 2026 AHINOOR (ahinoor.online) • All Rights Reserved.</span>
       </div>
     </div>
   </footer>
 
-  <!-- Customer Order & PostEx Tracking Modal (Includes Customer Cancel Option Before Dispatch) -->
+  <!-- Customer Order & PostEx Tracking Modal -->
   <div id="track-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
     <div class="bg-[#F5F2EC] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
       <div class="bg-brand-teal text-white px-6 py-4 flex items-center justify-between">
@@ -777,12 +698,12 @@
     </div>
   </div>
 
-  <!-- Order Confirmation Receipt Modal (With Instant Cancel Option Before Dispatch) -->
+  <!-- Order Confirmation Receipt Modal -->
   <div id="order-receipt-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
     <div class="bg-[#F9F6F0] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] p-6 sm:p-8 text-center space-y-4 my-auto">
       <div class="w-14 h-14 rounded-full bg-[#176B58]/15 text-[#176B58] dark:text-[#4ADE80] flex items-center justify-center mx-auto text-2xl font-bold">✓</div>
       <h3 class="font-editorial text-2xl font-bold">Order Booked Successfully!</h3>
-      <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Aapka order hamare panel mein save ho gaya hai. Apna Order Number sambhal kar rakhein:</p>
+      <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Aapka order book ho gaya hai. Apna Order Number sambhal kar rakhein:</p>
       <div class="bg-white dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33] rounded-2xl p-4 space-y-1">
         <span class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">YOUR ORDER NUMBER</span>
         <p id="receipt-order-id" class="font-editorial text-2xl font-bold text-brand-maroon dark:text-[#E5C687]">AHN-0000</p>
@@ -796,128 +717,12 @@
     </div>
   </div>
 
-  <!-- Admin Panel Modal (Orders + Print Slip + Cancel/Delete + Notify Customer + Dresses + Password) -->
-  <div id="admin-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
-    <div class="bg-[#F5F2EC] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
-      <div class="bg-brand-maroon text-white px-6 py-4 flex items-center justify-between">
-        <div>
-          <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E5C687]">AHINOOR.ONLINE CONTROL</span>
-          <h3 class="font-editorial text-xl sm:text-2xl font-bold">Admin Dashboard</h3>
-        </div>
-        <div class="flex items-center gap-2">
-          <button type="button" id="admin-logout-btn" onclick="logoutAdmin()" class="hidden text-xs bg-white/15 hover:bg-white/25 px-3 py-1.5 rounded-full font-semibold transition">Logout</button>
-          <button type="button" onclick="closeAdminModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition">✕</button>
-        </div>
-      </div>
-
-      <div id="admin-login-view" class="p-8 sm:p-12 max-w-md mx-auto text-center space-y-5">
-        <div class="w-14 h-14 rounded-full bg-brand-maroon/10 dark:bg-[#322429] text-brand-maroon dark:text-[#E5C687] flex items-center justify-center mx-auto text-2xl">🔒</div>
-        <div>
-          <h4 class="font-editorial text-2xl font-bold">Admin Password Required</h4>
-          <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">Orders manage karne, customer ko notify karne aur slips print karne ke liye password enter karein.</p>
-        </div>
-        <form onsubmit="verifyAdminPassword(event)" class="space-y-3">
-          <input type="password" id="admin-password-input" required placeholder="Enter Admin Password" class="w-full px-4 py-3 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm text-center focus:outline-none focus:border-brand-maroon" />
-          <p id="admin-login-error" class="hidden text-xs text-red-600 font-semibold">Galat password hai! Dobara try karein.</p>
-          <button type="submit" class="w-full py-3 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold uppercase tracking-wider rounded-xl transition">UNLOCK ADMIN PANEL</button>
-        </form>
-      </div>
-
-      <div id="admin-workspace-view" class="hidden p-6 sm:p-8 space-y-6 max-h-[82vh] overflow-y-auto">
-        <div class="flex flex-wrap gap-2 border-b border-[#DFD7C8] dark:border-[#3E2E33] pb-3">
-          <button type="button" id="admin-tab-orders" onclick="switchAdminTab('orders')" class="px-4 py-2 rounded-full text-xs font-bold bg-brand-maroon text-white transition">📦 Orders &amp; Dispatch</button>
-          <button type="button" id="admin-tab-dress" onclick="switchAdminTab('dress')" class="px-4 py-2 rounded-full text-xs font-bold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] border border-[#DFD7C8] dark:border-[#3E2E33] transition">👗 Add New Dress</button>
-          <button type="button" id="admin-tab-manage" onclick="switchAdminTab('manage')" class="px-4 py-2 rounded-full text-xs font-bold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] border border-[#DFD7C8] dark:border-[#3E2E33] transition">📋 Manage Dresses</button>
-          <button type="button" id="admin-tab-password" onclick="switchAdminTab('password')" class="px-4 py-2 rounded-full text-xs font-bold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] border border-[#DFD7C8] dark:border-[#3E2E33] transition">🔑 Change Password</button>
-        </div>
-
-        <!-- Tab 1: Customer Orders + Print Slip + Dispatch/Notify + Cancel/Delete -->
-        <div id="admin-orders-view" class="space-y-4">
-          <div class="flex items-center justify-between">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-maroon dark:text-[#E5C687]">Booked Customer Orders</h4>
-            <button type="button" onclick="refreshAdminOrders()" class="text-xs font-bold text-brand-teal hover:underline">↻ Refresh Orders</button>
-          </div>
-          <div id="admin-orders-list" class="space-y-3 text-xs">
-            <p class="text-brand-muted">Loading orders...</p>
-          </div>
-        </div>
-
-        <!-- Tab 2: Add Dress -->
-        <form id="admin-dress-form" onsubmit="publishNewDress(event)" class="hidden space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Dress Name *</label>
-              <input type="text" id="dress-title" required placeholder="e.g., Peach Floral Embroidered Suit" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
-            </div>
-            <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Price (PKR) *</label>
-              <input type="number" id="dress-price" required placeholder="2750" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
-            </div>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Category</label>
-              <select id="dress-category" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm">
-                <option value="girls">Girls Co-ords</option>
-                <option value="women">Women Kurtis &amp; Suits</option>
-                <option value="frocks">Frocks &amp; Peplums</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Badge Tag</label>
-              <input type="text" id="dress-badge" value="New Arrival" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
-            </div>
-          </div>
-          <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Dress Photo *</label>
-            <input type="file" id="dress-image-file" accept="image/*" required class="w-full px-3.5 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-xs" />
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Fabric Details</label>
-              <input type="text" id="dress-fabric" placeholder="Soft Cotton Lawn Two-Piece" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
-            </div>
-            <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Embroidery Details</label>
-              <input type="text" id="dress-embroidery" placeholder="Floral Neckline & Sleeves Work" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
-            </div>
-          </div>
-          <button type="submit" id="dress-submit-btn" class="w-full py-3.5 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold uppercase tracking-wider rounded-xl transition">✨ ADD DRESS TO LIVE CATALOG</button>
-        </form>
-
-        <!-- Tab 3: Manage Dresses -->
-        <div id="admin-manage-view" class="hidden space-y-4">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-maroon dark:text-[#E5C687] mb-2">Added Custom Dresses</h4>
-          <div id="admin-dresses-list" class="space-y-2 text-xs"></div>
-        </div>
-
-        <!-- Tab 4: Change Password -->
-        <form id="admin-password-form" onsubmit="updateAdminPassword(event)" class="hidden space-y-4 max-w-md mx-auto py-2">
-          <h4 class="font-editorial text-xl font-bold">Change Admin Password</h4>
-          <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Current Password *</label>
-            <input type="password" id="pw-current" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
-          </div>
-          <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">New Password *</label>
-            <input type="password" id="pw-new" required minlength="4" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
-          </div>
-          <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Confirm New Password *</label>
-            <input type="password" id="pw-confirm" required minlength="4" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
-          </div>
-          <button type="submit" id="pw-submit-btn" class="w-full py-3.5 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold uppercase tracking-wider rounded-xl transition">🔑 UPDATE ADMIN PASSWORD</button>
-        </form>
-      </div>
-    </div>
-  </div>
-
   <!-- Checkout Form Modal -->
   <div id="checkout-form-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
     <div class="bg-[#F9F6F0] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
       <div class="bg-brand-maroon text-white px-6 py-4 flex items-center justify-between">
         <div>
-          <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E5C687]">ADMIN PANEL CHECKOUT</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E5C687]">AHINOOR CHECKOUT</span>
           <h3 class="font-editorial text-xl sm:text-2xl font-bold">Complete Your Order</h3>
         </div>
         <button type="button" onclick="closeCheckoutFormModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition">✕</button>
@@ -996,7 +801,7 @@
       <div class="p-5 border-b border-[#DFD7C8] dark:border-[#3E2E33] flex items-center justify-between bg-white dark:bg-[#1A1215]">
         <div>
           <h3 class="font-editorial text-2xl font-bold">Your Order Bag</h3>
-          <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Direct Admin Panel Booking</p>
+          <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Direct Online Booking</p>
         </div>
         <button type="button" onclick="closeCartDrawer()" class="w-8 h-8 rounded-full bg-[#EBE6DC] dark:bg-[#3E2E33] text-brand-charcoal dark:text-white hover:bg-brand-maroon hover:text-white flex items-center justify-center transition">✕</button>
       </div>
@@ -1009,7 +814,7 @@
           <span id="cart-total" class="text-lg text-brand-maroon dark:text-[#E5C687]">Rs. 0</span>
         </div>
         <button type="button" onclick="openBagCheckoutModal()" class="btn-sheen w-full py-3.5 px-4 bg-[#176B58] hover:bg-[#115243] text-white text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
-          <span>📦 PROCEED TO PANEL CHECKOUT</span>
+          <span>📦 PROCEED TO CHECKOUT</span>
         </button>
       </div>
     </div>
@@ -1100,6 +905,7 @@
             </table>
           </div>
         </div>
+        <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3] text-center pt-2">Note: All measurements are in inches. Size may vary +/- 0.5 to 1 inch due to hand measurement.</p>
       </div>
     </div>
   </div>
@@ -1109,7 +915,7 @@
     Added to order bag! 🛍️
   </div>
 
-  <!-- Instant Non-Blocking UI Script -->
+  <!-- Storefront UI Script -->
   <script>
     const BASE_PRODUCTS = [
       { id: 101, title: "Rose Pink Daisy Embroidered Co-ord", price: 2650, category: "girls", isNew: true, badge: "New Arrival", image: "1000827972.jpg", fabric: "Soft Breathable Cotton Lawn Two-Piece (Shirt & Wide-Leg Trouser)", embroidery: "Delicate White & Olive Daisy Floral Embroidery on Neckline, Sleeves & Daman" },
@@ -1144,7 +950,7 @@
       { name: "Dr. Sidra Kamran", city: "Islamabad", time: "4 days ago", item: "Emerald Checkered Bow-Sleeve Peplum Suit", text: "Ahinoor ka signature peplum suit mangwaya, fitting bilkul tailor-made jaisi aayi. Sleeves ke bows aur pleats ki finishing bohot hi classy hai." },
       { name: "Hina Salman", city: "Karachi", time: "5 days ago", item: "Pastel Pink Blossom Embroidered Frock", text: "Karachi ki garmi ke hisab se cotton cambric fabric bohat airy aur comfortable hai. Phoolon ki embroidery ke rang bilkul tasveer jaise pyare hain." },
       { name: "Madiha Usman", city: "Faisalabad", time: "1 week ago", item: "Deep Maroon Floral Neckline Co-ord", text: "Deep Maroon colour bohat rich lag raha hai pehne hue. Neckline aur cuffs par ivory embroidery ki safai dekh kar dil khush ho gaya." },
-      { name: "Sana Bilal", city: "Rawalpindi", time: "1 week ago", item: "Custom Naap Stitching Order", text: "Maine apni 7 saal ki beti ka custom naap panel mein book kiya tha. Exact wahi length aur fitting mili jo maine likhi thi. Highly recommended!" }
+      { name: "Sana Bilal", city: "Rawalpindi", time: "1 week ago", item: "Custom Naap Stitching Order", text: "Maine apni 7 saal ki beti ka custom naap online book kiya tha. Exact wahi length aur fitting mili jo maine likhi thi. Highly recommended!" }
     ];
 
     let cart = [];
@@ -1605,10 +1411,10 @@
     });
   </script>
 
-  <!-- Firebase + Local Fallback Orders, Customer Cancel Before Dispatch, Admin Cancel/Delete, Dispatch Notify & Print Slip Module -->
+  <!-- Firebase Storefront Sync -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, getDoc, setDoc, updateDoc, deleteDoc, doc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, getDocs, updateDoc, doc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCl1OcFNYv-7-iB4Gf2WbQO3Jw-1ipE4ww",
@@ -1621,10 +1427,6 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    let currentAdminPassword = "ahinoor2026";
-    try { currentAdminPassword = localStorage.getItem('ahinoor_admin_pw') || "ahinoor2026"; } catch (e) {}
-
-    let cloudDresses = [];
     let cloudOrders = [];
     const baseCopy = [...window.PRODUCTS];
 
@@ -1635,16 +1437,32 @@
       try { localStorage.setItem('ahinoor_local_orders', JSON.stringify(list)); } catch (e) {}
     }
 
+    function pushLocalNotification(notif) {
+      try {
+        const list = JSON.parse(localStorage.getItem('ahinoor_admin_notifs') || '[]');
+        list.unshift({ id: 'notif-' + Date.now(), read: false, timeStr: new Date().toLocaleString('en-PK'), ...notif });
+        localStorage.setItem('ahinoor_admin_notifs', JSON.stringify(list.slice(0, 50)));
+      } catch (e) {}
+    }
+
+    async function pushAdminNotification(type, orderCode, customerName, phone, message) {
+      pushLocalNotification({ type, orderCode, customerName, phone, message });
+      try {
+        await addDoc(collection(db, "admin_notifications"), {
+          type,
+          orderCode,
+          customerName,
+          phone,
+          message,
+          read: false,
+          createdAt: serverTimestamp()
+        });
+      } catch (e) { console.warn("Notification sync:", e); }
+    }
+
     function generateOrderCode() {
       const num = Math.floor(1000 + Math.random() * 9000);
       return `AHN-${num}`;
-    }
-
-    function formatWhatsAppPhone(rawPhone) {
-      let digits = String(rawPhone || '').replace(/\D/g, '');
-      if (digits.startsWith('03')) digits = '92' + digits.slice(1);
-      else if (digits.startsWith('3') && digits.length === 10) digits = '92' + digits;
-      return digits;
     }
 
     window.savePanelOrder = async function(orderData, onSuccess) {
@@ -1680,9 +1498,16 @@
           postexTrackingId: '',
           createdAt: serverTimestamp()
         });
-      } catch (err) {
-        console.warn("Cloud order sync fallback active:", err);
-      }
+      } catch (err) { console.warn("Cloud order sync fallback:", err); }
+
+      const summary = (orderData.items || []).map(i => `${i.title} x${i.qty || 1}`).join(', ');
+      await pushAdminNotification(
+        'new_order',
+        orderCode,
+        orderData.customerName,
+        orderData.phone,
+        `New Order #${orderCode} by ${orderData.customerName} (${summary})`
+      );
 
       await loadOrdersOnly();
       if (onSuccess) onSuccess();
@@ -1700,10 +1525,7 @@
       } catch (err) {
         cloudOrders = localList;
       }
-      renderAdminOrders();
     }
-
-    window.refreshAdminOrders = loadOrdersOnly;
 
     function getStatusBadge(status) {
       if (status === 'Delivered') return `<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 font-bold text-[10px] uppercase">Delivered ✓</span>`;
@@ -1712,7 +1534,6 @@
       return `<span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-300 font-bold text-[10px] uppercase">Pending</span>`;
     }
 
-    // Customer Order Cancellation (Allowed ONLY when status === 'Pending' / before dispatch)
     window.customerCancelOrderByCode = async function(orderCode, fromReceipt = false) {
       await loadOrdersOnly();
       const target = cloudOrders.find(o => o.orderCode && o.orderCode.toLowerCase() === String(orderCode).toLowerCase());
@@ -1733,6 +1554,14 @@
         } catch (err) { console.warn(err); }
       }
 
+      await pushAdminNotification(
+        'cancelled_order',
+        target.orderCode,
+        target.customerName,
+        target.phone,
+        `Customer ${target.customerName} (${target.phone}) cancelled Order #${target.orderCode}`
+      );
+
       await loadOrdersOnly();
       window.showToast(`Order #${target.orderCode} cancel kar diya gaya hai.`);
 
@@ -1744,260 +1573,6 @@
       }
     };
 
-    // Admin Cancel Order
-    window.adminCancelOrder = async function(docId) {
-      const target = cloudOrders.find(o => o.id === docId);
-      if (!target) return;
-      if (!confirm(`Order #${target.orderCode} ko Cancelled mark karein?`)) return;
-
-      const localList = getLocalOrders().map(o => (o.id === docId || o.orderCode === target.orderCode) ? { ...o, status: 'Cancelled' } : o);
-      saveLocalOrders(localList);
-
-      if (target.isCloud) {
-        try {
-          await updateDoc(doc(db, "orders", docId), { status: 'Cancelled' });
-        } catch (err) { console.warn(err); }
-      }
-      await loadOrdersOnly();
-      window.showToast("Order marked Cancelled! ❌");
-    };
-
-    // Admin Permanently Delete Order
-    window.adminDeleteOrder = async function(docId) {
-      const target = cloudOrders.find(o => o.id === docId);
-      if (!target) return;
-      if (!confirm(`Kya aap waqai order #${target.orderCode} ko permanently delete karna chahte hain?`)) return;
-
-      const localList = getLocalOrders().filter(o => o.id !== docId && o.orderCode !== target.orderCode);
-      saveLocalOrders(localList);
-
-      if (target.isCloud) {
-        try {
-          await deleteDoc(doc(db, "orders", docId));
-        } catch (err) { console.warn(err); }
-      }
-      await loadOrdersOnly();
-      window.showToast("Order permanently deleted! 🗑️");
-    };
-
-    // Notify Customer via WhatsApp on Dispatch
-    window.notifyCustomerDispatch = function(docId) {
-      const order = cloudOrders.find(o => o.id === docId);
-      if (!order) return window.showToast("Order details nahi milin.");
-
-      const waPhone = formatWhatsAppPhone(order.phone);
-      const itemsSummary = (order.items || []).map(it => `${it.title} (${it.size || 'Custom'}) x${it.qty || 1}`).join(', ');
-      const trackingLine = order.postexTrackingId
-        ? `*PostEx Tracking ID:* ${order.postexTrackingId}\nTrack Parcel: https://postex.pk/tracking?trackingNumber=${encodeURIComponent(order.postexTrackingId)}`
-        : `*Status:* Dispatched`;
-
-      const msg = [
-        `Assalam-o-Alaikum *${order.customerName}*! 🌸`,
-        `Aapka *AHINOOR* order dispatch kar diya gaya hai! 🚚`,
-        `-------------------------`,
-        `*Order ID:* ${order.orderCode}`,
-        `*Items:* ${itemsSummary}`,
-        order.total ? `*COD Amount:* ${window.formatPKR(order.total)} (Free Delivery)` : `*Delivery:* Free Delivery`,
-        trackingLine,
-        `-------------------------`,
-        `Aap apna order hamari website par bhi track kar sakte hain: https://ahinoor.online`,
-        `Shukriya! — *AHINOOR Clothing*`
-      ].join('\n');
-
-      const url = waPhone
-        ? `https://wa.me/${waPhone}?text=${encodeURIComponent(msg)}`
-        : `https://wa.me/?text=${encodeURIComponent(msg)}`;
-      window.open(url, '_blank');
-    };
-
-    // Print Packing & Delivery Slip Function
-    window.printOrderSlip = function(docId) {
-      const order = cloudOrders.find(o => o.id === docId);
-      if (!order) return window.showToast("Order details nahi milin.");
-
-      const itemsHtml = (order.items || []).map((it, idx) => `
-        <tr>
-          <td style="padding:8px; border:1px solid #ddd;">${idx + 1}</td>
-          <td style="padding:8px; border:1px solid #ddd;"><strong>${it.title}</strong></td>
-          <td style="padding:8px; border:1px solid #ddd;">${it.size || 'Custom'}</td>
-          <td style="padding:8px; border:1px solid #ddd; text-align:center;">${it.qty || 1}</td>
-          <td style="padding:8px; border:1px solid #ddd; text-align:right;">${it.price ? window.formatPKR(it.price * (it.qty || 1)) : 'Custom Quote'}</td>
-        </tr>
-      `).join('');
-
-      const printWin = window.open('', '_blank', 'width=800,height=700');
-      if (!printWin) return window.showToast("Please allow pop-ups to print slip.");
-
-      printWin.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Packing Slip - ${order.orderCode}</title>
-          <style>
-            body { font-family: Arial, sans-serif; color: #222; padding: 24px; max-width: 720px; margin: auto; }
-            .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #6A2338; padding-bottom: 12px; margin-bottom: 18px; }
-            .brand { font-size: 26px; font-weight: bold; color: #6A2338; letter-spacing: 3px; }
-            .sub { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 1.5px; }
-            .grid { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
-            .col { flex: 1; border: 1px solid #ccc; border-radius: 8px; padding: 12px; }
-            table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 16px; }
-            th { background: #6A2338; color: #fff; padding: 8px; text-align: left; border: 1px solid #6A2338; }
-            .total-row { font-size: 15px; font-weight: bold; text-align: right; padding: 10px; background: #f3ecee; border: 1px solid #6A2338; border-radius: 6px; }
-            .footer { margin-top: 24px; font-size: 11px; color: #555; text-align: center; border-top: 1px dashed #aaa; padding-top: 10px; }
-            @media print { body { padding: 0; } }
-          </style>
-        </head>
-        <body>
-          <div class="header">
-            <div>
-              <div class="brand">AHINOOR</div>
-              <div class="sub">Stitched &amp; Embroidered Women &amp; Girls Wear</div>
-            </div>
-            <div style="text-align:right;">
-              <div style="font-size:13px; font-weight:bold;">PACKING &amp; DELIVERY SLIP</div>
-              <div style="font-size:16px; font-weight:bold; color:#6A2338; margin-top:2px;">Order #: ${order.orderCode}</div>
-              <div style="font-size:11px; color:#555;">Date: ${new Date().toLocaleDateString('en-PK')}</div>
-            </div>
-          </div>
-
-          <div class="grid">
-            <div class="col">
-              <div style="font-size:11px; font-weight:bold; color:#6A2338; text-transform:uppercase; margin-bottom:6px;">Ship To (Customer Details)</div>
-              <div style="font-size:14px; font-weight:bold;">${order.customerName}</div>
-              <div style="font-size:13px; margin-top:4px;"><strong>Phone:</strong> ${order.phone}</div>
-              <div style="font-size:12px; margin-top:4px; line-height:1.4;"><strong>Address / Notes:</strong> ${order.address}</div>
-            </div>
-            <div class="col">
-              <div style="font-size:11px; font-weight:bold; color:#6A2338; text-transform:uppercase; margin-bottom:6px;">Shipment &amp; Courier Info</div>
-              <div style="font-size:12px;"><strong>Shipper:</strong> AHINOOR</div>
-              <div style="font-size:12px; margin-top:4px;"><strong>Support:</strong> +92 315 4124959</div>
-              <div style="font-size:12px; margin-top:4px;"><strong>Status:</strong> ${order.status}</div>
-              <div style="font-size:12px; margin-top:4px;"><strong>PostEx Tracking ID:</strong> ${order.postexTrackingId || 'Not Assigned Yet'}</div>
-            </div>
-          </div>
-
-          <table>
-            <thead>
-              <tr>
-                <th style="width:40px;">#</th>
-                <th>Dress / Product Description</th>
-                <th>Size / Fit</th>
-                <th style="text-align:center; width:60px;">Qty</th>
-                <th style="text-align:right; width:110px;">Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${itemsHtml}
-            </tbody>
-          </table>
-
-          <div class="total-row">
-            Shipping: FREE DELIVERY &nbsp;|&nbsp; Total COD Payable: ${order.total ? window.formatPKR(order.total) : 'As Per Custom Quote'}
-          </div>
-
-          <div class="footer">
-            Thank you for shopping with AHINOOR • Track your order online at ahinoor.online
-          </div>
-
-          <script>
-            window.onload = function() { window.print(); };
-          <\/script>
-        </body>
-        </html>
-      `);
-      printWin.document.close();
-    };
-
-    function renderAdminOrders() {
-      const container = document.getElementById('admin-orders-list');
-      if (!container) return;
-      if (cloudOrders.length === 0) {
-        container.innerHTML = `<p class="text-brand-muted dark:text-[#B5A8A3]">Abhi tak koi order book nahi hua. Storefront se koi dress order karke test karein!</p>`;
-        return;
-      }
-
-      container.innerHTML = cloudOrders.map(o => `
-        <div class="bg-white dark:bg-[#1A1215] p-4 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] space-y-3">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div>
-              <span class="font-bold text-sm text-brand-maroon dark:text-[#E5C687]">${o.orderCode}</span>
-              <span class="mx-1.5 text-brand-muted">•</span>
-              <span class="font-bold">${o.customerName}</span>
-              <span class="text-brand-muted dark:text-[#B5A8A3]">(${o.phone})</span>
-            </div>
-            <div class="flex flex-wrap items-center gap-1.5">
-              <button type="button" onclick="printOrderSlip('${o.id}')" class="px-2.5 py-1 rounded-lg bg-[#242021] dark:bg-[#3E2E33] hover:bg-brand-maroon text-white font-bold text-[10px] uppercase tracking-wider transition">
-                🖨️ Print Slip
-              </button>
-              ${o.status !== 'Cancelled' ? `
-                <button type="button" onclick="adminCancelOrder('${o.id}')" class="px-2.5 py-1 rounded-lg bg-rose-600/10 text-rose-700 dark:text-rose-300 border border-rose-300 dark:border-rose-800 hover:bg-rose-600 hover:text-white font-bold text-[10px] uppercase tracking-wider transition">
-                  ❌ Cancel
-                </button>
-              ` : ''}
-              <button type="button" onclick="adminDeleteOrder('${o.id}')" class="px-2.5 py-1 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-[10px] uppercase tracking-wider transition">
-                🗑️ Delete
-              </button>
-              ${getStatusBadge(o.status)}
-            </div>
-          </div>
-
-          <p class="text-brand-muted dark:text-[#B5A8A3]"><strong>Address / Notes:</strong> ${o.address}</p>
-          <div class="text-brand-charcoal dark:text-[#EFECE4]">
-            ${(o.items || []).map(it => `<div>• ${it.title} (${it.size || 'Custom'}) x${it.qty || 1} ${it.price ? `- ${window.formatPKR(it.price * (it.qty || 1))}` : ''}</div>`).join('')}
-          </div>
-          ${o.total ? `<p class="font-bold text-brand-maroon dark:text-[#E5C687]">Total: ${window.formatPKR(o.total)} (Free Delivery)</p>` : ''}
-
-          <div class="pt-2 border-t border-[#EFECE4] dark:border-[#3E2E33] flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-            <input type="text" id="postex-input-${o.id}" value="${o.postexTrackingId || ''}" placeholder="PostEx Tracking ID likhein..." class="flex-1 px-3 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#241A1E] text-xs" />
-            <button type="button" onclick="markOrderDispatched('${o.id}')" class="px-3 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs transition">
-              🚚 Mark Dispatched
-            </button>
-            <button type="button" onclick="notifyCustomerDispatch('${o.id}')" class="px-3 py-2 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs transition">
-              📲 Notify Customer
-            </button>
-            <button type="button" onclick="markOrderDelivered('${o.id}')" class="px-3 py-2 rounded-xl bg-[#176B58] hover:bg-[#115243] text-white font-bold text-xs transition">
-              ✓ Delivered
-            </button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    window.markOrderDispatched = async function(docId) {
-      const trackInput = document.getElementById(`postex-input-${docId}`);
-      const trackingId = trackInput ? trackInput.value.trim() : '';
-      if (!trackingId) {
-        return window.showToast("Pehle PostEx Tracking ID likhein!");
-      }
-
-      const target = cloudOrders.find(o => o.id === docId);
-      const localList = getLocalOrders().map(o => (o.id === docId || (target && o.orderCode === target.orderCode)) ? { ...o, status: 'Dispatched', postexTrackingId: trackingId } : o);
-      saveLocalOrders(localList);
-
-      if (target && target.isCloud) {
-        try {
-          await updateDoc(doc(db, "orders", docId), { status: 'Dispatched', postexTrackingId: trackingId });
-        } catch (err) { console.warn(err); }
-      }
-      await loadOrdersOnly();
-      window.showToast("Order marked Dispatched! Click Notify Customer to send WhatsApp alert. 🚚");
-    };
-
-    window.markOrderDelivered = async function(docId) {
-      const target = cloudOrders.find(o => o.id === docId);
-      const localList = getLocalOrders().map(o => (o.id === docId || (target && o.orderCode === target.orderCode)) ? { ...o, status: 'Delivered' } : o);
-      saveLocalOrders(localList);
-
-      if (target && target.isCloud) {
-        try {
-          await updateDoc(doc(db, "orders", docId), { status: 'Delivered' });
-        } catch (err) { console.warn(err); }
-      }
-      await loadOrdersOnly();
-      window.showToast("Order marked Delivered! ✓");
-    };
-
-    // Customer Order & PostEx Tracking Lookup (Shows Cancel button ONLY while status === 'Pending')
     window.lookupCustomerOrder = async function(e) {
       e.preventDefault();
       const qVal = document.getElementById('track-input').value.trim().toLowerCase();
@@ -2081,15 +1656,10 @@
       box.innerHTML = `Tracking ID <strong>${trackingNum}</strong> ready hai. Direct PostEx portal ke liye upar <strong>Open PostEx Website</strong> par click karein.`;
     };
 
-    async function loadCloudData() {
+    async function loadCloudDresses() {
       try {
-        const pwDoc = await getDoc(doc(db, "settings", "admin"));
-        if (pwDoc.exists() && pwDoc.data().password) {
-          currentAdminPassword = pwDoc.data().password;
-          try { localStorage.setItem('ahinoor_admin_pw', currentAdminPassword); } catch (e) {}
-        }
         const dressSnap = await getDocs(query(collection(db, "dresses"), orderBy("createdAt", "desc")));
-        cloudDresses = dressSnap.docs.map(d => ({ id: d.id, cloudId: d.id, ...d.data() }));
+        const cloudDresses = dressSnap.docs.map(d => ({ id: d.id, cloudId: d.id, ...d.data() }));
         if (cloudDresses.length > 0) {
           window.PRODUCTS = [...cloudDresses, ...baseCopy];
           const allBtn = document.getElementById('tab-all');
@@ -2097,115 +1667,9 @@
           window.renderProducts(window.currentFilter);
         }
       } catch (e) { console.warn(e); }
-      await loadOrdersOnly();
-      renderAdminLists();
     }
 
-    window.openAdminModal = () => {
-      const m = document.getElementById('admin-modal');
-      m.classList.remove('hidden'); m.classList.add('flex');
-      try {
-        if (sessionStorage.getItem('ahinoor_admin_unlocked') === 'true') showAdminWorkspace();
-      } catch (e) {}
-    };
-    window.closeAdminModal = () => {
-      const m = document.getElementById('admin-modal');
-      m.classList.add('hidden'); m.classList.remove('flex');
-    };
-    window.verifyAdminPassword = (e) => {
-      e.preventDefault();
-      if (document.getElementById('admin-password-input').value === currentAdminPassword) {
-        try { sessionStorage.setItem('ahinoor_admin_unlocked', 'true'); } catch (err) {}
-        document.getElementById('admin-login-error').classList.add('hidden');
-        showAdminWorkspace();
-      } else {
-        document.getElementById('admin-login-error').classList.remove('hidden');
-      }
-    };
-    function showAdminWorkspace() {
-      document.getElementById('admin-login-view').classList.add('hidden');
-      document.getElementById('admin-workspace-view').classList.remove('hidden');
-      document.getElementById('admin-logout-btn').classList.remove('hidden');
-      renderAdminOrders();
-      renderAdminLists();
-    }
-    window.logoutAdmin = () => {
-      try { sessionStorage.removeItem('ahinoor_admin_unlocked'); } catch (e) {}
-      document.getElementById('admin-workspace-view').classList.add('hidden');
-      document.getElementById('admin-logout-btn').classList.add('hidden');
-      document.getElementById('admin-login-view').classList.remove('hidden');
-    };
-    window.switchAdminTab = (tab) => {
-      ['orders', 'dress', 'manage', 'password'].forEach(t => {
-        const b = document.getElementById('admin-tab-' + t);
-        if (b) {
-          b.classList.toggle('bg-brand-maroon', t === tab);
-          b.classList.toggle('text-white', t === tab);
-        }
-      });
-      document.getElementById('admin-orders-view').classList.toggle('hidden', tab !== 'orders');
-      document.getElementById('admin-dress-form').classList.toggle('hidden', tab !== 'dress');
-      document.getElementById('admin-manage-view').classList.toggle('hidden', tab !== 'manage');
-      document.getElementById('admin-password-form').classList.toggle('hidden', tab !== 'password');
-      if (tab === 'orders') renderAdminOrders();
-    };
-    window.updateAdminPassword = async (e) => {
-      e.preventDefault();
-      const next = document.getElementById('pw-new').value.trim();
-      if (document.getElementById('pw-current').value !== currentAdminPassword || next !== document.getElementById('pw-confirm').value.trim()) {
-        return window.showToast("Password mismatch!");
-      }
-      try {
-        await setDoc(doc(db, "settings", "admin"), { password: next, updatedAt: serverTimestamp() });
-      } catch (err) {}
-      currentAdminPassword = next;
-      try { localStorage.setItem('ahinoor_admin_pw', next); } catch (e) {}
-      window.showToast("Password updated! 🔑");
-    };
-    window.publishNewDress = async (e) => {
-      e.preventDefault();
-      const file = document.getElementById('dress-image-file').files[0];
-      const reader = new FileReader();
-      reader.onload = async (ev) => {
-        const newDress = {
-          title: document.getElementById('dress-title').value.trim(),
-          price: Number(document.getElementById('dress-price').value),
-          category: document.getElementById('dress-category').value,
-          isNew: true,
-          badge: document.getElementById('dress-badge').value || "New Arrival",
-          image: ev.target.result,
-          fabric: document.getElementById('dress-fabric').value || "Soft Cotton",
-          embroidery: document.getElementById('dress-embroidery').value || "Floral Work",
-          createdAt: serverTimestamp()
-        };
-        try {
-          await addDoc(collection(db, "dresses"), newDress);
-        } catch (err) {
-          cloudDresses.unshift({ id: 'local-dress-' + Date.now(), cloudId: 'local-dress-' + Date.now(), ...newDress });
-          window.PRODUCTS = [...cloudDresses, ...baseCopy];
-          window.renderProducts(window.currentFilter);
-        }
-        await loadCloudData();
-        window.showToast("New dress added! 👗");
-        window.closeAdminModal();
-      };
-      if (file) reader.readAsDataURL(file);
-    };
-    function renderAdminLists() {
-      const l = document.getElementById('admin-dresses-list');
-      if (!l) return;
-      l.innerHTML = cloudDresses.length === 0 ? '<p>No custom dresses yet.</p>' : cloudDresses.map(d => `<div class="flex justify-between p-2 bg-white dark:bg-[#1A1215] rounded-lg"><span>${d.title}</span><button type="button" onclick="deleteCloudItem('dresses','${d.cloudId}')" class="text-red-600 font-bold">Delete</button></div>`).join('');
-    }
-    window.deleteCloudItem = async (col, id) => {
-      try { await deleteDoc(doc(db, col, id)); } catch (e) {}
-      cloudDresses = cloudDresses.filter(d => d.cloudId !== id);
-      window.PRODUCTS = [...cloudDresses, ...baseCopy];
-      window.renderProducts(window.currentFilter);
-      renderAdminLists();
-      window.showToast("Deleted!");
-    };
-
-    setTimeout(loadCloudData, 600);
+    setTimeout(loadCloudDresses, 600);
   </script>
 </body>
 </html>
