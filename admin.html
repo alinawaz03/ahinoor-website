@@ -125,7 +125,7 @@
       </div>
     </section>
 
-    <!-- Tab 2: Booked Customer Orders + One-Click Excel (.csv) Download -->
+    <!-- Tab 2: Booked Customer Orders + Dress Pictures + One-Click Excel Export -->
     <section id="admin-orders-view" class="hidden space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <h2 class="font-editorial text-2xl font-bold">Booked Customer Orders</h2>
@@ -299,24 +299,24 @@
     };
 
     const BASE_SUITS = [
-      { id: 101, title: "Rose Pink Daisy Embroidered Co-ord", price: 2650, isNew: true },
-      { id: 102, title: "Deep Maroon Floral Neckline Co-ord", price: 2650, isNew: true },
-      { id: 103, title: "Midnight Black Daisy Trim Co-ord", price: 2650, isNew: true },
-      { id: 104, title: "Pastel Pink Blossom Embroidered Frock", price: 2799, isNew: true },
-      { id: 105, title: "Olive Green Pleated Collar Co-ord", price: 2750, isNew: true },
-      { id: 106, title: "Royal Plum Gathered Collar Co-ord", price: 2750, isNew: true },
-      { id: 107, title: "Mustard Yellow Meadow Co-ord", price: 2750, isNew: true },
-      { id: 108, title: "Charcoal Black Buttoned Collar Co-ord", price: 2750, isNew: true },
-      { id: 1, title: "Sage Olive Floral Pocket Co-ord Set", price: 3699, isNew: false },
-      { id: 2, title: "Blossom Pink Pintucked Flare Frock & Culottes", price: 2650, isNew: false },
-      { id: 3, title: "Lavender Mist V-Neck Embroidered Kurti Set", price: 2650, isNew: false },
-      { id: 4, title: "Emerald Checkered Bow-Sleeve Peplum Suit", price: 2799, isNew: false },
-      { id: 5, title: "Ivory Cream Garden Motif Tunic & Palazzo", price: 2799, isNew: false },
-      { id: 6, title: "Sky Blue Daisy Embroidered A-Line Set", price: 2799, isNew: false },
-      { id: 7, title: "Deep Maroon Festive Threadwork Kurti", price: 3050, isNew: false },
-      { id: 8, title: "Mint Green Ruffle Collar Frock Set", price: 2799, isNew: false },
-      { id: 9, title: "Beige Sand Heritage Chikankari Co-ord", price: 2750, isNew: false },
-      { id: 10, title: "Peach Coral Pleated Tunic & Culottes", price: 2650, isNew: false }
+      { id: 101, title: "Rose Pink Daisy Embroidered Co-ord", price: 2650, isNew: true, image: "../1000827972.jpg" },
+      { id: 102, title: "Deep Maroon Floral Neckline Co-ord", price: 2650, isNew: true, image: "../1000827973.jpg" },
+      { id: 103, title: "Midnight Black Daisy Trim Co-ord", price: 2650, isNew: true, image: "../1000827974.jpg" },
+      { id: 104, title: "Pastel Pink Blossom Embroidered Frock", price: 2799, isNew: true, image: "../1000827975.jpg" },
+      { id: 105, title: "Olive Green Pleated Collar Co-ord", price: 2750, isNew: true, image: "../1000827976.jpg" },
+      { id: 106, title: "Royal Plum Gathered Collar Co-ord", price: 2750, isNew: true, image: "../1000827977.jpg" },
+      { id: 107, title: "Mustard Yellow Meadow Co-ord", price: 2750, isNew: true, image: "../1000827978.jpg" },
+      { id: 108, title: "Charcoal Black Buttoned Collar Co-ord", price: 2750, isNew: true, image: "../1000827979.jpg" },
+      { id: 1, title: "Sage Olive Floral Pocket Co-ord Set", price: 3699, isNew: false, image: "../1000827954.jpg" },
+      { id: 2, title: "Blossom Pink Pintucked Flare Frock & Culottes", price: 2650, isNew: false, image: "../1000827955.jpg" },
+      { id: 3, title: "Lavender Mist V-Neck Embroidered Kurti Set", price: 2650, isNew: false, image: "../1000827956.jpg" },
+      { id: 4, title: "Emerald Checkered Bow-Sleeve Peplum Suit", price: 2799, isNew: false, image: "../1000827957.jpg" },
+      { id: 5, title: "Ivory Cream Garden Motif Tunic & Palazzo", price: 2799, isNew: false, image: "../1000827958.jpg" },
+      { id: 6, title: "Sky Blue Daisy Embroidered A-Line Set", price: 2799, isNew: false, image: "../1000827959.jpg" },
+      { id: 7, title: "Deep Maroon Festive Threadwork Kurti", price: 3050, isNew: false, image: "../1000827960.jpg" },
+      { id: 8, title: "Mint Green Ruffle Collar Frock Set", price: 2799, isNew: false, image: "../1000827961.jpg" },
+      { id: 9, title: "Beige Sand Heritage Chikankari Co-ord", price: 2750, isNew: false, image: "../1000827962.jpg" },
+      { id: 10, title: "Peach Coral Pleated Tunic & Culottes", price: 2650, isNew: false, image: "../1000827963.jpg" }
     ];
 
     const app = initializeApp(firebaseConfig);
@@ -341,6 +341,21 @@
       const isDark = document.documentElement.classList.toggle('dark');
       try { localStorage.setItem('ahinoor_theme', isDark ? 'dark' : 'light'); } catch (e) {}
     };
+
+    function resolveItemImage(item) {
+      let src = item && item.image ? String(item.image) : '';
+      if (!src && item && item.title) {
+        const matchedBase = BASE_SUITS.find(s => item.title.toLowerCase().includes(s.title.toLowerCase()) || s.title.toLowerCase().includes(item.title.toLowerCase()));
+        if (matchedBase) src = matchedBase.image;
+        const matchedCloud = cloudDresses.find(d => d.title === item.title);
+        if (matchedCloud && matchedCloud.image) src = matchedCloud.image;
+      }
+      if (!src) src = '../1000827972.jpg';
+      if (!src.startsWith('data:') && !src.startsWith('http') && !src.startsWith('../')) {
+        src = '../' + src;
+      }
+      return src;
+    }
 
     function getLocalOrders() {
       try { return JSON.parse(localStorage.getItem('ahinoor_local_orders') || '[]'); } catch (e) { return []; }
@@ -385,7 +400,6 @@
       return `<span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-300 font-bold text-[10px] uppercase">Pending</span>`;
     }
 
-    // One-Click Export All Customer Orders to Excel (.csv)
     window.exportOrdersToExcel = function() {
       if (!cloudOrders || cloudOrders.length === 0) {
         return window.showToast("Export karne ke liye koi order maujood nahi hai.");
@@ -568,6 +582,19 @@
             </div>
           `;
 
+        const itemsWithPics = (o.items || []).map(it => {
+          const imgSrc = resolveItemImage(it);
+          return `
+            <div class="flex items-center gap-3 bg-[#F5F2EC] dark:bg-[#241A1E] p-2 rounded-xl border border-[#EFECE4] dark:border-[#3E2E33]">
+              <img src="${imgSrc}" onerror="this.src='https://placehold.co/64x80/EBE6DC/6A2338?text=Suit'" alt="${it.title}" class="w-12 h-16 rounded-lg object-cover shrink-0 bg-white" />
+              <div class="min-w-0 flex-1">
+                <p class="font-bold text-brand-charcoal dark:text-[#F3EFEA] truncate">${it.title}</p>
+                <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">Size: ${it.size || 'Custom'} • Qty: ${it.qty || 1} ${it.price ? `• ${window.formatPKR(it.price * (it.qty || 1))}` : ''}</p>
+              </div>
+            </div>
+          `;
+        }).join('');
+
         return `
           <div class="bg-white dark:bg-[#241A1E] p-4 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] space-y-3">
             <div class="flex flex-wrap items-center justify-between gap-2">
@@ -583,8 +610,8 @@
             </div>
 
             <p class="text-brand-muted dark:text-[#B5A8A3]"><strong>Address / Notes:</strong> ${o.address}</p>
-            <div class="text-brand-charcoal dark:text-[#EFECE4]">
-              ${(o.items || []).map(it => `<div>• ${it.title} (${it.size || 'Custom'}) x${it.qty || 1} ${it.price ? `- ${window.formatPKR(it.price * (it.qty || 1))}` : ''}</div>`).join('')}
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              ${itemsWithPics}
             </div>
             ${o.total ? `<p class="font-bold text-brand-maroon dark:text-[#E5C687]">Total: ${window.formatPKR(o.total)} (Free Delivery)</p>` : ''}
             ${dispatchBar}
@@ -674,15 +701,19 @@
     window.printOrderSlip = function(docId) {
       const order = cloudOrders.find(o => o.id === docId);
       if (!order || order.status === 'Cancelled') return;
-      const itemsHtml = (order.items || []).map((it, idx) => `
-        <tr>
-          <td style="padding:8px; border:1px solid #ddd;">${idx + 1}</td>
-          <td style="padding:8px; border:1px solid #ddd;"><strong>${it.title}</strong></td>
-          <td style="padding:8px; border:1px solid #ddd;">${it.size || 'Custom'}</td>
-          <td style="padding:8px; border:1px solid #ddd; text-align:center;">${it.qty || 1}</td>
-          <td style="padding:8px; border:1px solid #ddd; text-align:right;">${it.price ? window.formatPKR(it.price * (it.qty || 1)) : 'Custom Quote'}</td>
-        </tr>
-      `).join('');
+      const itemsHtml = (order.items || []).map((it, idx) => {
+        const imgSrc = resolveItemImage(it);
+        return `
+          <tr>
+            <td style="padding:8px; border:1px solid #ddd;">${idx + 1}</td>
+            <td style="padding:8px; border:1px solid #ddd;"><img src="${imgSrc}" style="width:42px;height:54px;object-fit:cover;border-radius:4px;" /></td>
+            <td style="padding:8px; border:1px solid #ddd;"><strong>${it.title}</strong></td>
+            <td style="padding:8px; border:1px solid #ddd;">${it.size || 'Custom'}</td>
+            <td style="padding:8px; border:1px solid #ddd; text-align:center;">${it.qty || 1}</td>
+            <td style="padding:8px; border:1px solid #ddd; text-align:right;">${it.price ? window.formatPKR(it.price * (it.qty || 1)) : 'Custom Quote'}</td>
+          </tr>
+        `;
+      }).join('');
 
       const printWin = window.open('', '_blank', 'width=800,height=700');
       if (!printWin) return window.showToast("Allow pop-ups to print.");
@@ -697,7 +728,7 @@
           </div>
           <p><strong>Ship To:</strong> ${order.customerName} (${order.phone})<br><strong>Address:</strong> ${order.address}<br><strong>PostEx Tracking ID:</strong> ${order.postexTrackingId || 'Pending'}</p>
           <table style="width:100%;border-collapse:collapse;font-size:13px;margin:16px 0;">
-            <thead><tr style="background:#6A2338;color:#fff;"><th style="padding:8px;">#</th><th style="padding:8px;text-align:left;">Item</th><th style="padding:8px;text-align:left;">Size</th><th style="padding:8px;">Qty</th><th style="padding:8px;text-align:right;">Amount</th></tr></thead>
+            <thead><tr style="background:#6A2338;color:#fff;"><th style="padding:8px;">#</th><th style="padding:8px;">Photo</th><th style="padding:8px;text-align:left;">Item</th><th style="padding:8px;text-align:left;">Size</th><th style="padding:8px;">Qty</th><th style="padding:8px;text-align:right;">Amount</th></tr></thead>
             <tbody>${itemsHtml}</tbody>
           </table>
           <div style="text-align:right;font-weight:bold;padding:10px;background:#f3ecee;border:1px solid #6A2338;">FREE DELIVERY | Total COD: ${order.total ? window.formatPKR(order.total) : 'Custom Quote'}</div>
@@ -919,6 +950,7 @@
         }
       } catch (e) {}
       renderSuitControls();
+      renderAdminOrders();
     }
 
     window.refreshAllAdminData = function() {
