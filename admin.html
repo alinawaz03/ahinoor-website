@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AHINOOR Admin Panel | ahinoor.online/admin</title>
+  <link rel="icon" type="image/jpeg" href="../1000827919.jpg" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              maroon: '#6A2338',
+              maroonDark: '#2E1119',
+              cream: '#F5F2EC',
+              sand: '#EBE6DC',
+              gold: '#9E7B3E',
+              charcoal: '#242021',
+              muted: '#6B6365',
+              teal: '#176B58'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          }
+        }
+      }
+    };
+    try {
+      if (localStorage.getItem('ahinoor_theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    } catch (e) {}
+  </script>
+  <style>
+    body { background-color: #F5F2EC; color: #242021; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .dark body { background-color: #181215; color: #F3EFEA; }
+    .font-editorial { font-family: 'Playfair Display', Georgia, serif; }
+  </style>
+</head>
+<body class="min-h-screen antialiased">
+
+  <!-- Top Admin Header -->
+  <header class="bg-brand-maroon text-white shadow-md sticky top-0 z-30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="w-10 h-10 rounded-full bg-white p-0.5 flex items-center justify-center shrink-0">
+          <img src="../1000827919.jpg" onerror="this.src='https://placehold.co/80x80/6A2338/FFFFFF?text=A'" alt="Ahinoor" class="w-full h-full rounded-full object-contain" />
+        </a>
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E5C687] block">AHINOOR.ONLINE/ADMIN</span>
+          <h1 class="font-editorial text-lg sm:text-xl font-bold leading-none">Admin Control Center</h1>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="toggleAdminTheme()" class="px-2.5 py-1.5 rounded-full bg-white/15 hover:bg-white/25 text-xs font-bold">🌙 / ☀️</button>
+        <a href="../index.html" class="hidden sm:inline-block px-3 py-1.5 rounded-full bg-white/15 hover:bg-white/25 text-xs font-semibold">← Storefront</a>
+        <button type="button" id="admin-logout-btn" onclick="logoutAdmin()" class="hidden px-3 py-1.5 rounded-full bg-red-600 hover:bg-red-700 text-xs font-bold">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Step 1: Login Gate -->
+  <main id="admin-login-view" class="max-w-md mx-auto px-4 py-16">
+    <div class="bg-white dark:bg-[#241A1E] rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33] p-8 shadow-xl text-center space-y-5">
+      <div class="w-14 h-14 rounded-full bg-brand-maroon/10 dark:bg-[#322429] text-brand-maroon dark:text-[#E5C687] flex items-center justify-center mx-auto text-2xl">🔒</div>
+      <div>
+        <h2 class="font-editorial text-2xl font-bold">Admin Login</h2>
+        <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">Orders, Notifications, PostEx Tracking aur Dresses manage karne ke liye password enter karein.</p>
+      </div>
+      <form onsubmit="verifyAdminPassword(event)" class="space-y-3">
+        <input type="password" id="admin-password-input" required placeholder="Enter Admin Password" class="w-full px-4 py-3 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm text-center focus:outline-none focus:border-brand-maroon" />
+        <p id="admin-login-error" class="hidden text-xs text-red-600 font-semibold">Galat password hai! Dobara try karein.</p>
+        <button type="submit" class="w-full py-3.5 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold uppercase tracking-wider rounded-xl transition">UNLOCK ADMIN DASHBOARD</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Step 2: Unlocked Admin Dashboard -->
+  <main id="admin-workspace-view" class="hidden max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+    
+    <!-- Navigation Tabs with Live Notification Counter -->
+    <div class="flex flex-wrap items-center gap-2 border-b border-[#DFD7C8] dark:border-[#3E2E33] pb-4">
+      <button type="button" id="admin-tab-notifications" onclick="switchAdminTab('notifications')" class="px-4 py-2.5 rounded-full text-xs font-bold bg-brand-maroon text-white transition inline-flex items-center gap-1.5">
+        <span>🔔 Notifications</span>
+        <span id="notif-unread-badge" class="bg-amber-400 text-brand-maroonDark px-2 py-0.5 rounded-full text-[10px] font-extrabold">0</span>
+      </button>
+      <button type="button" id="admin-tab-orders" onclick="switchAdminTab('orders')" class="px-4 py-2.5 rounded-full text-xs font-bold bg-white dark:bg-[#241A1E] border border-[#DFD7C8] dark:border-[#3E2E33] transition">
+        📦 Orders &amp; Dispatch
+      </button>
+      <button type="button" id="admin-tab-dress" onclick="switchAdminTab('dress')" class="px-4 py-2.5 rounded-full text-xs font-bold bg-white dark:bg-[#241A1E] border border-[#DFD7C8] dark:border-[#3E2E33] transition">
+        👗 Add New Dress
+      </button>
+      <button type="button" id="admin-tab-manage" onclick="switchAdminTab('manage')" class="px-4 py-2.5 rounded-full text-xs font-bold bg-white dark:bg-[#241A1E] border border-[#DFD7C8] dark:border-[#3E2E33] transition">
+        📋 Manage Dresses
+      </button>
+      <button type="button" id="admin-tab-password" onclick="switchAdminTab('password')" class="px-4 py-2.5 rounded-full text-xs font-bold bg-white dark:bg-[#241A1E] border border-[#DFD7C8] dark:border-[#3E2E33] transition">
+        🔑 Change Password
+      </button>
+    </div>
+
+    <!-- Tab 1: Dedicated Notification Center -->
+    <section id="admin-notifications-view" class="space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <h2 class="font-editorial text-2xl font-bold">Order &amp; Cancellation Notifications</h2>
+          <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Har naya order aur customer ki taraf se cancel kiya gaya order yahan alag show hota hai.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="refreshAllAdminData()" class="px-3 py-1.5 rounded-xl bg-brand-teal/15 text-brand-teal dark:text-[#4ADE80] text-xs font-bold">↻ Refresh</button>
+          <button type="button" onclick="markAllNotificationsRead()" class="px-3 py-1.5 rounded-xl bg-brand-maroon/10 text-brand-maroon dark:text-[#E5C687] text-xs font-bold">✓ Mark All Read</button>
+        </div>
+      </div>
+
+      <div id="admin-notifications-list" class="space-y-3 text-xs">
+        <p class="text-brand-muted">Loading notifications...</p>
+      </div>
+    </section>
+
+    <!-- Tab 2: Booked Customer Orders -->
+    <section id="admin-orders-view" class="hidden space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="font-editorial text-2xl font-bold">Booked Customer Orders</h2>
+        <button type="button" onclick="refreshAllAdminData()" class="text-xs font-bold text-brand-teal hover:underline">↻ Refresh Orders</button>
+      </div>
+      <div id="admin-orders-list" class="space-y-3 text-xs">
+        <p class="text-brand-muted">Loading orders...</p>
+      </div>
+    </section>
+
+    <!-- Tab 3: Add New Dress -->
+    <section id="admin-dress-form-wrap" class="hidden bg-white dark:bg-[#241A1E] p-6 rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33]">
+      <h2 class="font-editorial text-2xl font-bold mb-4">Add New Dress to Catalog</h2>
+      <form id="admin-dress-form" onsubmit="publishNewDress(event)" class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Dress Name *</label>
+            <input type="text" id="dress-title" required placeholder="e.g., Peach Floral Embroidered Suit" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm" />
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Price (PKR) *</label>
+            <input type="number" id="dress-price" required placeholder="2750" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm" />
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Category</label>
+            <select id="dress-category" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm">
+              <option value="girls">Girls Co-ords</option>
+              <option value="women">Women Kurtis &amp; Suits</option>
+              <option value="frocks">Frocks &amp; Peplums</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Badge Tag</label>
+            <input type="text" id="dress-badge" value="New Arrival" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Dress Photo *</label>
+          <input type="file" id="dress-image-file" accept="image/*" required class="w-full px-3.5 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-xs" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Fabric Details</label>
+            <input type="text" id="dress-fabric" placeholder="Soft Cotton Lawn Two-Piece" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm" />
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Embroidery Details</label>
+            <input type="text" id="dress-embroidery" placeholder="Floral Neckline & Sleeves Work" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm" />
+          </div>
+        </div>
+        <button type="submit" id="dress-submit-btn" class="w-full py-3.5 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold uppercase tracking-wider rounded-xl transition">✨ ADD DRESS TO LIVE CATALOG</button>
+      </form>
+    </section>
+
+    <!-- Tab 4: Manage Dresses -->
+    <section id="admin-manage-view" class="hidden space-y-4">
+      <h2 class="font-editorial text-2xl font-bold">Added Custom Dresses</h2>
+      <div id="admin-dresses-list" class="space-y-2 text-xs"></div>
+    </section>
+
+    <!-- Tab 5: Change Password -->
+    <section id="admin-password-wrap" class="hidden bg-white dark:bg-[#241A1E] p-6 rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33] max-w-md">
+      <form id="admin-password-form" onsubmit="updateAdminPassword(event)" class="space-y-4">
+        <h2 class="font-editorial text-xl font-bold">Change Admin Password</h2>
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Current Password *</label>
+          <input type="password" id="pw-current" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm" />
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">New Password *</label>
+          <input type="password" id="pw-new" required minlength="4" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm" />
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Confirm New Password *</label>
+          <input type="password" id="pw-confirm" required minlength="4" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm" />
+        </div>
+        <button type="submit" id="pw-submit-btn" class="w-full py-3.5 bg-brand-maroon hover:bg-brand-maroonDark text-white text-xs font-bold uppercase tracking-wider rounded-xl transition">🔑 UPDATE ADMIN PASSWORD</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-brand-charcoal text-white text-xs font-semibold px-5 py-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, getDoc, setDoc, updateDoc, deleteDoc, doc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCl1OcFNYv-7-iB4Gf2WbQO3Jw-1ipE4ww",
+      authDomain: "ahinoor-store.firebaseapp.com",
+      projectId: "ahinoor-store",
+      storageBucket: "ahinoor-store.firebasestorage.app",
+      messagingSenderId: "17933030943",
+      appId: "1:17933030943:web:76fbb09c75b0aef68aa72a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    let currentAdminPassword = "ahinoor2026";
+    try { currentAdminPassword = localStorage.getItem('ahinoor_admin_pw') || "ahinoor2026"; } catch (e) {}
+
+    let cloudOrders = [];
+    let cloudNotifications = [];
+    let cloudDresses = [];
+
+    window.formatPKR = (amount) => 'Rs. ' + Number(amount).toLocaleString('en-PK');
+    window.showToast = (msg) => {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.remove('opacity-0');
+      setTimeout(() => t.classList.add('opacity-0'), 2400);
+    };
+    window.toggleAdminTheme = () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      try { localStorage.setItem('ahinoor_theme', isDark ? 'dark' : 'light'); } catch (e) {}
+    };
+
+    function getLocalOrders() {
+      try { return JSON.parse(localStorage.getItem('ahinoor_local_orders') || '[]'); } catch (e) { return []; }
+    }
+    function saveLocalOrders(list) {
+      try { localStorage.setItem('ahinoor_local_orders', JSON.stringify(list)); } catch (e) {}
+    }
+    function getLocalNotifs() {
+      try { return JSON.parse(localStorage.getItem('ahinoor_admin_notifs') || '[]'); } catch (e) { return []; }
+    }
+    function saveLocalNotifs(list) {
+      try { localStorage.setItem('ahinoor_admin_notifs', JSON.stringify(list)); } catch (e) {}
+    }
+
+    function formatWhatsAppPhone(rawPhone) {
+      let digits = String(rawPhone || '').replace(/\D/g, '');
+      if (digits.startsWith('03')) digits = '92' + digits.slice(1);
+      else if (digits.startsWith('3') && digits.length === 10) digits = '92' + digits;
+      return digits;
+    }
+
+    function getStatusBadge(status) {
+      if (status === 'Delivered') return `<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 font-bold text-[10px] uppercase">Delivered ✓</span>`;
+      if (status === 'Dispatched') return `<span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 font-bold text-[10px] uppercase">Dispatched 🚚</span>`;
+      if (status === 'Cancelled') return `<span class="px-2.5 py-1 rounded-full bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300 font-bold text-[10px] uppercase">Cancelled ✕</span>`;
+      return `<span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-300 font-bold text-[10px] uppercase">Pending</span>`;
+    }
+
+    async function loadNotifications() {
+      const localList = getLocalNotifs();
+      try {
+        const snap = await getDocs(query(collection(db, "admin_notifications"), orderBy("createdAt", "desc")));
+        const remoteNotifs = snap.docs.map(d => ({ id: d.id, isCloud: true, ...d.data() }));
+        const remoteKeys = new Set(remoteNotifs.map(n => `${n.type}-${n.orderCode}`));
+        const uniqueLocal = localList.filter(n => !remoteKeys.has(`${n.type}-${n.orderCode}`));
+        cloudNotifications = [...remoteNotifs, ...uniqueLocal];
+      } catch (e) {
+        cloudNotifications = localList;
+      }
+      renderNotifications();
+    }
+
+    function renderNotifications() {
+      const listEl = document.getElementById('admin-notifications-list');
+      const badgeEl = document.getElementById('notif-unread-badge');
+      const unreadCount = cloudNotifications.filter(n => !n.read).length;
+      if (badgeEl) badgeEl.textContent = unreadCount;
+
+      if (!listEl) return;
+      if (cloudNotifications.length === 0) {
+        listEl.innerHTML = `<div class="bg-white dark:bg-[#241A1E] p-6 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] text-center text-brand-muted">Abhi tak koi notification nahi hai.</div>`;
+        return;
+      }
+
+      listEl.innerHTML = cloudNotifications.map(n => {
+        const isCancel = n.type === 'cancelled_order';
+        const tag = isCancel
+          ? `<span class="px-2.5 py-0.5 rounded-full bg-red-600 text-white font-bold text-[10px] uppercase">❌ Order Cancelled</span>`
+          : `<span class="px-2.5 py-0.5 rounded-full bg-[#176B58] text-white font-bold text-[10px] uppercase">🛍️ New Order</span>`;
+
+        return `
+          <div class="p-4 rounded-2xl border transition flex flex-wrap items-center justify-between gap-3 ${n.read ? 'bg-white/70 dark:bg-[#241A1E]/70 border-[#DFD7C8] dark:border-[#3E2E33]' : 'bg-white dark:bg-[#241A1E] border-brand-maroon shadow-sm'}">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                ${tag}
+                <span class="font-bold text-brand-maroon dark:text-[#E5C687]">${n.orderCode || ''}</span>
+                ${!n.read ? `<span class="w-2 h-2 rounded-full bg-red-600 inline-block"></span>` : ''}
+              </div>
+              <p class="font-semibold text-brand-charcoal dark:text-[#F3EFEA]">${n.message}</p>
+              <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">Customer: ${n.customerName || ''} • ${n.phone || ''}</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="openOrderFromNotification('${n.id}', '${n.orderCode}')" class="px-3 py-1.5 rounded-xl bg-brand-maroon text-white font-bold text-[11px]">View Order</button>
+              <button type="button" onclick="deleteNotification('${n.id}')" class="px-2.5 py-1.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] text-brand-muted hover:text-red-600 font-bold text-[11px]">✕</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.openOrderFromNotification = async function(notifId, orderCode) {
+      const target = cloudNotifications.find(n => n.id === notifId);
+      const localList = getLocalNotifs().map(n => (n.id === notifId || n.orderCode === orderCode) ? { ...n, read: true } : n);
+      saveLocalNotifs(localList);
+      if (target && target.isCloud) {
+        try { await updateDoc(doc(db, "admin_notifications", notifId), { read: true }); } catch (e) {}
+      }
+      await loadNotifications();
+      switchAdminTab('orders');
+    };
+
+    window.markAllNotificationsRead = async function() {
+      const localList = getLocalNotifs().map(n => ({ ...n, read: true }));
+      saveLocalNotifs(localList);
+      for (const n of cloudNotifications) {
+        if (n.isCloud && !n.read) {
+          try { await updateDoc(doc(db, "admin_notifications", n.id), { read: true }); } catch (e) {}
+        }
+      }
+      await loadNotifications();
+      window.showToast("All notifications marked as read ✓");
+    };
+
+    window.deleteNotification = async function(notifId) {
+      const target = cloudNotifications.find(n => n.id === notifId);
+      saveLocalNotifs(getLocalNotifs().filter(n => n.id !== notifId));
+      if (target && target.isCloud) {
+        try { await deleteDoc(doc(db, "admin_notifications", notifId)); } catch (e) {}
+      }
+      await loadNotifications();
+    };
+
+    async function loadOrdersOnly() {
+      const localList = getLocalOrders();
+      try {
+        const snap = await getDocs(query(collection(db, "orders"), orderBy("createdAt", "desc")));
+        const remoteOrders = snap.docs.map(d => ({ id: d.id, isCloud: true, ...d.data() }));
+        const remoteCodes = new Set(remoteOrders.map(o => o.orderCode));
+        const uniqueLocal = localList.filter(o => !remoteCodes.has(o.orderCode));
+        cloudOrders = [...remoteOrders, ...uniqueLocal];
+      } catch (err) {
+        cloudOrders = localList;
+      }
+      renderAdminOrders();
+    }
+
+    function renderAdminOrders() {
+      const container = document.getElementById('admin-orders-list');
+      if (!container) return;
+      if (cloudOrders.length === 0) {
+        container.innerHTML = `<div class="bg-white dark:bg-[#241A1E] p-6 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] text-center text-brand-muted">Abhi tak koi order book nahi hua.</div>`;
+        return;
+      }
+
+      container.innerHTML = cloudOrders.map(o => {
+        const isCancelled = o.status === 'Cancelled';
+
+        const topControls = isCancelled
+          ? `
+            <button type="button" onclick="adminDeleteOrder('${o.id}')" class="px-2.5 py-1 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-[10px] uppercase tracking-wider transition">
+              🗑️ Delete
+            </button>
+            ${getStatusBadge(o.status)}
+          `
+          : `
+            <button type="button" onclick="printOrderSlip('${o.id}')" class="px-2.5 py-1 rounded-lg bg-[#242021] dark:bg-[#3E2E33] hover:bg-brand-maroon text-white font-bold text-[10px] uppercase tracking-wider transition">
+              🖨️ Print Slip
+            </button>
+            <button type="button" onclick="adminCancelOrder('${o.id}')" class="px-2.5 py-1 rounded-lg bg-rose-600/10 text-rose-700 dark:text-rose-300 border border-rose-300 dark:border-rose-800 hover:bg-rose-600 hover:text-white font-bold text-[10px] uppercase tracking-wider transition">
+              ❌ Cancel
+            </button>
+            <button type="button" onclick="adminDeleteOrder('${o.id}')" class="px-2.5 py-1 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-[10px] uppercase tracking-wider transition">
+              🗑️ Delete
+            </button>
+            ${getStatusBadge(o.status)}
+          `;
+
+        const dispatchBar = isCancelled
+          ? `<div class="pt-2 border-t border-[#EFECE4] dark:border-[#3E2E33] text-red-600 dark:text-red-400 font-semibold">This order was cancelled. Dispatch, Notify, Delivered &amp; Print Slip actions are hidden.</div>`
+          : `
+            <div class="pt-2 border-t border-[#EFECE4] dark:border-[#3E2E33] flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <input type="text" id="postex-input-${o.id}" value="${o.postexTrackingId || ''}" placeholder="PostEx Tracking ID likhein..." class="flex-1 px-3 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-xs" />
+              <button type="button" onclick="markOrderDispatched('${o.id}')" class="px-3 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs transition">
+                🚚 Mark Dispatched
+              </button>
+              <button type="button" onclick="notifyCustomerDispatch('${o.id}')" class="px-3 py-2 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs transition">
+                📲 Notify Customer
+              </button>
+              <button type="button" onclick="markOrderDelivered('${o.id}')" class="px-3 py-2 rounded-xl bg-[#176B58] hover:bg-[#115243] text-white font-bold text-xs transition">
+                ✓ Delivered
+              </button>
+            </div>
+          `;
+
+        return `
+          <div class="bg-white dark:bg-[#241A1E] p-4 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <span class="font-bold text-sm text-brand-maroon dark:text-[#E5C687]">${o.orderCode}</span>
+                <span class="mx-1.5 text-brand-muted">•</span>
+                <span class="font-bold">${o.customerName}</span>
+                <span class="text-brand-muted dark:text-[#B5A8A3]">(${o.phone})</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-1.5">
+                ${topControls}
+              </div>
+            </div>
+
+            <p class="text-brand-muted dark:text-[#B5A8A3]"><strong>Address / Notes:</strong> ${o.address}</p>
+            <div class="text-brand-charcoal dark:text-[#EFECE4]">
+              ${(o.items || []).map(it => `<div>• ${it.title} (${it.size || 'Custom'}) x${it.qty || 1} ${it.price ? `- ${window.formatPKR(it.price * (it.qty || 1))}` : ''}</div>`).join('')}
+            </div>
+            ${o.total ? `<p class="font-bold text-brand-maroon dark:text-[#E5C687]">Total: ${window.formatPKR(o.total)} (Free Delivery)</p>` : ''}
+            ${dispatchBar}
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.markOrderDispatched = async function(docId) {
+      const trackInput = document.getElementById(`postex-input-${docId}`);
+      const trackingId = trackInput ? trackInput.value.trim() : '';
+      if (!trackingId) return window.showToast("Pehle PostEx Tracking ID likhein!");
+
+      const target = cloudOrders.find(o => o.id === docId);
+      const localList = getLocalOrders().map(o => (o.id === docId || (target && o.orderCode === target.orderCode)) ? { ...o, status: 'Dispatched', postexTrackingId: trackingId } : o);
+      saveLocalOrders(localList);
+
+      if (target && target.isCloud) {
+        try { await updateDoc(doc(db, "orders", docId), { status: 'Dispatched', postexTrackingId: trackingId }); } catch (e) {}
+      }
+      await loadOrdersOnly();
+      window.showToast("Order marked Dispatched! 🚚");
+    };
+
+    window.markOrderDelivered = async function(docId) {
+      const target = cloudOrders.find(o => o.id === docId);
+      const localList = getLocalOrders().map(o => (o.id === docId || (target && o.orderCode === target.orderCode)) ? { ...o, status: 'Delivered' } : o);
+      saveLocalOrders(localList);
+
+      if (target && target.isCloud) {
+        try { await updateDoc(doc(db, "orders", docId), { status: 'Delivered' }); } catch (e) {}
+      }
+      await loadOrdersOnly();
+      window.showToast("Order marked Delivered! ✓");
+    };
+
+    window.adminCancelOrder = async function(docId) {
+      const target = cloudOrders.find(o => o.id === docId);
+      if (!target) return;
+      if (!confirm(`Order #${target.orderCode} ko Cancelled mark karein?`)) return;
+
+      const localList = getLocalOrders().map(o => (o.id === docId || o.orderCode === target.orderCode) ? { ...o, status: 'Cancelled' } : o);
+      saveLocalOrders(localList);
+
+      if (target.isCloud) {
+        try { await updateDoc(doc(db, "orders", docId), { status: 'Cancelled' }); } catch (e) {}
+      }
+      await loadOrdersOnly();
+      window.showToast("Order marked Cancelled! ❌");
+    };
+
+    window.adminDeleteOrder = async function(docId) {
+      const target = cloudOrders.find(o => o.id === docId);
+      if (!target) return;
+      if (!confirm(`Kya aap waqai order #${target.orderCode} ko permanently delete karna chahte hain?`)) return;
+
+      saveLocalOrders(getLocalOrders().filter(o => o.id !== docId && o.orderCode !== target.orderCode));
+      if (target.isCloud) {
+        try { await deleteDoc(doc(db, "orders", docId)); } catch (e) {}
+      }
+      await loadOrdersOnly();
+      window.showToast("Order permanently deleted! 🗑️");
+    };
+
+    window.notifyCustomerDispatch = function(docId) {
+      const order = cloudOrders.find(o => o.id === docId);
+      if (!order) return;
+      const waPhone = formatWhatsAppPhone(order.phone);
+      const itemsSummary = (order.items || []).map(it => `${it.title} (${it.size || 'Custom'}) x${it.qty || 1}`).join(', ');
+      const trackingLine = order.postexTrackingId
+        ? `*PostEx Tracking ID:* ${order.postexTrackingId}\nTrack Parcel: https://postex.pk/tracking?trackingNumber=${encodeURIComponent(order.postexTrackingId)}`
+        : `*Status:* Dispatched`;
+
+      const msg = [
+        `Assalam-o-Alaikum *${order.customerName}*! 🌸`,
+        `Aapka *AHINOOR* order dispatch kar diya gaya hai! 🚚`,
+        `-------------------------`,
+        `*Order ID:* ${order.orderCode}`,
+        `*Items:* ${itemsSummary}`,
+        order.total ? `*COD Amount:* ${window.formatPKR(order.total)} (Free Delivery)` : `*Delivery:* Free Delivery`,
+        trackingLine,
+        `-------------------------`,
+        `Track on our website: https://ahinoor.online`,
+        `Shukriya! — *AHINOOR Clothing*`
+      ].join('\n');
+
+      const url = waPhone ? `https://wa.me/${waPhone}?text=${encodeURIComponent(msg)}` : `https://wa.me/?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    };
+
+    window.printOrderSlip = function(docId) {
+      const order = cloudOrders.find(o => o.id === docId);
+      if (!order || order.status === 'Cancelled') return;
+      const itemsHtml = (order.items || []).map((it, idx) => `
+        <tr>
+          <td style="padding:8px; border:1px solid #ddd;">${idx + 1}</td>
+          <td style="padding:8px; border:1px solid #ddd;"><strong>${it.title}</strong></td>
+          <td style="padding:8px; border:1px solid #ddd;">${it.size || 'Custom'}</td>
+          <td style="padding:8px; border:1px solid #ddd; text-align:center;">${it.qty || 1}</td>
+          <td style="padding:8px; border:1px solid #ddd; text-align:right;">${it.price ? window.formatPKR(it.price * (it.qty || 1)) : 'Custom Quote'}</td>
+        </tr>
+      `).join('');
+
+      const printWin = window.open('', '_blank', 'width=800,height=700');
+      if (!printWin) return window.showToast("Please allow pop-ups to print slip.");
+      printWin.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head><title>Packing Slip - ${order.orderCode}</title></head>
+        <body style="font-family:Arial,sans-serif;padding:24px;max-width:720px;margin:auto;">
+          <div style="display:flex;justify-content:space-between;border-bottom:2px solid #6A2338;padding-bottom:12px;margin-bottom:18px;">
+            <div><strong style="font-size:24px;color:#6A2338;letter-spacing:2px;">AHINOOR</strong><br><small>Stitched &amp; Embroidered Wear</small></div>
+            <div style="text-align:right;"><strong>PACKING &amp; DELIVERY SLIP</strong><br>Order #: <strong style="color:#6A2338;">${order.orderCode}</strong></div>
+          </div>
+          <p><strong>Ship To:</strong> ${order.customerName} (${order.phone})<br><strong>Address:</strong> ${order.address}<br><strong>PostEx Tracking ID:</strong> ${order.postexTrackingId || 'Pending'}</p>
+          <table style="width:100%;border-collapse:collapse;font-size:13px;margin:16px 0;">
+            <thead><tr style="background:#6A2338;color:#fff;"><th style="padding:8px;">#</th><th style="padding:8px;text-align:left;">Item</th><th style="padding:8px;text-align:left;">Size</th><th style="padding:8px;">Qty</th><th style="padding:8px;text-align:right;">Amount</th></tr></thead>
+            <tbody>${itemsHtml}</tbody>
+          </table>
+          <div style="text-align:right;font-weight:bold;padding:10px;background:#f3ecee;border:1px solid #6A2338;">FREE DELIVERY | Total COD: ${order.total ? window.formatPKR(order.total) : 'Custom Quote'}</div>
+          <script>window.onload=function(){window.print();};<\/script>
+        </body></html>
+      `);
+      printWin.document.close();
+    };
+
+    async function loadDresses() {
+      try {
+        const snap = await getDocs(query(collection(db, "dresses"), orderBy("createdAt", "desc")));
+        cloudDresses = snap.docs.map(d => ({ id: d.id, cloudId: d.id, ...d.data() }));
+      } catch (e) {}
+      const l = document.getElementById('admin-dresses-list');
+      if (!l) return;
+      l.innerHTML = cloudDresses.length === 0 ? '<p class="text-brand-muted">No custom dresses added yet.</p>' : cloudDresses.map(d => `<div class="flex justify-between items-center p-3 bg-white dark:bg-[#241A1E] rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33]"><span><strong>${d.title}</strong> (${window.formatPKR(d.price)})</span><button type="button" onclick="deleteDressItem('${d.cloudId}')" class="px-3 py-1 rounded-lg bg-red-600 text-white font-bold">Delete</button></div>`).join('');
+    }
+
+    window.publishNewDress = async (e) => {
+      e.preventDefault();
+      const file = document.getElementById('dress-image-file').files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = async (ev) => {
+        try {
+          await addDoc(collection(db, "dresses"), {
+            title: document.getElementById('dress-title').value.trim(),
+            price: Number(document.getElementById('dress-price').value),
+            category: document.getElementById('dress-category').value,
+            isNew: true,
+            badge: document.getElementById('dress-badge').value || "New Arrival",
+            image: ev.target.result,
+            fabric: document.getElementById('dress-fabric').value || "Soft Cotton",
+            embroidery: document.getElementById('dress-embroidery').value || "Floral Work",
+            createdAt: serverTimestamp()
+          });
+          document.getElementById('admin-dress-form').reset();
+          await loadDresses();
+          window.showToast("New dress published to storefront! 👗");
+        } catch (err) { alert("Error: " + err.message); }
+      };
+      reader.readAsDataURL(file);
+    };
+
+    window.deleteDressItem = async (id) => {
+      if (!confirm("Delete this dress?")) return;
+      try { await deleteDoc(doc(db, "dresses", id)); } catch (e) {}
+      await loadDresses();
+      window.showToast("Dress deleted!");
+    };
+
+    window.updateAdminPassword = async (e) => {
+      e.preventDefault();
+      const next = document.getElementById('pw-new').value.trim();
+      if (document.getElementById('pw-current').value !== currentAdminPassword || next !== document.getElementById('pw-confirm').value.trim()) {
+        return window.showToast("Password mismatch!");
+      }
+      try { await setDoc(doc(db, "settings", "admin"), { password: next, updatedAt: serverTimestamp() }); } catch (err) {}
+      currentAdminPassword = next;
+      try { localStorage.setItem('ahinoor_admin_pw', next); } catch (e) {}
+      document.getElementById('admin-password-form').reset();
+      window.showToast("Admin password updated! 🔑");
+    };
+
+    window.refreshAllAdminData = async function() {
+      await Promise.all([loadNotifications(), loadOrdersOnly(), loadDresses()]);
+      window.showToast("Dashboard refreshed ✓");
+    };
+
+    window.verifyAdminPassword = async (e) => {
+      e.preventDefault();
+      try {
+        const pwDoc = await getDoc(doc(db, "settings", "admin"));
+        if (pwDoc.exists() && pwDoc.data().password) {
+          currentAdminPassword = pwDoc.data().password;
+          try { localStorage.setItem('ahinoor_admin_pw', currentAdminPassword); } catch (err) {}
+        }
+      } catch (err) {}
+
+      if (document.getElementById('admin-password-input').value === currentAdminPassword) {
+        try { sessionStorage.setItem('ahinoor_admin_unlocked', 'true'); } catch (err) {}
+        document.getElementById('admin-login-error').classList.add('hidden');
+        showAdminWorkspace();
+      } else {
+        document.getElementById('admin-login-error').classList.remove('hidden');
+      }
+    };
+
+    function showAdminWorkspace() {
+      document.getElementById('admin-login-view').classList.add('hidden');
+      document.getElementById('admin-workspace-view').classList.remove('hidden');
+      document.getElementById('admin-logout-btn').classList.remove('hidden');
+      refreshAllAdminData();
+    }
+
+    window.logoutAdmin = () => {
+      try { sessionStorage.removeItem('ahinoor_admin_unlocked'); } catch (e) {}
+      document.getElementById('admin-workspace-view').classList.add('hidden');
+      document.getElementById('admin-logout-btn').classList.add('hidden');
+      document.getElementById('admin-login-view').classList.remove('hidden');
+    };
+
+    window.switchAdminTab = (tab) => {
+      ['notifications', 'orders', 'dress', 'manage', 'password'].forEach(t => {
+        const b = document.getElementById('admin-tab-' + t);
+        if (b) {
+          b.classList.toggle('bg-brand-maroon', t === tab);
+          b.classList.toggle('text-white', t === tab);
+          b.classList.toggle('bg-white', t !== tab);
+        }
+      });
+      document.getElementById('admin-notifications-view').classList.toggle('hidden', tab !== 'notifications');
+      document.getElementById('admin-orders-view').classList.toggle('hidden', tab !== 'orders');
+      document.getElementById('admin-dress-form-wrap').classList.toggle('hidden', tab !== 'dress');
+      document.getElementById('admin-manage-view').classList.toggle('hidden', tab !== 'manage');
+      document.getElementById('admin-password-wrap').classList.toggle('hidden', tab !== 'password');
+    };
+
+    try {
+      if (sessionStorage.getItem('ahinoor_admin_unlocked') === 'true') {
+        showAdminWorkspace();
+      }
+    } catch (e) {}
+  </script>
+</body>
+</html>
