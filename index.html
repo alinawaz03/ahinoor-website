@@ -134,7 +134,7 @@
     </div>
   </div>
 
-  <!-- Header (Single Track Order Icon + Order History Icon) -->
+  <!-- Header -->
   <header class="sticky top-0 z-40 bg-gradient-to-r from-[#FDFBF7] via-[#F7EFE6] to-[#EFE4D6] dark:from-[#241A1E] dark:via-[#1F1418] dark:to-[#181013] backdrop-blur-md border-b border-[#DFD2BE] dark:border-[#3E2E33] shadow-[0_2px_16px_rgba(106,35,56,0.06)]">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 sm:h-[84px] flex items-center justify-between gap-2">
       
@@ -173,21 +173,21 @@
         <span class="text-[7px] sm:text-[9px] tracking-[0.22em] sm:tracking-[0.26em] uppercase text-brand-gold font-bold mt-1">STITCHED &amp; EMBROIDERED</span>
       </a>
 
-      <!-- Right Action Icons: Single Track Icon + Order History Icon + Theme + Wishlist + Bag -->
-      <div class="flex items-center space-x-1.5 sm:space-x-2.5">
-        <!-- Single Track Order Icon -->
-        <button type="button" onclick="openTrackModal()" class="p-2 rounded-full bg-brand-teal/10 dark:bg-[#1E332B] text-brand-teal dark:text-[#4ADE80] border border-brand-teal/30 hover:bg-brand-teal hover:text-white transition" title="Track Order">
-          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <!-- Right Action Icons: Track Order + History with labels + Theme + Wishlist + Bag -->
+      <div class="flex items-center space-x-1.5 sm:space-x-2">
+        <button type="button" onclick="openTrackModal()" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-full bg-brand-teal/15 dark:bg-[#1E332B] text-brand-teal dark:text-[#4ADE80] border border-brand-teal/30 hover:bg-brand-teal hover:text-white transition text-[11px] font-bold" title="Track Order">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
           </svg>
+          <span class="hidden sm:inline">Track Order</span>
         </button>
 
-        <!-- Customer Order History Icon -->
-        <button type="button" onclick="openHistoryModal()" class="p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-white text-brand-maroon dark:text-[#E5C687] border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs" title="Order History">
-          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+        <button type="button" onclick="openHistoryModal()" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-full bg-white/85 dark:bg-[#2A2225] hover:bg-white text-brand-maroon dark:text-[#E5C687] border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs text-[11px] font-bold" title="Order History">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
+          <span class="hidden sm:inline">History</span>
         </button>
 
         <button type="button" onclick="toggleTheme()" class="p-2 rounded-full bg-white/80 dark:bg-[#2A2225] hover:bg-white text-brand-maroon dark:text-[#E5C687] border border-[#DFD2BE] dark:border-[#3E2E33] transition shadow-2xs" title="Toggle Dark/Light Mode">
@@ -214,7 +214,8 @@
       <a href="#" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">HOME</a>
       <a href="#collection" onclick="filterProducts('new'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon">NEW ARRIVALS</a>
       <a href="#collection" onclick="filterProducts('all'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">PRET COLLECTION</a>
-      <button type="button" onclick="toggleMobileMenu(); openHistoryModal()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon text-left w-full">📋 ORDER HISTORY</button>
+      <button type="button" onclick="toggleMobileMenu(); openTrackModal()" class="block text-xs font-bold tracking-wider uppercase text-brand-teal dark:text-[#4ADE80] text-left w-full">📍 TRACK ORDER</button>
+      <button type="button" onclick="toggleMobileMenu(); openHistoryModal()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon text-left w-full">🕒 HISTORY</button>
       <button type="button" onclick="toggleMobileMenu(); openSizeChartModal()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon text-left w-full">📏 OFFICIAL SIZE CHART</button>
       <a href="#custom-naap" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">CUSTOM STITCH &amp; EMBROIDERY</a>
       <a href="#reviews-section" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">CUSTOMER REVIEWS (20)</a>
@@ -678,7 +679,7 @@
           <h4 class="text-xs font-bold uppercase tracking-[0.16em] text-brand-charcoal dark:text-[#F3EFEA] mb-3">ORDER &amp; TRACKING</h4>
           <ul class="space-y-2 text-xs text-brand-muted dark:text-[#B5A8A3]">
             <li>1. Book online &amp; save your password &amp; address</li>
-            <li>2. Check status or cancel before dispatch via Track icon</li>
+            <li>2. Check status or cancel before dispatch via Track Order</li>
             <li>3. View all past orders &amp; PostEx IDs in History</li>
           </ul>
         </div>
@@ -764,7 +765,7 @@
     </div>
   </div>
 
-  <!-- Checkout Form Modal (With Password & Auto-Saved Address) -->
+  <!-- Checkout Form Modal -->
   <div id="checkout-form-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
     <div class="bg-[#F9F6F0] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
       <div class="bg-brand-maroon text-white px-6 py-4 flex items-center justify-between">
@@ -991,7 +992,11 @@
       { id: 10, title: "Peach Coral Pleated Tunic & Culottes", price: 2650, category: "girls", isNew: false, badge: "Trending", image: "1000827963.jpg", fabric: "Soft Coral Peach Breathable Cotton Co-ord", embroidery: "Floral Pocket & Cuff Threadwork Detailing" }
     ];
 
-    window.PRODUCTS = [...BASE_PRODUCTS];
+    window.PRODUCTS = [...BASE_PRODUCTS].map(p => ({ ...p, configKey: String(p.id) }));
+    window.SUIT_OVERRIDES = {};
+    window.GLOBAL_DISCOUNT = { type: 'percent', value: 0 };
+    window.SALE_EVENT = { name: '', type: 'percent', value: 0 };
+
     const SIZE_TIERS = [
       { label: "Small (3-5 Yrs / S)", extra: 0 },
       { label: "Medium (6-8 Yrs / M)", extra: 350 },
@@ -1030,27 +1035,40 @@
 
     window.formatPKR = (amount) => 'Rs. ' + Math.max(0, Math.round(Number(amount))).toLocaleString('en-PK');
 
-    // Compute discounted price from Admin catalog settings
-    window.getEffectivePrice = function(basePrice, product) {
-      let price = Number(basePrice);
+    function resolveDiscountRule(product) {
       const ov = product && product.configKey && window.SUIT_OVERRIDES ? window.SUIT_OVERRIDES[product.configKey] : null;
       if (ov && ov.discount && Number(ov.discount.value) > 0) {
-        if (ov.discount.type === 'percent') price = price - (price * Number(ov.discount.value) / 100);
-        else price = price - Number(ov.discount.value);
-      } else if (window.GLOBAL_DISCOUNT && Number(window.GLOBAL_DISCOUNT.value) > 0) {
-        if (window.GLOBAL_DISCOUNT.type === 'percent') price = price - (price * Number(window.GLOBAL_DISCOUNT.value) / 100);
-        else price = price - Number(window.GLOBAL_DISCOUNT.value);
+        return { type: ov.discount.type, value: Number(ov.discount.value), labelPrefix: '' };
       }
+      if (window.SALE_EVENT && window.SALE_EVENT.name && Number(window.SALE_EVENT.value) > 0) {
+        return { type: window.SALE_EVENT.type, value: Number(window.SALE_EVENT.value), labelPrefix: window.SALE_EVENT.name + ' • ' };
+      }
+      if (window.GLOBAL_DISCOUNT && Number(window.GLOBAL_DISCOUNT.value) > 0) {
+        return { type: window.GLOBAL_DISCOUNT.type, value: Number(window.GLOBAL_DISCOUNT.value), labelPrefix: '' };
+      }
+      return null;
+    }
+
+    window.getEffectivePrice = function(basePrice, product) {
+      let price = Number(basePrice);
+      const rule = resolveDiscountRule(product);
+      if (!rule) return Math.max(0, Math.round(price));
+      if (rule.type === 'percent') price = price - (price * rule.value / 100);
+      else price = price - rule.value;
       return Math.max(0, Math.round(price));
     };
 
-    window.getDiscountLabel = function(product) {
-      const ov = product && product.configKey && window.SUIT_OVERRIDES ? window.SUIT_OVERRIDES[product.configKey] : null;
-      if (ov && ov.discount && Number(ov.discount.value) > 0) {
-        return `-${ov.discount.value}${ov.discount.type === 'percent' ? '%' : ' Rs.'}`;
+    window.getTopDiscountBanner = function(product) {
+      const rule = resolveDiscountRule(product);
+      const eff = window.getEffectivePrice(product.price, product);
+      const saved = Math.max(0, Math.round(Number(product.price) - eff));
+
+      if (rule && saved > 0) {
+        const offText = rule.type === 'percent' ? `${rule.value}% OFF` : `RS. ${rule.value} OFF`;
+        return `${rule.labelPrefix}${offText} • SAVE ${formatPKR(saved)}`;
       }
-      if (window.GLOBAL_DISCOUNT && Number(window.GLOBAL_DISCOUNT.value) > 0) {
-        return `-${window.GLOBAL_DISCOUNT.value}${window.GLOBAL_DISCOUNT.type === 'percent' ? '%' : ' Rs.'}`;
+      if (window.SALE_EVENT && window.SALE_EVENT.name) {
+        return `🔥 ${window.SALE_EVENT.name.toUpperCase()} SPECIAL`;
       }
       return '';
     };
@@ -1069,7 +1087,6 @@
       syncThemeIcon();
     };
 
-    // Customer Profiles (Password + Saved Address Auto-Fill)
     function normalizePhoneKey(p) {
       return String(p || '').replace(/\D/g, '').slice(-10);
     }
@@ -1286,6 +1303,7 @@
       pill.style.transform = `translateX(${activeBtn.offsetLeft}px)`;
     }
 
+    // Top-of-card highlighted discount banner + New Arrival tag
     window.renderProducts = function(filter = 'all') {
       window.currentFilter = filter;
       const grid = document.getElementById('product-grid');
@@ -1314,15 +1332,20 @@
         const isSaved = wishlist.includes(String(product.id));
         const fallbackImg = `https://placehold.co/400x533/EBE6DC/6A2338?text=${encodeURIComponent(product.title.slice(0, 18))}`;
         const effPrice = window.getEffectivePrice(product.price, product);
-        const discTag = window.getDiscountLabel(product);
+        const topBanner = window.getTopDiscountBanner(product);
 
         return `
         <div class="product-card group bg-white dark:bg-[#241A1E] rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] hover:border-brand-gold/70 overflow-hidden shadow-xs hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between">
           <div>
+            ${topBanner ? `
+              <div class="bg-gradient-to-r from-red-600 via-brand-maroon to-red-700 text-white text-[10px] font-extrabold tracking-wider uppercase px-3 py-1.5 text-center shadow-2xs">
+                🔥 ${topBanner}
+              </div>
+            ` : ''}
+
             <div onclick="openProductModal('${product.id}')" class="relative aspect-[3/4] overflow-hidden bg-[#EBE6DC] dark:bg-[#1A1215] cursor-pointer">
               <img src="${product.image}" onerror="this.src='${fallbackImg}'" alt="${product.title}" loading="lazy" decoding="async" width="400" height="533" class="w-full h-full object-cover card-img-zoom" />
               ${product.isNew ? `<span class="absolute top-3 left-3 bg-brand-maroon text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs">New Arrival</span>` : ''}
-              ${discTag ? `<span class="absolute bottom-3 left-3 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-xs">${discTag}</span>` : ''}
               <button type="button" onclick="toggleWishlistItem('${product.id}', event)" aria-label="Save" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 dark:bg-[#3E2E33]/90 flex items-center justify-center shadow-xs ${isSaved ? 'text-[#D62976]' : 'text-brand-charcoal dark:text-white'}">${isSaved ? '❤️' : '🤍'}</button>
             </div>
             <div class="p-4 space-y-1.5">
@@ -1557,7 +1580,7 @@
     });
   </script>
 
-  <!-- Firebase Storefront Sync (Orders, History Auth, Cancel & Catalog Discounts/Badges) -->
+  <!-- Firebase Storefront Sync -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, getDoc, updateDoc, doc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -1574,10 +1597,7 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     let cloudOrders = [];
-    const baseCopy = [...window.PRODUCTS].map(p => ({ ...p, configKey: String(p.id) }));
-    window.PRODUCTS = [...baseCopy];
-    window.SUIT_OVERRIDES = {};
-    window.GLOBAL_DISCOUNT = { type: 'percent', value: 0 };
+    const baseCopy = [...window.PRODUCTS];
 
     function getLocalOrders() {
       try { return JSON.parse(localStorage.getItem('ahinoor_local_orders') || '[]'); } catch (e) { return []; }
@@ -1678,7 +1698,6 @@
       return `<span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-300 font-bold text-[10px] uppercase">Pending</span>`;
     }
 
-    // Customer Order History Login (Phone + Password)
     window.lookupCustomerHistory = async function(e) {
       e.preventDefault();
       const phoneInput = document.getElementById('history-phone').value.trim();
@@ -1690,7 +1709,6 @@
 
       const profiles = getCustomerProfiles();
       const savedProf = profiles[key];
-
       const matchingOrders = cloudOrders.filter(o => normalizePhoneKey(o.phone) === key);
 
       if (matchingOrders.length === 0) {
@@ -1785,6 +1803,8 @@
         window.SUIT_OVERRIDES = JSON.parse(localStorage.getItem('ahinoor_suit_overrides') || '{}');
         const gd = JSON.parse(localStorage.getItem('ahinoor_global_discount') || 'null');
         if (gd) window.GLOBAL_DISCOUNT = gd;
+        const se = JSON.parse(localStorage.getItem('ahinoor_sale_event') || 'null');
+        if (se) window.SALE_EVENT = se;
       } catch (e) {}
 
       const merged = [
@@ -1818,15 +1838,17 @@
           const data = discDoc.data();
           if (data.globalDiscount) window.GLOBAL_DISCOUNT = data.globalDiscount;
           if (data.suitOverrides) window.SUIT_OVERRIDES = data.suitOverrides;
+          if (data.saleEvent) window.SALE_EVENT = data.saleEvent;
           localStorage.setItem('ahinoor_suit_overrides', JSON.stringify(window.SUIT_OVERRIDES));
           localStorage.setItem('ahinoor_global_discount', JSON.stringify(window.GLOBAL_DISCOUNT));
+          localStorage.setItem('ahinoor_sale_event', JSON.stringify(window.SALE_EVENT));
         }
       } catch (e) {}
 
       applyCatalogOverrides(cloudDresses);
     }
 
-    setTimeout(loadCloudCatalogData, 500);
+    setTimeout(loadCloudCatalogData, 400);
   </script>
 </body>
 </html>
