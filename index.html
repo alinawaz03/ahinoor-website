@@ -330,7 +330,7 @@
           </div>
         </div>
 
-        <!-- Right Auto-Flipping 3D Showcase Card (object-contain so full dress photo is visible) -->
+        <!-- Right Auto-Flipping 3D Showcase Card -->
         <div class="lg:col-span-6 hero-showcase-stage" onmouseenter="pauseHeroAutoFlip()" onmouseleave="resumeHeroAutoFlip()">
           <div id="hero-showcase-card" class="bg-[#EFECE4]/90 dark:bg-[#241A1E]/90 border border-[#DFD7C8] dark:border-[#3E2E33] rounded-3xl p-4 sm:p-7 shadow-md max-w-lg mx-auto relative overflow-hidden">
             <div class="flex items-center justify-between mb-3 sm:mb-4">
@@ -617,7 +617,7 @@
               </div>
 
               <button type="submit" class="btn-sheen w-full py-3.5 px-5 bg-brand-maroon hover:bg-brand-maroonDark text-white font-bold text-xs tracking-wider uppercase rounded-full transition flex items-center justify-center gap-2.5 shadow-sm">
-                <span>📦 BOOK CUSTOM ORDER </span>
+                <span>📦 BOOK CUSTOM ORDER</span>
               </button>
             </form>
           </div>
@@ -736,14 +736,14 @@
           <h4 class="text-xs font-bold uppercase tracking-[0.16em] text-brand-charcoal dark:text-[#F3EFEA] mb-3">ORDER &amp; TRACKING</h4>
           <ul class="space-y-2 text-xs text-brand-muted dark:text-[#B5A8A3]">
             <li>1. Book directly in Admin Panel &amp; get Order ID</li>
-            <li>2. Check status anytime via 📍 Track Order</li>
+            <li>2. Check status or cancel before dispatch via 📍 Track Order</li>
             <li>3. Track PostEx parcel on Ahinoor or PostEx</li>
           </ul>
         </div>
       </div>
 
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-brand-muted dark:text-[#B5A8A3]">
-        <span>© 2026 AHINOOR(Ali Nawaz)• All Rights Reserved.</span>
+        <span>© 2026 AHINOOR (Ali Nawaz) • All Rights Reserved.</span>
         <button type="button" onclick="openAdminModal()" class="text-xs font-bold text-brand-maroon dark:text-[#E5C687] hover:underline">
           🔒 Admin Login
         </button>
@@ -751,13 +751,13 @@
     </div>
   </footer>
 
-  <!-- Customer Order & PostEx Tracking Modal -->
+  <!-- Customer Order & PostEx Tracking Modal (Includes Customer Cancel Option Before Dispatch) -->
   <div id="track-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
     <div class="bg-[#F5F2EC] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
       <div class="bg-brand-teal text-white px-6 py-4 flex items-center justify-between">
         <div>
           <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#A7F3D0]">AHINOOR LIVE TRACKING</span>
-          <h3 class="font-editorial text-xl sm:text-2xl font-bold">Track Order &amp; PostEx ID</h3>
+          <h3 class="font-editorial text-xl sm:text-2xl font-bold">Track or Cancel Order</h3>
         </div>
         <button type="button" onclick="closeTrackModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition">✕</button>
       </div>
@@ -771,31 +771,32 @@
         </form>
 
         <div id="track-result" class="space-y-3 text-xs">
-          <p class="text-brand-muted dark:text-[#B5A8A3]">Apna Order Number ya Mobile Number likh kar status aur PostEx tracking ID check karein.</p>
+          <p class="text-brand-muted dark:text-[#B5A8A3]">Apna Order Number ya Mobile Number likh kar status check karein. Dispatch hone se pehle aap order cancel bhi kar sakte hain.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Order Confirmation Receipt Modal -->
+  <!-- Order Confirmation Receipt Modal (With Instant Cancel Option Before Dispatch) -->
   <div id="order-receipt-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
     <div class="bg-[#F9F6F0] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] p-6 sm:p-8 text-center space-y-4 my-auto">
       <div class="w-14 h-14 rounded-full bg-[#176B58]/15 text-[#176B58] dark:text-[#4ADE80] flex items-center justify-center mx-auto text-2xl font-bold">✓</div>
-      <h3 class="font-editorial text-2xl font-bold">Order Booked in Admin Panel!</h3>
+      <h3 class="font-editorial text-2xl font-bold">Order Booked Successfully!</h3>
       <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Aapka order hamare panel mein save ho gaya hai. Apna Order Number sambhal kar rakhein:</p>
       <div class="bg-white dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33] rounded-2xl p-4 space-y-1">
         <span class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">YOUR ORDER NUMBER</span>
         <p id="receipt-order-id" class="font-editorial text-2xl font-bold text-brand-maroon dark:text-[#E5C687]">AHN-0000</p>
         <p id="receipt-customer-info" class="text-xs text-brand-muted dark:text-[#B5A8A3]"></p>
       </div>
-      <div class="flex gap-2.5 pt-2">
-        <button type="button" onclick="closeReceiptAndTrack()" class="flex-1 py-3 rounded-xl bg-brand-teal text-white text-xs font-bold uppercase tracking-wider">📍 Track This Order</button>
+      <div class="flex flex-wrap gap-2 pt-2">
+        <button type="button" onclick="closeReceiptAndTrack()" class="flex-1 py-3 rounded-xl bg-brand-teal text-white text-xs font-bold uppercase tracking-wider">📍 Track Order</button>
+        <button type="button" onclick="cancelJustBookedOrder()" class="px-3.5 py-3 rounded-xl bg-red-600/10 text-red-600 dark:text-red-400 border border-red-300 dark:border-red-900 text-xs font-bold hover:bg-red-600 hover:text-white transition">❌ Cancel</button>
         <button type="button" onclick="closeReceiptModal()" class="px-4 py-3 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] text-xs font-bold">Done</button>
       </div>
     </div>
   </div>
 
-  <!-- Admin Panel Modal (Orders + Print Slip + Dresses + Password) -->
+  <!-- Admin Panel Modal (Orders + Print Slip + Cancel/Delete + Notify Customer + Dresses + Password) -->
   <div id="admin-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
     <div class="bg-[#F5F2EC] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
       <div class="bg-brand-maroon text-white px-6 py-4 flex items-center justify-between">
@@ -813,7 +814,7 @@
         <div class="w-14 h-14 rounded-full bg-brand-maroon/10 dark:bg-[#322429] text-brand-maroon dark:text-[#E5C687] flex items-center justify-center mx-auto text-2xl">🔒</div>
         <div>
           <h4 class="font-editorial text-2xl font-bold">Admin Password Required</h4>
-          <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">Orders manage karne, slips print karne aur dresses add karne ke liye password enter karein.</p>
+          <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">Orders manage karne, customer ko notify karne aur slips print karne ke liye password enter karein.</p>
         </div>
         <form onsubmit="verifyAdminPassword(event)" class="space-y-3">
           <input type="password" id="admin-password-input" required placeholder="Enter Admin Password" class="w-full px-4 py-3 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm text-center focus:outline-none focus:border-brand-maroon" />
@@ -824,13 +825,13 @@
 
       <div id="admin-workspace-view" class="hidden p-6 sm:p-8 space-y-6 max-h-[82vh] overflow-y-auto">
         <div class="flex flex-wrap gap-2 border-b border-[#DFD7C8] dark:border-[#3E2E33] pb-3">
-          <button type="button" id="admin-tab-orders" onclick="switchAdminTab('orders')" class="px-4 py-2 rounded-full text-xs font-bold bg-brand-maroon text-white transition">📦 Orders &amp; Print Slip</button>
+          <button type="button" id="admin-tab-orders" onclick="switchAdminTab('orders')" class="px-4 py-2 rounded-full text-xs font-bold bg-brand-maroon text-white transition">📦 Orders &amp; Dispatch</button>
           <button type="button" id="admin-tab-dress" onclick="switchAdminTab('dress')" class="px-4 py-2 rounded-full text-xs font-bold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] border border-[#DFD7C8] dark:border-[#3E2E33] transition">👗 Add New Dress</button>
           <button type="button" id="admin-tab-manage" onclick="switchAdminTab('manage')" class="px-4 py-2 rounded-full text-xs font-bold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] border border-[#DFD7C8] dark:border-[#3E2E33] transition">📋 Manage Dresses</button>
           <button type="button" id="admin-tab-password" onclick="switchAdminTab('password')" class="px-4 py-2 rounded-full text-xs font-bold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] border border-[#DFD7C8] dark:border-[#3E2E33] transition">🔑 Change Password</button>
         </div>
 
-        <!-- Tab 1: Customer Orders + Packing/Delivery Slip Print + Dispatch Controls -->
+        <!-- Tab 1: Customer Orders + Print Slip + Dispatch/Notify + Cancel/Delete -->
         <div id="admin-orders-view" class="space-y-4">
           <div class="flex items-center justify-between">
             <h4 class="text-xs font-bold uppercase tracking-wider text-brand-maroon dark:text-[#E5C687]">Booked Customer Orders</h4>
@@ -1014,7 +1015,7 @@
     </div>
   </div>
 
-  <!-- Official Size Chart Modal (Babies, Toddlers, Kids, Women Kurta/Shirt & Women's Tunic) -->
+  <!-- Official Size Chart Modal -->
   <div id="size-chart-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
     <div class="bg-[#F9F6F0] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
       <div class="bg-brand-maroon text-white px-6 py-4 flex items-center justify-between">
@@ -1028,83 +1029,27 @@
       <div class="p-6 sm:p-8 space-y-8 max-h-[80vh] overflow-y-auto text-xs sm:text-sm">
         <div class="space-y-4">
           <h4 class="font-editorial text-lg font-bold text-brand-maroon dark:text-[#E5C687] border-b border-[#DFD7C8] dark:border-[#3E2E33] pb-1">👶 Babies, Toddlers &amp; Kids Size Chart</h4>
-          
-          <div>
-            <p class="font-bold text-brand-charcoal dark:text-[#F3EFEA] mb-1.5 text-xs">Babies</p>
-            <div class="overflow-x-auto">
-              <table class="w-full text-center border-collapse bg-white dark:bg-[#1A1215] rounded-xl overflow-hidden border border-[#DFD7C8] dark:border-[#3E2E33]">
-                <thead>
-                  <tr class="bg-[#EBE6DC] dark:bg-[#322429] text-[11px] font-bold">
-                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">Size (Inches)</th>
-                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">0 Months</th>
-                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">3-6 Months</th>
-                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">6-9 Months</th>
-                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">9-12 Months</th>
-                    <th class="p-2">12-18 Months</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-[#DFD7C8] dark:divide-[#3E2E33]">
-                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Length</td><td class="p-2 border-r">10</td><td class="p-2 border-r">13</td><td class="p-2 border-r">14.5</td><td class="p-2 border-r">15</td><td class="p-2">16</td></tr>
-                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shoulder</td><td class="p-2 border-r">7</td><td class="p-2 border-r">8</td><td class="p-2 border-r">8</td><td class="p-2 border-r">7.5</td><td class="p-2">8</td></tr>
-                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Chest</td><td class="p-2 border-r">10</td><td class="p-2 border-r">10</td><td class="p-2 border-r">10</td><td class="p-2 border-r">11</td><td class="p-2">12</td></tr>
-                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Sleeves</td><td class="p-2 border-r">7</td><td class="p-2 border-r">8</td><td class="p-2 border-r">8</td><td class="p-2 border-r">8.5</td><td class="p-2">9</td></tr>
-                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Trouser</td><td class="p-2 border-r">10</td><td class="p-2 border-r">13</td><td class="p-2 border-r">15</td><td class="p-2 border-r">15</td><td class="p-2">16</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div>
-            <p class="font-bold text-brand-charcoal dark:text-[#F3EFEA] mb-1.5 text-xs">Toddlers</p>
-            <div class="overflow-x-auto">
-              <table class="w-full text-center border-collapse bg-white dark:bg-[#1A1215] rounded-xl overflow-hidden border border-[#DFD7C8] dark:border-[#3E2E33]">
-                <thead>
-                  <tr class="bg-[#EBE6DC] dark:bg-[#322429] text-[11px] font-bold">
-                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">Size (Inches)</th>
-                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">2 Years</th>
-                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">3 Years</th>
-                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">4 Years</th>
-                    <th class="p-2">5 Years</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-[#DFD7C8] dark:divide-[#3E2E33]">
-                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Length</td><td class="p-2 border-r">18</td><td class="p-2 border-r">20</td><td class="p-2 border-r">22</td><td class="p-2">26</td></tr>
-                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shoulder</td><td class="p-2 border-r">9</td><td class="p-2 border-r">10</td><td class="p-2 border-r">10</td><td class="p-2">11</td></tr>
-                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Chest</td><td class="p-2 border-r">12.5</td><td class="p-2 border-r">13</td><td class="p-2 border-r">14</td><td class="p-2">14</td></tr>
-                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Sleeves</td><td class="p-2 border-r">11-12</td><td class="p-2 border-r">12-13</td><td class="p-2 border-r">14</td><td class="p-2">14-16</td></tr>
-                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Trouser</td><td class="p-2 border-r">18</td><td class="p-2 border-r">20</td><td class="p-2 border-r">22</td><td class="p-2">26</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div>
-            <p class="font-bold text-brand-charcoal dark:text-[#F3EFEA] mb-1.5 text-xs">Kids</p>
-            <div class="overflow-x-auto">
-              <table class="w-full text-center border-collapse bg-white dark:bg-[#1A1215] rounded-xl overflow-hidden border border-[#DFD7C8] dark:border-[#3E2E33]">
-                <thead>
-                  <tr class="bg-[#EBE6DC] dark:bg-[#322429] text-[11px] font-bold">
-                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">Size (Inches)</th>
-                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">6 Years</th>
-                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">7 Years</th>
-                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">8 Years</th>
-                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">9 Years</th>
-                    <th class="p-2 border-r border-[#DFD7C8] dark:border-[#3E2E33]">10 Years</th>
-                    <th class="p-2">11-12 Years</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-[#DFD7C8] dark:divide-[#3E2E33]">
-                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Length</td><td class="p-2 border-r">26.5</td><td class="p-2 border-r">27.5</td><td class="p-2 border-r">28.5</td><td class="p-2 border-r">29.5</td><td class="p-2 border-r">30.5</td><td class="p-2">31.5</td></tr>
-                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shoulder</td><td class="p-2 border-r">11.5</td><td class="p-2 border-r">11.5</td><td class="p-2 border-r">11.5</td><td class="p-2 border-r">12.75</td><td class="p-2 border-r">13.25</td><td class="p-2">13.5</td></tr>
-                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Chest</td><td class="p-2 border-r">15</td><td class="p-2 border-r">15</td><td class="p-2 border-r">15</td><td class="p-2 border-r">16</td><td class="p-2 border-r">16.5</td><td class="p-2">17</td></tr>
-                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Sleeves</td><td class="p-2 border-r">16.5</td><td class="p-2 border-r">16.5</td><td class="p-2 border-r">16.5</td><td class="p-2 border-r">18</td><td class="p-2 border-r">19</td><td class="p-2">20</td></tr>
-                  <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Trouser</td><td class="p-2 border-r">27</td><td class="p-2 border-r">28</td><td class="p-2 border-r">29</td><td class="p-2 border-r">29.5</td><td class="p-2 border-r">30</td><td class="p-2">31.5</td></tr>
-                </tbody>
-              </table>
-            </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-center border-collapse bg-white dark:bg-[#1A1215] rounded-xl overflow-hidden border border-[#DFD7C8] dark:border-[#3E2E33]">
+              <thead>
+                <tr class="bg-[#EBE6DC] dark:bg-[#322429] text-[11px] font-bold">
+                  <th class="p-2 border-r">Age / Size</th>
+                  <th class="p-2 border-r">0-6 M</th>
+                  <th class="p-2 border-r">1-2 Y</th>
+                  <th class="p-2 border-r">3-4 Y</th>
+                  <th class="p-2 border-r">5-6 Y</th>
+                  <th class="p-2 border-r">7-8 Y</th>
+                  <th class="p-2">9-12 Y</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[#DFD7C8] dark:divide-[#3E2E33]">
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shirt Length</td><td class="p-2 border-r">13</td><td class="p-2 border-r">18</td><td class="p-2 border-r">22</td><td class="p-2 border-r">26.5</td><td class="p-2 border-r">28.5</td><td class="p-2">31.5</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Chest</td><td class="p-2 border-r">10</td><td class="p-2 border-r">12.5</td><td class="p-2 border-r">14</td><td class="p-2 border-r">15</td><td class="p-2 border-r">15</td><td class="p-2">17</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Trouser Length</td><td class="p-2 border-r">13</td><td class="p-2 border-r">18</td><td class="p-2 border-r">22</td><td class="p-2 border-r">27</td><td class="p-2 border-r">29</td><td class="p-2">31.5</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
-
         <div class="space-y-4 pt-4 border-t border-[#DFD7C8] dark:border-[#3E2E33]">
           <h4 class="font-editorial text-lg font-bold text-brand-maroon dark:text-[#E5C687] border-b border-[#DFD7C8] dark:border-[#3E2E33] pb-1">👩 Women Kurta / Shirt Size Chart</h4>
           <div class="overflow-x-auto">
@@ -1119,17 +1064,15 @@
                 </tr>
               </thead>
               <tbody class="divide-y divide-[#DFD7C8] dark:divide-[#3E2E33]">
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Chest (Armpit to Armpit)</td><td class="p-2 border-r">20</td><td class="p-2 border-r">21</td><td class="p-2 border-r">22</td><td class="p-2">23.5</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Length (Shoulder to Hem)</td><td class="p-2 border-r">34</td><td class="p-2 border-r">34</td><td class="p-2 border-r">35</td><td class="p-2">35</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shoulder (Seam to Seam)</td><td class="p-2 border-r">14.5</td><td class="p-2 border-r">15</td><td class="p-2 border-r">15.5</td><td class="p-2">16</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Hip (Around)</td><td class="p-2 border-r">21.5</td><td class="p-2 border-r">23.5</td><td class="p-2 border-r">25</td><td class="p-2">26</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Waist (Around)</td><td class="p-2 border-r">29</td><td class="p-2 border-r">31</td><td class="p-2 border-r">33</td><td class="p-2">35</td></tr>
-                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Trouser Length (Waist to Hem)</td><td class="p-2 border-r">39</td><td class="p-2 border-r">40</td><td class="p-2 border-r">41</td><td class="p-2">42</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Chest</td><td class="p-2 border-r">20</td><td class="p-2 border-r">21</td><td class="p-2 border-r">22</td><td class="p-2">23.5</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shirt Length</td><td class="p-2 border-r">34</td><td class="p-2 border-r">34</td><td class="p-2 border-r">35</td><td class="p-2">35</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Shoulder</td><td class="p-2 border-r">14.5</td><td class="p-2 border-r">15</td><td class="p-2 border-r">15.5</td><td class="p-2">16</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Hip</td><td class="p-2 border-r">21.5</td><td class="p-2 border-r">23.5</td><td class="p-2 border-r">25</td><td class="p-2">26</td></tr>
+                <tr><td class="p-2 font-semibold bg-[#FAF7F2] dark:bg-[#201519] border-r">Trouser Length</td><td class="p-2 border-r">39</td><td class="p-2 border-r">40</td><td class="p-2 border-r">41</td><td class="p-2">42</td></tr>
               </tbody>
             </table>
           </div>
         </div>
-
         <div class="space-y-4 pt-4 border-t border-[#DFD7C8] dark:border-[#3E2E33]">
           <h4 class="font-editorial text-lg font-bold text-brand-maroon dark:text-[#E5C687] border-b border-[#DFD7C8] dark:border-[#3E2E33] pb-1">🌸 Women's Tunic Size Chart</h4>
           <div class="overflow-x-auto">
@@ -1157,7 +1100,6 @@
             </table>
           </div>
         </div>
-        <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3] text-center pt-2">Note: All measurements are in inches. Size may vary +/- 0.5 to 1 inch due to hand measurement.</p>
       </div>
     </div>
   </div>
@@ -1202,22 +1144,7 @@
       { name: "Dr. Sidra Kamran", city: "Islamabad", time: "4 days ago", item: "Emerald Checkered Bow-Sleeve Peplum Suit", text: "Ahinoor ka signature peplum suit mangwaya, fitting bilkul tailor-made jaisi aayi. Sleeves ke bows aur pleats ki finishing bohot hi classy hai." },
       { name: "Hina Salman", city: "Karachi", time: "5 days ago", item: "Pastel Pink Blossom Embroidered Frock", text: "Karachi ki garmi ke hisab se cotton cambric fabric bohat airy aur comfortable hai. Phoolon ki embroidery ke rang bilkul tasveer jaise pyare hain." },
       { name: "Madiha Usman", city: "Faisalabad", time: "1 week ago", item: "Deep Maroon Floral Neckline Co-ord", text: "Deep Maroon colour bohat rich lag raha hai pehne hue. Neckline aur cuffs par ivory embroidery ki safai dekh kar dil khush ho gaya." },
-      { name: "Sana Bilal", city: "Rawalpindi", time: "1 week ago", item: "Custom Naap Stitching Order", text: "Maine apni 7 saal ki beti ka custom naap panel mein book kiya tha. Exact wahi length aur fitting mili jo maine likhi thi. Highly recommended!" },
-      { name: "Zainab Farooq", city: "Multan", time: "1 week ago", item: "Lavender Mist V-Neck Embroidered Kurti Set", text: "Apne liye Lavender Kurti Set liya tha. Resham threadwork bohat nazakat se hua hai aur trouser ki silai bhi zabardast hai." },
-      { name: "Kiran Adeel", city: "Sialkot", time: "2 weeks ago", item: "Olive Green Pleated Collar Co-ord", text: "Olive Green collared co-ord meri beti ka favourite ban gaya hai. Pockets par embroidery aur buttons ki quality bohot achi hai." },
-      { name: "Nadia Rizwan", city: "Gujranwala", time: "2 weeks ago", item: "Midnight Black Daisy Trim Co-ord", text: "Jet black suit par white daisy embroidery bohat graceful lagti hai. Delivery time par mili aur packing bhi bohot pyari thi." },
-      { name: "Rabia Asif", city: "Peshawar", time: "2 weeks ago", item: "Mustard Yellow Meadow Co-ord", text: "Mustard yellow colour itna fresh aur bright hai ke bacchi par bohot khilta hai. Saath matching hair bow bhi bohot cute laga." },
-      { name: "Mehwish Javed", city: "Bahawalpur", time: "3 weeks ago", item: "Ivory Cream Garden Motif Tunic & Palazzo", text: "Ivory Cream tunic aur palazzo ka fall bohat elegant hai. Family dinner par pehna to sab ne pucha kahan se liya!" },
-      { name: "Amna Hassan", city: "Lahore", time: "3 weeks ago", item: "Royal Plum Gathered Collar Co-ord", text: "Royal Plum shade bohat unique hai, market me aise pyare colours aur neat stitching kam hi milti hai. Ahinoor par ab regular order karungi." },
-      { name: "Sadia Imran", city: "Karachi", time: "3 weeks ago", item: "Blossom Pink Pintucked Flare Frock & Culottes", text: "Frock ka flare aur pintucks bohot hi khubsurat banaye hain. Wash karne ke baad bhi na colour kharab hua na embroidery." },
-      { name: "Fatima Zafar", city: "Sargodha", time: "1 month ago", item: "Charcoal Black Buttoned Collar Co-ord", text: "Price ke hisab se quality bohot outclass hai. Team ne bohat achy se guide kiya aur size select karne me madad ki." },
-      { name: "Bushra Naveed", city: "Abbottabad", time: "1 month ago", item: "Beige Sand Heritage Chikankari Co-ord", text: "Beige Chikankari suit bohot hi royal look deta hai. Daman border ka kaam bohot hi nafees aur heavy feel deta hai." },
-      { name: "Iqra Waqas", city: "Hyderabad", time: "1 month ago", item: "Mint Green Ruffle Collar Frock Set", text: "Mint green ruffle collar frock meri choti beti par bohot pyari lagi. Fabric itna naram hai ke bacchi ne sara din aaram se pehne rakha." },
-      { name: "Tayyaba Shahzad", city: "Islamabad", time: "1 month ago", item: "Deep Maroon Festive Threadwork Kurti", text: "Festive events ke liye perfect kurti hai. Gala embroidery me antique gold thread bohat classy lag raha hai." },
-      { name: "Mahnoor Khalid", city: "Quetta", time: "1 month ago", item: "Sky Blue Daisy Embroidered A-Line Set", text: "Quetta me parcel bilkul safe aur time par receive hua. Sky blue colour aur daisy clusters bohot hi fresh lagte hain." },
-      { name: "Uzma Nasir", city: "Rahim Yar Khan", time: "2 months ago", item: "Sage Olive Floral Pocket Co-ord Set", text: "Doosri dafa Ahinoor se order kiya hai. Har baar stitching ki safai aur measurement 100% accurate hoti hai." },
-      { name: "Areeba Faisal", city: "Gujrat", time: "2 months ago", item: "Peach Coral Pleated Tunic & Culottes", text: "Peach coral shade aur cuffs par threadwork bohot pyara hai. Bachiyon ke liye aise decent aur stylish kapre milna nemat hai." },
-      { name: "Saima Qureshi", city: "Lahore", time: "2 months ago", item: "Custom Mother & Daughter Matching Suits", text: "Maine apna aur apni beti ka matching custom naap order kiya tha. Dono suits ki fitting aur embroidery lajawab thi!" }
+      { name: "Sana Bilal", city: "Rawalpindi", time: "1 week ago", item: "Custom Naap Stitching Order", text: "Maine apni 7 saal ki beti ka custom naap panel mein book kiya tha. Exact wahi length aur fitting mili jo maine likhi thi. Highly recommended!" }
     ];
 
     let cart = [];
@@ -1279,6 +1206,11 @@
     window.closeReceiptAndTrack = () => {
       closeReceiptModal();
       openTrackModal(lastTrackedQuery);
+    };
+    window.cancelJustBookedOrder = () => {
+      if (lastTrackedQuery && window.customerCancelOrderByCode) {
+        window.customerCancelOrderByCode(lastTrackedQuery, true);
+      }
     };
 
     function openCheckoutModal(items, total, type = 'catalog') {
@@ -1673,7 +1605,7 @@
     });
   </script>
 
-  <!-- Firebase + Local Fallback Orders, Packing/Delivery Slip Print, PostEx Tracking & Dress Admin Module -->
+  <!-- Firebase + Local Fallback Orders, Customer Cancel Before Dispatch, Admin Cancel/Delete, Dispatch Notify & Print Slip Module -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, getDoc, setDoc, updateDoc, deleteDoc, doc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -1708,6 +1640,13 @@
       return `AHN-${num}`;
     }
 
+    function formatWhatsAppPhone(rawPhone) {
+      let digits = String(rawPhone || '').replace(/\D/g, '');
+      if (digits.startsWith('03')) digits = '92' + digits.slice(1);
+      else if (digits.startsWith('3') && digits.length === 10) digits = '92' + digits;
+      return digits;
+    }
+
     window.savePanelOrder = async function(orderData, onSuccess) {
       const orderCode = generateOrderCode();
       const newOrderObj = {
@@ -1724,7 +1663,6 @@
         createdAtStr: new Date().toLocaleDateString('en-PK')
       };
 
-      // Save locally first so preview/offline mode works immediately
       const localList = getLocalOrders();
       localList.unshift(newOrderObj);
       saveLocalOrders(localList);
@@ -1770,8 +1708,107 @@
     function getStatusBadge(status) {
       if (status === 'Delivered') return `<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 font-bold text-[10px] uppercase">Delivered ✓</span>`;
       if (status === 'Dispatched') return `<span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 font-bold text-[10px] uppercase">Dispatched 🚚</span>`;
+      if (status === 'Cancelled') return `<span class="px-2.5 py-1 rounded-full bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300 font-bold text-[10px] uppercase">Cancelled ✕</span>`;
       return `<span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-300 font-bold text-[10px] uppercase">Pending</span>`;
     }
+
+    // Customer Order Cancellation (Allowed ONLY when status === 'Pending' / before dispatch)
+    window.customerCancelOrderByCode = async function(orderCode, fromReceipt = false) {
+      await loadOrdersOnly();
+      const target = cloudOrders.find(o => o.orderCode && o.orderCode.toLowerCase() === String(orderCode).toLowerCase());
+      if (!target) return window.showToast("Order nahi mila.");
+
+      if (target.status !== 'Pending') {
+        return window.showToast(`Yeh order ab ${target.status} ho chuka hai, isay cancel nahi kiya ja sakta.`);
+      }
+
+      if (!confirm(`Kya aap apna order #${target.orderCode} cancel karna chahte hain?`)) return;
+
+      const localList = getLocalOrders().map(o => (o.orderCode === target.orderCode) ? { ...o, status: 'Cancelled' } : o);
+      saveLocalOrders(localList);
+
+      if (target.isCloud) {
+        try {
+          await updateDoc(doc(db, "orders", target.id), { status: 'Cancelled' });
+        } catch (err) { console.warn(err); }
+      }
+
+      await loadOrdersOnly();
+      window.showToast(`Order #${target.orderCode} cancel kar diya gaya hai.`);
+
+      if (fromReceipt) {
+        window.closeReceiptModal();
+        window.openTrackModal(target.orderCode);
+      } else {
+        window.lookupCustomerOrder({ preventDefault: () => {} });
+      }
+    };
+
+    // Admin Cancel Order
+    window.adminCancelOrder = async function(docId) {
+      const target = cloudOrders.find(o => o.id === docId);
+      if (!target) return;
+      if (!confirm(`Order #${target.orderCode} ko Cancelled mark karein?`)) return;
+
+      const localList = getLocalOrders().map(o => (o.id === docId || o.orderCode === target.orderCode) ? { ...o, status: 'Cancelled' } : o);
+      saveLocalOrders(localList);
+
+      if (target.isCloud) {
+        try {
+          await updateDoc(doc(db, "orders", docId), { status: 'Cancelled' });
+        } catch (err) { console.warn(err); }
+      }
+      await loadOrdersOnly();
+      window.showToast("Order marked Cancelled! ❌");
+    };
+
+    // Admin Permanently Delete Order
+    window.adminDeleteOrder = async function(docId) {
+      const target = cloudOrders.find(o => o.id === docId);
+      if (!target) return;
+      if (!confirm(`Kya aap waqai order #${target.orderCode} ko permanently delete karna chahte hain?`)) return;
+
+      const localList = getLocalOrders().filter(o => o.id !== docId && o.orderCode !== target.orderCode);
+      saveLocalOrders(localList);
+
+      if (target.isCloud) {
+        try {
+          await deleteDoc(doc(db, "orders", docId));
+        } catch (err) { console.warn(err); }
+      }
+      await loadOrdersOnly();
+      window.showToast("Order permanently deleted! 🗑️");
+    };
+
+    // Notify Customer via WhatsApp on Dispatch
+    window.notifyCustomerDispatch = function(docId) {
+      const order = cloudOrders.find(o => o.id === docId);
+      if (!order) return window.showToast("Order details nahi milin.");
+
+      const waPhone = formatWhatsAppPhone(order.phone);
+      const itemsSummary = (order.items || []).map(it => `${it.title} (${it.size || 'Custom'}) x${it.qty || 1}`).join(', ');
+      const trackingLine = order.postexTrackingId
+        ? `*PostEx Tracking ID:* ${order.postexTrackingId}\nTrack Parcel: https://postex.pk/tracking?trackingNumber=${encodeURIComponent(order.postexTrackingId)}`
+        : `*Status:* Dispatched`;
+
+      const msg = [
+        `Assalam-o-Alaikum *${order.customerName}*! 🌸`,
+        `Aapka *AHINOOR* order dispatch kar diya gaya hai! 🚚`,
+        `-------------------------`,
+        `*Order ID:* ${order.orderCode}`,
+        `*Items:* ${itemsSummary}`,
+        order.total ? `*COD Amount:* ${window.formatPKR(order.total)} (Free Delivery)` : `*Delivery:* Free Delivery`,
+        trackingLine,
+        `-------------------------`,
+        `Aap apna order hamari website par bhi track kar sakte hain: https://ahinoor.online`,
+        `Shukriya! — *AHINOOR Clothing*`
+      ].join('\n');
+
+      const url = waPhone
+        ? `https://wa.me/${waPhone}?text=${encodeURIComponent(msg)}`
+        : `https://wa.me/?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    };
 
     // Print Packing & Delivery Slip Function
     window.printOrderSlip = function(docId) {
@@ -1888,9 +1925,17 @@
               <span class="font-bold">${o.customerName}</span>
               <span class="text-brand-muted dark:text-[#B5A8A3]">(${o.phone})</span>
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex flex-wrap items-center gap-1.5">
               <button type="button" onclick="printOrderSlip('${o.id}')" class="px-2.5 py-1 rounded-lg bg-[#242021] dark:bg-[#3E2E33] hover:bg-brand-maroon text-white font-bold text-[10px] uppercase tracking-wider transition">
                 🖨️ Print Slip
+              </button>
+              ${o.status !== 'Cancelled' ? `
+                <button type="button" onclick="adminCancelOrder('${o.id}')" class="px-2.5 py-1 rounded-lg bg-rose-600/10 text-rose-700 dark:text-rose-300 border border-rose-300 dark:border-rose-800 hover:bg-rose-600 hover:text-white font-bold text-[10px] uppercase tracking-wider transition">
+                  ❌ Cancel
+                </button>
+              ` : ''}
+              <button type="button" onclick="adminDeleteOrder('${o.id}')" class="px-2.5 py-1 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-[10px] uppercase tracking-wider transition">
+                🗑️ Delete
               </button>
               ${getStatusBadge(o.status)}
             </div>
@@ -1904,11 +1949,14 @@
 
           <div class="pt-2 border-t border-[#EFECE4] dark:border-[#3E2E33] flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
             <input type="text" id="postex-input-${o.id}" value="${o.postexTrackingId || ''}" placeholder="PostEx Tracking ID likhein..." class="flex-1 px-3 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#241A1E] text-xs" />
-            <button type="button" onclick="markOrderDispatched('${o.id}')" class="px-3.5 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs transition">
+            <button type="button" onclick="markOrderDispatched('${o.id}')" class="px-3 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs transition">
               🚚 Mark Dispatched
             </button>
-            <button type="button" onclick="markOrderDelivered('${o.id}')" class="px-3.5 py-2 rounded-xl bg-[#176B58] hover:bg-[#115243] text-white font-bold text-xs transition">
-              ✓ Mark Delivered
+            <button type="button" onclick="notifyCustomerDispatch('${o.id}')" class="px-3 py-2 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs transition">
+              📲 Notify Customer
+            </button>
+            <button type="button" onclick="markOrderDelivered('${o.id}')" class="px-3 py-2 rounded-xl bg-[#176B58] hover:bg-[#115243] text-white font-bold text-xs transition">
+              ✓ Delivered
             </button>
           </div>
         </div>
@@ -1932,7 +1980,7 @@
         } catch (err) { console.warn(err); }
       }
       await loadOrdersOnly();
-      window.showToast("Order marked Dispatched with PostEx ID! 🚚");
+      window.showToast("Order marked Dispatched! Click Notify Customer to send WhatsApp alert. 🚚");
     };
 
     window.markOrderDelivered = async function(docId) {
@@ -1949,7 +1997,7 @@
       window.showToast("Order marked Delivered! ✓");
     };
 
-    // Customer Order & PostEx Tracking Lookup
+    // Customer Order & PostEx Tracking Lookup (Shows Cancel button ONLY while status === 'Pending')
     window.lookupCustomerOrder = async function(e) {
       e.preventDefault();
       const qVal = document.getElementById('track-input').value.trim().toLowerCase();
@@ -1967,6 +2015,17 @@
         resBox.innerHTML = `<div class="p-4 rounded-2xl bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-300 font-semibold">Is Order ID ya Phone Number se koi order nahi mila.</div>`;
         return;
       }
+
+      const cancelControlHtml = found.status === 'Pending'
+        ? `
+          <div class="pt-2 border-t border-[#EFECE4] dark:border-[#3E2E33] flex items-center justify-between gap-2">
+            <span class="text-[11px] text-brand-muted dark:text-[#B5A8A3]">Order abhi dispatch nahi hua — aap cancel kar sakte hain:</span>
+            <button type="button" onclick="customerCancelOrderByCode('${found.orderCode}', false)" class="px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shrink-0 transition">
+              ❌ Cancel Order
+            </button>
+          </div>
+        `
+        : '';
 
       const postexSection = found.postexTrackingId
         ? `
@@ -2001,6 +2060,7 @@
             ${(found.items || []).map(it => `<div>• ${it.title} (${it.size || 'Custom'}) x${it.qty || 1}</div>`).join('')}
           </div>
           ${postexSection}
+          ${cancelControlHtml}
         </div>
       `;
     };
