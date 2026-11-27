@@ -69,13 +69,32 @@
     </div>
   </header>
 
+  <!-- Sticky New Order Pop-Up Banner (Stays Until Seen/Dismissed) -->
+  <div id="sticky-order-popup" class="hidden fixed bottom-5 right-5 z-50 max-w-sm w-[calc(100%-2.5rem)] bg-[#2E1119] text-white rounded-2xl border-2 border-[#E5C687] shadow-2xl p-4 space-y-3">
+    <div class="flex items-start justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-xl animate-bounce">🔔</span>
+        <div>
+          <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#E5C687] block">NEW ORDER ALERT</span>
+          <h4 id="popup-order-title" class="font-bold text-sm text-white">Order #AHN-0000</h4>
+        </div>
+      </div>
+      <button type="button" onclick="dismissStickyOrderPopup()" class="px-2.5 py-1 rounded-lg bg-white/15 hover:bg-white/25 text-[11px] font-bold">✓ Seen</button>
+    </div>
+    <p id="popup-order-desc" class="text-xs text-[#F5F2EC]/90 leading-snug"></p>
+    <div class="flex gap-2 pt-1">
+      <button type="button" onclick="openOrdersFromPopup()" class="flex-1 py-2 rounded-xl bg-[#25D366] text-white font-bold text-xs">View Order</button>
+      <button type="button" onclick="dismissStickyOrderPopup()" class="px-3 py-2 rounded-xl bg-white/15 text-white font-bold text-xs">Dismiss</button>
+    </div>
+  </div>
+
   <!-- Step 1: Login Gate -->
   <main id="admin-login-view" class="max-w-md mx-auto px-4 py-16">
     <div class="bg-white dark:bg-[#241A1E] rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33] p-8 shadow-xl text-center space-y-5">
       <div class="w-14 h-14 rounded-full bg-brand-maroon/10 dark:bg-[#322429] text-brand-maroon dark:text-[#E5C687] flex items-center justify-center mx-auto text-2xl">🔒</div>
       <div>
         <h2 class="font-editorial text-2xl font-bold">Admin Login</h2>
-        <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">Orders, Excel Export, Sales, Discounts, New Arrival tags aur Dresses manage karne ke liye password enter karein.</p>
+        <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">Orders, Discounts, Price Up/Down aur Dress Management ke liye password enter karein.</p>
       </div>
       <form onsubmit="verifyAdminPassword(event)" class="space-y-3">
         <input type="password" id="admin-password-input" required placeholder="Enter Admin Password" class="w-full px-4 py-3 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm text-center focus:outline-none focus:border-brand-maroon" />
@@ -99,6 +118,9 @@
       </button>
       <button type="button" id="admin-tab-discounts" onclick="switchAdminTab('discounts')" class="px-4 py-2.5 rounded-full text-xs font-bold bg-white dark:bg-[#241A1E] border border-[#DFD7C8] dark:border-[#3E2E33] transition">
         🏷️ Discounts &amp; Badges
+      </button>
+      <button type="button" id="admin-tab-manage" onclick="switchAdminTab('manage')" class="px-4 py-2.5 rounded-full text-xs font-bold bg-white dark:bg-[#241A1E] border border-[#DFD7C8] dark:border-[#3E2E33] transition">
+        🛠️ Manage
       </button>
       <button type="button" id="admin-tab-dress" onclick="switchAdminTab('dress')" class="px-4 py-2.5 rounded-full text-xs font-bold bg-white dark:bg-[#241A1E] border border-[#DFD7C8] dark:border-[#3E2E33] transition">
         👗 Add New Dress
@@ -143,7 +165,7 @@
       </div>
     </section>
 
-    <!-- Tab 3: Special Sales, Discounts & "New Arrival" Tag Controls -->
+    <!-- Tab 3: Special Sales, Discounts (With Article Picture), Price Up/Down & "New Arrival" Controls -->
     <section id="admin-discounts-view" class="hidden space-y-6">
       <div class="bg-white dark:bg-[#241A1E] p-5 rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33] space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-2">
@@ -193,12 +215,21 @@
       </div>
 
       <div class="space-y-3">
-        <h3 class="font-editorial text-xl font-bold">Per-Suit "New Arrival" &amp; Discount Controls</h3>
-        <div id="admin-suit-controls-list" class="space-y-2.5 text-xs"></div>
+        <h3 class="font-editorial text-xl font-bold">Article Discounts, Price Up/Down &amp; "New Arrival" Controls</h3>
+        <div id="admin-suit-controls-list" class="space-y-3 text-xs"></div>
       </div>
     </section>
 
-    <!-- Tab 4: Add New Dress -->
+    <!-- Tab 4: Dedicated Manage Dresses (Edit Details, Change Picture, Price Up/Down, Delete) -->
+    <section id="admin-manage-view" class="hidden space-y-4">
+      <div>
+        <h2 class="font-editorial text-2xl font-bold">Manage Dresses &amp; Pictures</h2>
+        <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Kisi bhi dress ki picture badlein, price up/down karein, ya title/details edit kar ke save karein.</p>
+      </div>
+      <div id="admin-manage-dresses-list" class="space-y-4 text-xs"></div>
+    </section>
+
+    <!-- Tab 5: Add New Dress -->
     <section id="admin-dress-form-wrap" class="hidden bg-white dark:bg-[#241A1E] p-6 rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33]">
       <h2 class="font-editorial text-2xl font-bold mb-4">Add New Dress to Catalog</h2>
       <form id="admin-dress-form" onsubmit="publishNewDress(event)" class="space-y-4">
@@ -260,7 +291,7 @@
       </form>
     </section>
 
-    <!-- Tab 5: Change Password -->
+    <!-- Tab 6: Change Password -->
     <section id="admin-password-wrap" class="hidden bg-white dark:bg-[#241A1E] p-6 rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33] max-w-md">
       <form id="admin-password-form" onsubmit="updateAdminPassword(event)" class="space-y-4">
         <h2 class="font-editorial text-xl font-bold">Change Admin Password</h2>
@@ -299,24 +330,24 @@
     };
 
     const BASE_SUITS = [
-      { id: 101, title: "Rose Pink Daisy Embroidered Co-ord", price: 2650, isNew: true, image: "../1000827972.jpg" },
-      { id: 102, title: "Deep Maroon Floral Neckline Co-ord", price: 2650, isNew: true, image: "../1000827973.jpg" },
-      { id: 103, title: "Midnight Black Daisy Trim Co-ord", price: 2650, isNew: true, image: "../1000827974.jpg" },
-      { id: 104, title: "Pastel Pink Blossom Embroidered Frock", price: 2799, isNew: true, image: "../1000827975.jpg" },
-      { id: 105, title: "Olive Green Pleated Collar Co-ord", price: 2750, isNew: true, image: "../1000827976.jpg" },
-      { id: 106, title: "Royal Plum Gathered Collar Co-ord", price: 2750, isNew: true, image: "../1000827977.jpg" },
-      { id: 107, title: "Mustard Yellow Meadow Co-ord", price: 2750, isNew: true, image: "../1000827978.jpg" },
-      { id: 108, title: "Charcoal Black Buttoned Collar Co-ord", price: 2750, isNew: true, image: "../1000827979.jpg" },
-      { id: 1, title: "Sage Olive Floral Pocket Co-ord Set", price: 3699, isNew: false, image: "../1000827954.jpg" },
-      { id: 2, title: "Blossom Pink Pintucked Flare Frock & Culottes", price: 2650, isNew: false, image: "../1000827955.jpg" },
-      { id: 3, title: "Lavender Mist V-Neck Embroidered Kurti Set", price: 2650, isNew: false, image: "../1000827956.jpg" },
-      { id: 4, title: "Emerald Checkered Bow-Sleeve Peplum Suit", price: 2799, isNew: false, image: "../1000827957.jpg" },
-      { id: 5, title: "Ivory Cream Garden Motif Tunic & Palazzo", price: 2799, isNew: false, image: "../1000827958.jpg" },
-      { id: 6, title: "Sky Blue Daisy Embroidered A-Line Set", price: 2799, isNew: false, image: "../1000827959.jpg" },
-      { id: 7, title: "Deep Maroon Festive Threadwork Kurti", price: 3050, isNew: false, image: "../1000827960.jpg" },
-      { id: 8, title: "Mint Green Ruffle Collar Frock Set", price: 2799, isNew: false, image: "../1000827961.jpg" },
-      { id: 9, title: "Beige Sand Heritage Chikankari Co-ord", price: 2750, isNew: false, image: "../1000827962.jpg" },
-      { id: 10, title: "Peach Coral Pleated Tunic & Culottes", price: 2650, isNew: false, image: "../1000827963.jpg" }
+      { id: 101, title: "Rose Pink Daisy Embroidered Co-ord", price: 2650, category: "girls", isNew: true, image: "../1000827972.jpg", fabric: "Soft Breathable Cotton Lawn Two-Piece (Shirt & Wide-Leg Trouser)", embroidery: "Delicate White & Olive Daisy Floral Embroidery on Neckline, Sleeves & Daman" },
+      { id: 102, title: "Deep Maroon Floral Neckline Co-ord", price: 2650, category: "girls", isNew: true, image: "../1000827973.jpg", fabric: "Rich Maroon Premium Linen-Cotton Stitched Two-Piece Set", embroidery: "Ivory & Sage Botanical Motif Work on Round Neckline, Cuffs & Hem" },
+      { id: 103, title: "Midnight Black Daisy Trim Co-ord", price: 2650, category: "girls", isNew: true, image: "../1000827974.jpg", fabric: "Jet Black Soft Stitched Shirt & Flared Culottes", embroidery: "Keyhole Neckline & Sleeve Border White Floral Thread Embroidery" },
+      { id: 104, title: "Pastel Pink Blossom Embroidered Frock", price: 2799, category: "frocks", isNew: true, image: "../1000827975.jpg", fabric: "Pure Pastel Pink Cotton Cambric Full-Sleeve Pleated Frock", embroidery: "Hand-Finished Multi-Tone Marigold & Rose Floral Stems Across Bodice & Skirt" },
+      { id: 105, title: "Olive Green Pleated Collar Co-ord", price: 2750, category: "girls", isNew: true, image: "../1000827976.jpg", fabric: "Earthy Olive Cotton-Linen Button-Down Shirt & Wide Palazzo", embroidery: "Yoke White Blossom Vine Embroidery with Gather Pleats & Side Pockets" },
+      { id: 106, title: "Royal Plum Gathered Collar Co-ord", price: 2750, category: "girls", isNew: true, image: "../1000827977.jpg", fabric: "Deep Aubergine Plum Soft Slub Cotton Co-ord Set", embroidery: "Shoulder Floral Vine Embroidery with Pearl-White Front Buttons" },
+      { id: 107, title: "Mustard Yellow Meadow Co-ord", price: 2750, category: "girls", isNew: true, image: "../1000827978.jpg", fabric: "Warm Mustard Gold Breathable Cotton Shirt & Wide-Leg Trouser", embroidery: "Delicate White Daisy Sprigs on Yoke with Matching Bow Detail" },
+      { id: 108, title: "Charcoal Black Buttoned Collar Co-ord", price: 2750, category: "girls", isNew: true, image: "../1000827979.jpg", fabric: "Classic Black Cotton-Linen Collared Tunic & Wide Trouser", embroidery: "Crisp White & Sage Shoulder Floral Embroidery with Contrast Buttons" },
+      { id: 1, title: "Sage Olive Floral Pocket Co-ord Set", price: 3699, category: "girls", isNew: false, image: "../1000827954.jpg", fabric: "Soft Breathable Cotton Linen Two-Piece Co-ord", embroidery: "Botanical Wildflower Vine on Neckline & Front Pockets" },
+      { id: 2, title: "Blossom Pink Pintucked Flare Frock & Culottes", price: 2650, category: "frocks", isNew: false, image: "../1000827955.jpg", fabric: "Pure Pastel Pink Lawn with Matching Trouser", embroidery: "Multi-Color Floral Border on Daman & Neckline Motif" },
+      { id: 3, title: "Lavender Mist V-Neck Embroidered Kurti Set", price: 2650, category: "women", isNew: false, image: "../1000827956.jpg", fabric: "Premium Lilac Cambric Kurti & Straight Trousers", embroidery: "Intricate Resham Floral Neckline & Sleeve Border" },
+      { id: 4, title: "Emerald Checkered Bow-Sleeve Peplum Suit", price: 2799, category: "frocks", isNew: false, image: "../1000827957.jpg", fabric: "Woven Slub Linen Peplum with Ivory Flared Trouser", embroidery: "Double-Tiered Tie Sleeves & Pleated Front Yoke" },
+      { id: 5, title: "Ivory Cream Garden Motif Tunic & Palazzo", price: 2799, category: "women", isNew: false, image: "../1000827958.jpg", fabric: "Off-White Textured Cotton Tunic & Wide Palazzo", embroidery: "Pastel Meadow Floral Embroidery on Bodice & Hem" },
+      { id: 6, title: "Sky Blue Daisy Embroidered A-Line Set", price: 2799, category: "girls", isNew: false, image: "../1000827959.jpg", fabric: "Soft Powder Blue Cotton Cambric Two-Piece", embroidery: "White & Yellow Daisy Clusters on Sleeves & Daman" },
+      { id: 7, title: "Deep Maroon Festive Threadwork Kurti", price: 3050, category: "women", isNew: false, image: "../1000827960.jpg", fabric: "Rich Maroon Karandi-Cotton Straight Shirt & Trouser", embroidery: "Antique Gold & Ivory Floral Gala Embroidery" },
+      { id: 8, title: "Mint Green Ruffle Collar Frock Set", price: 2799, category: "frocks", isNew: false, image: "../1000827961.jpg", fabric: "Pastel Mint Soft Lawn Tiered Frock & Pajama", embroidery: "Delicate Rosebud Embroidery on Peter Pan Collar" },
+      { id: 9, title: "Beige Sand Heritage Chikankari Co-ord", price: 2750, category: "women", isNew: false, image: "../1000827962.jpg", fabric: "Warm Beige Cotton Net & Cambric Stitched Suit", embroidery: "All-Over Schiffli & Threadwork Daman Border" },
+      { id: 10, title: "Peach Coral Pleated Tunic & Culottes", price: 2650, category: "girls", isNew: false, image: "../1000827963.jpg", fabric: "Soft Coral Peach Breathable Cotton Co-ord", embroidery: "Floral Pocket & Cuff Threadwork Detailing" }
     ];
 
     const app = initializeApp(firebaseConfig);
@@ -330,6 +361,7 @@
     let suitOverrides = {};
     let globalDiscount = { type: 'percent', value: 0 };
     let saleEvent = { name: '', type: 'percent', value: 0 };
+    let knownOrderCodes = new Set();
 
     window.formatPKR = (amount) => 'Rs. ' + Math.max(0, Math.round(Number(amount))).toLocaleString('en-PK');
     window.showToast = (msg) => {
@@ -340,6 +372,54 @@
     window.toggleAdminTheme = () => {
       const isDark = document.documentElement.classList.toggle('dark');
       try { localStorage.setItem('ahinoor_theme', isDark ? 'dark' : 'light'); } catch (e) {}
+    };
+
+    // Play New Order Notification Tone using Web Audio API
+    window.playNewOrderTone = function() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const notes = [587.33, 783.99, 987.77]; // D5, G5, B5 chime
+        notes.forEach((freq, i) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.value = freq;
+          gain.gain.setValueAtTime(0.001, ctx.currentTime + i * 0.14);
+          gain.gain.exponentialRampToValueAtTime(0.18, ctx.currentTime + i * 0.14 + 0.03);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.14 + 0.35);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + i * 0.14);
+          osc.stop(ctx.currentTime + i * 0.14 + 0.36);
+        });
+      } catch (_) {}
+    };
+
+    // Show Sticky Pop-Up That Stays Until Dismissed/Seen
+    window.triggerStickyOrderPopup = function(order) {
+      if (!order) return;
+      const popup = document.getElementById('sticky-order-popup');
+      const titleEl = document.getElementById('popup-order-title');
+      const descEl = document.getElementById('popup-order-desc');
+      if (!popup || !titleEl || !descEl) return;
+
+      const itemsStr = (order.items || []).map(i => `${i.title} x${i.qty || 1}`).join(', ');
+      titleEl.textContent = `New Order #${order.orderCode}`;
+      descEl.textContent = `${order.customerName} (${order.phone}) — ${itemsStr}`;
+      popup.classList.remove('hidden');
+      window.playNewOrderTone();
+    };
+
+    window.dismissStickyOrderPopup = function() {
+      const popup = document.getElementById('sticky-order-popup');
+      if (popup) popup.classList.add('hidden');
+    };
+
+    window.openOrdersFromPopup = function() {
+      window.dismissStickyOrderPopup();
+      switchAdminTab('orders');
     };
 
     function resolveItemImage(item) {
@@ -355,6 +435,12 @@
         src = '../' + src;
       }
       return src;
+    }
+
+    function normalizeSuitImg(src) {
+      if (!src) return '../1000827972.jpg';
+      if (src.startsWith('data:') || src.startsWith('http') || src.startsWith('../')) return src;
+      return '../' + src;
     }
 
     function getLocalOrders() {
@@ -406,15 +492,9 @@
       }
 
       const headers = [
-        "Order ID",
-        "Date",
-        "Customer Name",
-        "Phone Number",
-        "Delivery Address / Notes",
-        "Ordered Items",
-        "Total Price (PKR)",
-        "PostEx Tracking ID",
-        "Status"
+        "Order ID", "Date", "Customer Name", "Phone Number",
+        "Delivery Address / Notes", "Ordered Items", "Total Price (PKR)",
+        "PostEx Tracking ID", "Status"
       ];
 
       const escapeCsv = (val) => {
@@ -426,15 +506,9 @@
         const dateStr = o.createdAtStr || (o.createdAt?.toDate ? o.createdAt.toDate().toLocaleDateString('en-PK') : new Date().toLocaleDateString('en-PK'));
         const itemsText = (o.items || []).map(it => `${it.title} (${it.size || 'Custom'}) x${it.qty || 1}`).join(' | ');
         return [
-          o.orderCode || '',
-          dateStr,
-          o.customerName || '',
-          o.phone || '',
-          o.address || '',
-          itemsText,
-          o.total || 0,
-          o.postexTrackingId || 'Not Assigned',
-          o.status || 'Pending'
+          o.orderCode || '', dateStr, o.customerName || '', o.phone || '',
+          o.address || '', itemsText, o.total || 0,
+          o.postexTrackingId || 'Not Assigned', o.status || 'Pending'
         ].map(escapeCsv).join(',');
       });
 
@@ -442,9 +516,8 @@
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
-      const today = new Date().toISOString().slice(0, 10);
       link.href = url;
-      link.download = `Ahinoor_Orders_${today}.csv`;
+      link.download = `Ahinoor_Orders_${new Date().toISOString().slice(0, 10)}.csv`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -622,14 +695,26 @@
 
     async function syncOrdersFromCloud() {
       const localList = getLocalOrders();
+      let combined = [];
       try {
         const snap = await getDocs(query(collection(db, "orders"), orderBy("createdAt", "desc")));
         const remoteOrders = snap.docs.map(d => ({ id: d.id, isCloud: true, ...d.data() }));
         const remoteCodes = new Set(remoteOrders.map(o => o.orderCode));
-        cloudOrders = [...remoteOrders, ...localList.filter(o => !remoteCodes.has(o.orderCode))];
+        combined = [...remoteOrders, ...localList.filter(o => !remoteCodes.has(o.orderCode))];
       } catch (err) {
-        cloudOrders = localList;
+        combined = localList;
       }
+
+      // Check for newly arrived pending orders and trigger tone + sticky pop-up
+      if (knownOrderCodes.size > 0) {
+        const brandNew = combined.find(o => o.orderCode && !knownOrderCodes.has(o.orderCode) && o.status === 'Pending');
+        if (brandNew) {
+          window.triggerStickyOrderPopup(brandNew);
+        }
+      }
+      combined.forEach(o => { if (o.orderCode) knownOrderCodes.add(o.orderCode); });
+
+      cloudOrders = combined;
       renderAdminOrders();
     }
 
@@ -738,9 +823,40 @@
       printWin.document.close();
     };
 
+    function getAllCombinedSuits() {
+      return [
+        ...cloudDresses.map(d => ({
+          key: d.cloudId,
+          title: d.title,
+          price: d.price,
+          category: d.category || 'girls',
+          isNew: d.isNew,
+          image: normalizeSuitImg(d.image),
+          fabric: d.fabric || 'Soft Cotton',
+          embroidery: d.embroidery || 'Floral Work',
+          isCustom: true
+        })),
+        ...BASE_SUITS.map(s => {
+          const ov = suitOverrides[String(s.id)] || {};
+          return {
+            key: String(s.id),
+            title: ov.title || s.title,
+            price: ov.price !== undefined ? Number(ov.price) : Number(s.price),
+            category: ov.category || s.category,
+            isNew: ov.isNew !== undefined ? ov.isNew : Boolean(s.isNew),
+            image: normalizeSuitImg(ov.image || s.image),
+            fabric: ov.fabric || s.fabric,
+            embroidery: ov.embroidery || s.embroidery,
+            isCustom: false
+          };
+        })
+      ];
+    }
+
     function persistCatalogConfigFast(toastMsg) {
       saveLocalCatalogConfig();
       renderSuitControls();
+      renderManageDresses();
       if (toastMsg) window.showToast(toastMsg);
       setDoc(doc(db, "settings", "catalog_config"), {
         globalDiscount,
@@ -791,6 +907,22 @@
       persistCatalogConfigFast(!currentNew ? "New Arrival ON" : "New Arrival removed");
     };
 
+    // Price Up / Down (+Rs.100 / -Rs.100 or custom amount)
+    window.adjustSuitPrice = function(suitKey, currentPrice, delta, isCustom) {
+      const nextPrice = Math.max(100, Number(currentPrice) + Number(delta));
+      if (isCustom) {
+        cloudDresses = cloudDresses.map(d => d.cloudId === suitKey ? { ...d, price: nextPrice } : d);
+        renderSuitControls();
+        renderManageDresses();
+        window.showToast(`Price: ${window.formatPKR(nextPrice)}`);
+        updateDoc(doc(db, "dresses", suitKey), { price: nextPrice }).catch(() => {});
+      } else {
+        const cur = suitOverrides[suitKey] || {};
+        suitOverrides[suitKey] = { ...cur, price: nextPrice };
+        persistCatalogConfigFast(`Price: ${window.formatPKR(nextPrice)}`);
+      }
+    };
+
     window.setSuitDiscount = function(suitKey) {
       const typeEl = document.getElementById(`suit-disc-type-${suitKey}`);
       const valEl = document.getElementById(`suit-disc-val-${suitKey}`);
@@ -807,9 +939,51 @@
       persistCatalogConfigFast("Discount removed!");
     };
 
+    // Save Edited Dress Details + Optional New Picture in Manage Tab
+    window.saveEditedDress = function(suitKey, isCustom) {
+      const title = document.getElementById(`edit-title-${suitKey}`)?.value.trim();
+      const price = Number(document.getElementById(`edit-price-${suitKey}`)?.value || 0);
+      const category = document.getElementById(`edit-cat-${suitKey}`)?.value || 'girls';
+      const embroidery = document.getElementById(`edit-emb-${suitKey}`)?.value.trim() || '';
+      const fileInput = document.getElementById(`edit-pic-${suitKey}`);
+      const file = fileInput && fileInput.files ? fileInput.files[0] : null;
+
+      const applySave = (newImgData) => {
+        if (isCustom) {
+          const patch = { title, price, category, embroidery };
+          if (newImgData) patch.image = newImgData;
+          cloudDresses = cloudDresses.map(d => d.cloudId === suitKey ? { ...d, ...patch } : d);
+          renderSuitControls();
+          renderManageDresses();
+          window.showToast("Dress updated ✓");
+          updateDoc(doc(db, "dresses", suitKey), patch).catch(() => {});
+        } else {
+          const cur = suitOverrides[suitKey] || {};
+          suitOverrides[suitKey] = {
+            ...cur,
+            title,
+            price,
+            category,
+            embroidery,
+            ...(newImgData ? { image: newImgData } : {})
+          };
+          persistCatalogConfigFast("Dress updated ✓");
+        }
+      };
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (ev) => applySave(ev.target.result);
+        reader.readAsDataURL(file);
+      } else {
+        applySave(null);
+      }
+    };
+
     window.deleteCloudDress = function(docId) {
       cloudDresses = cloudDresses.filter(d => d.cloudId !== docId);
       renderSuitControls();
+      renderManageDresses();
       window.showToast("Dress deleted!");
       deleteDoc(doc(db, "dresses", docId)).catch(() => {});
     };
@@ -835,10 +1009,7 @@
       const listEl = document.getElementById('admin-suit-controls-list');
       if (!listEl) return;
 
-      const allSuits = [
-        ...cloudDresses.map(d => ({ key: d.cloudId, title: d.title, price: d.price, isNew: d.isNew, isCustom: true })),
-        ...BASE_SUITS.map(s => ({ key: String(s.id), title: s.title, price: s.price, isNew: s.isNew, isCustom: false }))
-      ];
+      const allSuits = getAllCombinedSuits();
 
       listEl.innerHTML = allSuits.map(s => {
         const ov = suitOverrides[s.key] || {};
@@ -847,12 +1018,19 @@
 
         return `
           <div class="bg-white dark:bg-[#241A1E] p-3.5 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] flex flex-col lg:flex-row lg:items-center justify-between gap-3">
-            <div class="space-y-1">
-              <div class="flex flex-wrap items-center gap-2">
-                <strong class="text-sm">${s.title}</strong>
-                <span class="text-brand-maroon dark:text-[#E5C687] font-bold">(${window.formatPKR(s.price)})</span>
-                ${isNewNow ? `<span class="px-2 py-0.5 rounded-full bg-brand-maroon text-white text-[10px] font-bold">New Arrival</span>` : `<span class="px-2 py-0.5 rounded-full bg-[#EBE6DC] dark:bg-[#322429] text-brand-muted text-[10px] font-bold">No New Tag</span>`}
-                ${disc ? `<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">-${disc.value}${disc.type === 'percent' ? '%' : ' Rs.'}</span>` : ''}
+            <div class="flex items-center gap-3 min-w-0">
+              <img src="${s.image}" onerror="this.src='https://placehold.co/64x80/EBE6DC/6A2338?text=Suit'" alt="${s.title}" class="w-14 h-18 rounded-xl object-cover shrink-0 bg-[#F5F2EC] border border-[#EFECE4]" />
+              <div class="space-y-1 min-w-0">
+                <div class="flex flex-wrap items-center gap-1.5">
+                  <strong class="text-sm truncate">${s.title}</strong>
+                  <span class="text-brand-maroon dark:text-[#E5C687] font-bold">(${window.formatPKR(s.price)})</span>
+                  ${isNewNow ? `<span class="px-2 py-0.5 rounded-full bg-brand-maroon text-white text-[10px] font-bold">New Arrival</span>` : `<span class="px-2 py-0.5 rounded-full bg-[#EBE6DC] dark:bg-[#322429] text-brand-muted text-[10px] font-bold">No New Tag</span>`}
+                  ${disc ? `<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">-${disc.value}${disc.type === 'percent' ? '%' : ' Rs.'}</span>` : ''}
+                </div>
+                <div class="flex items-center gap-1.5 pt-0.5">
+                  <button type="button" onclick="adjustSuitPrice('${s.key}', ${s.price}, 100, ${s.isCustom})" class="px-2 py-0.5 rounded bg-emerald-600/15 text-emerald-800 dark:text-emerald-300 font-bold text-[10px]">▲ +100</button>
+                  <button type="button" onclick="adjustSuitPrice('${s.key}', ${s.price}, -100, ${s.isCustom})" class="px-2 py-0.5 rounded bg-rose-600/15 text-rose-800 dark:text-rose-300 font-bold text-[10px]">▼ -100</button>
+                </div>
               </div>
             </div>
 
@@ -867,11 +1045,54 @@
               <input type="number" id="suit-disc-val-${s.key}" value="${disc?.value || ''}" min="0" placeholder="Off" class="w-20 px-2.5 py-1.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-[11px]" />
               <button type="button" onclick="setSuitDiscount('${s.key}')" class="px-3 py-1.5 rounded-xl bg-brand-teal text-white font-bold text-[11px]">Save</button>
               ${disc ? `<button type="button" onclick="clearSuitDiscount('${s.key}')" class="px-2.5 py-1.5 rounded-xl bg-red-600/15 text-red-700 dark:text-red-300 font-bold text-[11px]">Clear</button>` : ''}
-              ${s.isCustom ? `<button type="button" onclick="deleteCloudDress('${s.key}')" class="px-2.5 py-1.5 rounded-xl bg-red-600 text-white font-bold text-[11px]">Delete</button>` : ''}
             </div>
           </div>
         `;
       }).join('');
+    }
+
+    function renderManageDresses() {
+      const listEl = document.getElementById('admin-manage-dresses-list');
+      if (!listEl) return;
+      const allSuits = getAllCombinedSuits();
+
+      listEl.innerHTML = allSuits.map(s => `
+        <div class="bg-white dark:bg-[#241A1E] p-4 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] flex flex-col md:flex-row gap-4 items-start md:items-center">
+          <img src="${s.image}" onerror="this.src='https://placehold.co/96x120/EBE6DC/6A2338?text=Suit'" alt="${s.title}" class="w-20 h-24 rounded-xl object-cover shrink-0 bg-[#F5F2EC] border border-[#DFD7C8]" />
+
+          <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 w-full">
+            <div>
+              <label class="block text-[10px] font-bold uppercase text-brand-muted mb-1">Title</label>
+              <input type="text" id="edit-title-${s.key}" value="${s.title.replace(/"/g, '&quot;')}" class="w-full px-3 py-1.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-xs" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold uppercase text-brand-muted mb-1">Price (PKR)</label>
+              <input type="number" id="edit-price-${s.key}" value="${s.price}" class="w-full px-3 py-1.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-xs" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold uppercase text-brand-muted mb-1">Category</label>
+              <select id="edit-cat-${s.key}" class="w-full px-3 py-1.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-xs">
+                <option value="girls" ${s.category === 'girls' ? 'selected' : ''}>Girls Co-ords</option>
+                <option value="women" ${s.category === 'women' ? 'selected' : ''}>Women Kurtis &amp; Suits</option>
+                <option value="frocks" ${s.category === 'frocks' ? 'selected' : ''}>Frocks &amp; Peplums</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold uppercase text-brand-muted mb-1">Change Picture</label>
+              <input type="file" id="edit-pic-${s.key}" accept="image/*" class="w-full px-2 py-1 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-[11px]" />
+            </div>
+            <div class="sm:col-span-2 lg:col-span-4">
+              <label class="block text-[10px] font-bold uppercase text-brand-muted mb-1">Embroidery / Details</label>
+              <input type="text" id="edit-emb-${s.key}" value="${(s.embroidery || '').replace(/"/g, '&quot;')}" class="w-full px-3 py-1.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-xs" />
+            </div>
+          </div>
+
+          <div class="flex md:flex-col gap-2 shrink-0">
+            <button type="button" onclick="saveEditedDress('${s.key}', ${s.isCustom})" class="px-3.5 py-2 rounded-xl bg-[#176B58] hover:bg-[#115243] text-white font-bold text-xs">💾 Save Edit</button>
+            ${s.isCustom ? `<button type="button" onclick="deleteCloudDress('${s.key}')" class="px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs">🗑️ Delete</button>` : ''}
+          </div>
+        </div>
+      `).join('');
     }
 
     window.publishNewDress = function(e) {
@@ -903,6 +1124,7 @@
           saveLocalCatalogConfig();
         }
         renderSuitControls();
+        renderManageDresses();
         document.getElementById('admin-dress-form').reset();
         window.showToast("Dress added! 👗");
 
@@ -915,6 +1137,7 @@
             await setDoc(doc(db, "settings", "catalog_config"), { globalDiscount, suitOverrides, saleEvent, updatedAt: serverTimestamp() });
           }
           renderSuitControls();
+          renderManageDresses();
         } catch (err) {}
       };
       reader.readAsDataURL(file);
@@ -950,6 +1173,7 @@
         }
       } catch (e) {}
       renderSuitControls();
+      renderManageDresses();
       renderAdminOrders();
     }
 
@@ -960,6 +1184,7 @@
       renderNotifications();
       renderAdminOrders();
       renderSuitControls();
+      renderManageDresses();
       Promise.all([syncNotificationsFromCloud(), syncOrdersFromCloud(), syncCatalogConfigFromCloud()]).catch(() => {});
     };
 
@@ -986,6 +1211,13 @@
       document.getElementById('admin-workspace-view').classList.remove('hidden');
       document.getElementById('admin-logout-btn').classList.remove('hidden');
       window.refreshAllAdminData();
+      // Poll every 12s for live new order tone & sticky pop-up
+      setInterval(() => {
+        if (document.getElementById('admin-workspace-view') && !document.getElementById('admin-workspace-view').classList.contains('hidden')) {
+          syncOrdersFromCloud();
+          syncNotificationsFromCloud();
+        }
+      }, 12000);
     }
 
     window.logoutAdmin = function() {
@@ -997,7 +1229,7 @@
 
     window.switchAdminTab = function(tab) {
       requestAnimationFrame(() => {
-        ['notifications', 'orders', 'discounts', 'dress', 'password'].forEach(t => {
+        ['notifications', 'orders', 'discounts', 'manage', 'dress', 'password'].forEach(t => {
           const b = document.getElementById('admin-tab-' + t);
           if (b) {
             b.classList.toggle('bg-brand-maroon', t === tab);
@@ -1008,6 +1240,7 @@
         document.getElementById('admin-notifications-view').classList.toggle('hidden', tab !== 'notifications');
         document.getElementById('admin-orders-view').classList.toggle('hidden', tab !== 'orders');
         document.getElementById('admin-discounts-view').classList.toggle('hidden', tab !== 'discounts');
+        document.getElementById('admin-manage-view').classList.toggle('hidden', tab !== 'manage');
         document.getElementById('admin-dress-form-wrap').classList.toggle('hidden', tab !== 'dress');
         document.getElementById('admin-password-wrap').classList.toggle('hidden', tab !== 'password');
       });
