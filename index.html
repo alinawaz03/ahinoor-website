@@ -84,23 +84,21 @@
       transform: skewX(-20deg); transition: left 0.55s ease;
     }
     .btn-sheen:hover::after { left: 140%; }
-    .filter-bar-container {
-      position: relative; display: inline-flex; align-items: center;
-      background-color: #EBE6DC; border: 1px solid #DFD7C8; border-radius: 9999px;
-      padding: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none;
+
+    @keyframes waFloatPulse {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 10px 25px rgba(37, 211, 102, 0.35), 0 0 0 0 rgba(37, 211, 102, 0.55);
+      }
+      50% {
+        transform: translateY(-5px) scale(1.04);
+        box-shadow: 0 16px 32px rgba(37, 211, 102, 0.45), 0 0 0 10px rgba(37, 211, 102, 0);
+      }
     }
-    .dark .filter-bar-container, body.dark-mode .filter-bar-container {
-      background-color: #2A2225 !important; border-color: #3E3236 !important;
+    .wa-float-pulse {
+      animation: waFloatPulse 2.4s ease-in-out infinite;
     }
-    .filter-bar-container::-webkit-scrollbar { display: none; }
-    .filter-pill-indicator {
-      position: absolute; top: 4px; bottom: 4px; left: 0;
-      background-color: #6A2338; border-radius: 9999px;
-      box-shadow: 0 4px 12px rgba(106, 35, 56, 0.22);
-      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), width 0.32s cubic-bezier(0.22, 1, 0.36, 1);
-      z-index: 0;
-    }
-    .filter-tab-btn { position: relative; z-index: 1; white-space: nowrap; touch-action: manipulation; }
+
     .ticker-wrap { overflow: hidden; white-space: nowrap; width: 100%; }
     .ticker-move { display: inline-flex; align-items: center; white-space: nowrap; animation: marquee-rtl 26s linear infinite; }
     .ticker-wrap:hover .ticker-move { animation-play-state: paused; }
@@ -320,20 +318,20 @@
     </div>
   </section>
 
-  <!-- Visual Quick-Shop Category Circles -->
+  <!-- Picture Category Circles (Synced Dynamically With Actual Category Items) -->
   <section class="py-7 sm:py-9 bg-[#FAF7F2] dark:bg-[#1A1215] border-b border-[#E4DDD0] dark:border-[#3E2E33]">
     <div class="max-w-5xl mx-auto px-4">
       <div class="flex items-center justify-start sm:justify-center gap-5 sm:gap-9 overflow-x-auto no-scrollbar py-1">
         <a href="#collection" onclick="filterProducts('all')" class="group flex flex-col items-center gap-2 shrink-0">
           <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-brand-maroon to-[#C7A15A] shadow-sm group-hover:scale-105 transition">
-            <img src="1000827954.jpg" onerror="this.src='https://placehold.co/100x100/EBE6DC/6A2338?text=All'" alt="All Suits" loading="lazy" width="80" height="80" class="w-full h-full rounded-full object-cover bg-white" />
+            <img id="cat-img-all" src="1000827954.jpg" onerror="this.src='https://placehold.co/100x100/EBE6DC/6A2338?text=All'" alt="All Suits" loading="lazy" width="80" height="80" class="w-full h-full rounded-full object-cover bg-white" />
           </div>
           <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">All Suits</span>
         </a>
 
         <a href="#collection" onclick="filterProducts('new')" class="group flex flex-col items-center gap-2 shrink-0">
           <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-[#D62976] to-brand-maroon shadow-sm group-hover:scale-105 transition relative">
-            <img src="1000827972.jpg" onerror="this.src='https://placehold.co/100x100/EBE6DC/6A2338?text=New'" alt="New Arrivals" loading="lazy" width="80" height="80" class="w-full h-full rounded-full object-cover bg-white" />
+            <img id="cat-img-new" src="1000827972.jpg" onerror="this.src='https://placehold.co/100x100/EBE6DC/6A2338?text=New'" alt="New Arrivals" loading="lazy" width="80" height="80" class="w-full h-full rounded-full object-cover bg-white" />
             <span class="absolute -top-1 -right-1 bg-brand-maroon text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">NEW</span>
           </div>
           <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">New Arrivals</span>
@@ -341,21 +339,21 @@
 
         <a href="#collection" onclick="filterProducts('girls')" class="group flex flex-col items-center gap-2 shrink-0">
           <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-brand-gold to-brand-maroon shadow-sm group-hover:scale-105 transition">
-            <img src="1000827976.jpg" onerror="this.src='https://placehold.co/100x100/EBE6DC/6A2338?text=Girls'" alt="Girls Co-ords" loading="lazy" width="80" height="80" class="w-full h-full rounded-full object-cover bg-white" />
+            <img id="cat-img-girls" src="1000827976.jpg" onerror="this.src='https://placehold.co/100x100/EBE6DC/6A2338?text=Girls'" alt="Girls Co-ords" loading="lazy" width="80" height="80" class="w-full h-full rounded-full object-cover bg-white" />
           </div>
           <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">Girls Co-ords</span>
         </a>
 
         <a href="#collection" onclick="filterProducts('women')" class="group flex flex-col items-center gap-2 shrink-0">
           <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-brand-maroon to-brand-gold shadow-sm group-hover:scale-105 transition">
-            <img src="1000827960.jpg" onerror="this.src='https://placehold.co/100x100/EBE6DC/6A2338?text=Women'" alt="Women Kurtis" loading="lazy" width="80" height="80" class="w-full h-full rounded-full object-cover bg-white" />
+            <img id="cat-img-women" src="1000827956.jpg" onerror="this.src='https://placehold.co/100x100/EBE6DC/6A2338?text=Women'" alt="Women Kurtis" loading="lazy" width="80" height="80" class="w-full h-full rounded-full object-cover bg-white" />
           </div>
           <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">Women Kurtis</span>
         </a>
 
         <a href="#collection" onclick="filterProducts('frocks')" class="group flex flex-col items-center gap-2 shrink-0">
           <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-[#176B58] to-brand-gold shadow-sm group-hover:scale-105 transition">
-            <img src="1000827975.jpg" onerror="this.src='https://placehold.co/100x100/EBE6DC/6A2338?text=Frocks'" alt="Frocks & Peplums" loading="lazy" width="80" height="80" class="w-full h-full rounded-full object-cover bg-white" />
+            <img id="cat-img-frocks" src="1000827975.jpg" onerror="this.src='https://placehold.co/100x100/EBE6DC/6A2338?text=Frocks'" alt="Frocks & Peplums" loading="lazy" width="80" height="80" class="w-full h-full rounded-full object-cover bg-white" />
           </div>
           <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">Frocks &amp; Peplums</span>
         </a>
@@ -386,30 +384,14 @@
       </a>
     </div>
 
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-6">
-      <div class="shrink-0">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+      <div>
         <span class="text-xs font-bold tracking-[0.2em] uppercase text-brand-gold">Ahinoor Pret Collection</span>
-        <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal dark:text-[#F3EFEA] mt-1">Stitched &amp; Embroidered Collection</h2>
+        <h2 id="collection-heading" class="font-editorial text-3xl sm:text-4xl font-bold text-brand-charcoal dark:text-[#F3EFEA] mt-1">Stitched &amp; Embroidered Collection</h2>
       </div>
-
-      <div class="filter-bar-container" id="filter-bar">
-        <div id="filter-pill" class="filter-pill-indicator"></div>
-        <button type="button" id="tab-all" onclick="filterProducts('all', this)" data-filter="all" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-white">
-          All Suits (18)
-        </button>
-        <button type="button" id="tab-new" onclick="filterProducts('new', this)" data-filter="new" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal dark:text-[#EFECE4] hover:text-brand-maroon">
-          New Arrivals (8)
-        </button>
-        <button type="button" onclick="filterProducts('girls', this)" data-filter="girls" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal dark:text-[#EFECE4] hover:text-brand-maroon">
-          Girls Co-ords
-        </button>
-        <button type="button" onclick="filterProducts('women', this)" data-filter="women" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal dark:text-[#EFECE4] hover:text-brand-maroon">
-          Women Kurtis &amp; Suits
-        </button>
-        <button type="button" onclick="filterProducts('frocks', this)" data-filter="frocks" class="filter-tab-btn px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wide text-brand-charcoal dark:text-[#EFECE4] hover:text-brand-maroon">
-          Frocks &amp; Peplums
-        </button>
-      </div>
+      <button type="button" onclick="resetCatalogFilters()" class="self-start sm:self-auto px-4 py-2 rounded-full bg-[#EBE6DC] dark:bg-[#2A2225] text-xs font-bold text-brand-charcoal dark:text-[#EFECE4] hover:bg-brand-maroon hover:text-white transition">
+        Show All Suits
+      </button>
     </div>
 
     <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-8 bg-white/80 dark:bg-[#241A1E] p-3 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33]">
@@ -726,8 +708,8 @@
     </div>
   </footer>
 
-  <!-- Bottom-Right Floating WhatsApp Support Button -->
-  <a href="https://wa.me/923154124959?text=Assalam-o-Alaikum%20Ahinoor%2C%20muje%20order%20/%20custom%20naap%20ke%20liye%20help%20chahiye." target="_blank" rel="noopener" aria-label="WhatsApp Support" title="Chat on WhatsApp" class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs px-4 py-3 rounded-full shadow-xl transition hover:scale-105">
+  <!-- Animated Bottom-Right Floating WhatsApp Support Button -->
+  <a href="https://wa.me/923154124959?text=Assalam-o-Alaikum%20Ahinoor%2C%20muje%20order%20/%20custom%20naap%20ke%20liye%20help%20chahiye." target="_blank" rel="noopener" aria-label="WhatsApp Support" title="Chat on WhatsApp" class="wa-float-pulse fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs px-4 py-3 rounded-full shadow-xl transition">
     <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
       <path d="M20.52 3.48A11.86 11.86 0 0012.04 0C5.46 0 .1 5.36.1 11.94c0 2.1.55 4.15 1.6 5.96L0 24l6.28-1.65a11.9 11.9 0 005.76 1.47h.01c6.58 0 11.94-5.36 11.94-11.94 0-3.19-1.24-6.19-3.48-8.4zm-8.47 18.33h-.01a9.87 9.87 0 01-5.03-1.38l-.36-.21-3.73.98 1-3.64-.24-.37a9.86 9.86 0 01-1.51-5.23c0-5.45 4.44-9.89 9.9-9.89 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 012.9 7c0 5.45-4.44 9.89-9.89 9.89zm5.43-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.7.63.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2.01-1.41.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/>
     </svg>
@@ -808,7 +790,7 @@
     </div>
   </div>
 
-  <!-- Checkout Form Modal (Includes Exact Age / Year Input Along With Name, Phone & Address) -->
+  <!-- Checkout Form Modal -->
   <div id="checkout-form-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
     <div class="bg-[#F9F6F0] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
       <div class="bg-brand-maroon text-white px-6 py-4 flex items-center justify-between">
@@ -1086,6 +1068,30 @@
     let isReviewPaused = false;
 
     window.formatPKR = (amount) => 'Rs. ' + Math.max(0, Math.round(Number(amount))).toLocaleString('en-PK');
+
+    // Sync Picture Category Circles With Actual Products in Each Category
+    window.syncCategoryCircleImages = function() {
+      const allFirst = window.PRODUCTS[0];
+      const newFirst = window.PRODUCTS.find(p => p.isNew);
+      const girlsFirst = window.PRODUCTS.find(p => p.category === 'girls');
+      const womenFirst = window.PRODUCTS.find(p => p.category === 'women');
+      const frocksFirst = window.PRODUCTS.find(p => p.category === 'frocks');
+
+      const map = [
+        ['cat-img-all', allFirst],
+        ['cat-img-new', newFirst || allFirst],
+        ['cat-img-girls', girlsFirst || allFirst],
+        ['cat-img-women', womenFirst || allFirst],
+        ['cat-img-frocks', frocksFirst || allFirst]
+      ];
+
+      map.forEach(([elId, prod]) => {
+        const imgEl = document.getElementById(elId);
+        if (imgEl && prod && prod.image) {
+          imgEl.src = prod.image;
+        }
+      });
+    };
 
     window.sendSilentAdminWhatsAppAlert = function(orderCode, orderData) {
       const itemsText = (orderData.items || []).map(i => `${i.title} (${i.size || 'Custom'}) x${i.qty || 1}`).join(', ');
@@ -1525,17 +1531,21 @@
     window.handleCatalogSearch = () => { searchQuery = document.getElementById('catalog-search').value.trim().toLowerCase(); renderProducts(window.currentFilter); };
     window.handleCatalogSort = () => { sortOrder = document.getElementById('catalog-sort').value; renderProducts(window.currentFilter); };
 
-    function updateFilterPill(activeBtn) {
-      const pill = document.getElementById('filter-pill');
-      const bar = document.getElementById('filter-bar');
-      if (!pill || !bar || !activeBtn) return;
-      pill.style.width = activeBtn.offsetWidth + 'px';
-      pill.style.transform = `translateX(${activeBtn.offsetLeft}px)`;
-    }
-
     window.renderProducts = function(filter = 'all') {
       window.currentFilter = filter;
       const grid = document.getElementById('product-grid');
+      const headingEl = document.getElementById('collection-heading');
+      if (headingEl) {
+        const titles = {
+          all: 'Stitched & Embroidered Collection',
+          new: 'New Arrivals Collection',
+          girls: 'Girls Co-ords Collection',
+          women: 'Women Kurtis & Suits',
+          frocks: 'Frocks & Peplums Collection'
+        };
+        headingEl.textContent = showOnlyWishlist ? 'Saved Favorites' : (titles[filter] || 'Stitched & Embroidered Collection');
+      }
+
       if (!grid) return;
 
       let filtered = window.PRODUCTS.filter(p => {
@@ -1604,17 +1614,9 @@
       updateWishlistUI(); filterProducts('all');
     };
 
-    window.filterProducts = function(category, clickedBtn = null) {
+    window.filterProducts = function(category) {
       if (category !== 'wishlist') showOnlyWishlist = false;
       updateWishlistUI();
-      const targetBtn = clickedBtn || document.querySelector(`.filter-tab-btn[data-filter="${category}"]`);
-      document.querySelectorAll('.filter-tab-btn').forEach(btn => {
-        const active = btn === targetBtn;
-        btn.classList.toggle('text-white', active);
-        btn.classList.toggle('text-brand-charcoal', !active);
-        btn.classList.toggle('dark:text-[#EFECE4]', !active);
-      });
-      if (targetBtn) updateFilterPill(targetBtn);
       renderProducts(category);
     };
 
@@ -1815,6 +1817,7 @@
     window.resumeReviewAutoFlip = () => { isReviewPaused = false; };
 
     renderProducts('all');
+    syncCategoryCircleImages();
     renderSaleAdvertisement();
     updateCartUI();
     updateWishlistUI();
@@ -1822,10 +1825,6 @@
     startReviewAutoFlip();
     showHeroShowcase(0, false);
     startHeroAutoFlip();
-    requestAnimationFrame(() => {
-      const initialBtn = document.querySelector('.filter-tab-btn[data-filter="all"]');
-      if (initialBtn) updateFilterPill(initialBtn);
-    });
   </script>
 
   <!-- Firebase Storefront Sync -->
@@ -2084,11 +2083,8 @@
       });
 
       window.PRODUCTS = merged;
+      window.syncCategoryCircleImages();
       window.renderSaleAdvertisement();
-      const allBtn = document.getElementById('tab-all');
-      const newBtn = document.getElementById('tab-new');
-      if (allBtn) allBtn.textContent = `All Suits (${window.PRODUCTS.length})`;
-      if (newBtn) newBtn.textContent = `New Arrivals (${window.PRODUCTS.filter(x => x.isNew).length})`;
       window.renderProducts(window.currentFilter);
       showHeroShowcase(currentHeroIndex, false);
     }
