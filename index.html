@@ -326,7 +326,7 @@
     </div>
   </section>
 
-  <!-- Picture Category Circles (Synced Dynamically With Actual Category Items) -->
+  <!-- Picture Category Circles -->
   <section class="py-7 sm:py-9 bg-[#FAF7F2] dark:bg-[#1A1215] border-b border-[#E4DDD0] dark:border-[#3E2E33]">
     <div class="max-w-5xl mx-auto px-4">
       <div class="flex items-center justify-start sm:justify-center gap-5 sm:gap-9 overflow-x-auto no-scrollbar py-1">
@@ -488,8 +488,8 @@
             <div class="flex items-start gap-3.5">
               <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">3</span>
               <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">CONFIRMATION &amp; TRACKING</h4>
-                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-0.5 leading-relaxed">Custom stitching orders WhatsApp confirmation ke baad silai ke liye start kiye jate hain.</p>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">WHATSAPP PRICE &amp; CONFIRMATION</h4>
+                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-0.5 leading-relaxed">Custom naap / age mismatch orders mein price aapko WhatsApp par batayi jayegi.</p>
               </div>
             </div>
           </div>
@@ -497,18 +497,30 @@
 
         <div class="lg:col-span-7">
           <div class="bg-[#F9F6F0] dark:bg-[#241A1E] rounded-[28px] shadow-md border border-[#DFD7C8] dark:border-[#3E2E33] p-6 sm:p-9">
-            <div class="mb-6 flex items-center justify-between">
+            <div class="mb-6 flex items-center justify-between gap-2">
               <div>
                 <h3 class="font-editorial text-2xl sm:text-[26px] font-bold text-brand-charcoal dark:text-[#F3EFEA]">
                   Custom Naap &amp; Embroidery Form
                 </h3>
                 <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">
-                  Apna naap, age/year aur detail likhein — order direct book ho jayega.
+                  Apna naap, age/year aur detail likhein — hum WhatsApp par price bata kar confirm karenge.
                 </p>
               </div>
               <button type="button" onclick="openSizeChartModal()" class="px-3 py-1.5 rounded-xl bg-brand-maroon/10 dark:bg-[#3E2E33] text-brand-maroon dark:text-[#E5C687] text-xs font-bold hover:bg-brand-maroon hover:text-white transition shrink-0">
                 📏 View Size Chart
               </button>
+            </div>
+
+            <!-- Selected Dress Preview Banner Inside Custom Naap Section -->
+            <div id="naap-selected-dress-banner" class="hidden mb-4 p-3 rounded-2xl bg-white dark:bg-[#1A1215] border border-brand-maroon/40 flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0">
+                <img id="naap-selected-dress-img" src="1000827972.jpg" alt="Selected Dress" class="w-12 h-16 rounded-lg object-cover shrink-0 bg-[#F5F2EC]" />
+                <div class="min-w-0">
+                  <span class="text-[10px] font-extrabold uppercase tracking-wider text-brand-maroon dark:text-[#E5C687] block">SELECTED DRESS (CUSTOM QUOTE VIA WHATSAPP)</span>
+                  <p id="naap-selected-dress-title" class="text-xs sm:text-sm font-bold truncate"></p>
+                </div>
+              </div>
+              <button type="button" onclick="clearLockedCustomDress()" class="px-2.5 py-1 rounded-lg bg-[#EBE6DC] dark:bg-[#322429] text-[10px] font-bold text-brand-muted hover:text-red-600 shrink-0">✕ Clear</button>
             </div>
 
             <form id="naap-form" onsubmit="submitCustomNaap(event)" class="space-y-4">
@@ -527,8 +539,8 @@
                 <div>
                   <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">GARMENT CATEGORY</label>
                   <select id="naap-category" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] text-sm bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] focus:outline-none focus:border-brand-maroon transition">
-                    <option value="Women Stitched Kurti & Trouser">Women Stitched Kurti &amp; Trouser</option>
                     <option value="Girls Embroidered Co-ord Set">Girls Embroidered Co-ord Set</option>
+                    <option value="Women Stitched Kurti & Trouser">Women Stitched Kurti &amp; Trouser</option>
                     <option value="Girls Flared Frock & Culottes">Girls Flared Frock &amp; Culottes</option>
                     <option value="Custom Embroidered Peplum Suit">Custom Embroidered Peplum Suit</option>
                   </select>
@@ -537,16 +549,16 @@
                 <div>
                   <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">EMBROIDERY PREFERENCE</label>
                   <select id="naap-embroidery" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] text-sm bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] focus:outline-none focus:border-brand-maroon transition">
+                    <option value="Same As Selected Catalog Design">Same As Selected Catalog Design</option>
                     <option value="Neckline & Pocket Floral Embroidery">Neckline &amp; Pocket Floral Embroidery</option>
                     <option value="Heavy Daman & Sleeves Border">Heavy Daman &amp; Sleeves Border</option>
                     <option value="Minimalist Scattered Booti Work">Minimalist Scattered Booti Work</option>
-                    <option value="Same As Selected Catalog Design">Same As Selected Catalog Design</option>
                   </select>
                 </div>
 
                 <div>
                   <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">AGE / YEAR (MANUAL)</label>
-                  <input type="text" id="naap-age-year" placeholder="e.g., 1 Year, 5 Years, Adult" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm focus:outline-none focus:border-brand-maroon transition" />
+                  <input type="text" id="naap-age-year" placeholder="e.g., 1 Year, 5 Years, 14 Years" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm focus:outline-none focus:border-brand-maroon transition" />
                 </div>
               </div>
 
@@ -559,8 +571,8 @@
                   <button type="button" onclick="selectNaapSize(this, 'Girls (6–12 Yrs)')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#EFECE4] border border-[#DFD7C8] dark:border-[#3E2E33] hover:border-brand-maroon transition whitespace-nowrap">
                     Girls (6–12 Yrs)
                   </button>
-                  <button type="button" onclick="selectNaapSize(this, 'Women (S/M/L)')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#EFECE4] border border-[#DFD7C8] dark:border-[#3E2E33] hover:border-brand-maroon transition whitespace-nowrap">
-                    Women (S/M/L)
+                  <button type="button" onclick="selectNaapSize(this, 'Custom Above 12 Yrs')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#EFECE4] border border-[#DFD7C8] dark:border-[#3E2E33] hover:border-brand-maroon transition whitespace-nowrap">
+                    Custom Above 12 Yrs
                   </button>
                   <button type="button" onclick="selectNaapSize(this, 'Custom In Inches')" class="naap-size-btn py-2.5 px-3 rounded-full text-xs font-semibold bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#EFECE4] border border-[#DFD7C8] dark:border-[#3E2E33] hover:border-brand-maroon transition whitespace-nowrap">
                     Custom In Inches
@@ -581,15 +593,15 @@
 
               <div>
                 <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">MEASUREMENTS &amp; NOTES (INCHES) *</label>
-                <textarea id="naap-notes" rows="2" required placeholder="Chest: 36 in, Shirt Length: 38 in, Sleeve: 19 in..." class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm focus:outline-none focus:border-brand-maroon transition"></textarea>
+                <textarea id="naap-notes" rows="2" required placeholder="Age / Chest / Shirt Length / Sleeve details..." class="w-full px-4 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] text-sm focus:outline-none focus:border-brand-maroon transition"></textarea>
               </div>
 
               <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3] bg-white/80 dark:bg-[#1A1215] px-3.5 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33]">
-                ℹ️ Note: Custom stitching orders are confirmed via WhatsApp call/message before fabric cutting begins.
+                ℹ️ Note: Custom stitching &amp; age-mismatched orders are quoted and confirmed via WhatsApp before stitching.
               </p>
 
               <button type="submit" class="btn-sheen w-full py-3.5 px-5 bg-brand-maroon hover:bg-brand-maroonDark text-white font-bold text-xs tracking-wider uppercase rounded-full transition flex items-center justify-center gap-2.5 shadow-sm">
-                <span>📦 BOOK CUSTOM ORDER</span>
+                <span>📦 BOOK CUSTOM ORDER (PRICE VIA WHATSAPP)</span>
               </button>
             </form>
           </div>
@@ -838,7 +850,7 @@
     </div>
   </div>
 
-  <!-- Checkout Form Modal (Instant Zero-Delay Submit + Exact Age Field) -->
+  <!-- Checkout Form Modal -->
   <div id="checkout-form-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
     <div class="bg-[#F9F6F0] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
       <div class="bg-brand-maroon text-white px-6 py-4 flex items-center justify-between">
@@ -858,9 +870,10 @@
           </div>
           <div>
             <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Exact Age / Year *</label>
-            <input type="text" id="ord-age" required placeholder="e.g., 4 Years, 8 Years, Adult" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
+            <input type="text" id="ord-age" required oninput="checkAgeTierMismatch(this.value)" placeholder="e.g., 4, 8, 10" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
           </div>
         </div>
+        <p id="ord-age-warning" class="hidden text-xs text-red-600 dark:text-red-400 font-bold bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 px-3 py-2 rounded-xl"></p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Phone Number *</label>
@@ -1080,9 +1093,9 @@
     const ADMIN_WHATSAPP_WEBHOOK_URL = "";
 
     const SIZE_TIERS = [
-      { label: "Small (3-5 Yrs / S)", extra: 0 },
-      { label: "Medium (6-8 Yrs / M)", extra: 350 },
-      { label: "Large (9-12 Yrs / L)", extra: 650 }
+      { label: "Small (3-5 Yrs / S)", extra: 0, minAge: 3, maxAge: 5 },
+      { label: "Medium (6-8 Yrs / M)", extra: 350, minAge: 6, maxAge: 8 },
+      { label: "Large (9-12 Yrs / L)", extra: 650, minAge: 9, maxAge: 12 }
     ];
 
     const DEFAULT_REVIEWS = [
@@ -1111,6 +1124,7 @@
     let activeModalProduct = null;
     let selectedModalSizeIndex = 0;
     let selectedNaapSize = 'Girls (1–5 Yrs)';
+    let lockedCustomDress = null;
     let pendingCheckoutItems = [];
     let pendingCheckoutTotal = 0;
     let pendingCheckoutType = 'catalog';
@@ -1146,6 +1160,86 @@
           imgEl.src = prod.image;
         }
       });
+    };
+
+    function parseAgeNumber(ageStr) {
+      const match = String(ageStr || '').match(/\d+(\.\d+)?/);
+      return match ? parseFloat(match[0]) : NaN;
+    }
+
+    function findTierRangeForItems(items) {
+      if (!Array.isArray(items) || items.length === 0) return null;
+      const firstSize = String(items[0].size || '');
+      return SIZE_TIERS.find(t => firstSize.includes(t.label)) || null;
+    }
+
+    // Redirect to #custom-naap with selected dress locked and price set to 0 (quoted via WhatsApp)
+    function redirectMismatchToCustomNaap(ageText, tierObj) {
+      const primaryItem = pendingCheckoutItems[0] || {};
+      const prodMatch = window.PRODUCTS.find(p => String(p.id) === String(primaryItem.id) || p.title === primaryItem.title);
+      const dressTitle = primaryItem.title || (prodMatch ? prodMatch.title : 'Selected Dress');
+      const dressImg = primaryItem.image || (prodMatch ? prodMatch.image : '1000827972.jpg');
+
+      lockedCustomDress = {
+        id: primaryItem.id || (prodMatch ? prodMatch.id : Date.now()),
+        title: dressTitle,
+        image: dressImg
+      };
+
+      const banner = document.getElementById('naap-selected-dress-banner');
+      const bannerImg = document.getElementById('naap-selected-dress-img');
+      const bannerTitle = document.getElementById('naap-selected-dress-title');
+      if (banner && bannerImg && bannerTitle) {
+        bannerImg.src = dressImg;
+        bannerTitle.textContent = dressTitle;
+        banner.classList.remove('hidden');
+      }
+
+      const prefillName = document.getElementById('ord-name')?.value.trim() || '';
+      const prefillPhone = document.getElementById('ord-phone')?.value.trim() || '';
+      const prefillAddr = document.getElementById('ord-address')?.value.trim() || '';
+
+      if (prefillName && document.getElementById('naap-name')) document.getElementById('naap-name').value = prefillName;
+      if (prefillPhone && document.getElementById('naap-phone')) document.getElementById('naap-phone').value = prefillPhone;
+      if (prefillAddr && document.getElementById('naap-address')) document.getElementById('naap-address').value = prefillAddr;
+      if (document.getElementById('naap-age-year')) document.getElementById('naap-age-year').value = ageText;
+      if (document.getElementById('naap-notes')) {
+        document.getElementById('naap-notes').value = `Selected Tier: ${tierObj.label} | Entered Age: ${ageText} (Needs custom size & WhatsApp price quote)`;
+      }
+
+      const warnEl = document.getElementById('ord-age-warning');
+      if (warnEl) warnEl.classList.add('hidden');
+
+      closeCheckoutFormModal();
+      window.showToast(`Wrong age for ${tierObj.label}! Redirecting to Custom Naap for WhatsApp price quote.`);
+
+      const customSection = document.getElementById('custom-naap');
+      if (customSection) {
+        customSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    window.checkAgeTierMismatch = function(val) {
+      const warnEl = document.getElementById('ord-age-warning');
+      if (!warnEl) return;
+      const tierObj = findTierRangeForItems(pendingCheckoutItems);
+      const ageNum = parseAgeNumber(val);
+      if (!tierObj || Number.isNaN(ageNum)) {
+        warnEl.classList.add('hidden');
+        return;
+      }
+      if (ageNum < tierObj.minAge || ageNum > tierObj.maxAge) {
+        warnEl.textContent = `Wrong age (${ageNum} yrs) for ${tierObj.label}. Submitting will send "${pendingCheckoutItems[0]?.title}" to Custom Naap where price will be shared on WhatsApp.`;
+        warnEl.classList.remove('hidden');
+      } else {
+        warnEl.classList.add('hidden');
+      }
+    };
+
+    window.clearLockedCustomDress = function() {
+      lockedCustomDress = null;
+      const banner = document.getElementById('naap-selected-dress-banner');
+      if (banner) banner.classList.add('hidden');
     };
 
     window.sendSilentAdminWhatsAppAlert = function(orderCode, orderData) {
@@ -1192,7 +1286,7 @@
           <td style="padding:8px;border:1px solid #ddd;"><strong>${it.title || 'Order Item'}</strong></td>
           <td style="padding:8px;border:1px solid #ddd;">${it.size || 'Standard'}</td>
           <td style="padding:8px;border:1px solid #ddd;text-align:center;">${it.qty || 1}</td>
-          <td style="padding:8px;border:1px solid #ddd;text-align:right;">${it.price ? formatPKR(it.price * (it.qty || 1)) : 'Custom Quote'}</td>
+          <td style="padding:8px;border:1px solid #ddd;text-align:right;">${it.price ? formatPKR(it.price * (it.qty || 1)) : 'Price Via WhatsApp'}</td>
         </tr>
       `).join('');
 
@@ -1243,14 +1337,14 @@
           <th>Item</th>
           <th>Size &amp; Exact Age</th>
           <th style="text-align:center;width:55px;">Qty</th>
-          <th style="text-align:right;width:110px;">Amount</th>
+          <th style="text-align:right;width:125px;">Amount</th>
         </tr>
       </thead>
       <tbody>${rowsHtml}</tbody>
     </table>
 
     <div class="total">
-      Shipping: FREE DELIVERY &nbsp;|&nbsp; Total Payable: ${safeTotal ? formatPKR(safeTotal) : 'As Per Custom Quote'}
+      Shipping: FREE DELIVERY &nbsp;|&nbsp; Total: ${safeTotal ? formatPKR(safeTotal) : 'Price Will Be Shared On WhatsApp'}
     </div>
 
     <div class="foot">
@@ -1466,9 +1560,14 @@
       pendingCheckoutItems = items;
       pendingCheckoutTotal = total;
       pendingCheckoutType = type;
+      const warnEl = document.getElementById('ord-age-warning');
+      if (warnEl) warnEl.classList.add('hidden');
+      const ageInp = document.getElementById('ord-age');
+      if (ageInp) ageInp.value = '';
+
       const box = document.getElementById('checkout-summary-box');
       if (type === 'custom-naap') {
-        box.innerHTML = `<p class="font-bold text-brand-maroon dark:text-[#E5C687]">Custom Naap &amp; Embroidery Order</p><p class="text-brand-muted dark:text-[#B5A8A3]">Free Delivery All Over Pakistan</p>`;
+        box.innerHTML = `<p class="font-bold text-brand-maroon dark:text-[#E5C687]">Custom Naap &amp; Embroidery Order (Price Via WhatsApp)</p><p class="text-brand-muted dark:text-[#B5A8A3]">Free Delivery All Over Pakistan</p>`;
       } else {
         box.innerHTML = items.map(i => `<div class="flex justify-between"><span>${i.title} (${i.size}) x${i.qty}</span><span class="font-bold">${formatPKR(i.price * i.qty)}</span></div>`).join('') + `<div class="border-t border-[#E2DBD0] dark:border-[#3E2E33] pt-1 mt-1 flex justify-between font-bold text-brand-maroon dark:text-[#E5C687]"><span>Total (Free Shipping):</span><span>${formatPKR(total)}</span></div>`;
       }
@@ -1773,7 +1872,7 @@
     window.showToast = (msg = "Added to order bag! 🛍️") => {
       const t = document.getElementById('toast');
       t.textContent = msg; t.classList.remove('opacity-0');
-      setTimeout(() => t.classList.add('opacity-0'), 2400);
+      setTimeout(() => t.classList.add('opacity-0'), 2600);
     };
     window.toggleMobileMenu = () => document.getElementById('mobile-menu').classList.toggle('hidden');
 
@@ -1797,8 +1896,10 @@
       const notes = document.getElementById('naap-notes').value.trim();
       const category = document.getElementById('naap-category').value;
       const embroidery = document.getElementById('naap-embroidery').value;
+
       const currentHero = window.PRODUCTS[currentHeroIndex];
-      const refImage = currentHero ? currentHero.image : '1000827972.jpg';
+      const chosenDressTitle = lockedCustomDress ? lockedCustomDress.title : `${category} (${embroidery})`;
+      const chosenDressImg = lockedCustomDress ? lockedCustomDress.image : (currentHero ? currentHero.image : '1000827972.jpg');
       const combinedSize = ageYear ? `${ageYear} (${selectedNaapSize})` : selectedNaapSize;
 
       if (password) saveCustomerProfile(name, phone, password, address);
@@ -1807,19 +1908,19 @@
         customerName: name,
         phone: phone,
         customerPassword: password,
-        address: `${address} | Age/Year: ${ageYear || 'Not specified'} | Naap: ${notes}`,
-        items: [{ title: `${category} (${embroidery})`, image: refImage, size: combinedSize, qty: 1, price: 0 }],
+        address: `${address} | Age/Year: ${ageYear || 'Not specified'} | Naap: ${notes} | Price Via WhatsApp`,
+        items: [{ title: chosenDressTitle, image: chosenDressImg, size: combinedSize, qty: 1, price: 0 }],
         total: 0,
         orderType: 'Custom Naap'
       };
 
       e.target.reset();
+      clearLockedCustomDress();
       if (window.savePanelOrder) {
         window.savePanelOrder(payload);
       }
     };
 
-    // Zero-Delay Instant Checkout Submit
     window.submitPanelOrder = function(e) {
       e.preventDefault();
       const name = document.getElementById('ord-name').value.trim();
@@ -1827,6 +1928,14 @@
       const phone = document.getElementById('ord-phone').value.trim();
       const password = document.getElementById('ord-password').value.trim();
       const address = document.getElementById('ord-address').value.trim();
+
+      // Validate age against selected size tier (e.g., 9-12 Yrs vs 13 or 14)
+      const tierObj = findTierRangeForItems(pendingCheckoutItems);
+      const ageNum = parseAgeNumber(exactAge);
+      if (tierObj && !Number.isNaN(ageNum) && (ageNum < tierObj.minAge || ageNum > tierObj.maxAge)) {
+        redirectMismatchToCustomNaap(exactAge, tierObj);
+        return;
+      }
 
       saveCustomerProfile(name, phone, password, address);
 
@@ -1967,7 +2076,6 @@
       return `AHN-${Math.floor(1000 + Math.random() * 9000)}`;
     }
 
-    // Instant Local-First Order Booking + Background Firestore Sync (Zero Delay)
     window.savePanelOrder = function(orderData, onSuccess) {
       const orderCode = generateOrderCode();
       const newOrderObj = {
@@ -2053,7 +2161,6 @@
       }
     }
 
-    // Verified Customer Review Submission (Delivered Orders Only)
     window.submitVerifiedReview = async function(e) {
       e.preventDefault();
       const codeInput = document.getElementById('rev-order-code').value.trim().toLowerCase();
