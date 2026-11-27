@@ -93,6 +93,36 @@
     }
     .btn-sheen:hover::after { left: 140%; }
 
+    @keyframes catPopIn {
+      0% { opacity: 0; transform: translateY(14px) scale(0.92); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes newPillPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(106, 35, 56, 0.45); }
+      50% { transform: scale(1.08); box-shadow: 0 0 0 6px rgba(106, 35, 56, 0); }
+    }
+    .cat-circle-item {
+      animation: catPopIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .cat-circle-item:nth-child(1) { animation-delay: 0.04s; }
+    .cat-circle-item:nth-child(2) { animation-delay: 0.10s; }
+    .cat-circle-item:nth-child(3) { animation-delay: 0.16s; }
+    .cat-circle-item:nth-child(4) { animation-delay: 0.22s; }
+    .cat-circle-item:nth-child(5) { animation-delay: 0.28s; }
+    .cat-circle-item:hover {
+      transform: translateY(-5px);
+    }
+    .cat-circle-item:hover .cat-ring {
+      transform: scale(1.07) rotate(2deg);
+    }
+    .cat-ring {
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+    }
+    .new-badge-pulse {
+      animation: newPillPulse 2.1s ease-in-out infinite;
+    }
+
     @keyframes waFloatPulse {
       0%, 100% {
         transform: translateY(0) scale(1);
@@ -234,7 +264,7 @@
 
     <div id="mobile-menu" class="hidden lg:hidden bg-[#F7EFE6] dark:bg-[#1F1418] border-t border-[#DFD2BE] dark:border-[#3E2E33] px-4 py-4 space-y-3">
       <a href="#" onclick="toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">HOME</a>
-      <a href="#collection" onclick="filterProducts('new'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon">NEW ARRIVALS</a>
+      <a id="mobile-new-link" href="#collection" onclick="filterProducts('new'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon">NEW ARRIVALS</a>
       <a href="#collection" onclick="filterProducts('all'); toggleMobileMenu()" class="block text-xs font-bold tracking-wider uppercase text-brand-charcoal dark:text-[#EFECE4]">PRET COLLECTION</a>
       <button type="button" onclick="toggleMobileMenu(); openTrackModal()" class="block text-xs font-bold tracking-wider uppercase text-brand-teal dark:text-[#4ADE80] text-left w-full">📍 TRACK ORDER</button>
       <button type="button" onclick="toggleMobileMenu(); openHistoryModal()" class="block text-xs font-bold tracking-wider uppercase text-brand-maroon text-left w-full">🕒 HISTORY</button>
@@ -326,52 +356,45 @@
     </div>
   </section>
 
-  <!-- Picture Category Circles -->
+  <!-- Animated Picture Category Circles (No Size Chart Circle at End, New Arrivals Auto-Hides When Empty) -->
   <section class="py-7 sm:py-9 bg-[#FAF7F2] dark:bg-[#1A1215] border-b border-[#E4DDD0] dark:border-[#3E2E33]">
     <div class="max-w-5xl mx-auto px-4">
-      <div class="flex items-center justify-start sm:justify-center gap-5 sm:gap-9 overflow-x-auto no-scrollbar py-1">
-        <a href="#collection" onclick="filterProducts('all')" class="group flex flex-col items-center gap-2 shrink-0">
-          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-brand-maroon to-[#C7A15A] shadow-sm group-hover:scale-105 transition">
+      <div class="flex items-center justify-start sm:justify-center gap-5 sm:gap-9 overflow-x-auto no-scrollbar py-2">
+        <a href="#collection" onclick="filterProducts('all')" class="cat-circle-item group flex flex-col items-center gap-2 shrink-0">
+          <div class="cat-ring w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-brand-maroon to-[#C7A15A] shadow-sm group-hover:shadow-md">
             <img id="cat-img-all" src="1000827954.jpg" onerror="this.src='https://placehold.co/100x100/EBE6DC/6A2338?text=All'" alt="All Suits" loading="lazy" width="80" height="80" class="w-full h-full rounded-full object-cover bg-white" />
           </div>
           <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">All Suits</span>
         </a>
 
-        <a href="#collection" onclick="filterProducts('new')" class="group flex flex-col items-center gap-2 shrink-0">
-          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-[#D62976] to-brand-maroon shadow-sm group-hover:scale-105 transition relative">
+        <a id="cat-item-new" href="#collection" onclick="filterProducts('new')" class="cat-circle-item group flex flex-col items-center gap-2 shrink-0">
+          <div class="cat-ring w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-[#D62976] to-brand-maroon shadow-sm group-hover:shadow-md relative">
             <img id="cat-img-new" src="1000827972.jpg" onerror="this.src='https://placehold.co/100x100/EBE6DC/6A2338?text=New'" alt="New Arrivals" loading="lazy" width="80" height="80" class="w-full h-full rounded-full object-cover bg-white" />
-            <span class="absolute -top-1 -right-1 bg-brand-maroon text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">NEW</span>
+            <span id="cat-badge-new" class="new-badge-pulse absolute -top-1 -right-1 bg-brand-maroon text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">NEW</span>
           </div>
           <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">New Arrivals</span>
         </a>
 
-        <a href="#collection" onclick="filterProducts('girls')" class="group flex flex-col items-center gap-2 shrink-0">
-          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-brand-gold to-brand-maroon shadow-sm group-hover:scale-105 transition">
+        <a href="#collection" onclick="filterProducts('girls')" class="cat-circle-item group flex flex-col items-center gap-2 shrink-0">
+          <div class="cat-ring w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-brand-gold to-brand-maroon shadow-sm group-hover:shadow-md">
             <img id="cat-img-girls" src="1000827976.jpg" onerror="this.src='https://placehold.co/100x100/EBE6DC/6A2338?text=Girls'" alt="Girls Co-ords" loading="lazy" width="80" height="80" class="w-full h-full rounded-full object-cover bg-white" />
           </div>
           <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">Girls Co-ords</span>
         </a>
 
-        <a href="#collection" onclick="filterProducts('women')" class="group flex flex-col items-center gap-2 shrink-0">
-          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-brand-maroon to-brand-gold shadow-sm group-hover:scale-105 transition">
+        <a href="#collection" onclick="filterProducts('women')" class="cat-circle-item group flex flex-col items-center gap-2 shrink-0">
+          <div class="cat-ring w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-brand-maroon to-brand-gold shadow-sm group-hover:shadow-md">
             <img id="cat-img-women" src="1000827956.jpg" onerror="this.src='https://placehold.co/100x100/EBE6DC/6A2338?text=Women'" alt="Women Kurtis" loading="lazy" width="80" height="80" class="w-full h-full rounded-full object-cover bg-white" />
           </div>
           <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">Women Kurtis</span>
         </a>
 
-        <a href="#collection" onclick="filterProducts('frocks')" class="group flex flex-col items-center gap-2 shrink-0">
-          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-[#176B58] to-brand-gold shadow-sm group-hover:scale-105 transition">
+        <a href="#collection" onclick="filterProducts('frocks')" class="cat-circle-item group flex flex-col items-center gap-2 shrink-0">
+          <div class="cat-ring w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-[#176B58] to-brand-gold shadow-sm group-hover:shadow-md">
             <img id="cat-img-frocks" src="1000827975.jpg" onerror="this.src='https://placehold.co/100x100/EBE6DC/6A2338?text=Frocks'" alt="Frocks & Peplums" loading="lazy" width="80" height="80" class="w-full h-full rounded-full object-cover bg-white" />
           </div>
           <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">Frocks &amp; Peplums</span>
         </a>
-
-        <button type="button" onclick="openSizeChartModal()" class="group flex flex-col items-center gap-2 shrink-0 bg-transparent border-0 cursor-pointer">
-          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-gradient-to-tr from-[#9E7B3E] to-[#2E1119] shadow-sm group-hover:scale-105 transition flex items-center justify-center bg-white">
-            <span class="text-xl">📏</span>
-          </div>
-          <span class="text-[11px] font-bold text-brand-charcoal dark:text-[#EFECE4] group-hover:text-brand-maroon transition">Size Chart</span>
-        </button>
       </div>
     </div>
   </section>
@@ -511,7 +534,6 @@
               </button>
             </div>
 
-            <!-- Selected Dress Preview Banner Inside Custom Naap Section -->
             <div id="naap-selected-dress-banner" class="hidden mb-4 p-3 rounded-2xl bg-white dark:bg-[#1A1215] border border-brand-maroon/40 flex items-center justify-between gap-3">
               <div class="flex items-center gap-3 min-w-0">
                 <img id="naap-selected-dress-img" src="1000827972.jpg" alt="Selected Dress" class="w-12 h-16 rounded-lg object-cover shrink-0 bg-[#F5F2EC]" />
@@ -524,7 +546,6 @@
             </div>
 
             <form id="naap-form" onsubmit="submitCustomNaap(event)" class="space-y-4">
-              <!-- Option 1: Select From Ahinoor Articles | Option 2: Upload Own Picture -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white/75 dark:bg-[#1A1215]/80 p-3.5 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33]">
                 <div>
                   <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">SELECT AHINOOR ARTICLE (CUSTOMIZE)</label>
@@ -1155,7 +1176,6 @@
 
     window.formatPKR = (amount) => 'Rs. ' + Math.max(0, Math.round(Number(amount))).toLocaleString('en-PK');
 
-    // Populate Custom Naap Article Picker Dropdown
     window.populateCustomArticleSelect = function() {
       const sel = document.getElementById('naap-article-select');
       if (!sel) return;
@@ -1229,16 +1249,35 @@
       }
     };
 
+    // Hide New Arrivals circle & badge if there are no new arrivals; sync images dynamically
     window.syncCategoryCircleImages = function() {
       const allFirst = window.PRODUCTS[0];
-      const newFirst = window.PRODUCTS.find(p => p.isNew);
+      const newItems = window.PRODUCTS.filter(p => p.isNew);
+      const newFirst = newItems[0];
       const girlsFirst = window.PRODUCTS.find(p => p.category === 'girls');
       const womenFirst = window.PRODUCTS.find(p => p.category === 'women');
       const frocksFirst = window.PRODUCTS.find(p => p.category === 'frocks');
 
+      const newCatItem = document.getElementById('cat-item-new');
+      const newBadge = document.getElementById('cat-badge-new');
+      const mobileNewLink = document.getElementById('mobile-new-link');
+
+      if (newItems.length === 0) {
+        if (newCatItem) newCatItem.classList.add('hidden');
+        if (newBadge) newBadge.classList.add('hidden');
+        if (mobileNewLink) mobileNewLink.classList.add('hidden');
+        if (window.currentFilter === 'new') {
+          window.currentFilter = 'all';
+        }
+      } else {
+        if (newCatItem) newCatItem.classList.remove('hidden');
+        if (newBadge) newBadge.classList.remove('hidden');
+        if (mobileNewLink) mobileNewLink.classList.remove('hidden');
+      }
+
       const map = [
         ['cat-img-all', allFirst],
-        ['cat-img-new', newFirst || allFirst],
+        ['cat-img-new', newFirst],
         ['cat-img-girls', girlsFirst || allFirst],
         ['cat-img-women', womenFirst || allFirst],
         ['cat-img-frocks', frocksFirst || allFirst]
