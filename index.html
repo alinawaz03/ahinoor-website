@@ -465,31 +465,31 @@
           </h2>
 
           <p class="text-sm text-brand-muted dark:text-[#B5A8A3] leading-relaxed">
-            Agar aapko apna pasandeeda kapra kisi makhsoos naap (measurement) par silwana ho, ya neckline, sleeves aur daman par customized phoolo wali embroidery karwani ho, to ye form bharein. Aapka order book hote hi Order ID mil jayegi!
+            Apni marzi ki picture upload kar ke us jaisa dress banwayein, ya hamare kisi bhi article ko select kar ke apni age/naap ke hisab se custom banwayein. Price aapko WhatsApp par batayi jayegi.
           </p>
 
           <div class="space-y-4 pt-3">
             <div class="flex items-start gap-3.5">
               <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">1</span>
               <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">SUIT YA FROCK CHOICE</h4>
-                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-0.5 leading-relaxed">Women 2-piece, little girls embroidered set, flared frock, ya custom design.</p>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">ARTICLE SELECT YA APNI PICTURE</h4>
+                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-0.5 leading-relaxed">Ahinoor ka koi suit chunein ya apni pasandeeda design ki picture upload karein.</p>
               </div>
             </div>
 
             <div class="flex items-start gap-3.5">
               <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">2</span>
               <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">EMBROIDERY STYLE</h4>
-                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-0.5 leading-relaxed">Hath ki floral threadwork embroidery, pocket motifs, ringlets, ya sleeves ruffles.</p>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">AGE / YEAR &amp; MEASUREMENTS</h4>
+                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-0.5 leading-relaxed">Bache ya bare ki exact age/year aur silai/embroidery ka naap likhein.</p>
               </div>
             </div>
 
             <div class="flex items-start gap-3.5">
               <span class="w-7 h-7 rounded-full bg-brand-maroon text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">3</span>
               <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">WHATSAPP PRICE &amp; CONFIRMATION</h4>
-                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-0.5 leading-relaxed">Custom naap / age mismatch orders mein price aapko WhatsApp par batayi jayegi.</p>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#F3EFEA]">WHATSAPP PRICE QUOTE</h4>
+                <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-0.5 leading-relaxed">Order submit hone ke baad hum WhatsApp par aapki custom price share karenge.</p>
               </div>
             </div>
           </div>
@@ -503,7 +503,7 @@
                   Custom Naap &amp; Embroidery Form
                 </h3>
                 <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">
-                  Apna naap, age/year aur detail likhein — hum WhatsApp par price bata kar confirm karenge.
+                  Article select karein ya apni picture lagayein — price WhatsApp par batayi jayegi.
                 </p>
               </div>
               <button type="button" onclick="openSizeChartModal()" class="px-3 py-1.5 rounded-xl bg-brand-maroon/10 dark:bg-[#3E2E33] text-brand-maroon dark:text-[#E5C687] text-xs font-bold hover:bg-brand-maroon hover:text-white transition shrink-0">
@@ -516,14 +516,29 @@
               <div class="flex items-center gap-3 min-w-0">
                 <img id="naap-selected-dress-img" src="1000827972.jpg" alt="Selected Dress" class="w-12 h-16 rounded-lg object-cover shrink-0 bg-[#F5F2EC]" />
                 <div class="min-w-0">
-                  <span class="text-[10px] font-extrabold uppercase tracking-wider text-brand-maroon dark:text-[#E5C687] block">SELECTED DRESS (CUSTOM QUOTE VIA WHATSAPP)</span>
+                  <span class="text-[10px] font-extrabold uppercase tracking-wider text-brand-maroon dark:text-[#E5C687] block">ACTIVE CUSTOM DESIGN</span>
                   <p id="naap-selected-dress-title" class="text-xs sm:text-sm font-bold truncate"></p>
                 </div>
               </div>
-              <button type="button" onclick="clearLockedCustomDress()" class="px-2.5 py-1 rounded-lg bg-[#EBE6DC] dark:bg-[#322429] text-[10px] font-bold text-brand-muted hover:text-red-600 shrink-0">✕ Clear</button>
+              <button type="button" onclick="clearLockedCustomDress()" class="px-2.5 py-1 rounded-lg bg-[#EBE6DC] dark:bg-[#322429] text-[10px] font-bold text-brand-muted hover:text-red-600 shrink-0">✕ Reset</button>
             </div>
 
             <form id="naap-form" onsubmit="submitCustomNaap(event)" class="space-y-4">
+              <!-- Option 1: Select From Ahinoor Articles | Option 2: Upload Own Picture -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white/75 dark:bg-[#1A1215]/80 p-3.5 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33]">
+                <div>
+                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">SELECT AHINOOR ARTICLE (CUSTOMIZE)</label>
+                  <select id="naap-article-select" onchange="handleCustomArticlePick(this.value)" class="w-full px-3 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#241A1E] text-xs font-semibold focus:outline-none focus:border-brand-maroon">
+                    <option value="">-- Optional: Pick An Article --</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">OR UPLOAD YOUR OWN PICTURE</label>
+                  <input type="file" id="naap-custom-image" accept="image/*" onchange="handleCustomUploadedPic(this)" class="w-full px-2.5 py-1.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#241A1E] text-[11px]" />
+                </div>
+              </div>
+
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">CUSTOMER NAME *</label>
@@ -549,7 +564,7 @@
                 <div>
                   <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal dark:text-[#EFECE4] mb-1.5">EMBROIDERY PREFERENCE</label>
                   <select id="naap-embroidery" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] text-sm bg-white dark:bg-[#1A1215] text-brand-charcoal dark:text-[#F3EFEA] focus:outline-none focus:border-brand-maroon transition">
-                    <option value="Same As Selected Catalog Design">Same As Selected Catalog Design</option>
+                    <option value="Same As Selected / Uploaded Design">Same As Selected / Uploaded Design</option>
                     <option value="Neckline & Pocket Floral Embroidery">Neckline &amp; Pocket Floral Embroidery</option>
                     <option value="Heavy Daman & Sleeves Border">Heavy Daman &amp; Sleeves Border</option>
                     <option value="Minimalist Scattered Booti Work">Minimalist Scattered Booti Work</option>
@@ -597,7 +612,7 @@
               </div>
 
               <p class="text-[11px] text-brand-muted dark:text-[#B5A8A3] bg-white/80 dark:bg-[#1A1215] px-3.5 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33]">
-                ℹ️ Note: Custom stitching &amp; age-mismatched orders are quoted and confirmed via WhatsApp before stitching.
+                ℹ️ Note: Custom stitching &amp; uploaded-picture orders are quoted and confirmed via WhatsApp before stitching.
               </p>
 
               <button type="submit" class="btn-sheen w-full py-3.5 px-5 bg-brand-maroon hover:bg-brand-maroonDark text-white font-bold text-xs tracking-wider uppercase rounded-full transition flex items-center justify-center gap-2.5 shadow-sm">
@@ -1125,6 +1140,7 @@
     let selectedModalSizeIndex = 0;
     let selectedNaapSize = 'Girls (1–5 Yrs)';
     let lockedCustomDress = null;
+    let customUploadedPhotoData = '';
     let pendingCheckoutItems = [];
     let pendingCheckoutTotal = 0;
     let pendingCheckoutType = 'catalog';
@@ -1138,6 +1154,80 @@
     let isReviewPaused = false;
 
     window.formatPKR = (amount) => 'Rs. ' + Math.max(0, Math.round(Number(amount))).toLocaleString('en-PK');
+
+    // Populate Custom Naap Article Picker Dropdown
+    window.populateCustomArticleSelect = function() {
+      const sel = document.getElementById('naap-article-select');
+      if (!sel) return;
+      const curVal = sel.value;
+      sel.innerHTML = `<option value="">-- Optional: Pick An Article --</option>` +
+        window.PRODUCTS.map(p => `<option value="${p.id}">${p.title}</option>`).join('');
+      if (curVal) sel.value = curVal;
+    };
+
+    window.handleCustomArticlePick = function(prodId) {
+      if (!prodId) return;
+      const prod = window.PRODUCTS.find(p => String(p.id) === String(prodId));
+      if (!prod) return;
+      customUploadedPhotoData = '';
+      const fileInp = document.getElementById('naap-custom-image');
+      if (fileInp) fileInp.value = '';
+
+      lockedCustomDress = { id: prod.id, title: prod.title, image: prod.image };
+      const banner = document.getElementById('naap-selected-dress-banner');
+      const bannerImg = document.getElementById('naap-selected-dress-img');
+      const bannerTitle = document.getElementById('naap-selected-dress-title');
+      if (banner && bannerImg && bannerTitle) {
+        bannerImg.src = prod.image;
+        bannerTitle.textContent = prod.title;
+        banner.classList.remove('hidden');
+      }
+    };
+
+    function compressCustomUpload(file, maxWidth = 800, quality = 0.78) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let w = img.width;
+            let h = img.height;
+            if (w > maxWidth) {
+              h = Math.round((h * maxWidth) / w);
+              w = maxWidth;
+            }
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+          };
+          img.onerror = () => resolve(ev.target.result);
+          img.src = ev.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    window.handleCustomUploadedPic = async function(inputEl) {
+      const file = inputEl && inputEl.files ? inputEl.files[0] : null;
+      if (!file) return;
+      const compressed = await compressCustomUpload(file, 800, 0.78);
+      customUploadedPhotoData = compressed;
+      const sel = document.getElementById('naap-article-select');
+      if (sel) sel.value = '';
+
+      lockedCustomDress = { id: 'custom-pic-' + Date.now(), title: `Custom Picture Design (${file.name})`, image: compressed };
+      const banner = document.getElementById('naap-selected-dress-banner');
+      const bannerImg = document.getElementById('naap-selected-dress-img');
+      const bannerTitle = document.getElementById('naap-selected-dress-title');
+      if (banner && bannerImg && bannerTitle) {
+        bannerImg.src = compressed;
+        bannerTitle.textContent = `Custom Picture: ${file.name}`;
+        banner.classList.remove('hidden');
+      }
+    };
 
     window.syncCategoryCircleImages = function() {
       const allFirst = window.PRODUCTS[0];
@@ -1173,7 +1263,6 @@
       return SIZE_TIERS.find(t => firstSize.includes(t.label)) || null;
     }
 
-    // Redirect to #custom-naap with selected dress locked and price set to 0 (quoted via WhatsApp)
     function redirectMismatchToCustomNaap(ageText, tierObj) {
       const primaryItem = pendingCheckoutItems[0] || {};
       const prodMatch = window.PRODUCTS.find(p => String(p.id) === String(primaryItem.id) || p.title === primaryItem.title);
@@ -1185,6 +1274,9 @@
         title: dressTitle,
         image: dressImg
       };
+
+      const sel = document.getElementById('naap-article-select');
+      if (sel && prodMatch) sel.value = String(prodMatch.id);
 
       const banner = document.getElementById('naap-selected-dress-banner');
       const bannerImg = document.getElementById('naap-selected-dress-img');
@@ -1238,6 +1330,11 @@
 
     window.clearLockedCustomDress = function() {
       lockedCustomDress = null;
+      customUploadedPhotoData = '';
+      const sel = document.getElementById('naap-article-select');
+      if (sel) sel.value = '';
+      const fileInp = document.getElementById('naap-custom-image');
+      if (fileInp) fileInp.value = '';
       const banner = document.getElementById('naap-selected-dress-banner');
       if (banner) banner.classList.add('hidden');
     };
@@ -1896,10 +1993,23 @@
       const notes = document.getElementById('naap-notes').value.trim();
       const category = document.getElementById('naap-category').value;
       const embroidery = document.getElementById('naap-embroidery').value;
+      const pickedId = document.getElementById('naap-article-select')?.value;
+      const pickedProd = pickedId ? window.PRODUCTS.find(p => String(p.id) === String(pickedId)) : null;
 
-      const currentHero = window.PRODUCTS[currentHeroIndex];
-      const chosenDressTitle = lockedCustomDress ? lockedCustomDress.title : `${category} (${embroidery})`;
-      const chosenDressImg = lockedCustomDress ? lockedCustomDress.image : (currentHero ? currentHero.image : '1000827972.jpg');
+      let chosenDressTitle = `${category} (${embroidery})`;
+      let chosenDressImg = '1000827972.jpg';
+
+      if (customUploadedPhotoData) {
+        chosenDressTitle = `Custom Picture Order (${category})`;
+        chosenDressImg = customUploadedPhotoData;
+      } else if (lockedCustomDress) {
+        chosenDressTitle = `Custom: ${lockedCustomDress.title}`;
+        chosenDressImg = lockedCustomDress.image;
+      } else if (pickedProd) {
+        chosenDressTitle = `Custom: ${pickedProd.title}`;
+        chosenDressImg = pickedProd.image;
+      }
+
       const combinedSize = ageYear ? `${ageYear} (${selectedNaapSize})` : selectedNaapSize;
 
       if (password) saveCustomerProfile(name, phone, password, address);
@@ -1929,7 +2039,6 @@
       const password = document.getElementById('ord-password').value.trim();
       const address = document.getElementById('ord-address').value.trim();
 
-      // Validate age against selected size tier (e.g., 9-12 Yrs vs 13 or 14)
       const tierObj = findTierRangeForItems(pendingCheckoutItems);
       const ageNum = parseAgeNumber(exactAge);
       if (tierObj && !Number.isNaN(ageNum) && (ageNum < tierObj.minAge || ageNum > tierObj.maxAge)) {
@@ -2013,6 +2122,7 @@
     window.resumeReviewAutoFlip = () => { isReviewPaused = false; };
 
     renderProducts('all');
+    populateCustomArticleSelect();
     syncCategoryCircleImages();
     renderSaleAdvertisement();
     updateCartUI();
@@ -2337,6 +2447,7 @@
       });
 
       window.PRODUCTS = merged;
+      window.populateCustomArticleSelect();
       window.syncCategoryCircleImages();
       window.renderSaleAdvertisement();
       window.renderProducts(window.currentFilter);
