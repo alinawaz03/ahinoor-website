@@ -70,7 +70,7 @@
     </div>
   </header>
 
-  <!-- Left Side Sticky New Order Pop-Up Banner (Visible Across All Tabs Until Dismissed) -->
+  <!-- Left Side Sticky New Order Pop-Up Banner -->
   <div id="sticky-order-popup" class="hidden fixed bottom-5 left-5 z-50 max-w-sm w-[calc(100%-2.5rem)] bg-[#2E1119] text-white rounded-2xl border-2 border-[#E5C687] shadow-2xl p-4 space-y-3">
     <div class="flex items-start justify-between gap-2">
       <div class="flex items-center gap-2">
@@ -95,7 +95,7 @@
       <div class="w-14 h-14 rounded-full bg-brand-maroon/10 dark:bg-[#322429] text-brand-maroon dark:text-[#E5C687] flex items-center justify-center mx-auto text-2xl">🔒</div>
       <div>
         <h2 class="font-editorial text-2xl font-bold">Admin Login</h2>
-        <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">Orders, Discounts, Price Up/Down aur Dress Management ke liye password enter karein.</p>
+        <p class="text-xs text-brand-muted dark:text-[#B5A8A3] mt-1">Orders, Stock Status, Discounts, Price Up/Down aur Dress Management ke liye password enter karein.</p>
       </div>
       <form onsubmit="verifyAdminPassword(event)" class="space-y-3">
         <input type="password" id="admin-password-input" required placeholder="Enter Admin Password" class="w-full px-4 py-3 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-sm text-center focus:outline-none focus:border-brand-maroon" />
@@ -148,7 +148,7 @@
       </div>
     </section>
 
-    <!-- Tab 2: Booked Customer Orders + Dress Pictures + One-Click Excel Export -->
+    <!-- Tab 2: Booked Customer Orders + Dress Pictures + Advance Badge + Excel Export -->
     <section id="admin-orders-view" class="hidden space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <h2 class="font-editorial text-2xl font-bold">Booked Customer Orders</h2>
@@ -166,7 +166,7 @@
       </div>
     </section>
 
-    <!-- Tab 3: Special Sales, Discounts (With Article Picture), Price Up/Down & "New Arrival" Controls -->
+    <!-- Tab 3: Special Sales, Discounts & "New Arrival" Controls -->
     <section id="admin-discounts-view" class="hidden space-y-6">
       <div class="bg-white dark:bg-[#241A1E] p-5 rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33] space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-2">
@@ -221,16 +221,16 @@
       </div>
     </section>
 
-    <!-- Tab 4: Dedicated Manage Dresses (Edit Category/Details, Change Picture, Price Up/Down, Delete) -->
+    <!-- Tab 4: Dedicated Manage Dresses (Edit Category/Details, Stock Toggle, Compressed Picture Upload) -->
     <section id="admin-manage-view" class="hidden space-y-4">
       <div>
-        <h2 class="font-editorial text-2xl font-bold">Manage Dresses, Categories &amp; Pictures</h2>
-        <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Kisi bhi dress ki category ya picture badlein, price up/down karein, ya title/details edit kar ke save karein.</p>
+        <h2 class="font-editorial text-2xl font-bold">Manage Dresses, Stock Status, Categories &amp; Pictures</h2>
+        <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Kisi bhi dress ko In-Stock/Sold-Out karein, category ya picture badlein (auto-compressed), ya title/price edit kar ke save karein.</p>
       </div>
       <div id="admin-manage-dresses-list" class="space-y-4 text-xs"></div>
     </section>
 
-    <!-- Tab 5: Add New Dress -->
+    <!-- Tab 5: Add New Dress (With Automatic Image Compression) -->
     <section id="admin-dress-form-wrap" class="hidden bg-white dark:bg-[#241A1E] p-6 rounded-3xl border border-[#DFD7C8] dark:border-[#3E2E33]">
       <h2 class="font-editorial text-2xl font-bold mb-4">Add New Dress to Catalog</h2>
       <form id="admin-dress-form" onsubmit="publishNewDress(event)" class="space-y-4">
@@ -275,7 +275,7 @@
         </div>
 
         <div>
-          <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Dress Photo *</label>
+          <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Dress Photo (Auto-Compressed for Fast Loading) *</label>
           <input type="file" id="dress-image-file" accept="image/*" required class="w-full px-3.5 py-2 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-[#F5F2EC] dark:bg-[#1A1215] text-xs" />
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -365,6 +365,33 @@
     let knownOrderCodes = new Set();
     let sharedAudioCtx = null;
 
+    // Client-Side Image Compression Helper (Max 900px, JPEG 0.8 quality)
+    function compressImageFile(file, maxWidth = 900, quality = 0.8) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let w = img.width;
+            let h = img.height;
+            if (w > maxWidth) {
+              h = Math.round((h * maxWidth) / w);
+              w = maxWidth;
+            }
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+          };
+          img.onerror = () => resolve(ev.target.result);
+          img.src = ev.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
     function unlockAudioContext() {
       try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -379,7 +406,6 @@
       }
     }
 
-    // Unlock audio on first user gesture so notification chime plays reliably
     document.addEventListener('pointerdown', () => { unlockAudioContext(); }, { passive: true });
     document.addEventListener('keydown', () => { unlockAudioContext(); }, { passive: true });
 
@@ -408,7 +434,7 @@
     function runChime(ctx) {
       try {
         const now = ctx.currentTime;
-        const freqs = [659.25, 880.0, 1046.5]; // E5, A5, C6 bright chime
+        const freqs = [659.25, 880.0, 1046.5];
         freqs.forEach((f, idx) => {
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
@@ -521,7 +547,7 @@
       const headers = [
         "Order ID", "Date", "Customer Name", "Phone Number",
         "Delivery Address / Notes", "Ordered Items", "Total Price (PKR)",
-        "PostEx Tracking ID", "Status"
+        "PostEx Tracking ID", "Advance Status", "Status"
       ];
 
       const escapeCsv = (val) => {
@@ -535,7 +561,9 @@
         return [
           o.orderCode || '', dateStr, o.customerName || '', o.phone || '',
           o.address || '', itemsText, o.total || 0,
-          o.postexTrackingId || 'Not Assigned', o.status || 'Pending'
+          o.postexTrackingId || 'Not Assigned',
+          o.advanceReceived ? 'Advance Received' : (o.orderType === 'Custom Naap' ? 'Awaiting Advance' : 'COD'),
+          o.status || 'Pending'
         ].map(escapeCsv).join(',');
       });
 
@@ -644,6 +672,10 @@
 
       container.innerHTML = cloudOrders.map(o => {
         const isCancelled = o.status === 'Cancelled';
+        const isCustomOrder = o.orderType === 'Custom Naap';
+        const advanceBadge = o.advanceReceived
+          ? `<span class="px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800 dark:bg-indigo-900/40 dark:text-indigo-300 font-bold text-[10px] uppercase">💰 Advance Received</span>`
+          : (isCustomOrder ? `<span class="px-2.5 py-1 rounded-full bg-orange-100 text-orange-800 dark:bg-orange-900/40 dark:text-orange-300 font-bold text-[10px] uppercase">Custom Naap</span>` : '');
 
         const topControls = isCancelled
           ? `
@@ -653,6 +685,11 @@
             ${getStatusBadge(o.status)}
           `
           : `
+            ${isCustomOrder ? `
+              <button type="button" onclick="toggleOrderAdvance('${o.id}')" class="px-2.5 py-1 rounded-lg ${o.advanceReceived ? 'bg-indigo-600 text-white' : 'bg-indigo-600/15 text-indigo-800 dark:text-indigo-300'} font-bold text-[10px] uppercase tracking-wider transition">
+                ${o.advanceReceived ? '✓ Advance Paid' : '💰 Mark Advance'}
+              </button>
+            ` : ''}
             <button type="button" onclick="printOrderSlip('${o.id}')" class="px-2.5 py-1 rounded-lg bg-[#242021] dark:bg-[#3E2E33] hover:bg-brand-maroon text-white font-bold text-[10px] uppercase tracking-wider transition">
               🖨️ Print Slip
             </button>
@@ -662,6 +699,7 @@
             <button type="button" onclick="adminDeleteOrder('${o.id}')" class="px-2.5 py-1 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-[10px] uppercase tracking-wider transition">
               🗑️ Delete
             </button>
+            ${advanceBadge}
             ${getStatusBadge(o.status)}
           `;
 
@@ -753,6 +791,14 @@
         updateDoc(doc(db, "orders", docId), patch).catch(() => {});
       }
     }
+
+    window.toggleOrderAdvance = function(docId) {
+      const target = cloudOrders.find(o => o.id === docId);
+      if (!target) return;
+      const nextVal = !target.advanceReceived;
+      updateOrderLocalAndCloud(docId, { advanceReceived: nextVal });
+      window.showToast(nextVal ? "Advance marked received 💰" : "Advance status cleared");
+    };
 
     window.markOrderDispatched = function(docId) {
       const trackInput = document.getElementById(`postex-input-${docId}`);
@@ -857,6 +903,7 @@
           price: d.price,
           category: d.category || 'girls',
           isNew: d.isNew,
+          soldOut: Boolean(d.soldOut),
           image: normalizeSuitImg(d.image),
           fabric: d.fabric || 'Soft Cotton',
           embroidery: d.embroidery || 'Floral Work',
@@ -870,6 +917,7 @@
             price: ov.price !== undefined ? Number(ov.price) : Number(s.price),
             category: ov.category || s.category,
             isNew: ov.isNew !== undefined ? ov.isNew : Boolean(s.isNew),
+            soldOut: Boolean(ov.soldOut),
             image: normalizeSuitImg(ov.image || s.image),
             fabric: ov.fabric || s.fabric,
             embroidery: ov.embroidery || s.embroidery,
@@ -933,6 +981,22 @@
       persistCatalogConfigFast(!currentNew ? "New Arrival ON" : "New Arrival removed");
     };
 
+    // Toggle In-Stock / Sold Out Status
+    window.toggleSuitSoldOut = function(suitKey, isCustom, currentSoldOut) {
+      const nextSoldOut = !currentSoldOut;
+      if (isCustom) {
+        cloudDresses = cloudDresses.map(d => d.cloudId === suitKey ? { ...d, soldOut: nextSoldOut } : d);
+        renderSuitControls();
+        renderManageDresses();
+        window.showToast(nextSoldOut ? "Marked Sold Out" : "Marked In Stock ✓");
+        updateDoc(doc(db, "dresses", suitKey), { soldOut: nextSoldOut }).catch(() => {});
+      } else {
+        const cur = suitOverrides[suitKey] || {};
+        suitOverrides[suitKey] = { ...cur, soldOut: nextSoldOut };
+        persistCatalogConfigFast(nextSoldOut ? "Marked Sold Out" : "Marked In Stock ✓");
+      }
+    };
+
     window.adjustSuitPrice = function(suitKey, currentPrice, delta, isCustom) {
       const nextPrice = Math.max(100, Number(currentPrice) + Number(delta));
       if (isCustom) {
@@ -964,7 +1028,7 @@
       persistCatalogConfigFast("Discount removed!");
     };
 
-    window.saveEditedDress = function(suitKey, isCustom) {
+    window.saveEditedDress = async function(suitKey, isCustom) {
       const title = document.getElementById(`edit-title-${suitKey}`)?.value.trim();
       const price = Number(document.getElementById(`edit-price-${suitKey}`)?.value || 0);
       const category = document.getElementById(`edit-cat-${suitKey}`)?.value || 'girls';
@@ -972,35 +1036,30 @@
       const fileInput = document.getElementById(`edit-pic-${suitKey}`);
       const file = fileInput && fileInput.files ? fileInput.files[0] : null;
 
-      const applySave = (newImgData) => {
-        if (isCustom) {
-          const patch = { title, price, category, embroidery };
-          if (newImgData) patch.image = newImgData;
-          cloudDresses = cloudDresses.map(d => d.cloudId === suitKey ? { ...d, ...patch } : d);
-          renderSuitControls();
-          renderManageDresses();
-          window.showToast("Dress & category updated ✓");
-          updateDoc(doc(db, "dresses", suitKey), patch).catch(() => {});
-        } else {
-          const cur = suitOverrides[suitKey] || {};
-          suitOverrides[suitKey] = {
-            ...cur,
-            title,
-            price,
-            category,
-            embroidery,
-            ...(newImgData ? { image: newImgData } : {})
-          };
-          persistCatalogConfigFast("Dress & category updated ✓");
-        }
-      };
-
+      let newImgData = null;
       if (file) {
-        const reader = new FileReader();
-        reader.onload = (ev) => applySave(ev.target.result);
-        reader.readAsDataURL(file);
+        newImgData = await compressImageFile(file, 900, 0.8);
+      }
+
+      if (isCustom) {
+        const patch = { title, price, category, embroidery };
+        if (newImgData) patch.image = newImgData;
+        cloudDresses = cloudDresses.map(d => d.cloudId === suitKey ? { ...d, ...patch } : d);
+        renderSuitControls();
+        renderManageDresses();
+        window.showToast("Dress updated ✓");
+        updateDoc(doc(db, "dresses", suitKey), patch).catch(() => {});
       } else {
-        applySave(null);
+        const cur = suitOverrides[suitKey] || {};
+        suitOverrides[suitKey] = {
+          ...cur,
+          title,
+          price,
+          category,
+          embroidery,
+          ...(newImgData ? { image: newImgData } : {})
+        };
+        persistCatalogConfigFast("Dress updated ✓");
       }
     };
 
@@ -1049,7 +1108,8 @@
                   <strong class="text-sm truncate">${s.title}</strong>
                   <span class="text-brand-maroon dark:text-[#E5C687] font-bold">(${window.formatPKR(s.price)})</span>
                   <span class="px-2 py-0.5 rounded-full bg-[#F5F2EC] dark:bg-[#1A1215] text-brand-muted text-[10px] font-bold uppercase">${s.category}</span>
-                  ${isNewNow ? `<span class="px-2 py-0.5 rounded-full bg-brand-maroon text-white text-[10px] font-bold">New Arrival</span>` : `<span class="px-2 py-0.5 rounded-full bg-[#EBE6DC] dark:bg-[#322429] text-brand-muted text-[10px] font-bold">No New Tag</span>`}
+                  ${s.soldOut ? `<span class="px-2 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-bold">Sold Out</span>` : ''}
+                  ${isNewNow ? `<span class="px-2 py-0.5 rounded-full bg-brand-maroon text-white text-[10px] font-bold">New Arrival</span>` : ''}
                   ${disc ? `<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">-${disc.value}${disc.type === 'percent' ? '%' : ' Rs.'}</span>` : ''}
                 </div>
                 <div class="flex items-center gap-1.5 pt-0.5">
@@ -1083,7 +1143,12 @@
 
       listEl.innerHTML = allSuits.map(s => `
         <div class="bg-white dark:bg-[#241A1E] p-4 rounded-2xl border border-[#DFD7C8] dark:border-[#3E2E33] flex flex-col md:flex-row gap-4 items-start md:items-center">
-          <img src="${s.image}" onerror="this.src='https://placehold.co/96x120/EBE6DC/6A2338?text=Suit'" alt="${s.title}" class="w-20 h-24 rounded-xl object-cover shrink-0 bg-[#F5F2EC] border border-[#DFD7C8]" />
+          <div class="relative shrink-0">
+            <img src="${s.image}" onerror="this.src='https://placehold.co/96x120/EBE6DC/6A2338?text=Suit'" alt="${s.title}" class="w-20 h-24 rounded-xl object-cover bg-[#F5F2EC] border border-[#DFD7C8]" />
+            <span class="mt-1.5 block text-center px-2 py-0.5 rounded-full text-[9px] font-extrabold uppercase ${s.soldOut ? 'bg-red-600 text-white' : 'bg-emerald-100 text-emerald-800'}">
+              ${s.soldOut ? 'Sold Out' : 'In Stock'}
+            </span>
+          </div>
 
           <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 w-full">
             <div>
@@ -1112,15 +1177,18 @@
             </div>
           </div>
 
-          <div class="flex md:flex-col gap-2 shrink-0">
+          <div class="flex flex-wrap md:flex-col gap-2 shrink-0">
             <button type="button" onclick="saveEditedDress('${s.key}', ${s.isCustom})" class="px-3.5 py-2 rounded-xl bg-[#176B58] hover:bg-[#115243] text-white font-bold text-xs">💾 Save Edit</button>
+            <button type="button" onclick="toggleSuitSoldOut('${s.key}', ${s.isCustom}, ${s.soldOut})" class="px-3.5 py-2 rounded-xl ${s.soldOut ? 'bg-emerald-600 text-white' : 'bg-amber-600/15 text-amber-800 dark:text-amber-300 border border-amber-400'} font-bold text-xs">
+              ${s.soldOut ? '✓ Mark In Stock' : '🚫 Mark Sold Out'}
+            </button>
             ${s.isCustom ? `<button type="button" onclick="deleteCloudDress('${s.key}')" class="px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs">🗑️ Delete</button>` : ''}
           </div>
         </div>
       `).join('');
     }
 
-    window.publishNewDress = function(e) {
+    window.publishNewDress = async function(e) {
       e.preventDefault();
       const file = document.getElementById('dress-image-file').files[0];
       if (!file) return;
@@ -1133,39 +1201,38 @@
       const fabric = document.getElementById('dress-fabric').value || "Soft Cotton";
       const embroidery = document.getElementById('dress-embroidery').value || "Floral Work";
 
-      const reader = new FileReader();
-      reader.onload = async (ev) => {
-        const tempId = 'temp-' + Date.now();
-        const dressPayload = {
-          title, price, category,
-          isNew: isNewChecked,
-          badge: isNewChecked ? "New Arrival" : "Stitched",
-          image: ev.target.result,
-          fabric, embroidery
-        };
-        cloudDresses.unshift({ id: tempId, cloudId: tempId, ...dressPayload });
+      const compressedDataUrl = await compressImageFile(file, 900, 0.8);
+      const tempId = 'temp-' + Date.now();
+      const dressPayload = {
+        title, price, category,
+        isNew: isNewChecked,
+        soldOut: false,
+        badge: isNewChecked ? "New Arrival" : "Stitched",
+        image: compressedDataUrl,
+        fabric, embroidery
+      };
+
+      cloudDresses.unshift({ id: tempId, cloudId: tempId, ...dressPayload });
+      if (discVal > 0) {
+        suitOverrides[tempId] = { isNew: isNewChecked, discount: { type: discType, value: discVal } };
+        saveLocalCatalogConfig();
+      }
+      renderSuitControls();
+      renderManageDresses();
+      document.getElementById('admin-dress-form').reset();
+      window.showToast("Dress added (compressed)! 👗");
+
+      try {
+        const docRef = await addDoc(collection(db, "dresses"), { ...dressPayload, createdAt: serverTimestamp() });
+        cloudDresses = cloudDresses.map(d => d.cloudId === tempId ? { ...d, id: docRef.id, cloudId: docRef.id } : d);
         if (discVal > 0) {
-          suitOverrides[tempId] = { isNew: isNewChecked, discount: { type: discType, value: discVal } };
-          saveLocalCatalogConfig();
+          suitOverrides[docRef.id] = suitOverrides[tempId];
+          delete suitOverrides[tempId];
+          await setDoc(doc(db, "settings", "catalog_config"), { globalDiscount, suitOverrides, saleEvent, updatedAt: serverTimestamp() });
         }
         renderSuitControls();
         renderManageDresses();
-        document.getElementById('admin-dress-form').reset();
-        window.showToast("Dress added! 👗");
-
-        try {
-          const docRef = await addDoc(collection(db, "dresses"), { ...dressPayload, createdAt: serverTimestamp() });
-          cloudDresses = cloudDresses.map(d => d.cloudId === tempId ? { ...d, id: docRef.id, cloudId: docRef.id } : d);
-          if (discVal > 0) {
-            suitOverrides[docRef.id] = suitOverrides[tempId];
-            delete suitOverrides[tempId];
-            await setDoc(doc(db, "settings", "catalog_config"), { globalDiscount, suitOverrides, saleEvent, updatedAt: serverTimestamp() });
-          }
-          renderSuitControls();
-          renderManageDresses();
-        } catch (err) {}
-      };
-      reader.readAsDataURL(file);
+      } catch (err) {}
     };
 
     window.updateAdminPassword = function(e) {
