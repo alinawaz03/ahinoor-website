@@ -62,6 +62,7 @@
       </div>
 
       <div class="flex items-center gap-2">
+        <button type="button" onclick="playNewOrderTone(true)" class="px-2.5 py-1.5 rounded-full bg-amber-400 text-brand-maroonDark hover:bg-amber-300 text-xs font-extrabold">🔊 Test Sound</button>
         <button type="button" onclick="toggleAdminTheme()" class="px-2.5 py-1.5 rounded-full bg-white/15 hover:bg-white/25 text-xs font-bold">🌙 / ☀️</button>
         <a href="../index.html" class="hidden sm:inline-block px-3 py-1.5 rounded-full bg-white/15 hover:bg-white/25 text-xs font-semibold">← Storefront</a>
         <button type="button" id="admin-logout-btn" onclick="logoutAdmin()" class="hidden px-3 py-1.5 rounded-full bg-red-600 hover:bg-red-700 text-xs font-bold">Logout</button>
@@ -69,8 +70,8 @@
     </div>
   </header>
 
-  <!-- Sticky New Order Pop-Up Banner (Stays Until Seen/Dismissed) -->
-  <div id="sticky-order-popup" class="hidden fixed bottom-5 right-5 z-50 max-w-sm w-[calc(100%-2.5rem)] bg-[#2E1119] text-white rounded-2xl border-2 border-[#E5C687] shadow-2xl p-4 space-y-3">
+  <!-- Left Side Sticky New Order Pop-Up Banner (Visible Across All Tabs Until Dismissed) -->
+  <div id="sticky-order-popup" class="hidden fixed bottom-5 left-5 z-50 max-w-sm w-[calc(100%-2.5rem)] bg-[#2E1119] text-white rounded-2xl border-2 border-[#E5C687] shadow-2xl p-4 space-y-3">
     <div class="flex items-start justify-between gap-2">
       <div class="flex items-center gap-2">
         <span class="text-xl animate-bounce">🔔</span>
@@ -220,11 +221,11 @@
       </div>
     </section>
 
-    <!-- Tab 4: Dedicated Manage Dresses (Edit Details, Change Picture, Price Up/Down, Delete) -->
+    <!-- Tab 4: Dedicated Manage Dresses (Edit Category/Details, Change Picture, Price Up/Down, Delete) -->
     <section id="admin-manage-view" class="hidden space-y-4">
       <div>
-        <h2 class="font-editorial text-2xl font-bold">Manage Dresses &amp; Pictures</h2>
-        <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Kisi bhi dress ki picture badlein, price up/down karein, ya title/details edit kar ke save karein.</p>
+        <h2 class="font-editorial text-2xl font-bold">Manage Dresses, Categories &amp; Pictures</h2>
+        <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Kisi bhi dress ki category ya picture badlein, price up/down karein, ya title/details edit kar ke save karein.</p>
       </div>
       <div id="admin-manage-dresses-list" class="space-y-4 text-xs"></div>
     </section>
@@ -314,7 +315,7 @@
   </main>
 
   <!-- Toast -->
-  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-brand-charcoal text-white text-xs font-semibold px-5 py-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-200"></div>
+  <div id="toast" class="fixed bottom-5 right-5 z-50 bg-brand-charcoal text-white text-xs font-semibold px-5 py-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-200"></div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -362,6 +363,25 @@
     let globalDiscount = { type: 'percent', value: 0 };
     let saleEvent = { name: '', type: 'percent', value: 0 };
     let knownOrderCodes = new Set();
+    let sharedAudioCtx = null;
+
+    function unlockAudioContext() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return null;
+        if (!sharedAudioCtx) sharedAudioCtx = new AudioCtx();
+        if (sharedAudioCtx.state === 'suspended') {
+          sharedAudioCtx.resume().catch(() => {});
+        }
+        return sharedAudioCtx;
+      } catch (_) {
+        return null;
+      }
+    }
+
+    // Unlock audio on first user gesture so notification chime plays reliably
+    document.addEventListener('pointerdown', () => { unlockAudioContext(); }, { passive: true });
+    document.addEventListener('keydown', () => { unlockAudioContext(); }, { passive: true });
 
     window.formatPKR = (amount) => 'Rs. ' + Math.max(0, Math.round(Number(amount))).toLocaleString('en-PK');
     window.showToast = (msg) => {
@@ -374,30 +394,37 @@
       try { localStorage.setItem('ahinoor_theme', isDark ? 'dark' : 'light'); } catch (e) {}
     };
 
-    // Play New Order Notification Tone using Web Audio API
-    window.playNewOrderTone = function() {
-      try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return;
-        const ctx = new AudioCtx();
-        const notes = [587.33, 783.99, 987.77]; // D5, G5, B5 chime
-        notes.forEach((freq, i) => {
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = 'sine';
-          osc.frequency.value = freq;
-          gain.gain.setValueAtTime(0.001, ctx.currentTime + i * 0.14);
-          gain.gain.exponentialRampToValueAtTime(0.18, ctx.currentTime + i * 0.14 + 0.03);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.14 + 0.35);
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start(ctx.currentTime + i * 0.14);
-          osc.stop(ctx.currentTime + i * 0.14 + 0.36);
-        });
-      } catch (_) {}
+    window.playNewOrderTone = function(showFeedback = false) {
+      const ctx = unlockAudioContext();
+      if (!ctx) return;
+      if (ctx.state === 'suspended') {
+        ctx.resume().then(() => runChime(ctx)).catch(() => {});
+      } else {
+        runChime(ctx);
+      }
+      if (showFeedback) window.showToast("🔊 Notification sound played");
     };
 
-    // Show Sticky Pop-Up That Stays Until Dismissed/Seen
+    function runChime(ctx) {
+      try {
+        const now = ctx.currentTime;
+        const freqs = [659.25, 880.0, 1046.5]; // E5, A5, C6 bright chime
+        freqs.forEach((f, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(f, now + idx * 0.13);
+          gain.gain.setValueAtTime(0.001, now + idx * 0.13);
+          gain.gain.exponentialRampToValueAtTime(0.28, now + idx * 0.13 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0008, now + idx * 0.13 + 0.42);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + idx * 0.13);
+          osc.stop(now + idx * 0.13 + 0.44);
+        });
+      } catch (_) {}
+    }
+
     window.triggerStickyOrderPopup = function(order) {
       if (!order) return;
       const popup = document.getElementById('sticky-order-popup');
@@ -409,7 +436,7 @@
       titleEl.textContent = `New Order #${order.orderCode}`;
       descEl.textContent = `${order.customerName} (${order.phone}) — ${itemsStr}`;
       popup.classList.remove('hidden');
-      window.playNewOrderTone();
+      window.playNewOrderTone(false);
     };
 
     window.dismissStickyOrderPopup = function() {
@@ -705,7 +732,6 @@
         combined = localList;
       }
 
-      // Check for newly arrived pending orders and trigger tone + sticky pop-up
       if (knownOrderCodes.size > 0) {
         const brandNew = combined.find(o => o.orderCode && !knownOrderCodes.has(o.orderCode) && o.status === 'Pending');
         if (brandNew) {
@@ -907,7 +933,6 @@
       persistCatalogConfigFast(!currentNew ? "New Arrival ON" : "New Arrival removed");
     };
 
-    // Price Up / Down (+Rs.100 / -Rs.100 or custom amount)
     window.adjustSuitPrice = function(suitKey, currentPrice, delta, isCustom) {
       const nextPrice = Math.max(100, Number(currentPrice) + Number(delta));
       if (isCustom) {
@@ -939,7 +964,6 @@
       persistCatalogConfigFast("Discount removed!");
     };
 
-    // Save Edited Dress Details + Optional New Picture in Manage Tab
     window.saveEditedDress = function(suitKey, isCustom) {
       const title = document.getElementById(`edit-title-${suitKey}`)?.value.trim();
       const price = Number(document.getElementById(`edit-price-${suitKey}`)?.value || 0);
@@ -955,7 +979,7 @@
           cloudDresses = cloudDresses.map(d => d.cloudId === suitKey ? { ...d, ...patch } : d);
           renderSuitControls();
           renderManageDresses();
-          window.showToast("Dress updated ✓");
+          window.showToast("Dress & category updated ✓");
           updateDoc(doc(db, "dresses", suitKey), patch).catch(() => {});
         } else {
           const cur = suitOverrides[suitKey] || {};
@@ -967,7 +991,7 @@
             embroidery,
             ...(newImgData ? { image: newImgData } : {})
           };
-          persistCatalogConfigFast("Dress updated ✓");
+          persistCatalogConfigFast("Dress & category updated ✓");
         }
       };
 
@@ -1024,6 +1048,7 @@
                 <div class="flex flex-wrap items-center gap-1.5">
                   <strong class="text-sm truncate">${s.title}</strong>
                   <span class="text-brand-maroon dark:text-[#E5C687] font-bold">(${window.formatPKR(s.price)})</span>
+                  <span class="px-2 py-0.5 rounded-full bg-[#F5F2EC] dark:bg-[#1A1215] text-brand-muted text-[10px] font-bold uppercase">${s.category}</span>
                   ${isNewNow ? `<span class="px-2 py-0.5 rounded-full bg-brand-maroon text-white text-[10px] font-bold">New Arrival</span>` : `<span class="px-2 py-0.5 rounded-full bg-[#EBE6DC] dark:bg-[#322429] text-brand-muted text-[10px] font-bold">No New Tag</span>`}
                   ${disc ? `<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">-${disc.value}${disc.type === 'percent' ? '%' : ' Rs.'}</span>` : ''}
                 </div>
@@ -1179,6 +1204,7 @@
 
     window.refreshAllAdminData = function() {
       cloudOrders = getLocalOrders();
+      cloudOrders.forEach(o => { if (o.orderCode) knownOrderCodes.add(o.orderCode); });
       cloudNotifications = getLocalNotifs();
       loadLocalCatalogConfig();
       renderNotifications();
@@ -1190,6 +1216,7 @@
 
     window.verifyAdminPassword = function(e) {
       e.preventDefault();
+      unlockAudioContext();
       const entered = document.getElementById('admin-password-input').value;
       if (entered === currentAdminPassword) {
         try { sessionStorage.setItem('ahinoor_admin_unlocked', 'true'); } catch (err) {}
@@ -1211,13 +1238,12 @@
       document.getElementById('admin-workspace-view').classList.remove('hidden');
       document.getElementById('admin-logout-btn').classList.remove('hidden');
       window.refreshAllAdminData();
-      // Poll every 12s for live new order tone & sticky pop-up
       setInterval(() => {
         if (document.getElementById('admin-workspace-view') && !document.getElementById('admin-workspace-view').classList.contains('hidden')) {
           syncOrdersFromCloud();
           syncNotificationsFromCloud();
         }
-      }, 12000);
+      }, 10000);
     }
 
     window.logoutAdmin = function() {
