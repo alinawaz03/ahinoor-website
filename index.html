@@ -1955,7 +1955,15 @@
       ].map(p => {
         const ov = window.SUIT_OVERRIDES[p.configKey] || {};
         const isNewFinal = ov.isNew !== undefined ? ov.isNew : Boolean(p.isNew);
-        return { ...p, isNew: isNewFinal };
+        return {
+          ...p,
+          title: ov.title || p.title,
+          price: ov.price !== undefined ? Number(ov.price) : Number(p.price),
+          category: ov.category || p.category,
+          image: ov.image || p.image,
+          embroidery: ov.embroidery || p.embroidery,
+          isNew: isNewFinal
+        };
       });
 
       window.PRODUCTS = merged;
