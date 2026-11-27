@@ -794,7 +794,7 @@
     <div class="bg-[#F9F6F0] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] p-6 sm:p-8 text-center space-y-4 my-auto">
       <div class="w-14 h-14 rounded-full bg-[#176B58]/15 text-[#176B58] dark:text-[#4ADE80] flex items-center justify-center mx-auto text-2xl font-bold">✓</div>
       <h3 class="font-editorial text-2xl font-bold">Order Booked Successfully!</h3>
-      <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Aapka order book ho gaya hai aur address save kar liya gaya hai:</p>
+      <p class="text-xs text-brand-muted dark:text-[#B5A8A3]">Aapki receipt download aur open ho rahi hai. Apna Order Number sambhal kar rakhein:</p>
       <div class="bg-white dark:bg-[#1A1215] border border-[#DFD7C8] dark:border-[#3E2E33] rounded-2xl p-4 space-y-1">
         <span class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">YOUR ORDER NUMBER</span>
         <p id="receipt-order-id" class="font-editorial text-2xl font-bold text-brand-maroon dark:text-[#E5C687]">AHN-0000</p>
@@ -808,7 +808,7 @@
     </div>
   </div>
 
-  <!-- Checkout Form Modal -->
+  <!-- Checkout Form Modal (Includes Exact Age / Year Input Along With Name, Phone & Address) -->
   <div id="checkout-form-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-xs p-4 overflow-y-auto">
     <div class="bg-[#F9F6F0] dark:bg-[#241A1E] text-brand-charcoal dark:text-[#F3EFEA] rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-[#DFD7C8] dark:border-[#3E2E33] relative my-auto">
       <div class="bg-brand-maroon text-white px-6 py-4 flex items-center justify-between">
@@ -821,9 +821,15 @@
 
       <form id="panel-order-form" onsubmit="submitPanelOrder(event)" class="p-6 space-y-4">
         <div id="checkout-summary-box" class="bg-white dark:bg-[#1A1215] p-3 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] text-xs space-y-1"></div>
-        <div>
-          <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Full Name *</label>
-          <input type="text" id="ord-name" required placeholder="Aapka Naam" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Full Name *</label>
+            <input type="text" id="ord-name" required placeholder="Aapka Naam" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1">Exact Age / Year *</label>
+            <input type="text" id="ord-age" required placeholder="e.g., 4 Years, 8 Years, Adult" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DFD7C8] dark:border-[#3E2E33] bg-white dark:bg-[#1A1215] text-sm" />
+          </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
@@ -1040,7 +1046,6 @@
     window.GLOBAL_DISCOUNT = { type: 'percent', value: 0 };
     window.SALE_EVENT = { name: '', type: 'percent', value: 0 };
 
-    // Optional silent webhook URL for server-side WhatsApp dispatch to admin (+92 315 4124959)
     const ADMIN_WHATSAPP_NUMBER = "923154124959";
     const ADMIN_WHATSAPP_WEBHOOK_URL = "";
 
@@ -1082,7 +1087,6 @@
 
     window.formatPKR = (amount) => 'Rs. ' + Math.max(0, Math.round(Number(amount))).toLocaleString('en-PK');
 
-    // Silent background WhatsApp webhook alert to admin (customer never sees or triggers WhatsApp UI)
     window.sendSilentAdminWhatsAppAlert = function(orderCode, orderData) {
       const itemsText = (orderData.items || []).map(i => `${i.title} (${i.size || 'Custom'}) x${i.qty || 1}`).join(', ');
       const payload = {
@@ -1109,6 +1113,105 @@
             keepalive: true
           }).catch(() => {});
         }
+      } catch (_) {}
+    };
+
+    window.downloadCustomerOrderReceipt = function(orderId, customerName, phone, address, items, total) {
+      const safeOrderId = orderId || 'AHN-0000';
+      const safeName = customerName || 'Customer';
+      const safePhone = phone || '';
+      const safeAddress = address || '';
+      const safeItems = Array.isArray(items) && items.length > 0 ? items : (pendingCheckoutItems || []);
+      const safeTotal = typeof total === 'number' ? total : (pendingCheckoutTotal || 0);
+      const dateStr = new Date().toLocaleDateString('en-PK');
+
+      const rowsHtml = safeItems.map((it, idx) => `
+        <tr>
+          <td style="padding:8px;border:1px solid #ddd;">${idx + 1}</td>
+          <td style="padding:8px;border:1px solid #ddd;"><strong>${it.title || 'Order Item'}</strong></td>
+          <td style="padding:8px;border:1px solid #ddd;">${it.size || 'Standard'}</td>
+          <td style="padding:8px;border:1px solid #ddd;text-align:center;">${it.qty || 1}</td>
+          <td style="padding:8px;border:1px solid #ddd;text-align:right;">${it.price ? formatPKR(it.price * (it.qty || 1)) : 'Custom Quote'}</td>
+        </tr>
+      `).join('');
+
+      const receiptHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AHINOOR Receipt - ${safeOrderId}</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #F5F2EC; color: #242021; padding: 24px; margin: 0; }
+    .card { max-width: 680px; margin: 0 auto; background: #FFFFFF; border: 1px solid #DFD7C8; border-radius: 20px; padding: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+    .top { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #6A2338; padding-bottom: 14px; margin-bottom: 18px; gap: 12px; flex-wrap: wrap; }
+    .brand { font-size: 26px; font-weight: 700; color: #6A2338; letter-spacing: 3px; }
+    .sub { font-size: 11px; color: #6B6365; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+    .meta { background: #FAF7F2; border: 1px solid #E5DEC9; border-radius: 12px; padding: 14px; font-size: 13px; line-height: 1.6; margin-bottom: 18px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 18px; }
+    th { background: #6A2338; color: #FFFFFF; padding: 9px 8px; text-align: left; border: 1px solid #6A2338; }
+    .total { background: #F7EFE6; border: 1px solid #6A2338; color: #6A2338; font-weight: 700; font-size: 15px; padding: 12px; border-radius: 10px; text-align: right; }
+    .foot { margin-top: 18px; font-size: 12px; color: #6B6365; text-align: center; }
+    @media print { body { background: #fff; padding: 0; } .card { box-shadow: none; border: none; } }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="top">
+      <div>
+        <div class="brand">AHINOOR</div>
+        <div class="sub">Stitched &amp; Embroidered Women &amp; Girls Wear</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:12px;font-weight:700;color:#176B58;">ORDER RECEIPT</div>
+        <div style="font-size:18px;font-weight:700;color:#6A2338;">${safeOrderId}</div>
+        <div style="font-size:12px;color:#6B6365;">Date: ${dateStr}</div>
+      </div>
+    </div>
+
+    <div class="meta">
+      <div><strong>Customer Name:</strong> ${safeName}</div>
+      <div><strong>Phone Number:</strong> ${safePhone}</div>
+      <div><strong>Delivery Address / Notes:</strong> ${safeAddress}</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:36px;">#</th>
+          <th>Item</th>
+          <th>Size &amp; Exact Age</th>
+          <th style="text-align:center;width:55px;">Qty</th>
+          <th style="text-align:right;width:110px;">Amount</th>
+        </tr>
+      </thead>
+      <tbody>${rowsHtml}</tbody>
+    </table>
+
+    <div class="total">
+      Shipping: FREE DELIVERY &nbsp;|&nbsp; Total Payable: ${safeTotal ? formatPKR(safeTotal) : 'As Per Custom Quote'}
+    </div>
+
+    <div class="foot">
+      Thank you for shopping with AHINOOR (ahinoor.online) • WhatsApp Support: +92 315 4124959
+    </div>
+  </div>
+</body>
+</html>`;
+
+      try {
+        const blob = new Blob([receiptHtml], { type: 'text/html;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `Ahinoor_Receipt_${safeOrderId}.html`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        window.open(url, '_blank', 'noopener');
+        setTimeout(() => URL.revokeObjectURL(url), 15000);
       } catch (_) {}
     };
 
@@ -1636,25 +1739,29 @@
     window.submitPanelOrder = function(e) {
       e.preventDefault();
       const name = document.getElementById('ord-name').value.trim();
+      const exactAge = document.getElementById('ord-age').value.trim();
       const phone = document.getElementById('ord-phone').value.trim();
       const password = document.getElementById('ord-password').value.trim();
       const address = document.getElementById('ord-address').value.trim();
 
       saveCustomerProfile(name, phone, password, address);
 
-      const itemsWithImages = pendingCheckoutItems.map(it => {
-        if (it.image) return it;
+      const itemsWithImagesAndAge = pendingCheckoutItems.map(it => {
         const foundProd = window.PRODUCTS.find(p => String(p.id) === String(it.id) || p.title === it.title);
-        return { ...it, image: foundProd ? foundProd.image : '1000827972.jpg' };
+        const img = it.image || (foundProd ? foundProd.image : '1000827972.jpg');
+        const sizeWithAge = exactAge ? `${it.size} — Exact Age: ${exactAge}` : it.size;
+        return { ...it, image: img, size: sizeWithAge };
       });
+
+      const addressWithAge = exactAge ? `${address} | Exact Age: ${exactAge}` : address;
 
       if (window.savePanelOrder) {
         window.savePanelOrder({
           customerName: name,
           phone: phone,
           customerPassword: password,
-          address: address,
-          items: itemsWithImages,
+          address: addressWithAge,
+          items: itemsWithImagesAndAge,
           total: pendingCheckoutTotal,
           orderType: pendingCheckoutType
         }, () => {
@@ -1666,12 +1773,16 @@
       }
     };
 
-    window.showOrderReceipt = function(orderId, customerName, phone) {
+    window.showOrderReceipt = function(orderId, customerName, phone, address, items, total) {
       lastTrackedQuery = orderId;
       document.getElementById('receipt-order-id').textContent = orderId;
       document.getElementById('receipt-customer-info').textContent = `${customerName} • ${phone}`;
       const m = document.getElementById('order-receipt-modal');
       m.classList.remove('hidden'); m.classList.add('flex');
+
+      if (window.downloadCustomerOrderReceipt) {
+        window.downloadCustomerOrderReceipt(orderId, customerName, phone, address, items, total);
+      }
     };
 
     function showReview(index, animate = true) {
@@ -1791,7 +1902,6 @@
       localList.unshift(newOrderObj);
       saveLocalOrders(localList);
 
-      // Silent background alert to admin WhatsApp webhook (never opens WhatsApp UI for customer)
       if (window.sendSilentAdminWhatsAppAlert) {
         window.sendSilentAdminWhatsAppAlert(orderCode, orderData);
       }
@@ -1817,7 +1927,14 @@
 
       await loadOrdersOnly();
       if (onSuccess) onSuccess();
-      window.showOrderReceipt(orderCode, orderData.customerName, orderData.phone);
+      window.showOrderReceipt(
+        orderCode,
+        orderData.customerName,
+        orderData.phone,
+        orderData.address,
+        orderData.items,
+        orderData.total
+      );
     };
 
     async function loadOrdersOnly() {
